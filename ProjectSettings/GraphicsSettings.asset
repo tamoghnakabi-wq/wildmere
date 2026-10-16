@@ -34,12 +34,21 @@ GraphicsSettings:
   - {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10770, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10783, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 4800000, guid: e9e75fe4f47884ebeb5fcf13a694f454, type: 3}
+  - {fileID: 4800000, guid: 9ad3f583af6524ce4a3868662ee85e58, type: 3}
+  - {fileID: 4800000, guid: 7d3f1709411f54eaa9b62795af4f9452, type: 3}
+  - {fileID: 4800000, guid: 30df997e726744671b653f7f2b85a075, type: 3}
+  - {fileID: 4800000, guid: 042692762567d4c4f93d51bedd3761b9, type: 3}
+  - {fileID: 4800000, guid: 22e4a1653c48f43f585e5dcf9dc99c6b, type: 3}
+  - {fileID: 4800000, guid: f38fc82cbda3540ff9d22ba98e2afaa6, type: 3}
+  - {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  - {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
+  - {fileID: 4800000, guid: 0406db5a14f94604a8c57ccfbc9f3b46, type: 3}
+  - {fileID: 4800000, guid: 8516d7a69675844a7a0b7095af7c46af, type: 3}
   m_PreloadedShaders: []
   m_PreloadShadersBatchTimeLimit: -1
-  m_SpritesDefaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000,
-    type: 0}
-  m_CustomRenderPipeline: {fileID: 11400000, guid: 4b83569d67af61e458304325a23e5dfd,
-    type: 2}
+  m_SpritesDefaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_CustomRenderPipeline: {fileID: 11400000, guid: 4b83569d67af61e458304325a23e5dfd, type: 2}
   m_TransparencySortMode: 0
   m_TransparencySortAxis: {x: 0, y: 0, z: 1}
   m_DefaultRenderingPath: 1
@@ -60,8 +69,9 @@ GraphicsSettings:
   m_FogKeepExp2: 1
   m_AlbedoSwatchInfos: []
   m_RenderPipelineGlobalSettingsMap:
-    UnityEngine.Rendering.Universal.UniversalRenderPipeline: {fileID: 11400000, guid: 18dc0cd2c080841dea60987a38ce93fa,
-      type: 2}
+    UnityEngine.Rendering.Universal.UniversalRenderPipeline: {fileID: 11400000, guid: 18dc0cd2c080841dea60987a38ce93fa, type: 2}
+  m_ShaderBuildSettings:
+    keywordDeclarationOverrides: []
   m_LightsUseLinearIntensity: 1
   m_LightsUseColorTemperature: 1
   m_LogWhenShaderIsCompiled: 0
