@@ -82,7 +82,9 @@ Shared folder `.meta` files are pre-created in `main` — never regenerate them.
 * Water: `Textures/water_normal_a.png`, `Textures/water_normal_b.png` (256 px tileable,
   OpenGL normals), `Textures/water_foam.png` (greyscale); sky noise `Textures/cloud_noise.png`.
 
-### Models (Blender) -> `Assets/Art/Models/<Category>/<Name>.fbx`
+### Models (Blender) -> `Assets/Resources/Models/<Category>/<Name>.fbx`
+* They live under `Resources/` so the runtime can `Resources.Load<GameObject>("Models/<Category>/<Name>")`.
+  Tool icons (transparent PNG renders) go to `Assets/Resources/Models/Icons/<name>.png`.
 * Built by reproducible scripts in `art-source/blender/` (headless:
   `/Applications/Blender.app/Contents/MacOS/Blender -b --factory-startup --python <script>`).
 * Metres; 1 block = 1 m. Unity space: +Y up, +Z forward.
@@ -96,7 +98,7 @@ Shared folder `.meta` files are pre-created in `main` — never regenerate them.
   applicable). Unity animates these procedurally.
 * Budgets (triangles, LOD0): props <= 1500, animals <= 2500, birds <= 600, tools <= 800.
   Props/animals also ship an `_LOD1` child at ~40 %.
-* `Assets/Art/Models/models.json`: each asset's path, category, triangles, bounds (m),
+* `Assets/Resources/Models/models.json`: each asset's path, category, triangles, bounds (m),
   pivot notes, intended biome(s).
 
 ### Audio (Gameplay) -> `Assets/Resources/Audio/<group>/<name>_<nn>.wav`
