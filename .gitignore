@@ -1,0 +1,54 @@
+# Unity generated - never commit these
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+
+# Asset meta data (only ignore for ignored folders)
+!/[Aa]ssets/**/*.meta
+
+# IDE / tooling
+.vs/
+.idea/
+.vscode/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# OS
+.DS_Store
+._*
+
+# Crashlytics / builds
+crashlytics-build.properties
+sysinfo.txt
+*.apk
+*.aab
+*.unitypackage
+*.app
+
+# Wildmere
+/website/node_modules/
+/website/.next/
+/website/.vercel/
+/website/out/
+/dist/
+/art-source/**/cache/
+/art-source/**/downloads/
+*.blend1
+/.claude/worktrees/
