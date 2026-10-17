@@ -1,0 +1,90 @@
+{
+ "kenney_impact": {
+  "author": "Kenney (kenney.nl)",
+  "files": [
+   {
+    "bytes": 800850,
+    "extracted": true,
+    "file": "kenney_impact-sounds.zip",
+    "sha256": "029d734af1582474edf3a694d1b0cebc97c1c152f2f39fa34d4c2bafc5de77f8",
+    "url": "https://kenney.nl/media/pages/assets/impact-sounds/87b4ddecda-1677589768/kenney_impact-sounds.zip"
+   }
+  ],
+  "licence": "CC0 1.0",
+  "licence_files": [
+   {
+    "file": "kenney_impact/kenney_impact-sounds.zip.d/License.txt",
+    "text": "Impact Sounds (1.0)\r\n\r\n\tCreated/distributed by Kenney (www.kenney.nl)\r\n\tCreation date: 19-12-2019\r\n\r\n\t\t\t------------------------------\r\n\r\n\tLicense: (Creative Commons Zero, CC0)\r\n\thttp://creativecommons.org/publicdomain/zero/1.0/\r\n\r\n\tThis content is free to use in personal, educational and commercial projects.\r\r\n\tSupport us by crediting Kenney or www.kenney.nl (this is not mandatory)\r\n\r\n\t\t\t------------------------------\r\n\r\n\tDonate:   http://support.kenney.nl\r\n\tRequest:  http://request.kenney.nl\r\n\tPatreon:  http://patreon.com/kenney/\r\n\r\n\tFollow on Twitter for updates:\r\n\thttp://twitter.com/KenneyNL"
+   }
+  ],
+  "page": "https://kenney.nl/assets/impact-sounds",
+  "site": "kenney.nl",
+  "title": "Impact Sounds"
+ },
+ "kenney_interface": {
+  "author": "Kenney (kenney.nl)",
+  "files": [
+   {
+    "bytes": 834536,
+    "extracted": true,
+    "file": "kenney_interface-sounds.zip",
+    "sha256": "f2193d072726d6758a5f7871b2dcc54dcce0d5c35c6f0a62f92549b327c81232",
+    "url": "https://kenney.nl/media/pages/assets/interface-sounds/fa43c1dd4d-1677589452/kenney_interface-sounds.zip"
+   }
+  ],
+  "licence": "CC0 1.0",
+  "licence_files": [
+   {
+    "file": "kenney_interface/kenney_interface-sounds.zip.d/License.txt",
+    "text": "Interface Sounds (1.0)\r\n\r\n\tCreated/distributed by Kenney (www.kenney.nl)\r\n\tCreation date: 11-02-2020\r\n\r\n\t\t\t------------------------------\r\n\r\n\tLicense: (Creative Commons Zero, CC0)\r\n\thttp://creativecommons.org/publicdomain/zero/1.0/\r\n\r\n\tThis content is free to use in personal, educational and commercial projects.\r\r\n\tSupport us by crediting Kenney or www.kenney.nl (this is not mandatory)\r\n\r\n\t\t\t------------------------------\r\n\r\n\tDonate:   http://support.kenney.nl\r\n\tPatreon:  http://patreon.com/kenney/\r\n\r\n\tFollow on Twitter for updates:\r\n\thttp://twitter.com/KenneyNL"
+   }
+  ],
+  "page": "https://kenney.nl/assets/interface-sounds",
+  "site": "kenney.nl",
+  "title": "Interface Sounds"
+ },
+ "kenney_rpg": {
+  "author": "Kenney (kenney.nl)",
+  "files": [
+   {
+    "bytes": 964837,
+    "extracted": true,
+    "file": "kenney_rpg-audio.zip",
+    "sha256": "6dbeaf8544da958d8f2adcb4a4a4b76c1ade34a05f8ab9edccd327da7375f38b",
+    "url": "https://kenney.nl/media/pages/assets/rpg-audio/8e99002d76-1677590336/kenney_rpg-audio.zip"
+   }
+  ],
+  "licence": "CC0 1.0",
+  "licence_files": [
+   {
+    "file": "kenney_rpg/kenney_rpg-audio.zip.d/License.txt",
+    "text": "RPG Audio\r\n\r\n\tby  Kenney Vleugels (Kenney.nl)\r\n\r\n\t\t\t------------------------------\r\n\r\n\tLicense (Creative Commons Zero, CC0)\r\n\thttp://creativecommons.org/publicdomain/zero/1.0/\r\n\r\n\tYou may use these assets in personal and commercial projects.\r\n\tCredit (Kenney or www.kenney.nl) would be nice but is not mandatory.\r\n\r\n\t\t\t------------------------------\r\n\r\n\tDonate:   http://support.kenney.nl\r\n\tRequest:  http://request.kenney.nl\r\n\r\n\tFollow on Twitter for updates:\r\n\t@KenneyNL"
+   }
+  ],
+  "page": "https://kenney.nl/assets/rpg-audio",
+  "site": "kenney.nl",
+  "title": "RPG Audio"
+ },
+ "kenney_ui": {
+  "author": "Kenney (kenney.nl)",
+  "files": [
+   {
+    "bytes": 411949,
+    "extracted": true,
+    "file": "kenney_ui-audio.zip",
+    "sha256": "946fc23a63d535d693eb31b2eabb80c8c28d6351e2186b344ceb71b2cb1d5eb6",
+    "url": "https://kenney.nl/media/pages/assets/ui-audio/490d233f68-1677590494/kenney_ui-audio.zip"
+   }
+  ],
+  "licence": "CC0 1.0",
+  "licence_files": [
+   {
+    "file": "kenney_ui/kenney_ui-audio.zip.d/License.txt",
+    "text": "UI SFX Set\r\n\r\n\tby  Kenney Vleugels (Kenney.nl)\r\n\r\n\t\t\t------------------------------\r\n\r\n\tLicense (Creative Commons Zero, CC0)\r\n\thttp://creativecommons.org/publicdomain/zero/1.0/\r\n\r\n\tYou may use these assets in personal and commercial projects.\r\n\tCredit (Kenney or www.kenney.nl) would be nice but is not mandatory.\r\n\r\n\t\t\t------------------------------\r\n\r\n\tDonate:   http://support.kenney.nl\r\n\tRequest:  http://request.kenney.nl\r\n\r\n\tFollow on Twitter for updates:\r\n\t@KenneyNL"
+   }
+  ],
+  "page": "https://kenney.nl/assets/ui-audio",
+  "site": "kenney.nl",
+  "title": "UI Audio"
+ }
+}
