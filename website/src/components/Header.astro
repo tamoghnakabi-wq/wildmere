@@ -1,0 +1,236 @@
+---
+import Icon from './Icon.astro';
+import { emblemInner, wordmarkInner, WORDMARK_WIDTH, WORDMARK_HEIGHT } from '../lib/brand';
+import { release } from '../lib/data';
+
+interface Props {
+  showGallery: boolean;
+}
+const { showGallery } = Astro.props;
+const links = [
+  { href: '#game', label: 'The game' },
+  { href: '#features', label: 'Features' },
+  ...(showGallery ? [{ href: '#gallery', label: 'Gallery' }] : []),
+  { href: '#requirements', label: 'Requirements' },
+  { href: '#install', label: 'Install' },
+];
+---
+
+<header class="site-header" data-header>
+  <div class="bar wrap">
+    <a class="brand" href="#top" aria-label="Wildmere, back to top">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" set:html={emblemInner('hdr-em', { bg: null, weight: 3.6 })} />
+      <svg
+        class="brand-word"
+        viewBox={`0 0 ${WORDMARK_WIDTH} ${WORDMARK_HEIGHT}`}
+        aria-hidden="true"
+        set:html={wordmarkInner('hdr-wm', 'currentColor')}
+      />
+    </a>
+
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <ul>
+        {links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+        <li class="nav-gh">
+          <a href={release.repo} rel="noopener">
+            <Icon name="repo" /> GitHub
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="actions">
+      <a class="gh" href={release.repo} rel="noopener" aria-label="Wildmere on GitHub"><Icon name="repo" /></a>
+      <a class="btn btn-primary btn-sm" href="#download"><Icon name="download" /> Download</a>
+      <button class="menu" type="button" aria-expanded="false" aria-controls="site-nav" data-menu>
+        <span class="visually-hidden">Menu</span>
+        <Icon name="menu" class="i-open" />
+        <Icon name="close" class="i-close" />
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 50;
+    height: var(--header-h);
+    transition:
+      background 0.4s var(--ease),
+      border-color 0.4s var(--ease),
+      backdrop-filter 0.4s var(--ease);
+    border-bottom: 1px solid transparent;
+  }
+  .site-header.is-scrolled,
+  .site-header.is-open {
+    background: rgba(5, 8, 10, 0.72);
+    backdrop-filter: blur(14px) saturate(1.2);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
+    border-color: var(--line);
+  }
+  .bar {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--bone);
+    text-decoration: none;
+    flex: none;
+  }
+  .brand-mark {
+    width: 32px;
+    height: 32px;
+  }
+  .brand-word {
+    width: 118px;
+    height: auto;
+  }
+  .nav {
+    margin-left: auto;
+  }
+  .nav ul {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 0.92rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition:
+      color 0.2s,
+      background 0.2s;
+  }
+  .nav a:hover {
+    color: var(--text);
+    background: var(--surface-2);
+  }
+  .nav :global(svg) {
+    width: 18px;
+    height: 18px;
+  }
+  .nav-gh {
+    display: none;
+  }
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .gh {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    transition:
+      color 0.2s,
+      border-color 0.2s;
+  }
+  .gh:hover {
+    color: var(--text);
+    border-color: var(--line-2);
+  }
+  .gh :global(svg) {
+    width: 20px;
+    height: 20px;
+  }
+  .menu {
+    display: none;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+  }
+  .menu :global(.i-close) {
+    display: none;
+  }
+  .is-open .menu :global(.i-open) {
+    display: none;
+  }
+  .is-open .menu :global(.i-close) {
+    display: block;
+  }
+
+  @media (max-width: 920px) {
+    .menu {
+      display: grid;
+    }
+    .gh {
+      display: none;
+    }
+    .actions {
+      margin-left: auto;
+    }
+    .nav {
+      position: fixed;
+      inset: var(--header-h) 0 auto 0;
+      margin: 0;
+      padding: 8px var(--gutter) 20px;
+      background: #05080a;
+      border-bottom: 1px solid var(--line);
+      transform: translateY(-8px);
+      opacity: 0;
+      visibility: hidden;
+      transition:
+        opacity 0.25s var(--ease),
+        transform 0.25s var(--ease),
+        visibility 0s 0.25s;
+    }
+    .is-open .nav {
+      opacity: 1;
+      transform: none;
+      visibility: visible;
+      transition:
+        opacity 0.25s var(--ease),
+        transform 0.25s var(--ease);
+    }
+    .nav ul {
+      flex-direction: column;
+    }
+    .nav a {
+      padding: 14px 4px;
+      font-size: 1.05rem;
+      border-radius: 0;
+      border-bottom: 1px solid var(--line);
+      width: 100%;
+    }
+    .nav-gh {
+      display: block;
+    }
+    .no-js .nav {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  @media (max-width: 420px) {
+    .brand-word {
+      width: 96px;
+    }
+    .actions .btn {
+      padding: 0 12px;
+    }
+  }
+</style>

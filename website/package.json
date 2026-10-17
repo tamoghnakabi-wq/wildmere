@@ -1,0 +1,27 @@
+{
+  "name": "wildmere-website",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Static landing page for Wildmere, an original voxel survival game.",
+  "scripts": {
+    "check:data": "node scripts/check-data.mjs",
+    "prebuild": "node scripts/check-data.mjs",
+    "build": "astro build",
+    "dev": "astro dev",
+    "preview": "astro preview",
+    "build:demo": "WILDMERE_DEMO=1 node scripts/check-data.mjs && WILDMERE_DEMO=1 astro build --outDir dist-demo",
+    "import-shots": "node scripts/import-shots.mjs"
+  },
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "dependencies": {
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "astro": "^7.4.0",
+    "marked": "^18.1.1",
+    "sharp": "^0.35.5"
+  }
+}
