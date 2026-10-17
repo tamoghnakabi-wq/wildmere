@@ -141,8 +141,9 @@ if [ -n "$MAC_ZIP" ]; then
         local rc=$?
         set -e
         release_unity_slot
-        grep -a '^WM_' "$log" | tail -20 | sed 's/^/    /'
-        local tail_line; tail_line="$(grep -a 'WM_SELFTEST' "$log" | tail -1)"
+        # "|| true": an empty log (e.g. killed by the timeout) must not abort under pipefail
+        { grep -a '^WM_' "$log" || true; } | tail -20 | sed 's/^/    /'
+        local tail_line; tail_line="$({ grep -a 'WM_SELFTEST' "$log" || true; } | tail -1)"
         if [ "$rc" = 0 ] && grep -aq 'WM_SELFTEST PASS' "$log"; then
           record PASS "self-test ($label)" "exit 0, ${tail_line:-WM_SELFTEST PASS}"
         elif [ "$rc" = 142 ] || [ "$rc" = 137 ]; then

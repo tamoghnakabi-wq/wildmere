@@ -1,0 +1,158 @@
+# OPTIONAL fully automated Unity builds with GameCI (game-ci/unity-builder).
+#
+# Disabled until the repository has these three secrets (Settings > Secrets and
+# variables > Actions); without them the workflow finishes green with a notice:
+#   UNITY_LICENSE   contents of your activated Unity licence file (Unity_lic.ulf)
+#   UNITY_EMAIL     Unity ID e-mail
+#   UNITY_PASSWORD  Unity ID password
+# See docs/RELEASING.md "Automated builds (optional)". Nothing here publishes a
+# release: the result is a "wildmere-dist-<version>" artifact containing the same
+# zips + manifest that tools/release/package.sh makes locally.
+name: Build (optional, needs Unity secrets)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'Assets/**'
+      - 'Packages/**'
+      - 'ProjectSettings/**'
+      - 'VERSION'
+      - '.github/workflows/build.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: unity-build-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  UNITY_VERSION: 6000.3.22f1
+
+jobs:
+  licence:
+    name: Check for Unity licence secrets
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      ok: ${{ steps.check.outputs.ok }}
+    steps:
+      - id: check
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        run: |
+          if [ -n "$UNITY_LICENSE" ] && [ -n "$UNITY_EMAIL" ] && [ -n "$UNITY_PASSWORD" ]; then
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=Unity build skipped::Set the UNITY_LICENSE, UNITY_EMAIL and UNITY_PASSWORD repository secrets to enable automated builds (docs/RELEASING.md)."
+          fi
+
+  build:
+    name: Unity ${{ matrix.target }}
+    needs: licence
+    if: needs.licence.outputs.ok == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: StandaloneOSX
+            method: BuildScript.BuildMac
+            out: mac
+          - target: StandaloneWindows64
+            method: BuildScript.BuildWindows
+            out: win
+    steps:
+      - name: Free disk space (Unity images are large)
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL || true
+          df -h /
+
+      - uses: actions/checkout@v7
+        with:
+          lfs: true   # textures, models and audio live in Git LFS
+          persist-credentials: false
+
+      - uses: actions/cache@v6
+        with:
+          path: Library
+          key: Library-${{ matrix.target }}-${{ hashFiles('Packages/packages-lock.json', 'ProjectSettings/**') }}-${{ hashFiles('Assets/**') }}
+          restore-keys: |
+            Library-${{ matrix.target }}-${{ hashFiles('Packages/packages-lock.json', 'ProjectSettings/**') }}-
+            Library-${{ matrix.target }}-
+
+      - uses: game-ci/unity-builder@v6
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          unityVersion: ${{ env.UNITY_VERSION }}
+          targetPlatform: ${{ matrix.target }}
+          # the project's own build entry points write Build/mac and Build/win
+          buildMethod: ${{ matrix.method }}
+          versioning: None
+          allowDirtyBuild: true
+
+      - name: Pack the build (tar keeps permissions and symlinks; artifacts do not)
+        run: |
+          sudo chown -R "$(id -u):$(id -g)" Build
+          ls -la "Build/${{ matrix.out }}"
+          tar -C Build -cf "unity-${{ matrix.out }}.tar" "${{ matrix.out }}"
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: unity-${{ matrix.out }}
+          path: unity-${{ matrix.out }}.tar
+          retention-days: 7
+
+  package:
+    name: Sign (ad-hoc), package and self-test
+    needs: build
+    runs-on: macos-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          lfs: false
+          persist-credentials: false
+
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: unity-*
+          merge-multiple: true
+
+      - name: Unpack into Build/
+        run: |
+          mkdir -p Build
+          for t in unity-*.tar; do tar -C Build -xf "$t"; done
+          ls -la Build Build/mac Build/win
+
+      - name: Ad-hoc sign the macOS app
+        # Builds made on Linux are unsigned, and Apple Silicon will not run unsigned code.
+        run: |
+          xattr -cr Build/mac/Wildmere.app
+          codesign --force --deep --sign - Build/mac/Wildmere.app
+          codesign --verify --deep --strict --verbose=2 Build/mac/Wildmere.app
+
+      - name: Package
+        run: tools/release/package.sh
+
+      - name: Pre-flight the zips (checksums, layout, signature, headless self-test)
+        run: tools/release/verify-download.sh --local --timeout 600
+
+      - name: Read version
+        id: ver
+        run: echo "version=$(tr -d ' \n' < VERSION)" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: wildmere-dist-${{ steps.ver.outputs.version }}
+          path: dist/
+          retention-days: 14

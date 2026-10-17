@@ -82,7 +82,7 @@ switch (cmd) {
       return { platform: pl, label: a.label, file: a.file, url: g.url, size: a.size, sha256: a.sha256, verified };
     });
     const sums = [...byName.values()].find((g) => /-SHA256SUMS\.txt$/.test(g.name));
-    const notes = readFileSync(notesFile, 'utf8').replace(/<!--[\s\S]*?-->/g, '').trim();
+    const notes = readFileSync(notesFile, 'utf8').replace(/<!--[\s\S]*?-->/g, '').replace(/\n{3,}/g, '\n\n').trim();
     const date = (release.publishedAt || new Date().toISOString()).slice(0, 10);
     const out = { version, date, notes, repo: repoUrl, checksums: sums ? sums.url : null, assets };
     writeFileSync(outFile, JSON.stringify(out, null, 2) + '\n');
