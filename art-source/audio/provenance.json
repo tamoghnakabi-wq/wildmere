@@ -1,0 +1,769 @@
+{
+ "step/dirt": [
+  {
+   "file": "Assets/Resources/Audio/step/dirt_01.wav",
+   "layers": [
+    {
+     "source": "oga_fantozzi",
+     "file": "Fantozzi-footsteps.7z -> Fantozzi-footsteps/ogg/Fantozzi-SandL2.ogg",
+     "t0": 0.0,
+     "t1": 0.32,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.314,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/dirt_02.wav",
+   "layers": [
+    {
+     "source": "oga_fantozzi",
+     "file": "Fantozzi-footsteps.7z -> Fantozzi-footsteps/ogg/Fantozzi-SandR2.ogg",
+     "t0": 0.0,
+     "t1": 0.34,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.334,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/dirt_03.wav",
+   "layers": [
+    {
+     "source": "oga_kdd_steps",
+     "file": "[kdd]DifferentSteps_0.zip -> mud02.ogg",
+     "t0": 0.0,
+     "t1": 0.26,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.26,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/dirt_04.wav",
+   "layers": [
+    {
+     "source": "oga_ignasd_steps",
+     "file": "Ejimas1.zip -> Ejimas1.ogg",
+     "t0": 0.0,
+     "t1": 0.913,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.36,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/dirt_05.wav",
+   "layers": [
+    {
+     "source": "oga_rd_mud",
+     "file": "25-CC0-mud-sfx.zip -> mud_11.ogg",
+     "t0": 0.0,
+     "t1": 0.227,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.138,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/dirt_06.wav",
+   "layers": [
+    {
+     "source": "oga_rd_mud",
+     "file": "25-CC0-mud-sfx.zip -> mud_18.ogg",
+     "t0": 0.0,
+     "t1": 0.589,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.36,
+   "channels": 1
+  }
+ ],
+ "step/grass": [
+  {
+   "file": "Assets/Resources/Audio/step/grass_01.wav",
+   "layers": [
+    {
+     "source": "oga_fantozzi",
+     "file": "Fantozzi-footsteps.7z -> Fantozzi-footsteps/ogg/Fantozzi-SandL1.ogg",
+     "t0": 0.0,
+     "t1": 0.443,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.4,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/grass_02.wav",
+   "layers": [
+    {
+     "source": "oga_fantozzi",
+     "file": "Fantozzi-footsteps.7z -> Fantozzi-footsteps/ogg/Fantozzi-SandL3.ogg",
+     "t0": 0.0,
+     "t1": 0.302,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.302,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/grass_03.wav",
+   "layers": [
+    {
+     "source": "oga_fantozzi",
+     "file": "Fantozzi-footsteps.7z -> Fantozzi-footsteps/ogg/Fantozzi-SandR1.ogg",
+     "t0": 0.0,
+     "t1": 0.406,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.396,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/grass_04.wav",
+   "layers": [
+    {
+     "source": "oga_fantozzi",
+     "file": "Fantozzi-footsteps.7z -> Fantozzi-footsteps/ogg/Fantozzi-SandR3.ogg",
+     "t0": 0.0,
+     "t1": 0.329,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.325,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/grass_05.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/footstep_grass_001.ogg",
+     "t0": 0.0,
+     "t1": 0.671,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.176,
+   "channels": 1
+  }
+ ],
+ "step/gravel": [
+  {
+   "file": "Assets/Resources/Audio/step/gravel_01.wav",
+   "layers": [
+    {
+     "source": "oga_kdd_steps",
+     "file": "[kdd]DifferentSteps_0.zip -> gravel.ogg",
+     "t0": 0.0,
+     "t1": 0.704,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.4,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/gravel_02.wav",
+   "layers": [
+    {
+     "source": "oga_rd_100v2",
+     "file": "sfx_100_v2.zip -> sfx100v2_footstep_01.ogg",
+     "t0": 0.0,
+     "t1": 0.415,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.246,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/gravel_03.wav",
+   "layers": [
+    {
+     "source": "oga_rd_100v2",
+     "file": "sfx_100_v2.zip -> sfx100v2_footstep_02.ogg",
+     "t0": 0.0,
+     "t1": 0.352,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.274,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/gravel_04.wav",
+   "layers": [
+    {
+     "source": "oga_corsica_snow",
+     "file": "corsica_s-walking_in_snow.7z -> Corsica_S-Walking_in_Snow/Corsica_S-Walking_on_snow_covered_gravel_04.flac",
+     "t0": 0.0,
+     "t1": 0.679,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.4,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/gravel_05.wav",
+   "layers": [
+    {
+     "source": "oga_corsica_snow",
+     "file": "corsica_s-walking_in_snow.7z -> Corsica_S-Walking_in_Snow/Corsica_S-Walking_on_snow_covered_gravel_10.flac",
+     "t0": 0.0,
+     "t1": 0.656,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.4,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/gravel_06.wav",
+   "layers": [
+    {
+     "source": "oga_corsica_snow",
+     "file": "corsica_s-walking_in_snow.7z -> Corsica_S-Walking_in_Snow/Corsica_S-Walking_on_snow_covered_gravel_12.flac",
+     "t0": 0.0,
+     "t1": 0.554,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.4,
+   "channels": 1
+  }
+ ],
+ "step/leaves": [
+  {
+   "file": "Assets/Resources/Audio/step/leaves_01.wav",
+   "layers": [
+    {
+     "source": "oga_kdd_steps",
+     "file": "[kdd]DifferentSteps_0.zip -> leaves01.ogg",
+     "t0": 0.0,
+     "t1": 0.391,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.391,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/leaves_02.wav",
+   "layers": [
+    {
+     "source": "oga_kdd_steps",
+     "file": "[kdd]DifferentSteps_0.zip -> leaves02.ogg",
+     "t0": 0.0,
+     "t1": 0.474,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.42,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/leaves_03.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_rustle",
+     "file": "qubodup-rustle.7z -> rustle/rustle10.flac",
+     "t0": 0.0,
+     "t1": 0.4,
+     "role": "take"
+    },
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/footstep_grass_001.ogg",
+     "t0": 0.0,
+     "t1": 0.671,
+     "role": "footfall"
+    }
+   ],
+   "seconds": 0.42,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/leaves_04.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_rustle",
+     "file": "qubodup-rustle.7z -> rustle/rustle09.flac",
+     "t0": 0.0,
+     "t1": 0.4,
+     "role": "take"
+    },
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/footstep_grass_003.ogg",
+     "t0": 0.0,
+     "t1": 0.666,
+     "role": "footfall"
+    }
+   ],
+   "seconds": 0.42,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/leaves_05.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_rustle",
+     "file": "qubodup-rustle.7z -> rustle/rustle12.flac",
+     "t0": 0.0,
+     "t1": 0.4,
+     "role": "take"
+    },
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/footstep_grass_004.ogg",
+     "t0": 0.0,
+     "t1": 0.587,
+     "role": "footfall"
+    }
+   ],
+   "seconds": 0.42,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/leaves_06.wav",
+   "layers": [
+    {
+     "source": "oga_haeldb_random",
+     "file": "moving leaves stereo.ogg",
+     "t0": 0.0,
+     "t1": 0.5,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.42,
+   "channels": 1
+  }
+ ],
+ "step/sand": [
+  {
+   "file": "Assets/Resources/Audio/step/sand_01.wav",
+   "layers": [
+    {
+     "source": "oga_peludo",
+     "file": "sand_footsteps_0.mp3",
+     "t0": 1.766,
+     "t1": 2.578,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.4,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/sand_02.wav",
+   "layers": [
+    {
+     "source": "oga_peludo",
+     "file": "sand_footsteps_0.mp3",
+     "t0": 2.662,
+     "t1": 3.184,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.4,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/sand_03.wav",
+   "layers": [
+    {
+     "source": "oga_peludo",
+     "file": "sand_footsteps_0.mp3",
+     "t0": 3.268,
+     "t1": 3.792,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.4,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/sand_04.wav",
+   "layers": [
+    {
+     "source": "oga_peludo",
+     "file": "sand_footsteps_0.mp3",
+     "t0": 3.876,
+     "t1": 4.382,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.4,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/sand_05.wav",
+   "layers": [
+    {
+     "source": "oga_peludo",
+     "file": "sand_footsteps_0.mp3",
+     "t0": 5.63,
+     "t1": 6.762,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.4,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/sand_06.wav",
+   "layers": [
+    {
+     "source": "oga_peludo",
+     "file": "sand_footsteps_0.mp3",
+     "t0": 6.846,
+     "t1": 7.82,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.4,
+   "channels": 1
+  }
+ ],
+ "step/snow": [
+  {
+   "file": "Assets/Resources/Audio/step/snow_01.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_drysnow",
+     "file": "qubodup-snow_steps_dry_0.7z -> qubodup-snow_steps_dry/snow_step_dry-01.flac",
+     "t0": 0.0,
+     "t1": 0.445,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.443,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/snow_02.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_drysnow",
+     "file": "qubodup-snow_steps_dry_0.7z -> qubodup-snow_steps_dry/snow_step_dry-02.flac",
+     "t0": 0.0,
+     "t1": 0.679,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.45,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/snow_03.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_drysnow",
+     "file": "qubodup-snow_steps_dry_0.7z -> qubodup-snow_steps_dry/snow_step_dry-03.flac",
+     "t0": 0.0,
+     "t1": 0.509,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.45,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/snow_04.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_drysnow",
+     "file": "qubodup-snow_steps_dry_0.7z -> qubodup-snow_steps_dry/snow_step_dry-04.flac",
+     "t0": 0.0,
+     "t1": 0.487,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.45,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/snow_05.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/footstep_snow_000.ogg",
+     "t0": 0.0,
+     "t1": 0.371,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.206,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/snow_06.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/footstep_snow_003.ogg",
+     "t0": 0.0,
+     "t1": 0.371,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.206,
+   "channels": 1
+  }
+ ],
+ "step/stone": [
+  {
+   "file": "Assets/Resources/Audio/step/stone_01.wav",
+   "layers": [
+    {
+     "source": "oga_fantozzi",
+     "file": "Fantozzi-footsteps.7z -> Fantozzi-footsteps/ogg/Fantozzi-StoneL1.ogg",
+     "t0": 0.0,
+     "t1": 0.373,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.34,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/stone_02.wav",
+   "layers": [
+    {
+     "source": "oga_fantozzi",
+     "file": "Fantozzi-footsteps.7z -> Fantozzi-footsteps/ogg/Fantozzi-StoneL2.ogg",
+     "t0": 0.0,
+     "t1": 0.332,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.33,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/stone_03.wav",
+   "layers": [
+    {
+     "source": "oga_fantozzi",
+     "file": "Fantozzi-footsteps.7z -> Fantozzi-footsteps/ogg/Fantozzi-StoneL3.ogg",
+     "t0": 0.0,
+     "t1": 0.328,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.328,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/stone_04.wav",
+   "layers": [
+    {
+     "source": "oga_fantozzi",
+     "file": "Fantozzi-footsteps.7z -> Fantozzi-footsteps/ogg/Fantozzi-StoneR1.ogg",
+     "t0": 0.0,
+     "t1": 0.357,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.34,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/stone_05.wav",
+   "layers": [
+    {
+     "source": "oga_fantozzi",
+     "file": "Fantozzi-footsteps.7z -> Fantozzi-footsteps/ogg/Fantozzi-StoneR2.ogg",
+     "t0": 0.0,
+     "t1": 0.32,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.308,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/stone_06.wav",
+   "layers": [
+    {
+     "source": "oga_fantozzi",
+     "file": "Fantozzi-footsteps.7z -> Fantozzi-footsteps/ogg/Fantozzi-StoneR3.ogg",
+     "t0": 0.0,
+     "t1": 0.339,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.337,
+   "channels": 1
+  }
+ ],
+ "step/water": [
+  {
+   "file": "Assets/Resources/Audio/step/water_01.wav",
+   "layers": [
+    {
+     "source": "oga_rd_100v2",
+     "file": "sfx_100_v2.zip -> sfx100v2_footstep_wet_01.ogg",
+     "t0": 0.0,
+     "t1": 0.28,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.268,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/water_02.wav",
+   "layers": [
+    {
+     "source": "oga_rd_100v2",
+     "file": "sfx_100_v2.zip -> sfx100v2_footstep_wet_02.ogg",
+     "t0": 0.0,
+     "t1": 0.402,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.378,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/water_03.wav",
+   "layers": [
+    {
+     "source": "oga_rd_100v2",
+     "file": "sfx_100_v2.zip -> sfx100v2_footstep_wet_03.ogg",
+     "t0": 0.0,
+     "t1": 0.385,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.364,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/water_04.wav",
+   "layers": [
+    {
+     "source": "oga_rd_water",
+     "file": "water-splash-slime-sfx.zip -> splash_06.ogg",
+     "t0": 0.0,
+     "t1": 0.457,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.396,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/water_05.wav",
+   "layers": [
+    {
+     "source": "oga_rd_water",
+     "file": "water-splash-slime-sfx.zip -> splash_14.ogg",
+     "t0": 0.0,
+     "t1": 0.559,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.482,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/water_06.wav",
+   "layers": [
+    {
+     "source": "oga_ezwa_splash",
+     "file": "ezwa-water_splash.7z -> ezwa-water_splash/water_splash-02.flac",
+     "t0": 0.0,
+     "t1": 0.419,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.389,
+   "channels": 1
+  }
+ ],
+ "step/wood": [
+  {
+   "file": "Assets/Resources/Audio/step/wood_01.wav",
+   "layers": [
+    {
+     "source": "oga_rd_100v2",
+     "file": "sfx_100_v2.zip -> sfx100v2_footstep_wood_01.ogg",
+     "t0": 0.0,
+     "t1": 0.284,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.22,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/wood_02.wav",
+   "layers": [
+    {
+     "source": "oga_rd_100v2",
+     "file": "sfx_100_v2.zip -> sfx100v2_footstep_wood_02.ogg",
+     "t0": 0.0,
+     "t1": 0.244,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.224,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/wood_03.wav",
+   "layers": [
+    {
+     "source": "oga_rd_100v2",
+     "file": "sfx_100_v2.zip -> sfx100v2_footstep_wood_04.ogg",
+     "t0": 0.0,
+     "t1": 0.37,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.25,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/wood_04.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/footstep_wood_000.ogg",
+     "t0": 0.0,
+     "t1": 0.271,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.098,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/wood_05.wav",
+   "layers": [
+    {
+     "source": "oga_kdd_steps",
+     "file": "[kdd]DifferentSteps_0.zip -> wood01.ogg",
+     "t0": 0.0,
+     "t1": 0.242,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.232,
+   "channels": 1
+  }
+ ]
+}

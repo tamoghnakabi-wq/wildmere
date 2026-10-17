@@ -175,11 +175,79 @@ def momentary_max(x, sr=SR):
     return float(-0.691 + 10 * np.log10(max(np.max(np.sum(e, axis=1)), 1e-12)))
 
 
+def true_peak(x):
+    """4x-oversampled peak (FFT interpolation), chunked for long files."""
+    y = x if x.ndim == 2 else x[:, None]
+    n = y.shape[0]
+    if n > SR * 20:
+        return max(true_peak(y[i:i + SR * 10]) for i in range(0, n, SR * 10))
+    X = np.fft.rfft(y, axis=0)
+    Z = np.zeros((4 * n // 2 + 1, y.shape[1]), complex)
+    Z[:X.shape[0]] = X
+    return float(np.max(np.abs(np.fft.irfft(Z, 4 * n, axis=0) * 4)))
+
+
+def _slide_min(v, w):
+    pad = np.concatenate([np.full(w // 2, v[0]), v, np.full(w - w // 2 - 1, v[-1])])
+    return np.min(np.lib.stride_tricks.sliding_window_view(pad, w), axis=1)
+
+
+def _slide_mean(v, w):
+    pad = np.concatenate([np.full(w // 2, v[0]), v, np.full(w - w // 2 - 1, v[-1])])
+    c = np.concatenate([[0.0], np.cumsum(pad)])
+    return (c[w:] - c[:-w]) / w
+
+
+def limit(x, ceiling, sr=SR, look_ms=1.5, release_ms=40.0):
+    """Look-ahead peak limiter: smooth gain riding so |x| stays under `ceiling`.
+
+    Used only to tame the first few dB of a recording's sharpest transients so
+    quiet-but-peaky takes can sit at the same loudness as their siblings.
+    """
+    a = np.abs(x) if x.ndim == 1 else np.max(np.abs(x), axis=1)
+    req = np.minimum(1.0, ceiling / np.maximum(a, 1e-9))
+    w = max(3, int(sr * look_ms / 1000))
+    g = _slide_min(req, 2 * w + 1)
+    # release: let the gain recover slowly (one-pole on the reduction, causal)
+    r = max(1, int(sr * release_ms / 1000))
+    red = 1.0 - g
+    k = 1.0 / r
+    out = np.empty_like(red)
+    acc = 0.0
+    for i in range(len(red)):           # short clips only; cost is fine
+        acc = red[i] if red[i] > acc else acc + (red[i] - acc) * k
+        out[i] = acc
+    g = _slide_mean(1.0 - out, w)
+    g = np.minimum(g, req)
+    return x * (g[:, None] if x.ndim == 2 else g)
+
+
+def level_limited(x, target, ceiling_db=-1.0, max_gr_db=6.0, sr=SR):
+    """Bring a one-shot to `target` momentary loudness, limiting at most
+    `max_gr_db` of peak; beyond that, the clip stays quieter instead."""
+    c = undb(ceiling_db) * undb(-0.6)          # leave room for inter-sample peaks
+    m = momentary_max(x, sr)
+    g = undb(target - m)
+    tp = true_peak(x) * g
+    over = db(tp / c) if tp > c else 0.0
+    if over > max_gr_db:
+        g *= undb(-(over - max_gr_db))
+    y = x * g
+    if true_peak(y) > c:
+        y = limit(y, c, sr)
+        for _ in range(3):
+            tp = true_peak(y)
+            if tp <= undb(ceiling_db) * undb(-0.5):
+                break
+            y = y * (undb(ceiling_db) * undb(-0.55) / tp)
+    return y
+
+
 def gain_to(x, target_lufs, ceiling_db=-1.0, measure=None, sr=SR):
-    """Scale to a loudness target, never letting the peak exceed `ceiling_db`."""
+    """Scale to a loudness target, never letting the (true) peak exceed `ceiling_db`."""
     m = (measure or momentary_max)(x, sr)
     g = undb(target_lufs - m)
-    p = peak(x) * g
+    p = max(peak(x), true_peak(x) * undb(-0.5)) * g
     c = undb(ceiling_db)
     if p > c:
         g *= c / p
@@ -310,8 +378,12 @@ def rms_env(x, sr=SR, win_ms=10.0):
     return np.sqrt(np.mean(m.reshape(-1, w) ** 2, axis=1)), w
 
 
-def trim(x, sr=SR, thresh_db=-50.0, pre_ms=5.0, post_ms=60.0, floor_rel_db=None):
-    """Strip near-silence before/after the sound, relative to its peak."""
+def trim(x, sr=SR, thresh_db=-50.0, pre_ms=5.0, post_ms=60.0, lead_db=None):
+    """Strip near-silence before/after the sound, relative to its peak.
+
+    `lead_db` (if given) sets a separate, stricter threshold for the start, so a
+    quiet scuff before a footstep doesn't delay the step's audible onset.
+    """
     e, w = envelope(x, sr, 2.0)
     if not e.size:
         return x
@@ -319,6 +391,9 @@ def trim(x, sr=SR, thresh_db=-50.0, pre_ms=5.0, post_ms=60.0, floor_rel_db=None)
     hot = np.nonzero(e > t)[0]
     if not hot.size:
         return x
+    if lead_db is not None:
+        lead = np.nonzero(e > peak(x) * undb(lead_db))[0]
+        hot = np.concatenate([lead[:1], hot[hot > lead[0]]]) if lead.size else hot
     a = max(0, hot[0] * w - int(sr * pre_ms / 1000))
     b = min(x.shape[0], (hot[-1] + 1) * w + int(sr * post_ms / 1000))
     return x[a:b]
@@ -414,6 +489,20 @@ def declick(x, sr=SR, k=10.0, max_ms=1.0):
 
 def remove_dc(x):
     return x - np.mean(x, axis=0)
+
+
+def zero_mean_faded(x):
+    """Zero a faded clip's mean without touching its (silent) edges.
+
+    Subtracts a Hann-shaped bump whose area equals the clip's sum -- a component
+    with a period of the whole clip (a few Hz for a one-shot), so it is inaudible.
+    """
+    n = x.shape[0]
+    if n < 8:
+        return x
+    w = np.hanning(n)
+    c = np.sum(x, axis=0) / np.sum(w)
+    return x - (w[:, None] * c if x.ndim == 2 else w * c)
 
 
 # ------------------------------------------------------------------------- loops
