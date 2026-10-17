@@ -300,6 +300,19 @@ namespace Wildmere.Core
             yield return WaitReady(120f);
             var p = root.Player;
             var camAt = Cli.Vec("camat");
+            if (Cli.Has("camwild") && p != null && Wildlife.WildlifeManager.Instance != null &&
+                Enum.TryParse(Cli.Str("camwild", "Deer"), true, out Wildlife.Species sp))
+            {
+                // Put three animals in front of the camera on open ground.
+                var fwd = Quaternion.Euler(0, p.Yaw, 0) * Vector3.forward;
+                for (int k = 0; k < 3; k++)
+                {
+                    var at = p.transform.position + fwd * (5f + k * 1.5f) + Quaternion.Euler(0, p.Yaw, 0) * Vector3.right * (k - 1) * 1.6f;
+                    int sy = VoxelWorld.Instance.SurfaceY(Mathf.FloorToInt(at.x), Mathf.FloorToInt(at.z));
+                    Wildlife.WildlifeManager.Instance.SpawnAt(sp, new Vector3(at.x, sy + 1f + (sp == Wildlife.Species.Songbird ? 0f : 0f), at.z));
+                }
+                p.Pitch = 12f;
+            }
             if (Cli.Has("camprop") && p != null)
             {
                 var near = World.Decor.PropRenderer.Instance?.Nearest(p.transform.position, Cli.Str("camprop"));
