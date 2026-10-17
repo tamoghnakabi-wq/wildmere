@@ -1,8 +1,32 @@
 Wildmere audio QA
 =================
-9 names, 52 files, 1.7 MB
+33 names, 169 files, 6.2 MB
 
 Effective level per name (loudest variant + 20log10(volume); beds = integrated LUFS):
+  break/dirt                -18.4  variants 4  max xcorr 0.40
+  break/glass               -17.9  variants 6  max xcorr 0.09
+  break/gravel              -17.8  variants 5  max xcorr 0.25
+  break/leaves              -21.2  variants 5  max xcorr 0.06
+  break/sand                -18.2  variants 3  max xcorr 0.05
+  break/snow                -19.5  variants 5  max xcorr 0.14
+  break/stone               -17.5  variants 5  max xcorr 0.19
+  break/wood                -18.5  variants 5  max xcorr 0.13
+  dig/dirt                  -22.5  variants 6  max xcorr 0.69
+  dig/glass                 -24.9  variants 6  max xcorr 0.34
+  dig/gravel                -22.7  variants 6  max xcorr 0.17
+  dig/leaves                -24.3  variants 5  max xcorr 0.07
+  dig/sand                  -23.0  variants 5  max xcorr 0.11
+  dig/snow                  -23.0  variants 5  max xcorr 0.10
+  dig/stone                 -22.9  variants 6  max xcorr 0.58
+  dig/wood                  -22.2  variants 6  max xcorr 0.22
+  place/dirt                -23.2  variants 4  max xcorr 0.69
+  place/glass               -26.8  variants 4  max xcorr 0.27
+  place/gravel              -23.7  variants 4  max xcorr 0.21
+  place/leaves              -24.9  variants 4  max xcorr 0.70
+  place/sand                -23.7  variants 3  max xcorr 0.55
+  place/snow                -24.2  variants 4  max xcorr 0.25
+  place/stone               -23.2  variants 5  max xcorr 0.38
+  place/wood                -23.2  variants 6  max xcorr 0.19
   step/dirt                 -26.6  variants 6  max xcorr 0.46
   step/grass                -27.9  variants 5  max xcorr 0.17
   step/gravel               -27.6  variants 6  max xcorr 0.20
@@ -15,10 +39,132 @@ Effective level per name (loudest variant + 20log10(volume); beds = integrated L
 
 FAIL (0):
 
-WARN (1):
+WARN (6):
+  break/leaves leaves_01.wav: onset at 44 ms
+  break/leaves leaves_04.wav: onset at 42 ms
+  break/wood wood_02.wav: onset at 44 ms
+  dig/leaves leaves_05.wav: onset at 63 ms
+  dig/wood wood_03.wav: onset at 62 ms
   step/water water_02.wav: onset at 42 ms
 
 Per file:
+  break/dirt dirt_01.wav                       1ch   0.80s pk  -1.60 tp  -1.59 Mmax  -15.0 dc 0.0000
+  break/dirt dirt_02.wav                       1ch   0.80s pk  -1.60 tp  -1.56 Mmax  -15.5 dc 0.0000
+  break/dirt dirt_03.wav                       1ch   0.46s pk  -1.60 tp  -1.60 Mmax  -15.9 dc 0.0000
+  break/dirt dirt_04.wav                       1ch   0.74s pk  -1.60 tp  -1.60 Mmax  -15.2 dc 0.0000
+  break/glass glass_01.wav                     1ch   1.10s pk  -2.03 tp  -1.55 Mmax  -16.7 dc 0.0000
+  break/glass glass_02.wav                     1ch   0.51s pk  -2.08 tp  -1.55 Mmax  -16.6 dc 0.0000
+  break/glass glass_03.wav                     1ch   0.65s pk  -1.60 tp  -1.58 Mmax  -22.7 dc 0.0000
+  break/glass glass_04.wav                     1ch   0.80s pk  -1.84 tp  -1.55 Mmax  -14.3 dc 0.0000
+  break/glass glass_05.wav                     1ch   1.10s pk  -1.87 tp  -1.55 Mmax  -14.7 dc 0.0000
+  break/glass glass_06.wav                     1ch   0.26s pk  -1.60 tp  -1.60 Mmax  -23.3 dc 0.0000
+  break/gravel gravel_01.wav                   1ch   0.34s pk  -1.60 tp  -1.53 Mmax  -23.4 dc 0.0000
+  break/gravel gravel_02.wav                   1ch   0.25s pk  -1.80 tp  -1.55 Mmax  -25.9 dc 0.0000
+  break/gravel gravel_03.wav                   1ch   0.32s pk  -1.66 tp  -1.55 Mmax  -24.1 dc 0.0000
+  break/gravel gravel_04.wav                   1ch   0.28s pk  -1.79 tp  -1.55 Mmax  -28.1 dc 0.0000
+  break/gravel gravel_05.wav                   1ch   0.80s pk  -1.79 tp  -1.55 Mmax  -14.2 dc 0.0000
+  break/leaves leaves_01.wav                   1ch   0.71s pk  -2.18 tp  -2.08 Mmax  -16.0 dc 0.0000
+  break/leaves leaves_02.wav                   1ch   0.73s pk  -3.29 tp  -2.23 Mmax  -16.0 dc 0.0000
+  break/leaves leaves_03.wav                   1ch   0.73s pk  -1.60 tp  -1.60 Mmax  -17.0 dc 0.0000
+  break/leaves leaves_04.wav                   1ch   0.63s pk  -2.01 tp  -1.55 Mmax  -16.5 dc 0.0000
+  break/leaves leaves_05.wav                   1ch   0.66s pk  -3.00 tp  -1.61 Mmax  -16.0 dc 0.0000
+  break/sand sand_01.wav                       1ch   0.85s pk  -2.26 tp  -2.20 Mmax  -14.0 dc 0.0000
+  break/sand sand_02.wav                       1ch   0.85s pk  -2.54 tp  -2.54 Mmax  -14.0 dc 0.0000
+  break/sand sand_03.wav                       1ch   0.85s pk  -1.76 tp  -1.55 Mmax  -15.6 dc 0.0000
+  break/snow snow_01.wav                       1ch   0.67s pk  -1.81 tp  -1.55 Mmax  -15.5 dc 0.0000
+  break/snow snow_02.wav                       1ch   0.64s pk  -1.78 tp  -1.55 Mmax  -15.0 dc 0.0000
+  break/snow snow_03.wav                       1ch   0.61s pk  -1.60 tp  -1.55 Mmax  -18.9 dc 0.0000
+  break/snow snow_04.wav                       1ch   0.53s pk  -1.70 tp  -1.55 Mmax  -18.8 dc 0.0000
+  break/snow snow_05.wav                       1ch   0.67s pk  -1.66 tp  -1.55 Mmax  -15.3 dc 0.0000
+  break/stone stone_01.wav                     1ch   0.79s pk  -1.59 tp  -1.55 Mmax  -17.2 dc 0.0000
+  break/stone stone_02.wav                     1ch   0.53s pk  -1.60 tp  -1.53 Mmax  -24.0 dc 0.0000
+  break/stone stone_03.wav                     1ch   0.86s pk  -1.94 tp  -1.55 Mmax  -24.1 dc 0.0000
+  break/stone stone_04.wav                     1ch   0.90s pk  -1.60 tp  -1.58 Mmax  -14.4 dc 0.0000
+  break/stone stone_05.wav                     1ch   0.75s pk  -1.60 tp  -1.59 Mmax  -17.9 dc 0.0000
+  break/wood wood_01.wav                       1ch   0.90s pk  -1.79 tp  -1.55 Mmax  -15.4 dc 0.0000
+  break/wood wood_02.wav                       1ch   0.90s pk  -1.90 tp  -1.55 Mmax  -15.3 dc 0.0000
+  break/wood wood_03.wav                       1ch   0.90s pk  -1.80 tp  -1.55 Mmax  -15.2 dc 0.0000
+  break/wood wood_04.wav                       1ch   0.43s pk  -1.67 tp  -1.55 Mmax  -16.9 dc 0.0000
+  break/wood wood_05.wav                       1ch   0.31s pk  -1.60 tp  -1.60 Mmax  -18.2 dc 0.0000
+  dig/dirt dirt_01.wav                         1ch   0.24s pk  -1.60 tp  -1.59 Mmax  -18.2 dc 0.0000
+  dig/dirt dirt_02.wav                         1ch   0.32s pk  -1.59 tp  -1.56 Mmax  -21.5 dc 0.0000
+  dig/dirt dirt_03.wav                         1ch   0.32s pk  -1.60 tp  -1.60 Mmax  -17.8 dc 0.0000
+  dig/dirt dirt_04.wav                         1ch   0.12s pk  -1.60 tp  -1.60 Mmax  -20.0 dc 0.0000
+  dig/dirt dirt_05.wav                         1ch   0.13s pk  -1.60 tp  -1.60 Mmax  -19.2 dc 0.0000
+  dig/dirt dirt_06.wav                         1ch   0.32s pk  -1.60 tp  -1.59 Mmax  -17.3 dc 0.0000
+  dig/glass glass_01.wav                       1ch   0.15s pk  -1.60 tp  -1.60 Mmax  -20.4 dc 0.0000
+  dig/glass glass_02.wav                       1ch   0.15s pk  -1.60 tp  -1.58 Mmax  -19.7 dc 0.0000
+  dig/glass glass_03.wav                       1ch   0.16s pk  -1.60 tp  -1.57 Mmax  -19.6 dc 0.0000
+  dig/glass glass_04.wav                       1ch   0.15s pk  -1.60 tp  -1.54 Mmax  -20.0 dc 0.0000
+  dig/glass glass_05.wav                       1ch   0.15s pk  -1.60 tp  -1.59 Mmax  -20.3 dc 0.0000
+  dig/glass glass_06.wav                       1ch   0.20s pk  -1.60 tp  -1.60 Mmax  -18.9 dc 0.0000
+  dig/gravel gravel_01.wav                     1ch   0.28s pk  -1.77 tp  -1.55 Mmax  -22.7 dc 0.0000
+  dig/gravel gravel_02.wav                     1ch   0.32s pk  -1.60 tp  -1.51 Mmax  -17.5 dc 0.0000
+  dig/gravel gravel_03.wav                     1ch   0.32s pk  -4.87 tp  -4.87 Mmax  -17.0 dc 0.0000
+  dig/gravel gravel_04.wav                     1ch   0.32s pk  -1.68 tp  -1.55 Mmax  -20.3 dc 0.0000
+  dig/gravel gravel_05.wav                     1ch   0.32s pk  -1.60 tp  -1.59 Mmax  -18.5 dc 0.0000
+  dig/gravel gravel_06.wav                     1ch   0.32s pk  -1.60 tp  -1.59 Mmax  -21.5 dc 0.0000
+  dig/leaves leaves_01.wav                     1ch   0.25s pk  -1.90 tp  -1.55 Mmax  -17.4 dc 0.0000
+  dig/leaves leaves_02.wav                     1ch   0.28s pk  -2.16 tp  -1.55 Mmax  -18.0 dc 0.0000
+  dig/leaves leaves_03.wav                     1ch   0.22s pk  -2.27 tp  -1.55 Mmax  -23.6 dc 0.0000
+  dig/leaves leaves_04.wav                     1ch   0.26s pk  -2.81 tp  -1.55 Mmax  -19.5 dc 0.0000
+  dig/leaves leaves_05.wav                     1ch   0.27s pk  -1.60 tp  -1.60 Mmax  -17.6 dc 0.0000
+  dig/sand sand_01.wav                         1ch   0.32s pk  -1.60 tp  -1.60 Mmax  -17.5 dc 0.0000
+  dig/sand sand_02.wav                         1ch   0.32s pk  -2.71 tp  -1.55 Mmax  -22.1 dc 0.0000
+  dig/sand sand_03.wav                         1ch   0.32s pk  -1.81 tp  -1.79 Mmax  -17.0 dc 0.0000
+  dig/sand sand_04.wav                         1ch   0.32s pk  -1.92 tp  -1.55 Mmax  -19.2 dc 0.0000
+  dig/sand sand_05.wav                         1ch   0.27s pk  -2.01 tp  -1.55 Mmax  -20.1 dc 0.0000
+  dig/snow snow_01.wav                         1ch   0.30s pk  -1.76 tp  -1.55 Mmax  -17.8 dc 0.0000
+  dig/snow snow_02.wav                         1ch   0.30s pk  -1.60 tp  -1.52 Mmax  -17.2 dc 0.0000
+  dig/snow snow_03.wav                         1ch   0.30s pk  -1.60 tp  -1.51 Mmax  -17.6 dc 0.0000
+  dig/snow snow_04.wav                         1ch   0.30s pk  -1.78 tp  -1.73 Mmax  -17.0 dc 0.0000
+  dig/snow snow_05.wav                         1ch   0.30s pk  -1.60 tp  -1.60 Mmax  -17.6 dc 0.0000
+  dig/stone stone_01.wav                       1ch   0.32s pk  -1.60 tp  -1.55 Mmax  -17.7 dc 0.0000
+  dig/stone stone_02.wav                       1ch   0.32s pk  -1.60 tp  -1.60 Mmax  -18.4 dc 0.0000
+  dig/stone stone_03.wav                       1ch   0.32s pk  -1.60 tp  -1.60 Mmax  -20.1 dc 0.0000
+  dig/stone stone_04.wav                       1ch   0.32s pk  -1.60 tp  -1.58 Mmax  -18.7 dc 0.0000
+  dig/stone stone_05.wav                       1ch   0.32s pk  -1.83 tp  -1.55 Mmax  -27.8 dc 0.0000
+  dig/stone stone_06.wav                       1ch   0.10s pk  -1.60 tp  -1.60 Mmax  -30.4 dc 0.0000
+  dig/wood wood_01.wav                         1ch   0.32s pk  -7.75 tp  -7.75 Mmax  -17.0 dc 0.0000
+  dig/wood wood_02.wav                         1ch   0.32s pk  -8.41 tp  -8.38 Mmax  -17.0 dc 0.0000
+  dig/wood wood_03.wav                         1ch   0.32s pk  -6.95 tp  -6.95 Mmax  -17.0 dc 0.0000
+  dig/wood wood_04.wav                         1ch   0.32s pk  -6.43 tp  -6.43 Mmax  -17.0 dc 0.0000
+  dig/wood wood_05.wav                         1ch   0.32s pk  -5.74 tp  -5.74 Mmax  -17.0 dc 0.0000
+  dig/wood wood_06.wav                         1ch   0.32s pk  -7.05 tp  -7.05 Mmax  -17.0 dc 0.0000
+  place/dirt dirt_01.wav                       1ch   0.30s pk  -2.59 tp  -2.59 Mmax  -18.0 dc 0.0000
+  place/dirt dirt_02.wav                       1ch   0.30s pk  -2.06 tp  -2.06 Mmax  -18.0 dc 0.0000
+  place/dirt dirt_03.wav                       1ch   0.30s pk  -3.09 tp  -3.09 Mmax  -18.0 dc 0.0000
+  place/dirt dirt_04.wav                       1ch   0.15s pk  -1.60 tp  -1.60 Mmax  -18.9 dc 0.0000
+  place/glass glass_01.wav                     1ch   0.32s pk  -1.60 tp  -1.60 Mmax  -20.9 dc 0.0000
+  place/glass glass_02.wav                     1ch   0.33s pk  -1.60 tp  -1.58 Mmax  -20.8 dc 0.0000
+  place/glass glass_03.wav                     1ch   0.31s pk  -1.60 tp  -1.58 Mmax  -21.3 dc 0.0000
+  place/glass glass_04.wav                     1ch   0.34s pk  -1.60 tp  -1.59 Mmax  -20.9 dc 0.0000
+  place/gravel gravel_01.wav                   1ch   0.30s pk  -3.03 tp  -3.03 Mmax  -18.0 dc 0.0000
+  place/gravel gravel_02.wav                   1ch   0.30s pk  -1.60 tp  -1.60 Mmax  -18.9 dc 0.0000
+  place/gravel gravel_03.wav                   1ch   0.30s pk  -1.60 tp  -1.56 Mmax  -18.3 dc 0.0000
+  place/gravel gravel_04.wav                   1ch   0.30s pk  -1.60 tp  -1.59 Mmax  -18.4 dc 0.0000
+  place/leaves leaves_01.wav                   1ch   0.25s pk  -1.60 tp  -1.60 Mmax  -19.9 dc 0.0000
+  place/leaves leaves_02.wav                   1ch   0.25s pk  -1.60 tp  -1.60 Mmax  -19.2 dc 0.0000
+  place/leaves leaves_03.wav                   1ch   0.30s pk  -3.97 tp  -3.55 Mmax  -18.0 dc 0.0000
+  place/leaves leaves_04.wav                   1ch   0.30s pk  -3.69 tp  -3.69 Mmax  -18.0 dc 0.0000
+  place/sand sand_01.wav                       1ch   0.17s pk  -1.60 tp  -1.59 Mmax  -19.6 dc 0.0000
+  place/sand sand_02.wav                       1ch   0.30s pk  -3.14 tp  -3.14 Mmax  -18.0 dc 0.0000
+  place/sand sand_03.wav                       1ch   0.30s pk  -1.85 tp  -1.85 Mmax  -18.0 dc 0.0000
+  place/snow snow_01.wav                       1ch   0.23s pk  -1.60 tp  -1.59 Mmax  -19.0 dc 0.0000
+  place/snow snow_02.wav                       1ch   0.23s pk  -1.59 tp  -1.59 Mmax  -20.2 dc 0.0000
+  place/snow snow_03.wav                       1ch   0.30s pk  -1.67 tp  -1.55 Mmax  -18.4 dc 0.0000
+  place/snow snow_04.wav                       1ch   0.22s pk  -1.60 tp  -1.56 Mmax  -18.2 dc 0.0000
+  place/stone stone_01.wav                     1ch   0.30s pk  -1.68 tp  -1.55 Mmax  -24.7 dc 0.0000
+  place/stone stone_02.wav                     1ch   0.30s pk  -1.60 tp  -1.57 Mmax  -20.4 dc 0.0000
+  place/stone stone_03.wav                     1ch   0.30s pk  -1.69 tp  -1.55 Mmax  -20.2 dc 0.0000
+  place/stone stone_04.wav                     1ch   0.30s pk  -5.27 tp  -5.26 Mmax  -18.0 dc 0.0000
+  place/stone stone_05.wav                     1ch   0.17s pk  -1.60 tp  -1.60 Mmax  -21.6 dc 0.0000
+  place/wood wood_01.wav                       1ch   0.22s pk  -1.60 tp  -1.60 Mmax  -28.0 dc 0.0000
+  place/wood wood_02.wav                       1ch   0.30s pk  -2.32 tp  -2.31 Mmax  -18.0 dc 0.0000
+  place/wood wood_03.wav                       1ch   0.29s pk  -2.45 tp  -2.36 Mmax  -18.0 dc 0.0000
+  place/wood wood_04.wav                       1ch   0.16s pk  -1.60 tp  -1.60 Mmax  -21.1 dc 0.0000
+  place/wood wood_05.wav                       1ch   0.26s pk  -1.60 tp  -1.57 Mmax  -19.2 dc 0.0000
+  place/wood wood_06.wav                       1ch   0.28s pk  -1.60 tp  -1.60 Mmax  -20.1 dc 0.0000
   step/dirt dirt_01.wav                        1ch   0.31s pk  -1.60 tp  -1.56 Mmax  -20.8 dc 0.0000
   step/dirt dirt_02.wav                        1ch   0.33s pk  -1.66 tp  -1.55 Mmax  -22.0 dc 0.0000
   step/dirt dirt_03.wav                        1ch   0.26s pk  -1.60 tp  -1.52 Mmax  -21.6 dc 0.0000

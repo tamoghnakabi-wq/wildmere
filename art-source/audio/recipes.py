@@ -92,3 +92,6 @@ RECIPES["step/water"] = {
              [T("oga_rd_water", "splash_06.ogg"), T("oga_rd_water", "splash_14.ogg"),
               T("oga_ezwa_splash", "water_splash-02.flac")],
     "p": P(STEP, max_s=0.50, fade_out_ms=120, lp=11000), "volume": 0.40}
+
+
+import recipes_blocks  # noqa: E402,F401  (dig / break / place)

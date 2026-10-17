@@ -1,4 +1,72 @@
 {
+ "cm_howling_wind": {
+  "author": "Tvabutzku1234",
+  "files": [
+   {
+    "bytes": 1112243,
+    "extracted": false,
+    "file": "Howling_wind.ogg",
+    "sha256": "cc585200603027ca808ab68ab4b381d1a828c55d58f010222f5ff687929d084d",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Howling_wind.ogg"
+   }
+  ],
+  "licence": "CC0 1.0",
+  "licence_files": [],
+  "page": "https://commons.wikimedia.org/wiki/File:Howling_wind.ogg",
+  "site": "commons.wikimedia.org",
+  "title": "Howling wind"
+ },
+ "cm_light_rain": {
+  "author": "kvgarlic",
+  "files": [
+   {
+    "bytes": 42295240,
+    "extracted": false,
+    "file": "Light_Rain_Distant_Thunder_July_5th_2016.wav",
+    "sha256": "aa85a4aa26b261b8d8d9da52df3cb1c7f09aa86f5253e835ff5e15513e2451cb",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Light_Rain_Distant_Thunder_July_5th_2016.wav"
+   }
+  ],
+  "licence": "CC0 1.0",
+  "licence_files": [],
+  "page": "https://commons.wikimedia.org/wiki/File:Light_Rain_Distant_Thunder_July_5th_2016.wav",
+  "site": "commons.wikimedia.org",
+  "title": "Light Rain Distant Thunder July 5th 2016"
+ },
+ "cm_nightjar": {
+  "author": "ElsaDono",
+  "files": [
+   {
+    "bytes": 376056,
+    "extracted": false,
+    "file": "Caprimulgus_europaeus.ogg",
+    "sha256": "a9d9a8bdc5571f6cddff850b1c49db2098dece28be699488601e57f1831efab0",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Caprimulgus_europaeus.ogg"
+   }
+  ],
+  "licence": "CC0 1.0",
+  "licence_files": [],
+  "page": "https://commons.wikimedia.org/wiki/File:Caprimulgus_europaeus.ogg",
+  "site": "commons.wikimedia.org",
+  "title": "Caprimulgus europaeus (nightjar song)"
+ },
+ "cm_swale": {
+  "author": "Ksd5",
+  "files": [
+   {
+    "bytes": 1092440,
+    "extracted": false,
+    "file": "Swale.ogg",
+    "sha256": "b71def4798508e588229a5f801fefaed9ac51c5dbad224274123c92e6d183fff",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/8/84/Swale.ogg"
+   }
+  ],
+  "licence": "CC0 1.0",
+  "licence_files": [],
+  "page": "https://commons.wikimedia.org/wiki/File:Swale.ogg",
+  "site": "commons.wikimedia.org",
+  "title": "Swale (small swale trickling into a stream)"
+ },
  "kenney_impact": {
   "author": "Kenney (kenney.nl)",
   "files": [
@@ -751,6 +819,139 @@
   "site": "opengameart.org",
   "title": "Different steps on wood, stone, leaves, gravel and mud"
  },
+ "oga_m_another_august": {
+  "author": "cynicmusic",
+  "files": [
+   {
+    "bytes": 8269313,
+    "extracted": false,
+    "file": "013_Another_August_0.mp3",
+    "sha256": "6de6e4f770cda4d34db433e4df982deccb6877a8fcc5e32b48eeb57f770dec3b",
+    "url": "https://opengameart.org/sites/default/files/013_Another_August_0.mp3"
+   }
+  ],
+  "licence": "CC0 1.0",
+  "licence_files": [],
+  "page": "https://opengameart.org/content/another-august",
+  "site": "opengameart.org",
+  "title": "Another August"
+ },
+ "oga_m_apple_cider": {
+  "author": "Zane Little Music",
+  "files": [
+   {
+    "bytes": 3240559,
+    "extracted": false,
+    "file": "apple_cider.ogg",
+    "sha256": "29dfe7f2491fa2cabd159db70db868445be253e395db5f75b30b3113f798f4ca",
+    "url": "https://opengameart.org/sites/default/files/apple_cider.ogg"
+   }
+  ],
+  "licence": "CC0 1.0",
+  "licence_files": [],
+  "page": "https://opengameart.org/content/apple-cider",
+  "site": "opengameart.org",
+  "title": "Apple Cider"
+ },
+ "oga_m_bluebonnet": {
+  "author": "Kistol",
+  "files": [
+   {
+    "bytes": 3295952,
+    "extracted": false,
+    "file": "bluebonnet_in_b_major_2.ogg",
+    "sha256": "81d1846539834543d9a64a6b3e50b52885f9ca2b57aa96c5b54be533aaab2266",
+    "url": "https://opengameart.org/sites/default/files/bluebonnet_in_b_major_2.ogg"
+   }
+  ],
+  "licence": "CC0 1.0",
+  "licence_files": [],
+  "page": "https://opengameart.org/content/bluebonnet",
+  "site": "opengameart.org",
+  "title": "Bluebonnet"
+ },
+ "oga_m_catmint": {
+  "author": "Kistol",
+  "files": [
+   {
+    "bytes": 4439948,
+    "extracted": false,
+    "file": "catmint_in_c_major_3.ogg",
+    "sha256": "7c7d6000c9849da9d0fbe382f153eb90a355acb4f5a2f112203478dba4f9318e",
+    "url": "https://opengameart.org/sites/default/files/catmint_in_c_major_3.ogg"
+   },
+   {
+    "bytes": 4166206,
+    "extracted": false,
+    "file": "catmint_in_c_major_looped.ogg",
+    "sha256": "53be0a52be080f471b8639194b42bafee7ea39f9942274d02a5b49105cce7c33",
+    "url": "https://opengameart.org/sites/default/files/catmint_in_c_major_looped.ogg"
+   }
+  ],
+  "licence": "CC0 1.0",
+  "licence_files": [],
+  "page": "https://opengameart.org/content/catmint",
+  "site": "opengameart.org",
+  "title": "Catmint"
+ },
+ "oga_m_forget_me_not": {
+  "author": "Kistol",
+  "files": [
+   {
+    "bytes": 5008660,
+    "extracted": false,
+    "file": "forget_me_not_in_f_major_0.ogg",
+    "sha256": "615761e410e828e344bbc94755c385f32e337f771f108e23710c3011ca4da874",
+    "url": "https://opengameart.org/sites/default/files/forget_me_not_in_f_major_0.ogg"
+   },
+   {
+    "bytes": 3341384,
+    "extracted": false,
+    "file": "forget_me_not_in_f_major_looped.ogg",
+    "sha256": "2b9b9fc512c34d52b999ed1fd7e01f960f830f3defc5d2241f6e02f8be81ef77",
+    "url": "https://opengameart.org/sites/default/files/forget_me_not_in_f_major_looped.ogg"
+   }
+  ],
+  "licence": "CC0 1.0",
+  "licence_files": [],
+  "page": "https://opengameart.org/content/forget-me-not",
+  "site": "opengameart.org",
+  "title": "Forget Me Not"
+ },
+ "oga_m_meadow": {
+  "author": "\u00c9crivain",
+  "files": [
+   {
+    "bytes": 2396007,
+    "extracted": false,
+    "file": "Meadow Thoughts.ogg",
+    "sha256": "9c55cfadb5acca6ef9ca81bf89d343b13f2b09984d45ae520cf877f1f9ad4404",
+    "url": "https://opengameart.org/sites/default/files/Meadow%20Thoughts.ogg"
+   }
+  ],
+  "licence": "CC0 1.0",
+  "licence_files": [],
+  "page": "https://opengameart.org/content/meadow-thoughts",
+  "site": "opengameart.org",
+  "title": "Meadow Thoughts"
+ },
+ "oga_m_november_snow": {
+  "author": "cynicmusic",
+  "files": [
+   {
+    "bytes": 13982823,
+    "extracted": false,
+    "file": "155 November_snow-33_tape_leveled.mp3",
+    "sha256": "7e4675f6fbc86b97603d620dc54b0753eb5fe773ccc2fab99bc863cb7afde32c",
+    "url": "https://opengameart.org/sites/default/files/155%20November_snow-33_tape_leveled.mp3"
+   }
+  ],
+  "licence": "CC0 1.0",
+  "licence_files": [],
+  "page": "https://opengameart.org/content/november-snow",
+  "site": "opengameart.org",
+  "title": "November Snow"
+ },
  "oga_manhurt": {
   "author": "Aharabada",
   "files": [
@@ -1289,6 +1490,23 @@
   "site": "opengameart.org",
   "title": "Breaking Rock"
  },
+ "oga_sack_gold": {
+  "author": "Amarikah",
+  "files": [
+   {
+    "bytes": 729370,
+    "extracted": false,
+    "file": "gold_sack.wav",
+    "sha256": "f3f8aaafefa1db77b69a584abd16355f2a04c5c3b24d6551f32a3e042370f958",
+    "url": "https://opengameart.org/sites/default/files/gold_sack.wav"
+   }
+  ],
+  "licence": "CC0 1.0",
+  "licence_files": [],
+  "page": "https://opengameart.org/content/sack-of-gold",
+  "site": "opengameart.org",
+  "title": "Sack of Gold"
+ },
  "oga_short_wind": {
   "author": "remaxim",
   "files": [
@@ -1694,6 +1912,30 @@
   "site": "opengameart.org",
   "title": "12 wet towel hitting/falling/punching floor sounds"
  },
+ "oga_winter_wind": {
+  "author": "wipics",
+  "files": [
+   {
+    "bytes": 1967042,
+    "extracted": false,
+    "file": "winter-wind_0.mp3",
+    "sha256": "c59d2fc1d1bafd4839971d47ee77b197b2ff43e2e46bc39ad90d04109e8cb481",
+    "url": "https://opengameart.org/sites/default/files/winter-wind_0.mp3"
+   },
+   {
+    "bytes": 611600,
+    "extracted": false,
+    "file": "winter-wind-short.mp3",
+    "sha256": "a7d231363d91fc93dde735f76004e76f4feb25c1fe824fc4754d9ec216051411",
+    "url": "https://opengameart.org/sites/default/files/winter-wind-short.mp3"
+   }
+  ],
+  "licence": "CC0 1.0",
+  "licence_files": [],
+  "page": "https://opengameart.org/content/winter-wind",
+  "site": "opengameart.org",
+  "title": "Winter Wind"
+ },
  "oga_workshop": {
   "author": "bart",
   "files": [
@@ -1710,5 +1952,115 @@
   "page": "https://opengameart.org/content/68-workshop-sounds",
   "site": "opengameart.org",
   "title": "68 Workshop Sounds"
+ },
+ "pd_caesar_thunder": {
+  "author": "Caesar",
+  "files": [
+   {
+    "bytes": 226945,
+    "extracted": false,
+    "file": "Rain_and_thunder.ogg",
+    "sha256": "cbfd7b7504bc4e53d6e56ac8d933ba56f97cc28f15a46800c74c2d8eccb3fa89",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/4/42/Rain_and_thunder.ogg"
+   }
+  ],
+  "licence": "Public domain (PD-self dedication)",
+  "licence_files": [],
+  "page": "https://commons.wikimedia.org/wiki/File:Rain_and_thunder.ogg",
+  "site": "commons.wikimedia.org",
+  "title": "Rain and thunder"
+ },
+ "pd_dsw4": {
+  "author": "Dsw4",
+  "files": [
+   {
+    "bytes": 17407459,
+    "extracted": false,
+    "file": "Waves.ogg",
+    "sha256": "8015cbcf2e8016ccdcaab103342cc53c105f2592e29c0fa754285c9b54bfaaba",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Waves.ogg"
+   },
+   {
+    "bytes": 45837417,
+    "extracted": false,
+    "file": "Walking_through_woods.ogg",
+    "sha256": "122e736bb0c436b36ce641ab593ae0be0c3eefbff62d922087fe38d84c9a0e68",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Walking_through_woods.ogg"
+   }
+  ],
+  "licence": "Public domain (PD-self dedication)",
+  "licence_files": [],
+  "page": "https://commons.wikimedia.org/wiki/File:Waves.ogg",
+  "site": "commons.wikimedia.org",
+  "title": "Waves / Forest lawn creek / Walking through woods"
+ },
+ "pd_ezwa_storm": {
+  "author": "ezwa",
+  "files": [
+   {
+    "bytes": 771989,
+    "extracted": false,
+    "file": "Rain_and_thunder_(1).ogg",
+    "sha256": "28bf32d934067dd8656062bacec2a69db49f9e15fb0e63b3ffe53c51a6b8c8eb",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Rain_and_thunder_%281%29.ogg"
+   },
+   {
+    "bytes": 388275,
+    "extracted": false,
+    "file": "Thunder_and_rain_on_a_v.ogg",
+    "sha256": "73197afb71ef11e54787abc29e239c6d4e67919ad608adef552fcf0647fe19f4",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Thunder_and_rain_on_a_v.ogg"
+   }
+  ],
+  "licence": "Public domain (PD-self dedication)",
+  "licence_files": [],
+  "page": "https://commons.wikimedia.org/wiki/File:Rain_thunder_and_other_noises.ogg",
+  "site": "commons.wikimedia.org",
+  "title": "Rain, thunder and other noises / Rain, thunder and birds / Rain and thunder / Thunder and rain on a veranda"
+ },
+ "pd_grass_fire": {
+  "author": "ezwa",
+  "files": [],
+  "licence": "Public domain (PD-self dedication)",
+  "licence_files": [],
+  "page": "https://commons.wikimedia.org/wiki/File:Dry_grass_burning_in_open_fireplace.ogg",
+  "site": "commons.wikimedia.org",
+  "title": "Dry grass burning in open fireplace"
+ },
+ "pd_moose": {
+  "author": "Bwells",
+  "files": [],
+  "licence": "Public domain (PD-self dedication)",
+  "licence_files": [],
+  "page": "https://commons.wikimedia.org/wiki/File:Moose_mate.ogg",
+  "site": "commons.wikimedia.org",
+  "title": "Moose mate"
+ },
+ "pd_night": {
+  "author": "hc",
+  "files": [],
+  "licence": "Public domain (PD-self dedication)",
+  "licence_files": [],
+  "page": "https://commons.wikimedia.org/wiki/File:Country_night_noise.ogg",
+  "site": "commons.wikimedia.org",
+  "title": "Country night noise"
+ },
+ "pd_shore": {
+  "author": "earthcalling",
+  "files": [],
+  "licence": "Public domain (PD-self dedication)",
+  "licence_files": [],
+  "page": "https://commons.wikimedia.org/wiki/File:On_a_pebble_beach.ogg",
+  "site": "commons.wikimedia.org",
+  "title": "On a pebble beach / Water over rocks as tide recedes"
+ },
+ "pd_tonitrus": {
+  "author": "Mysid",
+  "files": [],
+  "licence": "Public domain (PD-self dedication)",
+  "licence_files": [],
+  "page": "https://commons.wikimedia.org/wiki/File:Tonitrus.ogg",
+  "site": "commons.wikimedia.org",
+  "title": "Tonitrus (thunder, Southern Finland)"
  }
 }

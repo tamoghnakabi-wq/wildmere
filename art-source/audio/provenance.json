@@ -1,4 +1,1824 @@
 {
+ "break/dirt": [
+  {
+   "file": "Assets/Resources/Audio/break/dirt_01.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactSoft_heavy_000.ogg",
+     "t0": 0.0,
+     "t1": 0.527,
+     "role": "take"
+    },
+    {
+     "source": "oga_cave_in",
+     "file": "cave_in_-_starninjas_0.ogg",
+     "t0": 1.876,
+     "t1": 3.434,
+     "role": "crumble"
+    }
+   ],
+   "seconds": 0.8,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/dirt_02.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactSoft_heavy_003.ogg",
+     "t0": 0.0,
+     "t1": 0.541,
+     "role": "take"
+    },
+    {
+     "source": "oga_nu_crunch",
+     "file": "independent_nu_ljudbank-break_crunch_impact.7z -> impcrunch/impactcrunch05.mp3.flac",
+     "t0": 0.0,
+     "t1": 1.255,
+     "role": "crumble"
+    }
+   ],
+   "seconds": 0.8,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/dirt_03.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactSoft_heavy_001.ogg",
+     "t0": 0.0,
+     "t1": 0.569,
+     "role": "take"
+    },
+    {
+     "source": "oga_shovel",
+     "file": "shovel_0.ogg",
+     "t0": 0.516,
+     "t1": 0.8,
+     "role": "crumble"
+    }
+   ],
+   "seconds": 0.46,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/dirt_04.wav",
+   "layers": [
+    {
+     "source": "oga_spring_various",
+     "file": "crush.wav",
+     "t0": 0.0,
+     "t1": 0.745,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.745,
+   "channels": 1
+  }
+ ],
+ "break/glass": [
+  {
+   "file": "Assets/Resources/Audio/break/glass_01.wav",
+   "layers": [
+    {
+     "source": "oga_glass_break",
+     "file": "glass_breaking.wav",
+     "t0": 0.0,
+     "t1": 1.309,
+     "role": "take"
+    }
+   ],
+   "seconds": 1.1,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/glass_02.wav",
+   "layers": [
+    {
+     "source": "oga_rd_breaking",
+     "file": "sfx_breaking_and_falling.zip -> bfh1_glass_breaking_01.ogg",
+     "t0": 0.0,
+     "t1": 0.761,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.51,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/glass_03.wav",
+   "layers": [
+    {
+     "source": "oga_rd_breaking",
+     "file": "sfx_breaking_and_falling.zip -> bfh1_glass_breaking_03.ogg",
+     "t0": 0.0,
+     "t1": 0.776,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.652,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/glass_04.wav",
+   "layers": [
+    {
+     "source": "oga_rd_breaking",
+     "file": "sfx_breaking_and_falling.zip -> bfh1_glass_breaking_06.ogg",
+     "t0": 0.0,
+     "t1": 0.916,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.804,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/glass_05.wav",
+   "layers": [
+    {
+     "source": "oga_ice_shatter",
+     "file": "IceShatters_0.zip -> IceShatters/LedasLuzta33.ogg",
+     "t0": 0.0,
+     "t1": 1.324,
+     "role": "take"
+    }
+   ],
+   "seconds": 1.1,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/glass_06.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactGlass_heavy_001.ogg",
+     "t0": 0.0,
+     "t1": 0.429,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.26,
+   "channels": 1
+  }
+ ],
+ "break/gravel": [
+  {
+   "file": "Assets/Resources/Audio/break/gravel_01.wav",
+   "layers": [
+    {
+     "source": "oga_rd_breaking",
+     "file": "sfx_breaking_and_falling.zip -> bfh1_rock_falling_02.ogg",
+     "t0": 0.0,
+     "t1": 0.506,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.34,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/gravel_02.wav",
+   "layers": [
+    {
+     "source": "oga_rd_breaking",
+     "file": "sfx_breaking_and_falling.zip -> bfh1_rock_falling_04.ogg",
+     "t0": 0.0,
+     "t1": 0.32,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.252,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/gravel_03.wav",
+   "layers": [
+    {
+     "source": "oga_rd_breaking",
+     "file": "sfx_breaking_and_falling.zip -> bfh1_rock_falling_05.ogg",
+     "t0": 0.0,
+     "t1": 0.565,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.316,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/gravel_04.wav",
+   "layers": [
+    {
+     "source": "oga_rd_breaking",
+     "file": "sfx_breaking_and_falling.zip -> bfh1_rock_falling_07.ogg",
+     "t0": 0.0,
+     "t1": 0.352,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.28,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/gravel_05.wav",
+   "layers": [
+    {
+     "source": "oga_nu_crunch",
+     "file": "independent_nu_ljudbank-break_crunch_impact.7z -> impcrunch/impactcrunch02.mp3.flac",
+     "t0": 0.0,
+     "t1": 1.046,
+     "role": "take"
+    },
+    {
+     "source": "oga_rd_breaking",
+     "file": "sfx_breaking_and_falling.zip -> bfh1_rock_falling_08.ogg",
+     "t0": 0.0,
+     "t1": 0.393,
+     "role": "debris"
+    }
+   ],
+   "seconds": 0.8,
+   "channels": 1
+  }
+ ],
+ "break/leaves": [
+  {
+   "file": "Assets/Resources/Audio/break/leaves_01.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_rustle",
+     "file": "qubodup-rustle.7z -> rustle/rustle03.flac",
+     "t0": 0.0,
+     "t1": 0.75,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.706,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/leaves_02.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_rustle",
+     "file": "qubodup-rustle.7z -> rustle/rustle07.flac",
+     "t0": 0.0,
+     "t1": 0.75,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.73,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/leaves_03.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_rustle",
+     "file": "qubodup-rustle.7z -> rustle/rustle08.flac",
+     "t0": 0.0,
+     "t1": 0.75,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.73,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/leaves_04.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_rustle",
+     "file": "qubodup-rustle.7z -> rustle/rustle13.flac",
+     "t0": 0.0,
+     "t1": 0.75,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.632,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/leaves_05.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_rustle",
+     "file": "qubodup-rustle.7z -> rustle/rustle14.flac",
+     "t0": 0.0,
+     "t1": 0.75,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.656,
+   "channels": 1
+  }
+ ],
+ "break/sand": [
+  {
+   "file": "Assets/Resources/Audio/break/sand_01.wav",
+   "layers": [
+    {
+     "source": "oga_cave_in",
+     "file": "cave_in_-_starninjas_0.ogg",
+     "t0": 0.298,
+     "t1": 1.832,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.85,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/sand_02.wav",
+   "layers": [
+    {
+     "source": "oga_cave_in",
+     "file": "cave_in_-_starninjas_0.ogg",
+     "t0": 1.876,
+     "t1": 3.434,
+     "varispeed": 1.12,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.85,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/sand_03.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactSoft_medium_000.ogg",
+     "t0": 0.0,
+     "t1": 0.115,
+     "role": "body"
+    },
+    {
+     "source": "oga_peludo",
+     "file": "sand_footsteps_0.mp3",
+     "t0": 0.192,
+     "t1": 1.722,
+     "role": "spray"
+    }
+   ],
+   "seconds": 0.85,
+   "channels": 1
+  }
+ ],
+ "break/snow": [
+  {
+   "file": "Assets/Resources/Audio/break/snow_01.wav",
+   "layers": [
+    {
+     "source": "oga_ignasd_snow",
+     "file": "SnowWalk.zip -> SnowWalk/SnowWalk.ogg",
+     "t0": 0.0,
+     "t1": 0.74,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.67,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/snow_02.wav",
+   "layers": [
+    {
+     "source": "oga_ignasd_snow",
+     "file": "SnowWalk.zip -> SnowWalk/SnowWalk2.ogg",
+     "t0": 0.0,
+     "t1": 0.636,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.636,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/snow_03.wav",
+   "layers": [
+    {
+     "source": "oga_corsica_snow",
+     "file": "corsica_s-walking_in_snow.7z -> Corsica_S-Walking_in_Snow/Corsica_S-Walking_on_snow_covered_gravel_and_ice_04.flac",
+     "t0": 0.0,
+     "t1": 0.609,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.607,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/snow_04.wav",
+   "layers": [
+    {
+     "source": "oga_corsica_snow",
+     "file": "corsica_s-walking_in_snow.7z -> Corsica_S-Walking_in_Snow/Corsica_S-Walking_on_snow_covered_gravel_and_ice_17.flac",
+     "t0": 0.0,
+     "t1": 0.525,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.525,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/snow_05.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_wetsnow",
+     "file": "qubodup-wet_snow_steps.7z -> qubodup-wet_snow_steps/snow_step_wet-09.flac",
+     "t0": 0.0,
+     "t1": 0.67,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.67,
+   "channels": 1
+  }
+ ],
+ "break/stone": [
+  {
+   "file": "Assets/Resources/Audio/break/stone_01.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactMining_003.ogg",
+     "t0": 0.0,
+     "t1": 0.992,
+     "role": "take"
+    },
+    {
+     "source": "oga_rd_breaking",
+     "file": "sfx_breaking_and_falling.zip -> bfh1_rock_falling_01.ogg",
+     "t0": 0.0,
+     "t1": 0.916,
+     "role": "debris"
+    }
+   ],
+   "seconds": 0.788,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/stone_02.wav",
+   "layers": [
+    {
+     "source": "oga_rd_breaking",
+     "file": "sfx_breaking_and_falling.zip -> bfh1_rock_breaking_01.ogg",
+     "t0": 0.0,
+     "t1": 1.147,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.534,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/stone_03.wav",
+   "layers": [
+    {
+     "source": "oga_rd_breaking",
+     "file": "sfx_breaking_and_falling.zip -> bfh1_rock_breaking_02.ogg",
+     "t0": 0.0,
+     "t1": 0.865,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.865,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/stone_04.wav",
+   "layers": [
+    {
+     "source": "oga_spring_various",
+     "file": "break_stone.wav",
+     "t0": 0.0,
+     "t1": 1.2,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.9,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/stone_05.wav",
+   "layers": [
+    {
+     "source": "oga_rock_break",
+     "file": "rock_break_0.ogg",
+     "t0": 0.0,
+     "t1": 0.437,
+     "role": "take"
+    },
+    {
+     "source": "oga_rd_breaking",
+     "file": "sfx_breaking_and_falling.zip -> bfh1_rock_falling_03.ogg",
+     "t0": 0.0,
+     "t1": 0.851,
+     "role": "debris"
+    }
+   ],
+   "seconds": 0.748,
+   "channels": 1
+  }
+ ],
+ "break/wood": [
+  {
+   "file": "Assets/Resources/Audio/break/wood_01.wav",
+   "layers": [
+    {
+     "source": "oga_nu_wood",
+     "file": "independent_nu_ljudbank-wood_crack_hit_destruction.7z -> wood_impact/crack02.mp3.flac",
+     "t0": 0.08,
+     "t1": 1.606,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.9,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/wood_02.wav",
+   "layers": [
+    {
+     "source": "oga_nu_wood",
+     "file": "independent_nu_ljudbank-wood_crack_hit_destruction.7z -> wood_impact/crack04.mp3.flac",
+     "t0": 0.134,
+     "t1": 1.664,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.9,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/wood_03.wav",
+   "layers": [
+    {
+     "source": "oga_nu_wood",
+     "file": "independent_nu_ljudbank-wood_crack_hit_destruction.7z -> wood_impact/crack09.mp3.flac",
+     "t0": 0.074,
+     "t1": 1.604,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.9,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/wood_04.wav",
+   "layers": [
+    {
+     "source": "oga_rd_woodmetal",
+     "file": "100-CC0-wood-metal-SFX.zip -> wood_breaking_01.ogg",
+     "t0": 0.0,
+     "t1": 0.565,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.428,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/wood_05.wav",
+   "layers": [
+    {
+     "source": "oga_rd_breaking",
+     "file": "sfx_breaking_and_falling.zip -> bfh1_wood_breaking_03.ogg",
+     "t0": 0.0,
+     "t1": 0.487,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.312,
+   "channels": 1
+  }
+ ],
+ "dig/dirt": [
+  {
+   "file": "Assets/Resources/Audio/dig/dirt_01.wav",
+   "layers": [
+    {
+     "source": "oga_shovel",
+     "file": "shovel_0.ogg",
+     "t0": 0.0,
+     "t1": 0.24,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.238,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/dirt_02.wav",
+   "layers": [
+    {
+     "source": "oga_rd_mud",
+     "file": "25-CC0-mud-sfx.zip -> mud_03.ogg",
+     "t0": 0.0,
+     "t1": 0.733,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.32,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/dirt_03.wav",
+   "layers": [
+    {
+     "source": "oga_rd_mud",
+     "file": "25-CC0-mud-sfx.zip -> mud_19.ogg",
+     "t0": 0.0,
+     "t1": 0.809,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.32,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/dirt_04.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactSoft_medium_000.ogg",
+     "t0": 0.0,
+     "t1": 0.115,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.115,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/dirt_05.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactSoft_medium_002.ogg",
+     "t0": 0.0,
+     "t1": 0.132,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.132,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/dirt_06.wav",
+   "layers": [
+    {
+     "source": "oga_nu_crunch",
+     "file": "independent_nu_ljudbank-break_crunch_impact.7z -> impcrunch/impactcrunch04.mp3.flac",
+     "t0": 0.0,
+     "t1": 0.811,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.32,
+   "channels": 1
+  }
+ ],
+ "dig/glass": [
+  {
+   "file": "Assets/Resources/Audio/dig/glass_01.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactGlass_light_000.ogg",
+     "t0": 0.0,
+     "t1": 0.231,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.148,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/glass_02.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactGlass_light_001.ogg",
+     "t0": 0.0,
+     "t1": 0.207,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.148,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/glass_03.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactGlass_light_002.ogg",
+     "t0": 0.0,
+     "t1": 0.207,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.156,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/glass_04.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactGlass_light_003.ogg",
+     "t0": 0.0,
+     "t1": 0.207,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.148,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/glass_05.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactGlass_light_004.ogg",
+     "t0": 0.0,
+     "t1": 0.207,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.152,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/glass_06.wav",
+   "layers": [
+    {
+     "source": "oga_rd_breaking",
+     "file": "sfx_breaking_and_falling.zip -> bfh1_glass_hit_01.ogg",
+     "t0": 0.0,
+     "t1": 0.302,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.204,
+   "channels": 1
+  }
+ ],
+ "dig/gravel": [
+  {
+   "file": "Assets/Resources/Audio/dig/gravel_01.wav",
+   "layers": [
+    {
+     "source": "oga_rd_100v2",
+     "file": "sfx_100_v2.zip -> sfx100v2_stones_02.ogg",
+     "t0": 0.0,
+     "t1": 0.3,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.28,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/gravel_02.wav",
+   "layers": [
+    {
+     "source": "oga_nu_crunch",
+     "file": "independent_nu_ljudbank-break_crunch_impact.7z -> impcrunch/impactcrunch01.mp3.flac",
+     "t0": 0.0,
+     "t1": 0.811,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.32,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/gravel_03.wav",
+   "layers": [
+    {
+     "source": "oga_nu_crunch",
+     "file": "independent_nu_ljudbank-break_crunch_impact.7z -> impcrunch/impactcrunch03.mp3.flac",
+     "t0": 0.0,
+     "t1": 0.889,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.32,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/gravel_04.wav",
+   "layers": [
+    {
+     "source": "oga_corsica_snow",
+     "file": "corsica_s-walking_in_snow.7z -> Corsica_S-Walking_in_Snow/Corsica_S-Walking_on_snow_covered_gravel_05.flac",
+     "t0": 0.0,
+     "t1": 0.641,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.32,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/gravel_05.wav",
+   "layers": [
+    {
+     "source": "oga_corsica_snow",
+     "file": "corsica_s-walking_in_snow.7z -> Corsica_S-Walking_in_Snow/Corsica_S-Walking_on_snow_covered_gravel_07.flac",
+     "t0": 0.0,
+     "t1": 0.69,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.32,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/gravel_06.wav",
+   "layers": [
+    {
+     "source": "oga_corsica_snow",
+     "file": "corsica_s-walking_in_snow.7z -> Corsica_S-Walking_in_Snow/Corsica_S-Walking_on_snow_covered_gravel_09.flac",
+     "t0": 0.0,
+     "t1": 0.614,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.32,
+   "channels": 1
+  }
+ ],
+ "dig/leaves": [
+  {
+   "file": "Assets/Resources/Audio/dig/leaves_01.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_rustle",
+     "file": "qubodup-rustle.7z -> rustle/rustle01.flac",
+     "t0": 0.0,
+     "t1": 0.3,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.25,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/leaves_02.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_rustle",
+     "file": "qubodup-rustle.7z -> rustle/rustle02.flac",
+     "t0": 0.0,
+     "t1": 0.3,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.282,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/leaves_03.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_rustle",
+     "file": "qubodup-rustle.7z -> rustle/rustle05.flac",
+     "t0": 0.0,
+     "t1": 0.3,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.22,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/leaves_04.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_rustle",
+     "file": "qubodup-rustle.7z -> rustle/rustle11.flac",
+     "t0": 0.0,
+     "t1": 0.3,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.256,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/leaves_05.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_rustle",
+     "file": "qubodup-rustle.7z -> rustle/rustle17.flac",
+     "t0": 0.0,
+     "t1": 0.3,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.272,
+   "channels": 1
+  }
+ ],
+ "dig/sand": [
+  {
+   "file": "Assets/Resources/Audio/dig/sand_01.wav",
+   "layers": [
+    {
+     "source": "oga_peludo",
+     "file": "sand_footsteps_0.mp3",
+     "t0": 0.192,
+     "t1": 1.722,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.32,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/sand_02.wav",
+   "layers": [
+    {
+     "source": "oga_peludo",
+     "file": "sand_footsteps_0.mp3",
+     "t0": 4.466,
+     "t1": 5.542,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.32,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/sand_03.wav",
+   "layers": [
+    {
+     "source": "oga_cave_in",
+     "file": "cave_in_-_starninjas_0.ogg",
+     "t0": 3.648,
+     "t1": 4.066,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.32,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/sand_04.wav",
+   "layers": [
+    {
+     "source": "oga_rd_mud",
+     "file": "25-CC0-mud-sfx.zip -> mud_07.ogg",
+     "t0": 0.0,
+     "t1": 0.604,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.32,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/sand_05.wav",
+   "layers": [
+    {
+     "source": "oga_rd_mud",
+     "file": "25-CC0-mud-sfx.zip -> mud_21.ogg",
+     "t0": 0.0,
+     "t1": 0.444,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.272,
+   "channels": 1
+  }
+ ],
+ "dig/snow": [
+  {
+   "file": "Assets/Resources/Audio/dig/snow_01.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_wetsnow",
+     "file": "qubodup-wet_snow_steps.7z -> qubodup-wet_snow_steps/snow_step_wet-01.flac",
+     "t0": 0.0,
+     "t1": 0.3,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.3,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/snow_02.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_wetsnow",
+     "file": "qubodup-wet_snow_steps.7z -> qubodup-wet_snow_steps/snow_step_wet-03.flac",
+     "t0": 0.0,
+     "t1": 0.3,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.3,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/snow_03.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_wetsnow",
+     "file": "qubodup-wet_snow_steps.7z -> qubodup-wet_snow_steps/snow_step_wet-04.flac",
+     "t0": 0.0,
+     "t1": 0.3,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.3,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/snow_04.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_wetsnow",
+     "file": "qubodup-wet_snow_steps.7z -> qubodup-wet_snow_steps/snow_step_wet-06.flac",
+     "t0": 0.0,
+     "t1": 0.3,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.3,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/snow_05.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_wetsnow",
+     "file": "qubodup-wet_snow_steps.7z -> qubodup-wet_snow_steps/snow_step_wet-08.flac",
+     "t0": 0.0,
+     "t1": 0.3,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.3,
+   "channels": 1
+  }
+ ],
+ "dig/stone": [
+  {
+   "file": "Assets/Resources/Audio/dig/stone_01.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactMining_000.ogg",
+     "t0": 0.0,
+     "t1": 0.937,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.32,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/stone_02.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactMining_001.ogg",
+     "t0": 0.0,
+     "t1": 0.869,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.32,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/stone_03.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactMining_002.ogg",
+     "t0": 0.0,
+     "t1": 0.805,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.32,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/stone_04.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactMining_004.ogg",
+     "t0": 0.0,
+     "t1": 0.83,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.32,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/stone_05.wav",
+   "layers": [
+    {
+     "source": "oga_spring_various",
+     "file": "tap_stone.wav",
+     "t0": 0.0,
+     "t1": 0.753,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.32,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/stone_06.wav",
+   "layers": [
+    {
+     "source": "oga_spring_various",
+     "file": "small_rock_impact.wav",
+     "t0": 0.0,
+     "t1": 0.534,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.102,
+   "channels": 1
+  }
+ ],
+ "dig/wood": [
+  {
+   "file": "Assets/Resources/Audio/dig/wood_01.wav",
+   "layers": [
+    {
+     "source": "oga_nu_wood",
+     "file": "independent_nu_ljudbank-wood_crack_hit_destruction.7z -> wood_impact/impactwood02.mp3.flac",
+     "t0": 0.104,
+     "t1": 1.63,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.32,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/wood_02.wav",
+   "layers": [
+    {
+     "source": "oga_nu_wood",
+     "file": "independent_nu_ljudbank-wood_crack_hit_destruction.7z -> wood_impact/impactwood04.mp3.flac",
+     "t0": 0.116,
+     "t1": 1.672,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.32,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/wood_03.wav",
+   "layers": [
+    {
+     "source": "oga_nu_wood",
+     "file": "independent_nu_ljudbank-wood_crack_hit_destruction.7z -> wood_impact/impactwood07.mp3.flac",
+     "t0": 0.006,
+     "t1": 1.534,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.32,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/wood_04.wav",
+   "layers": [
+    {
+     "source": "oga_nu_wood",
+     "file": "independent_nu_ljudbank-wood_crack_hit_destruction.7z -> wood_impact/impactwood10.mp3.flac",
+     "t0": 0.002,
+     "t1": 1.53,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.32,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/wood_05.wav",
+   "layers": [
+    {
+     "source": "oga_nu_wood",
+     "file": "independent_nu_ljudbank-wood_crack_hit_destruction.7z -> wood_impact/impactwood14.mp3.flac",
+     "t0": 0.0,
+     "t1": 0.754,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.32,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/wood_06.wav",
+   "layers": [
+    {
+     "source": "oga_nu_wood",
+     "file": "independent_nu_ljudbank-wood_crack_hit_destruction.7z -> wood_impact/impactwood24.mp3.flac",
+     "t0": 0.058,
+     "t1": 1.508,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.32,
+   "channels": 1
+  }
+ ],
+ "place/dirt": [
+  {
+   "file": "Assets/Resources/Audio/place/dirt_01.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactSoft_heavy_000.ogg",
+     "t0": 0.0,
+     "t1": 0.527,
+     "varispeed": 0.92,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.3,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/dirt_02.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactSoft_heavy_001.ogg",
+     "t0": 0.0,
+     "t1": 0.569,
+     "varispeed": 1.05,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.3,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/dirt_03.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactSoft_heavy_003.ogg",
+     "t0": 0.0,
+     "t1": 0.541,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.3,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/dirt_04.wav",
+   "layers": [
+    {
+     "source": "oga_rd_mud",
+     "file": "25-CC0-mud-sfx.zip -> mud_11.ogg",
+     "t0": 0.0,
+     "t1": 0.227,
+     "varispeed": 0.9,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.146,
+   "channels": 1
+  }
+ ],
+ "place/glass": [
+  {
+   "file": "Assets/Resources/Audio/place/glass_01.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactGlass_medium_000.ogg",
+     "t0": 0.0,
+     "t1": 0.54,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.324,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/glass_02.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactGlass_medium_001.ogg",
+     "t0": 0.0,
+     "t1": 0.54,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.326,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/glass_03.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactGlass_medium_002.ogg",
+     "t0": 0.0,
+     "t1": 0.54,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.31,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/glass_04.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactGlass_medium_003.ogg",
+     "t0": 0.0,
+     "t1": 0.54,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.338,
+   "channels": 1
+  }
+ ],
+ "place/gravel": [
+  {
+   "file": "Assets/Resources/Audio/place/gravel_01.wav",
+   "layers": [
+    {
+     "source": "oga_corsica_snow",
+     "file": "corsica_s-walking_in_snow.7z -> Corsica_S-Walking_in_Snow/Corsica_S-Walking_on_snow_covered_gravel_13.flac",
+     "t0": 0.0,
+     "t1": 0.72,
+     "varispeed": 0.9,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.3,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/gravel_02.wav",
+   "layers": [
+    {
+     "source": "oga_corsica_snow",
+     "file": "corsica_s-walking_in_snow.7z -> Corsica_S-Walking_in_Snow/Corsica_S-Walking_on_snow_covered_gravel_14.flac",
+     "t0": 0.0,
+     "t1": 0.67,
+     "varispeed": 0.9,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.3,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/gravel_03.wav",
+   "layers": [
+    {
+     "source": "oga_corsica_snow",
+     "file": "corsica_s-walking_in_snow.7z -> Corsica_S-Walking_in_Snow/Corsica_S-Walking_on_snow_covered_gravel_16.flac",
+     "t0": 0.0,
+     "t1": 0.589,
+     "varispeed": 0.9,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.3,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/gravel_04.wav",
+   "layers": [
+    {
+     "source": "oga_corsica_snow",
+     "file": "corsica_s-walking_in_snow.7z -> Corsica_S-Walking_in_Snow/Corsica_S-Walking_on_snow_covered_gravel_18.flac",
+     "t0": 0.0,
+     "t1": 0.448,
+     "varispeed": 0.9,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.3,
+   "channels": 1
+  }
+ ],
+ "place/leaves": [
+  {
+   "file": "Assets/Resources/Audio/place/leaves_01.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_rustle",
+     "file": "qubodup-rustle.7z -> rustle/rustle15.flac",
+     "t0": 0.0,
+     "t1": 0.25,
+     "role": "take"
+    },
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactSoft_medium_000.ogg",
+     "t0": 0.0,
+     "t1": 0.115,
+     "role": "body"
+    }
+   ],
+   "seconds": 0.25,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/leaves_02.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_rustle",
+     "file": "qubodup-rustle.7z -> rustle/rustle16.flac",
+     "t0": 0.0,
+     "t1": 0.25,
+     "role": "take"
+    },
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactSoft_medium_002.ogg",
+     "t0": 0.0,
+     "t1": 0.132,
+     "role": "body"
+    }
+   ],
+   "seconds": 0.25,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/leaves_03.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_rustle",
+     "file": "qubodup-rustle.7z -> rustle/rustle18.flac",
+     "t0": 0.0,
+     "t1": 0.25,
+     "role": "take"
+    },
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactSoft_heavy_000.ogg",
+     "t0": 0.0,
+     "t1": 0.527,
+     "role": "body"
+    }
+   ],
+   "seconds": 0.3,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/leaves_04.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_rustle",
+     "file": "qubodup-rustle.7z -> rustle/rustle19.flac",
+     "t0": 0.0,
+     "t1": 0.25,
+     "role": "take"
+    },
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactSoft_heavy_003.ogg",
+     "t0": 0.0,
+     "t1": 0.541,
+     "role": "body"
+    }
+   ],
+   "seconds": 0.3,
+   "channels": 1
+  }
+ ],
+ "place/sand": [
+  {
+   "file": "Assets/Resources/Audio/place/sand_01.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactSoft_medium_000.ogg",
+     "t0": 0.0,
+     "t1": 0.115,
+     "varispeed": 0.95,
+     "role": "take"
+    },
+    {
+     "source": "oga_rd_mud",
+     "file": "25-CC0-mud-sfx.zip -> mud_22.ogg",
+     "t0": 0.0,
+     "t1": 0.325,
+     "role": "grain"
+    }
+   ],
+   "seconds": 0.174,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/sand_02.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactSoft_heavy_003.ogg",
+     "t0": 0.0,
+     "t1": 0.541,
+     "varispeed": 1.1,
+     "role": "take"
+    },
+    {
+     "source": "oga_rd_mud",
+     "file": "25-CC0-mud-sfx.zip -> mud_23.ogg",
+     "t0": 0.0,
+     "t1": 0.412,
+     "role": "grain"
+    }
+   ],
+   "seconds": 0.3,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/sand_03.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactSoft_heavy_000.ogg",
+     "t0": 0.0,
+     "t1": 0.527,
+     "varispeed": 1.15,
+     "role": "take"
+    },
+    {
+     "source": "oga_rd_mud",
+     "file": "25-CC0-mud-sfx.zip -> mud_16.ogg",
+     "t0": 0.0,
+     "t1": 0.575,
+     "role": "grain"
+    }
+   ],
+   "seconds": 0.3,
+   "channels": 1
+  }
+ ],
+ "place/snow": [
+  {
+   "file": "Assets/Resources/Audio/place/snow_01.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/footstep_snow_001.ogg",
+     "t0": 0.0,
+     "t1": 0.371,
+     "varispeed": 0.92,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.23,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/snow_02.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/footstep_snow_004.ogg",
+     "t0": 0.0,
+     "t1": 0.371,
+     "varispeed": 0.92,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.23,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/snow_03.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_wetsnow",
+     "file": "qubodup-wet_snow_steps.7z -> qubodup-wet_snow_steps/snow_step_wet-02.flac",
+     "t0": 0.0,
+     "t1": 0.318,
+     "varispeed": 0.9,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.3,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/snow_04.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_wetsnow",
+     "file": "qubodup-wet_snow_steps.7z -> qubodup-wet_snow_steps/snow_step_wet-05.flac",
+     "t0": 0.0,
+     "t1": 0.198,
+     "varispeed": 0.9,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.22,
+   "channels": 1
+  }
+ ],
+ "place/stone": [
+  {
+   "file": "Assets/Resources/Audio/place/stone_01.wav",
+   "layers": [
+    {
+     "source": "oga_rd_breaking",
+     "file": "sfx_breaking_and_falling.zip -> bfh1_rock_hit_01.ogg",
+     "t0": 0.0,
+     "t1": 0.129,
+     "role": "take"
+    },
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactPlate_heavy_000.ogg",
+     "t0": 0.0,
+     "t1": 0.489,
+     "role": "weight"
+    }
+   ],
+   "seconds": 0.3,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/stone_02.wav",
+   "layers": [
+    {
+     "source": "oga_rd_100v2",
+     "file": "sfx_100_v2.zip -> sfx100v2_stones_01.ogg",
+     "t0": 0.0,
+     "t1": 0.25,
+     "role": "take"
+    },
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactPlate_heavy_002.ogg",
+     "t0": 0.0,
+     "t1": 0.494,
+     "role": "weight"
+    }
+   ],
+   "seconds": 0.3,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/stone_03.wav",
+   "layers": [
+    {
+     "source": "oga_rd_100v2",
+     "file": "sfx_100_v2.zip -> sfx100v2_stones_03.ogg",
+     "t0": 0.0,
+     "t1": 0.25,
+     "role": "take"
+    },
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactPlate_heavy_004.ogg",
+     "t0": 0.0,
+     "t1": 0.559,
+     "role": "weight"
+    }
+   ],
+   "seconds": 0.3,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/stone_04.wav",
+   "layers": [
+    {
+     "source": "oga_boulder",
+     "file": "move_boulder_0.ogg",
+     "t0": 0.0,
+     "t1": 0.35,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.3,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/stone_05.wav",
+   "layers": [
+    {
+     "source": "oga_qubodup_impact",
+     "file": "qubodupImpact.7z -> qubodupImpact/qubodupImpactStone.flac",
+     "t0": 0.0,
+     "t1": 0.5,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.166,
+   "channels": 1
+  }
+ ],
+ "place/wood": [
+  {
+   "file": "Assets/Resources/Audio/place/wood_01.wav",
+   "layers": [
+    {
+     "source": "oga_ogrebane_wm2",
+     "file": "wood_and_metal_vol.2_0.zip -> wood_and_metal_vol.2/wood2.aif",
+     "t0": 0.0,
+     "t1": 0.5,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.216,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/wood_02.wav",
+   "layers": [
+    {
+     "source": "oga_ogrebane_wm2",
+     "file": "wood_and_metal_vol.2_0.zip -> wood_and_metal_vol.2/wood8.aif",
+     "t0": 0.0,
+     "t1": 0.625,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.3,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/wood_03.wav",
+   "layers": [
+    {
+     "source": "oga_ogrebane_wm2",
+     "file": "wood_and_metal_vol.2_0.zip -> wood_and_metal_vol.2/wood12.aif",
+     "t0": 0.0,
+     "t1": 0.625,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.294,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/wood_04.wav",
+   "layers": [
+    {
+     "source": "oga_ogrebane_wm2",
+     "file": "wood_and_metal_vol.2_0.zip -> wood_and_metal_vol.2/wood16.aif",
+     "t0": 0.0,
+     "t1": 0.625,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.16,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/wood_05.wav",
+   "layers": [
+    {
+     "source": "oga_rd_woodmetal",
+     "file": "100-CC0-wood-metal-SFX.zip -> wood_hammer_01.ogg",
+     "t0": 0.0,
+     "t1": 0.313,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.262,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/wood_06.wav",
+   "layers": [
+    {
+     "source": "oga_rd_woodmetal",
+     "file": "100-CC0-wood-metal-SFX.zip -> wood_close_02.ogg",
+     "t0": 0.0,
+     "t1": 0.44,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.278,
+   "channels": 1
+  }
+ ],
  "step/dirt": [
   {
    "file": "Assets/Resources/Audio/step/dirt_01.wav",
