@@ -1,0 +1,1805 @@
+{
+  "version": 1,
+  "units": "metres",
+  "space": "Unity (+Y up, +Z forward)",
+  "assets": {
+    "Axe_Iron": {
+      "path": "Models/Tools/Axe_Iron",
+      "file": "Assets/Resources/Models/Tools/Axe_Iron.fbx",
+      "category": "Tools",
+      "tris": {
+        "lod0": 324,
+        "lod1": 0
+      },
+      "bounds": {
+        "min": [
+          -0.0379,
+          -0.1001,
+          -0.069
+        ],
+        "max": [
+          0.0379,
+          0.5765,
+          0.1932
+        ],
+        "size": [
+          0.0759,
+          0.6765,
+          0.2622
+        ]
+      },
+      "materials": [
+        "M_Cloth",
+        "M_Metal",
+        "M_Wood"
+      ],
+      "parts": {
+        "Handle": {
+          "parent": "Axe_Iron",
+          "pivot": [
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          "tris": 200
+        },
+        "Head": {
+          "parent": "Axe_Iron",
+          "pivot": [
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          "tris": 124
+        }
+      },
+      "biomes": [
+        "Any"
+      ],
+      "tier": "iron",
+      "tool": "axe",
+      "pivot": "Origin = grip (hand centre), 0.10 m above the butt. Long axis +Y; blade edge toward +Z. Children Handle + Head share the grip pivot.",
+      "budget": 800
+    },
+    "Axe_Stone": {
+      "path": "Models/Tools/Axe_Stone",
+      "file": "Assets/Resources/Models/Tools/Axe_Stone.fbx",
+      "category": "Tools",
+      "tris": {
+        "lod0": 452,
+        "lod1": 0
+      },
+      "bounds": {
+        "min": [
+          -0.048,
+          -0.1001,
+          -0.0353
+        ],
+        "max": [
+          0.048,
+          0.59,
+          0.2097
+        ],
+        "size": [
+          0.0961,
+          0.6901,
+          0.245
+        ]
+      },
+      "materials": [
+        "M_Cloth",
+        "M_Stone",
+        "M_Wood"
+      ],
+      "parts": {
+        "Handle": {
+          "parent": "Axe_Stone",
+          "pivot": [
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          "tris": 140
+        },
+        "Head": {
+          "parent": "Axe_Stone",
+          "pivot": [
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          "tris": 312
+        }
+      },
+      "biomes": [
+        "Any"
+      ],
+      "tier": "stone",
+      "tool": "axe",
+      "pivot": "Origin = grip (hand centre), 0.10 m above the butt. Long axis +Y; blade edge toward +Z. Children Handle + Head share the grip pivot.",
+      "budget": 800
+    },
+    "Axe_Wood": {
+      "path": "Models/Tools/Axe_Wood",
+      "file": "Assets/Resources/Models/Tools/Axe_Wood.fbx",
+      "category": "Tools",
+      "tris": {
+        "lod0": 408,
+        "lod1": 0
+      },
+      "bounds": {
+        "min": [
+          -0.0398,
+          -0.1002,
+          -0.069
+        ],
+        "max": [
+          0.0398,
+          0.5765,
+          0.1932
+        ],
+        "size": [
+          0.0797,
+          0.6767,
+          0.2622
+        ]
+      },
+      "materials": [
+        "M_Cloth",
+        "M_Wood"
+      ],
+      "parts": {
+        "Handle": {
+          "parent": "Axe_Wood",
+          "pivot": [
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          "tris": 140
+        },
+        "Head": {
+          "parent": "Axe_Wood",
+          "pivot": [
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          "tris": 268
+        }
+      },
+      "biomes": [
+        "Any"
+      ],
+      "tier": "wood",
+      "tool": "axe",
+      "pivot": "Origin = grip (hand centre), 0.10 m above the butt. Long axis +Y; blade edge toward +Z. Children Handle + Head share the grip pivot.",
+      "budget": 800
+    },
+    "Boulder_A": {
+      "path": "Models/Props/Boulder_A",
+      "file": "Assets/Resources/Models/Props/Boulder_A.fbx",
+      "category": "Props",
+      "tris": {
+        "lod0": 1280,
+        "lod1": 512
+      },
+      "bounds": {
+        "min": [
+          -0.6318,
+          0.0,
+          -0.6463
+        ],
+        "max": [
+          0.6318,
+          0.9527,
+          0.6463
+        ],
+        "size": [
+          1.2635,
+          0.9527,
+          1.2926
+        ]
+      },
+      "materials": [
+        "M_Stone"
+      ],
+      "parts": {},
+      "biomes": [
+        "Forest",
+        "Plains",
+        "Mountains",
+        "Taiga"
+      ],
+      "pivot": "Origin at ground-contact centre (min y = 0). Child Boulder_A_LOD1 for the LODGroup.",
+      "budget": 1500
+    },
+    "Boulder_B": {
+      "path": "Models/Props/Boulder_B",
+      "file": "Assets/Resources/Models/Props/Boulder_B.fbx",
+      "category": "Props",
+      "tris": {
+        "lod0": 1280,
+        "lod1": 512
+      },
+      "bounds": {
+        "min": [
+          -1.2075,
+          0.0,
+          -0.7616
+        ],
+        "max": [
+          1.2075,
+          1.2321,
+          0.7616
+        ],
+        "size": [
+          2.415,
+          1.2321,
+          1.5232
+        ]
+      },
+      "materials": [
+        "M_Stone"
+      ],
+      "parts": {},
+      "biomes": [
+        "Mountains",
+        "Plains",
+        "Taiga"
+      ],
+      "pivot": "Origin at ground-contact centre (min y = 0). Child Boulder_B_LOD1 for the LODGroup.",
+      "budget": 1500
+    },
+    "Boulder_C": {
+      "path": "Models/Props/Boulder_C",
+      "file": "Assets/Resources/Models/Props/Boulder_C.fbx",
+      "category": "Props",
+      "tris": {
+        "lod0": 1280,
+        "lod1": 512
+      },
+      "bounds": {
+        "min": [
+          -0.514,
+          0.0,
+          -0.4737
+        ],
+        "max": [
+          0.514,
+          1.3758,
+          0.4737
+        ],
+        "size": [
+          1.028,
+          1.3758,
+          0.9474
+        ]
+      },
+      "materials": [
+        "M_Stone"
+      ],
+      "parts": {},
+      "biomes": [
+        "Forest",
+        "DarkForest",
+        "Riverbank"
+      ],
+      "pivot": "Origin at ground-contact centre (min y = 0). Child Boulder_C_LOD1 for the LODGroup.",
+      "budget": 1500
+    },
+    "Bush_A": {
+      "path": "Models/Props/Bush_A",
+      "file": "Assets/Resources/Models/Props/Bush_A.fbx",
+      "category": "Props",
+      "tris": {
+        "lod0": 996,
+        "lod1": 398
+      },
+      "bounds": {
+        "min": [
+          -0.4408,
+          0.0,
+          -0.532
+        ],
+        "max": [
+          0.4408,
+          0.6179,
+          0.532
+        ],
+        "size": [
+          0.8816,
+          0.6179,
+          1.0639
+        ]
+      },
+      "materials": [
+        "M_Bark",
+        "M_Leaves"
+      ],
+      "parts": {},
+      "biomes": [
+        "Forest",
+        "Plains",
+        "BirchForest"
+      ],
+      "pivot": "Origin at ground-contact centre (min y = 0). Child Bush_A_LOD1 for the LODGroup.",
+      "budget": 1500
+    },
+    "Bush_B": {
+      "path": "Models/Props/Bush_B",
+      "file": "Assets/Resources/Models/Props/Bush_B.fbx",
+      "category": "Props",
+      "tris": {
+        "lod0": 1196,
+        "lod1": 478
+      },
+      "bounds": {
+        "min": [
+          -0.6333,
+          0.0,
+          -0.6288
+        ],
+        "max": [
+          0.6333,
+          0.5366,
+          0.6288
+        ],
+        "size": [
+          1.2666,
+          0.5366,
+          1.2576
+        ]
+      },
+      "materials": [
+        "M_Bark",
+        "M_Leaves"
+      ],
+      "parts": {},
+      "biomes": [
+        "Plains",
+        "Forest",
+        "Taiga"
+      ],
+      "pivot": "Origin at ground-contact centre (min y = 0). Child Bush_B_LOD1 for the LODGroup.",
+      "budget": 1500
+    },
+    "DeadTree": {
+      "path": "Models/Props/DeadTree",
+      "file": "Assets/Resources/Models/Props/DeadTree.fbx",
+      "category": "Props",
+      "tris": {
+        "lod0": 634,
+        "lod1": 252
+      },
+      "bounds": {
+        "min": [
+          -0.8572,
+          0.0,
+          -0.6594
+        ],
+        "max": [
+          0.8572,
+          2.5158,
+          0.6594
+        ],
+        "size": [
+          1.7144,
+          2.5158,
+          1.3188
+        ]
+      },
+      "materials": [
+        "M_Bark"
+      ],
+      "parts": {},
+      "biomes": [
+        "Desert",
+        "Snowy"
+      ],
+      "pivot": "Origin at ground-contact centre (min y = 0). Child DeadTree_LOD1 for the LODGroup.",
+      "budget": 1500
+    },
+    "Deer": {
+      "path": "Models/Wildlife/Deer",
+      "file": "Assets/Resources/Models/Wildlife/Deer.fbx",
+      "category": "Wildlife",
+      "tris": {
+        "lod0": 1890,
+        "lod1": 746
+      },
+      "bounds": {
+        "min": [
+          -0.2886,
+          0.0,
+          -0.6574
+        ],
+        "max": [
+          0.2874,
+          1.7504,
+          0.8816
+        ],
+        "size": [
+          0.5761,
+          1.7504,
+          1.5391
+        ]
+      },
+      "materials": [
+        "M_Fur",
+        "M_Horn"
+      ],
+      "parts": {
+        "Body": {
+          "parent": "Deer",
+          "pivot": [
+            -0.0,
+            0.8739,
+            -0.0
+          ],
+          "tris": 312
+        },
+        "LegBL": {
+          "parent": "Body",
+          "pivot": [
+            -0.108,
+            0.8439,
+            -0.33
+          ],
+          "tris": 174
+        },
+        "LegBR": {
+          "parent": "Body",
+          "pivot": [
+            0.108,
+            0.8439,
+            -0.33
+          ],
+          "tris": 174
+        },
+        "LegFL": {
+          "parent": "Body",
+          "pivot": [
+            -0.11,
+            0.8139,
+            0.31
+          ],
+          "tris": 174
+        },
+        "LegFR": {
+          "parent": "Body",
+          "pivot": [
+            0.11,
+            0.8139,
+            0.31
+          ],
+          "tris": 174
+        },
+        "Neck": {
+          "parent": "Body",
+          "pivot": [
+            -0.0,
+            0.9239,
+            0.36
+          ],
+          "tris": 116
+        },
+        "Head": {
+          "parent": "Neck",
+          "pivot": [
+            -0.0,
+            1.2189,
+            0.585
+          ],
+          "tris": 616
+        },
+        "EarL": {
+          "parent": "Head",
+          "pivot": [
+            -0.052,
+            1.3009,
+            0.607
+          ],
+          "tris": 46
+        },
+        "EarR": {
+          "parent": "Head",
+          "pivot": [
+            0.052,
+            1.3009,
+            0.607
+          ],
+          "tris": 46
+        },
+        "Tail": {
+          "parent": "Body",
+          "pivot": [
+            -0.0,
+            0.9539,
+            -0.54
+          ],
+          "tris": 58
+        }
+      },
+      "biomes": [
+        "Forest",
+        "BirchForest",
+        "Plains",
+        "Taiga"
+      ],
+      "pivot": "Root at ground between the hooves, facing +Z. Parts pivot at joints: Body (torso centre), Neck (base, inside chest), Head (atlas joint; antlers are part of Head), EarL/EarR (ear base), LegFL/FR (shoulder), LegBL/BR (hip), Tail (tail root). Rotate parts about local X to swing legs/nod head.",
+      "species": "stag, antlered",
+      "budget": 2500
+    },
+    "Doe": {
+      "path": "Models/Wildlife/Doe",
+      "file": "Assets/Resources/Models/Wildlife/Doe.fbx",
+      "category": "Wildlife",
+      "tris": {
+        "lod0": 1474,
+        "lod1": 580
+      },
+      "bounds": {
+        "min": [
+          -0.1895,
+          0.0,
+          -0.6048
+        ],
+        "max": [
+          0.1895,
+          1.2834,
+          0.8111
+        ],
+        "size": [
+          0.379,
+          1.2834,
+          1.4159
+        ]
+      },
+      "materials": [
+        "M_Fur",
+        "M_Horn"
+      ],
+      "parts": {
+        "Body": {
+          "parent": "Doe",
+          "pivot": [
+            -0.0,
+            0.804,
+            -0.0
+          ],
+          "tris": 312
+        },
+        "LegBL": {
+          "parent": "Body",
+          "pivot": [
+            -0.0994,
+            0.7764,
+            -0.3036
+          ],
+          "tris": 174
+        },
+        "LegBR": {
+          "parent": "Body",
+          "pivot": [
+            0.0994,
+            0.7764,
+            -0.3036
+          ],
+          "tris": 174
+        },
+        "LegFL": {
+          "parent": "Body",
+          "pivot": [
+            -0.1012,
+            0.7488,
+            0.2852
+          ],
+          "tris": 174
+        },
+        "LegFR": {
+          "parent": "Body",
+          "pivot": [
+            0.1012,
+            0.7488,
+            0.2852
+          ],
+          "tris": 174
+        },
+        "Neck": {
+          "parent": "Body",
+          "pivot": [
+            -0.0,
+            0.85,
+            0.3312
+          ],
+          "tris": 116
+        },
+        "Head": {
+          "parent": "Neck",
+          "pivot": [
+            -0.0,
+            1.1214,
+            0.5382
+          ],
+          "tris": 200
+        },
+        "EarL": {
+          "parent": "Head",
+          "pivot": [
+            -0.0478,
+            1.1968,
+            0.5584
+          ],
+          "tris": 46
+        },
+        "EarR": {
+          "parent": "Head",
+          "pivot": [
+            0.0478,
+            1.1968,
+            0.5584
+          ],
+          "tris": 46
+        },
+        "Tail": {
+          "parent": "Body",
+          "pivot": [
+            -0.0,
+            0.8776,
+            -0.4968
+          ],
+          "tris": 58
+        }
+      },
+      "biomes": [
+        "Forest",
+        "BirchForest",
+        "Plains",
+        "Taiga"
+      ],
+      "pivot": "Same rig as Deer at 92% scale, no antlers, larger ears.",
+      "species": "doe",
+      "budget": 2500
+    },
+    "FallenLog_Birch": {
+      "path": "Models/Props/FallenLog_Birch",
+      "file": "Assets/Resources/Models/Props/FallenLog_Birch.fbx",
+      "category": "Props",
+      "tris": {
+        "lod0": 1042,
+        "lod1": 416
+      },
+      "bounds": {
+        "min": [
+          -1.2823,
+          0.0,
+          -0.2232
+        ],
+        "max": [
+          1.2823,
+          0.6044,
+          0.2232
+        ],
+        "size": [
+          2.5647,
+          0.6044,
+          0.4465
+        ]
+      },
+      "materials": [
+        "M_Bark",
+        "M_Wood"
+      ],
+      "parts": {},
+      "biomes": [
+        "BirchForest",
+        "Forest"
+      ],
+      "pivot": "Origin at ground-contact centre (min y = 0). Child FallenLog_Birch_LOD1 for the LODGroup.",
+      "budget": 1500
+    },
+    "FallenLog_Oak": {
+      "path": "Models/Props/FallenLog_Oak",
+      "file": "Assets/Resources/Models/Props/FallenLog_Oak.fbx",
+      "category": "Props",
+      "tris": {
+        "lod0": 1202,
+        "lod1": 480
+      },
+      "bounds": {
+        "min": [
+          -1.5558,
+          0.0,
+          -0.3643
+        ],
+        "max": [
+          1.5558,
+          0.9098,
+          0.3643
+        ],
+        "size": [
+          3.1117,
+          0.9098,
+          0.7286
+        ]
+      },
+      "materials": [
+        "M_Bark",
+        "M_Cap",
+        "M_Wood"
+      ],
+      "parts": {},
+      "biomes": [
+        "Forest",
+        "DarkForest"
+      ],
+      "pivot": "Origin at ground-contact centre (min y = 0). Child FallenLog_Oak_LOD1 for the LODGroup.",
+      "budget": 1500
+    },
+    "GiantMushroom": {
+      "path": "Models/Props/GiantMushroom",
+      "file": "Assets/Resources/Models/Props/GiantMushroom.fbx",
+      "category": "Props",
+      "tris": {
+        "lod0": 1096,
+        "lod1": 438
+      },
+      "bounds": {
+        "min": [
+          -1.0321,
+          0.0,
+          -1.0416
+        ],
+        "max": [
+          1.0321,
+          2.6236,
+          1.0416
+        ],
+        "size": [
+          2.0642,
+          2.6236,
+          2.0832
+        ]
+      },
+      "materials": [
+        "M_Cap"
+      ],
+      "parts": {},
+      "biomes": [
+        "DarkForest"
+      ],
+      "pivot": "Origin at ground-contact centre (min y = 0). Child GiantMushroom_LOD1 for the LODGroup.",
+      "budget": 1500
+    },
+    "GlowcapCluster": {
+      "path": "Models/Props/GlowcapCluster",
+      "file": "Assets/Resources/Models/Props/GlowcapCluster.fbx",
+      "category": "Props",
+      "tris": {
+        "lod0": 882,
+        "lod1": 352
+      },
+      "bounds": {
+        "min": [
+          -0.1913,
+          0.0,
+          -0.1558
+        ],
+        "max": [
+          0.1913,
+          0.4268,
+          0.1558
+        ],
+        "size": [
+          0.3826,
+          0.4268,
+          0.3117
+        ]
+      },
+      "materials": [
+        "M_Cap",
+        "M_Glow"
+      ],
+      "parts": {},
+      "biomes": [
+        "DarkForest",
+        "Caves"
+      ],
+      "pivot": "Caps use M_Glow (emissive, vertex colour = emission colour).",
+      "budget": 1500
+    },
+    "IceSpike": {
+      "path": "Models/Props/IceSpike",
+      "file": "Assets/Resources/Models/Props/IceSpike.fbx",
+      "category": "Props",
+      "tris": {
+        "lod0": 596,
+        "lod1": 238
+      },
+      "bounds": {
+        "min": [
+          -0.809,
+          0.0,
+          -0.7313
+        ],
+        "max": [
+          0.809,
+          3.4497,
+          0.7313
+        ],
+        "size": [
+          1.618,
+          3.4497,
+          1.4626
+        ]
+      },
+      "materials": [
+        "M_Ice"
+      ],
+      "parts": {},
+      "biomes": [
+        "Snowy"
+      ],
+      "pivot": "Flat-shaded crystal facets; M_Ice may be rendered glossy/translucent.",
+      "budget": 1500
+    },
+    "LilyPad": {
+      "path": "Models/Props/LilyPad",
+      "file": "Assets/Resources/Models/Props/LilyPad.fbx",
+      "category": "Props",
+      "tris": {
+        "lod0": 788,
+        "lod1": 314
+      },
+      "bounds": {
+        "min": [
+          -0.6492,
+          0.0,
+          -0.52
+        ],
+        "max": [
+          0.6492,
+          0.072,
+          0.52
+        ],
+        "size": [
+          1.2984,
+          0.072,
+          1.04
+        ]
+      },
+      "materials": [
+        "M_Leaves"
+      ],
+      "parts": {},
+      "biomes": [
+        "Riverbank",
+        "Swamp"
+      ],
+      "pivot": "Origin at the pad underside centre; place at the water surface (y = sea level + ~0.0). Pads are 12 mm thick, double-sided by geometry.",
+      "budget": 1500
+    },
+    "MushroomCluster": {
+      "path": "Models/Props/MushroomCluster",
+      "file": "Assets/Resources/Models/Props/MushroomCluster.fbx",
+      "category": "Props",
+      "tris": {
+        "lod0": 864,
+        "lod1": 344
+      },
+      "bounds": {
+        "min": [
+          -0.2404,
+          0.0,
+          -0.2096
+        ],
+        "max": [
+          0.2404,
+          0.3436,
+          0.2096
+        ],
+        "size": [
+          0.4807,
+          0.3436,
+          0.4193
+        ]
+      },
+      "materials": [
+        "M_Cap"
+      ],
+      "parts": {},
+      "biomes": [
+        "Forest",
+        "DarkForest",
+        "Taiga"
+      ],
+      "pivot": "Origin at ground-contact centre (min y = 0). Child MushroomCluster_LOD1 for the LODGroup.",
+      "budget": 1500
+    },
+    "Pickaxe_Iron": {
+      "path": "Models/Tools/Pickaxe_Iron",
+      "file": "Assets/Resources/Models/Tools/Pickaxe_Iron.fbx",
+      "category": "Tools",
+      "tris": {
+        "lod0": 390,
+        "lod1": 0
+      },
+      "bounds": {
+        "min": [
+          -0.0388,
+          -0.1001,
+          -0.2391
+        ],
+        "max": [
+          0.0388,
+          0.652,
+          0.292
+        ],
+        "size": [
+          0.0777,
+          0.7521,
+          0.5311
+        ]
+      },
+      "materials": [
+        "M_Cloth",
+        "M_Metal",
+        "M_Wood"
+      ],
+      "parts": {
+        "Handle": {
+          "parent": "Pickaxe_Iron",
+          "pivot": [
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          "tris": 200
+        },
+        "Head": {
+          "parent": "Pickaxe_Iron",
+          "pivot": [
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          "tris": 190
+        }
+      },
+      "biomes": [
+        "Any"
+      ],
+      "tier": "iron",
+      "tool": "pickaxe",
+      "pivot": "Origin = grip (hand centre), 0.10 m above the butt. Long axis +Y; main pick point toward +Z. Children Handle + Head share the grip pivot.",
+      "budget": 800
+    },
+    "Pickaxe_Stone": {
+      "path": "Models/Tools/Pickaxe_Stone",
+      "file": "Assets/Resources/Models/Tools/Pickaxe_Stone.fbx",
+      "category": "Tools",
+      "tris": {
+        "lod0": 524,
+        "lod1": 0
+      },
+      "bounds": {
+        "min": [
+          -0.0499,
+          -0.1001,
+          -0.2126
+        ],
+        "max": [
+          0.0499,
+          0.651,
+          0.2609
+        ],
+        "size": [
+          0.0999,
+          0.7511,
+          0.4735
+        ]
+      },
+      "materials": [
+        "M_Cloth",
+        "M_Stone",
+        "M_Wood"
+      ],
+      "parts": {
+        "Handle": {
+          "parent": "Pickaxe_Stone",
+          "pivot": [
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          "tris": 140
+        },
+        "Head": {
+          "parent": "Pickaxe_Stone",
+          "pivot": [
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          "tris": 384
+        }
+      },
+      "biomes": [
+        "Any"
+      ],
+      "tier": "stone",
+      "tool": "pickaxe",
+      "pivot": "Origin = grip (hand centre), 0.10 m above the butt. Long axis +Y; main pick point toward +Z. Children Handle + Head share the grip pivot.",
+      "budget": 800
+    },
+    "Pickaxe_Wood": {
+      "path": "Models/Tools/Pickaxe_Wood",
+      "file": "Assets/Resources/Models/Tools/Pickaxe_Wood.fbx",
+      "category": "Tools",
+      "tris": {
+        "lod0": 366,
+        "lod1": 0
+      },
+      "bounds": {
+        "min": [
+          -0.0417,
+          -0.1002,
+          -0.1935
+        ],
+        "max": [
+          0.0417,
+          0.655,
+          0.262
+        ],
+        "size": [
+          0.0835,
+          0.7552,
+          0.4555
+        ]
+      },
+      "materials": [
+        "M_Cloth",
+        "M_Wood"
+      ],
+      "parts": {
+        "Handle": {
+          "parent": "Pickaxe_Wood",
+          "pivot": [
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          "tris": 140
+        },
+        "Head": {
+          "parent": "Pickaxe_Wood",
+          "pivot": [
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          "tris": 226
+        }
+      },
+      "biomes": [
+        "Any"
+      ],
+      "tier": "wood",
+      "tool": "pickaxe",
+      "pivot": "Origin = grip (hand centre), 0.10 m above the butt. Long axis +Y; main pick point toward +Z. Children Handle + Head share the grip pivot.",
+      "budget": 800
+    },
+    "Rabbit": {
+      "path": "Models/Wildlife/Rabbit",
+      "file": "Assets/Resources/Models/Wildlife/Rabbit.fbx",
+      "category": "Wildlife",
+      "tris": {
+        "lod0": 904,
+        "lod1": 360
+      },
+      "bounds": {
+        "min": [
+          -0.0863,
+          0.0,
+          -0.1728
+        ],
+        "max": [
+          0.0863,
+          0.3278,
+          0.1937
+        ],
+        "size": [
+          0.1726,
+          0.3278,
+          0.3665
+        ]
+      },
+      "materials": [
+        "M_Fur",
+        "M_Horn"
+      ],
+      "parts": {
+        "Body": {
+          "parent": "Rabbit",
+          "pivot": [
+            -0.0,
+            0.1186,
+            -0.03
+          ],
+          "tris": 216
+        },
+        "Head": {
+          "parent": "Body",
+          "pivot": [
+            -0.0,
+            0.1736,
+            0.085
+          ],
+          "tris": 160
+        },
+        "EarL": {
+          "parent": "Head",
+          "pivot": [
+            -0.017,
+            0.2266,
+            0.118
+          ],
+          "tris": 58
+        },
+        "EarR": {
+          "parent": "Head",
+          "pivot": [
+            0.017,
+            0.2266,
+            0.118
+          ],
+          "tris": 58
+        },
+        "LegBL": {
+          "parent": "Body",
+          "pivot": [
+            -0.055,
+            0.0936,
+            -0.07
+          ],
+          "tris": 138
+        },
+        "LegBR": {
+          "parent": "Body",
+          "pivot": [
+            0.055,
+            0.0936,
+            -0.07
+          ],
+          "tris": 138
+        },
+        "LegFL": {
+          "parent": "Body",
+          "pivot": [
+            -0.034,
+            0.0886,
+            0.062
+          ],
+          "tris": 58
+        },
+        "LegFR": {
+          "parent": "Body",
+          "pivot": [
+            0.034,
+            0.0886,
+            0.062
+          ],
+          "tris": 58
+        },
+        "Tail": {
+          "parent": "Body",
+          "pivot": [
+            -0.0,
+            0.1266,
+            -0.145
+          ],
+          "tris": 20
+        }
+      },
+      "biomes": [
+        "Plains",
+        "Forest",
+        "Meadow",
+        "Snowy"
+      ],
+      "pivot": "Root at ground between the feet, facing +Z. Body (hips), Head (neck joint), EarL/EarR (ear base, rotate about local X/Z to flop), LegF* (shoulder), LegB* (hip, includes haunch + long foot), Tail (tail root). No Neck part.",
+      "species": "rabbit",
+      "budget": 2500
+    },
+    "Reeds": {
+      "path": "Models/Props/Reeds",
+      "file": "Assets/Resources/Models/Props/Reeds.fbx",
+      "category": "Props",
+      "tris": {
+        "lod0": 800,
+        "lod1": 320
+      },
+      "bounds": {
+        "min": [
+          -0.4763,
+          0.0,
+          -0.4017
+        ],
+        "max": [
+          0.4763,
+          1.7075,
+          0.4017
+        ],
+        "size": [
+          0.9526,
+          1.7075,
+          0.8035
+        ]
+      },
+      "materials": [
+        "M_Leaves"
+      ],
+      "parts": {},
+      "biomes": [
+        "Riverbank",
+        "Swamp"
+      ],
+      "pivot": "Blades are thin 3-sided prisms (no double-sided shader needed).",
+      "budget": 1500
+    },
+    "Rocks_Small_A": {
+      "path": "Models/Props/Rocks_Small_A",
+      "file": "Assets/Resources/Models/Props/Rocks_Small_A.fbx",
+      "category": "Props",
+      "tris": {
+        "lod0": 960,
+        "lod1": 384
+      },
+      "bounds": {
+        "min": [
+          -0.3739,
+          0.0,
+          -0.2215
+        ],
+        "max": [
+          0.3739,
+          0.2679,
+          0.2215
+        ],
+        "size": [
+          0.7479,
+          0.2679,
+          0.4431
+        ]
+      },
+      "materials": [
+        "M_Stone"
+      ],
+      "parts": {},
+      "biomes": [
+        "Plains",
+        "Forest",
+        "Mountains",
+        "Riverbank"
+      ],
+      "pivot": "Origin at ground-contact centre (min y = 0). Child Rocks_Small_A_LOD1 for the LODGroup.",
+      "budget": 1500
+    },
+    "Rocks_Small_B": {
+      "path": "Models/Props/Rocks_Small_B",
+      "file": "Assets/Resources/Models/Props/Rocks_Small_B.fbx",
+      "category": "Props",
+      "tris": {
+        "lod0": 880,
+        "lod1": 352
+      },
+      "bounds": {
+        "min": [
+          -0.3312,
+          0.0,
+          -0.2683
+        ],
+        "max": [
+          0.3312,
+          0.1554,
+          0.2683
+        ],
+        "size": [
+          0.6624,
+          0.1554,
+          0.5367
+        ]
+      },
+      "materials": [
+        "M_Stone"
+      ],
+      "parts": {},
+      "biomes": [
+        "Riverbank",
+        "Beach",
+        "Plains",
+        "Desert"
+      ],
+      "pivot": "Origin at ground-contact centre (min y = 0). Child Rocks_Small_B_LOD1 for the LODGroup.",
+      "budget": 1500
+    },
+    "SandstonePillar": {
+      "path": "Models/Props/SandstonePillar",
+      "file": "Assets/Resources/Models/Props/SandstonePillar.fbx",
+      "category": "Props",
+      "tris": {
+        "lod0": 1074,
+        "lod1": 428
+      },
+      "bounds": {
+        "min": [
+          -1.2625,
+          0.0,
+          -1.1173
+        ],
+        "max": [
+          1.2625,
+          3.6649,
+          1.1173
+        ],
+        "size": [
+          2.525,
+          3.6649,
+          2.2347
+        ]
+      },
+      "materials": [
+        "M_Stone"
+      ],
+      "parts": {},
+      "biomes": [
+        "Desert"
+      ],
+      "pivot": "Origin at ground-contact centre (min y = 0). Child SandstonePillar_LOD1 for the LODGroup.",
+      "budget": 1500
+    },
+    "Shovel_Iron": {
+      "path": "Models/Tools/Shovel_Iron",
+      "file": "Assets/Resources/Models/Tools/Shovel_Iron.fbx",
+      "category": "Tools",
+      "tris": {
+        "lod0": 454,
+        "lod1": 0
+      },
+      "bounds": {
+        "min": [
+          -0.1116,
+          -0.1,
+          -0.026
+        ],
+        "max": [
+          0.1116,
+          0.88,
+          0.054
+        ],
+        "size": [
+          0.2233,
+          0.98,
+          0.08
+        ]
+      },
+      "materials": [
+        "M_Cloth",
+        "M_Metal",
+        "M_Wood"
+      ],
+      "parts": {
+        "Handle": {
+          "parent": "Shovel_Iron",
+          "pivot": [
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          "tris": 200
+        },
+        "Head": {
+          "parent": "Shovel_Iron",
+          "pivot": [
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          "tris": 254
+        }
+      },
+      "biomes": [
+        "Any"
+      ],
+      "tier": "iron",
+      "tool": "shovel",
+      "pivot": "Origin = grip (hand centre), 0.10 m above the butt. Long axis +Y; blade face (concave side) toward +Z. Children Handle + Head share the grip pivot.",
+      "budget": 800
+    },
+    "Shovel_Stone": {
+      "path": "Models/Tools/Shovel_Stone",
+      "file": "Assets/Resources/Models/Tools/Shovel_Stone.fbx",
+      "category": "Tools",
+      "tris": {
+        "lod0": 476,
+        "lod1": 0
+      },
+      "bounds": {
+        "min": [
+          -0.1086,
+          -0.1,
+          -0.029
+        ],
+        "max": [
+          0.1086,
+          0.88,
+          0.054
+        ],
+        "size": [
+          0.2172,
+          0.98,
+          0.083
+        ]
+      },
+      "materials": [
+        "M_Cloth",
+        "M_Stone",
+        "M_Wood"
+      ],
+      "parts": {
+        "Handle": {
+          "parent": "Shovel_Stone",
+          "pivot": [
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          "tris": 140
+        },
+        "Head": {
+          "parent": "Shovel_Stone",
+          "pivot": [
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          "tris": 336
+        }
+      },
+      "biomes": [
+        "Any"
+      ],
+      "tier": "stone",
+      "tool": "shovel",
+      "pivot": "Origin = grip (hand centre), 0.10 m above the butt. Long axis +Y; blade face (concave side) toward +Z. Children Handle + Head share the grip pivot.",
+      "budget": 800
+    },
+    "Shovel_Wood": {
+      "path": "Models/Tools/Shovel_Wood",
+      "file": "Assets/Resources/Models/Tools/Shovel_Wood.fbx",
+      "category": "Tools",
+      "tris": {
+        "lod0": 476,
+        "lod1": 0
+      },
+      "bounds": {
+        "min": [
+          -0.1116,
+          -0.1001,
+          -0.029
+        ],
+        "max": [
+          0.1116,
+          0.88,
+          0.054
+        ],
+        "size": [
+          0.2233,
+          0.9801,
+          0.083
+        ]
+      },
+      "materials": [
+        "M_Cloth",
+        "M_Wood"
+      ],
+      "parts": {
+        "Handle": {
+          "parent": "Shovel_Wood",
+          "pivot": [
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          "tris": 140
+        },
+        "Head": {
+          "parent": "Shovel_Wood",
+          "pivot": [
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          "tris": 336
+        }
+      },
+      "biomes": [
+        "Any"
+      ],
+      "tier": "wood",
+      "tool": "shovel",
+      "pivot": "Origin = grip (hand centre), 0.10 m above the butt. Long axis +Y; blade face (concave side) toward +Z. Children Handle + Head share the grip pivot.",
+      "budget": 800
+    },
+    "Songbird_Blue": {
+      "path": "Models/Wildlife/Songbird_Blue",
+      "file": "Assets/Resources/Models/Wildlife/Songbird_Blue.fbx",
+      "category": "Wildlife",
+      "tris": {
+        "lod0": 566,
+        "lod1": 252
+      },
+      "bounds": {
+        "min": [
+          -0.0418,
+          0.0,
+          -0.0885
+        ],
+        "max": [
+          0.0418,
+          0.1173,
+          0.088
+        ],
+        "size": [
+          0.0836,
+          0.1173,
+          0.1765
+        ]
+      },
+      "materials": [
+        "M_Fur",
+        "M_Horn"
+      ],
+      "parts": {
+        "Body": {
+          "parent": "Songbird_Blue",
+          "pivot": [
+            -0.0,
+            0.0546,
+            -0.0
+          ],
+          "tris": 240
+        },
+        "Head": {
+          "parent": "Body",
+          "pivot": [
+            -0.0,
+            0.0796,
+            0.032
+          ],
+          "tris": 166
+        },
+        "Tail": {
+          "parent": "Body",
+          "pivot": [
+            -0.0,
+            0.0576,
+            -0.04
+          ],
+          "tris": 44
+        },
+        "WingL": {
+          "parent": "Body",
+          "pivot": [
+            -0.024,
+            0.0706,
+            0.02
+          ],
+          "tris": 58
+        },
+        "WingR": {
+          "parent": "Body",
+          "pivot": [
+            0.024,
+            0.0706,
+            0.02
+          ],
+          "tris": 58
+        }
+      },
+      "biomes": [
+        "Forest",
+        "BirchForest",
+        "Plains",
+        "Riverbank"
+      ],
+      "pivot": "Root at ground between the feet (legs are part of Body), facing +Z. Head (neck joint), WingL/WingR (shoulder; rotate about local Z to flap), Tail (rump).",
+      "species": "songbird",
+      "budget": 600
+    },
+    "Songbird_Red": {
+      "path": "Models/Wildlife/Songbird_Red",
+      "file": "Assets/Resources/Models/Wildlife/Songbird_Red.fbx",
+      "category": "Wildlife",
+      "tris": {
+        "lod0": 566,
+        "lod1": 252
+      },
+      "bounds": {
+        "min": [
+          -0.0418,
+          0.0,
+          -0.0885
+        ],
+        "max": [
+          0.0418,
+          0.1173,
+          0.088
+        ],
+        "size": [
+          0.0836,
+          0.1173,
+          0.1765
+        ]
+      },
+      "materials": [
+        "M_Fur",
+        "M_Horn"
+      ],
+      "parts": {
+        "Body": {
+          "parent": "Songbird_Red",
+          "pivot": [
+            -0.0,
+            0.0546,
+            -0.0
+          ],
+          "tris": 240
+        },
+        "Head": {
+          "parent": "Body",
+          "pivot": [
+            -0.0,
+            0.0796,
+            0.032
+          ],
+          "tris": 166
+        },
+        "Tail": {
+          "parent": "Body",
+          "pivot": [
+            -0.0,
+            0.0576,
+            -0.04
+          ],
+          "tris": 44
+        },
+        "WingL": {
+          "parent": "Body",
+          "pivot": [
+            -0.024,
+            0.0706,
+            0.02
+          ],
+          "tris": 58
+        },
+        "WingR": {
+          "parent": "Body",
+          "pivot": [
+            0.024,
+            0.0706,
+            0.02
+          ],
+          "tris": 58
+        }
+      },
+      "biomes": [
+        "Forest",
+        "DarkForest",
+        "Taiga",
+        "Snowy"
+      ],
+      "pivot": "Same rig as Songbird_Blue; crimson colour variant (vertex colours only).",
+      "species": "songbird",
+      "budget": 600
+    },
+    "Stump": {
+      "path": "Models/Props/Stump",
+      "file": "Assets/Resources/Models/Props/Stump.fbx",
+      "category": "Props",
+      "tris": {
+        "lod0": 538,
+        "lod1": 214
+      },
+      "bounds": {
+        "min": [
+          -0.5377,
+          0.0,
+          -0.549
+        ],
+        "max": [
+          0.5377,
+          0.5315,
+          0.549
+        ],
+        "size": [
+          1.0754,
+          0.5315,
+          1.098
+        ]
+      },
+      "materials": [
+        "M_Bark",
+        "M_Wood"
+      ],
+      "parts": {},
+      "biomes": [
+        "Forest",
+        "BirchForest",
+        "Taiga",
+        "DarkForest"
+      ],
+      "pivot": "Origin at ground-contact centre (min y = 0). Child Stump_LOD1 for the LODGroup.",
+      "budget": 1500
+    },
+    "Torch": {
+      "path": "Models/Tools/Torch",
+      "file": "Assets/Resources/Models/Tools/Torch.fbx",
+      "category": "Tools",
+      "tris": {
+        "lod0": 540,
+        "lod1": 0
+      },
+      "bounds": {
+        "min": [
+          -0.0488,
+          -0.1202,
+          -0.044
+        ],
+        "max": [
+          0.0433,
+          0.58,
+          0.0413
+        ],
+        "size": [
+          0.0921,
+          0.7002,
+          0.0853
+        ]
+      },
+      "materials": [
+        "M_Cloth",
+        "M_Flame",
+        "M_Glow",
+        "M_Wood"
+      ],
+      "parts": {
+        "Flame": {
+          "parent": "Torch",
+          "pivot": [
+            -0.0,
+            0.3,
+            -0.0
+          ],
+          "tris": 164
+        },
+        "Handle": {
+          "parent": "Torch",
+          "pivot": [
+            -0.0,
+            0.0,
+            -0.0
+          ],
+          "tris": 376
+        }
+      },
+      "biomes": [
+        "Any"
+      ],
+      "tool": "torch",
+      "pivot": "Origin = grip, 0.12 m above the stick end. Long axis +Y. Child Flame pivots at the flame base (y=0.30) for flicker scaling; M_Flame and the M_Glow ember top are emissive.",
+      "budget": 800
+    }
+  }
+}
