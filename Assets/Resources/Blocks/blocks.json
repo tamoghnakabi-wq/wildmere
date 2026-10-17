@@ -1,0 +1,142 @@
+{
+ "tile": 128,
+ "columns": 8,
+ "rows": 7,
+ "layers": [
+  "grass_top",
+  "grass_side",
+  "snowy_grass_side",
+  "dirt",
+  "podzol_top",
+  "podzol_side",
+  "stone",
+  "cobblestone",
+  "mossy_cobblestone",
+  "bedrock",
+  "sand",
+  "sandstone_side",
+  "sandstone_top",
+  "gravel",
+  "clay",
+  "snow",
+  "ice",
+  "water_still",
+  "log_oak_side",
+  "log_oak_top",
+  "log_birch_side",
+  "log_birch_top",
+  "log_spruce_side",
+  "log_spruce_top",
+  "log_dark_side",
+  "log_dark_top",
+  "planks",
+  "glass",
+  "leaves_oak",
+  "leaves_birch",
+  "leaves_spruce",
+  "leaves_dark",
+  "coal_ore",
+  "iron_ore",
+  "gold_ore",
+  "cactus_side",
+  "cactus_top",
+  "workbench_top",
+  "workbench_side",
+  "furnace_front",
+  "furnace_side",
+  "furnace_top",
+  "torch",
+  "tall_grass",
+  "fern",
+  "flower_red",
+  "flower_yellow",
+  "flower_blue",
+  "flower_white",
+  "dead_bush",
+  "mushroom_red",
+  "mushroom_brown",
+  "glowcap",
+  "furnace_front_lit"
+ ],
+ "flags": {
+  "grass_top": [
+   "tint"
+  ],
+  "grass_side": [
+   "tint"
+  ],
+  "water_still": [
+   "translucent"
+  ],
+  "glass": [
+   "cutout"
+  ],
+  "leaves_oak": [
+   "cutout",
+   "tint"
+  ],
+  "leaves_birch": [
+   "cutout",
+   "tint"
+  ],
+  "leaves_spruce": [
+   "cutout",
+   "tint"
+  ],
+  "leaves_dark": [
+   "cutout",
+   "tint"
+  ],
+  "torch": [
+   "cutout",
+   "emissive",
+   "cross"
+  ],
+  "tall_grass": [
+   "cutout",
+   "tint",
+   "cross"
+  ],
+  "fern": [
+   "cutout",
+   "tint",
+   "cross"
+  ],
+  "flower_red": [
+   "cutout",
+   "cross"
+  ],
+  "flower_yellow": [
+   "cutout",
+   "cross"
+  ],
+  "flower_blue": [
+   "cutout",
+   "cross"
+  ],
+  "flower_white": [
+   "cutout",
+   "cross"
+  ],
+  "dead_bush": [
+   "cutout",
+   "cross"
+  ],
+  "mushroom_red": [
+   "cutout",
+   "cross"
+  ],
+  "mushroom_brown": [
+   "cutout",
+   "cross"
+  ],
+  "glowcap": [
+   "cutout",
+   "emissive",
+   "cross"
+  ],
+  "furnace_front_lit": [
+   "emissive"
+  ]
+ }
+}

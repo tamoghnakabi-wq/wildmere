@@ -34,6 +34,12 @@ namespace Wildmere.World
             Opaque = Make("Wildmere/Voxel", "Voxel Opaque");
             Cutout = Make("Wildmere/VoxelCutout", "Voxel Cutout");
             Water = Make("Wildmere/Water", "Voxel Water");
+            var na = Resources.Load<Texture2D>("Textures/water_normal_a");
+            var nb = Resources.Load<Texture2D>("Textures/water_normal_b");
+            var foam = Resources.Load<Texture2D>("Textures/water_foam");
+            if (na != null) Water.SetTexture("_WaterNormalA", na);
+            if (nb != null) Water.SetTexture("_WaterNormalB", nb);
+            if (foam != null) Water.SetTexture("_WaterFoam", foam);
 
             GrassTint = NewTint("GrassTint", new Color32(110, 160, 70, 255));
             FoliageTint = NewTint("FoliageTint", new Color32(90, 140, 60, 255));

@@ -70,6 +70,7 @@ namespace Wildmere.Core
             if (preset != null && Enum.TryParse(preset, true, out GraphicsPreset gp)) GameSettings.Current.ApplyPreset(gp);
             if (Cli.Has("viewdist")) GameSettings.Current.ViewDistance = (int)Cli.Float("viewdist", 10);
             NoSave = Cli.Has("nosave");
+            if (Cli.Has("novsync")) { GameSettings.Current.VSync = false; GameSettings.Current.FpsCap = 0; }
 
             Atmos = new GameObject("Atmosphere").AddComponent<Atmosphere>();
             Atmos.transform.SetParent(transform, false);
@@ -110,6 +111,8 @@ namespace Wildmere.Core
             ApplyCursor();
             Time.timeScale = s == GameState.Paused ? 0f : 1f;
             Debug.Log($"WM_STATE {s}");
+            if (s == GameState.MainMenu) MenuBackdrop.Show();
+            else if (s == GameState.Loading) MenuBackdrop.Hide();
             StateChanged?.Invoke(s);
         }
 

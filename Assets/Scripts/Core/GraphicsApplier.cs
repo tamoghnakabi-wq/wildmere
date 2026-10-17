@@ -28,7 +28,7 @@ namespace Wildmere.Core
             var s = GameSettings.Current;
             QualitySettings.SetQualityLevel(Mathf.Clamp((int)(s.Preset == GraphicsPreset.Custom ? GraphicsPreset.High : s.Preset), 0, 3), false);
             QualitySettings.vSyncCount = s.VSync ? 1 : 0;
-            Application.targetFrameRate = s.FpsCap > 0 ? s.FpsCap : (s.VSync ? -1 : 240);
+            Application.targetFrameRate = s.FpsCap > 0 ? s.FpsCap : (s.VSync ? -1 : (Cli.Has("novsync") ? 1000 : 240));
 
             var urp = GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset;
             if (urp != null)
