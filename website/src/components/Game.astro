@@ -1,0 +1,176 @@
+---
+import { site } from '../lib/data';
+
+const ART_SIZE: Record<string, [number, number]> = { wander: [1600, 900], build: [1200, 900], deep: [1200, 900] };
+const spotlights = site.spotlights.map((s) => {
+  const img = (s.image as string | null) ?? null;
+  const [w, h] = ART_SIZE[s.art] ?? [1600, 900];
+  return { ...s, src: img ?? `/art/${s.art}.svg`, placeholder: !img, w, h };
+});
+---
+
+<section class="section about" id="game" aria-labelledby="about-title">
+  <div class="wrap about-grid">
+    <div>
+      <p class="eyebrow" data-reveal>{site.about.eyebrow}</p>
+      <h2 class="section-title" id="about-title" data-reveal style="--reveal-delay: 60ms">{site.about.title}</h2>
+    </div>
+    <div class="about-body">
+      {site.about.body.map((p, i) => <p class="lede" data-reveal style={`--reveal-delay: ${120 + i * 80}ms`}>{p}</p>)}
+      <dl class="facts" data-reveal style="--reveal-delay: 300ms">
+        {
+          site.about.facts.map((f) => (
+            <div>
+              <dt>{f.value}</dt>
+              <dd>{f.label}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </div>
+
+  <div class="wrap spotlights">
+    {
+      spotlights.map((s, i) => (
+        <article class:list={['spot', { flip: i % 2 === 1 }]} aria-labelledby={`spot-${s.id}`}>
+          <figure class="spot-art" data-reveal>
+            <img src={s.src} alt={s.alt} width={s.w} height={s.h} loading="lazy" decoding="async" />
+            {s.placeholder && <figcaption>Illustration</figcaption>}
+          </figure>
+          <div class="spot-copy" data-reveal style="--reveal-delay: 120ms">
+            <p class="eyebrow">{s.eyebrow}</p>
+            <h3 id={`spot-${s.id}`}>{s.title}</h3>
+            <p>{s.body}</p>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .about {
+    background:
+      radial-gradient(60% 40% at 80% 0%, rgba(99, 224, 208, 0.06), transparent 70%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: clamp(32px, 6vw, 96px);
+    align-items: start;
+  }
+  .about-body {
+    display: grid;
+    gap: 20px;
+    padding-top: 40px;
+  }
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin: 24px 0 0;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .facts dt {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1;
+    color: var(--bone);
+  }
+  .facts dd {
+    margin: 8px 0 0;
+    color: var(--dim);
+    font-size: 0.86rem;
+    line-height: 1.4;
+  }
+
+  .spotlights {
+    display: grid;
+    gap: clamp(64px, 10vw, 140px);
+    margin-top: clamp(80px, 12vw, 160px);
+  }
+  .spot {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: clamp(28px, 5vw, 80px);
+    align-items: center;
+  }
+  .spot.flip {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
+  .spot.flip .spot-art {
+    order: 2;
+  }
+  .spot-art {
+    position: relative;
+    margin: 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow:
+      0 40px 80px -40px rgba(0, 0, 0, 0.9),
+      0 0 0 1px rgba(0, 0, 0, 0.4);
+    aspect-ratio: 16 / 10;
+    background: var(--bg-3);
+  }
+  .spot-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.6s var(--ease);
+  }
+  .spot:hover .spot-art img {
+    transform: scale(1.03);
+  }
+  .spot-art::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    pointer-events: none;
+  }
+  .spot-art figcaption {
+    position: absolute;
+    left: 14px;
+    bottom: 12px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: rgba(2, 5, 9, 0.6);
+    color: rgba(235, 239, 233, 0.65);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .spot-copy h3 {
+    margin-top: 14px;
+    font-size: clamp(1.8rem, 3.4vw, 2.8rem);
+  }
+  .spot-copy p:last-child {
+    margin-top: 16px;
+    color: var(--muted);
+    max-width: 46ch;
+  }
+
+  @media (max-width: 860px) {
+    .about-grid,
+    .spot,
+    .spot.flip {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .about-body {
+      padding-top: 0;
+    }
+    .spot.flip .spot-art {
+      order: 0;
+    }
+  }
+  @media (max-width: 480px) {
+    .facts {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

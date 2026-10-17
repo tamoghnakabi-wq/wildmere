@@ -1,0 +1,71 @@
+# Builds the static website on every change to website/**. Vercel does the actual
+# deploys (Root Directory = website); this catches broken data files and build errors
+# on pull requests before they reach it.
+name: Website
+
+on:
+  push:
+    paths:
+      - 'website/**'
+      - '.github/workflows/website.yml'
+  pull_request:
+    paths:
+      - 'website/**'
+      - '.github/workflows/website.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: website-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: npm ci + build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: website
+    env:
+      ASTRO_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # the site needs no LFS objects (it ships .webp/.webm, generates its PNGs)
+          lfs: false
+          persist-credentials: false
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+
+      - run: npm ci
+
+      - name: Build (prebuild validates src/data/*.json)
+        run: npm run build
+
+      - name: Check the output
+        run: |
+          test -s dist/index.html
+          test -s dist/og.png
+          test -s dist/favicon.svg
+          grep -q 'Shape the wild.' dist/index.html
+          if grep -q 'DEMO DATA' dist/index.html; then
+            echo "::error::demo data leaked into the production build"
+            exit 1
+          fi
+          du -sh dist
+
+      - name: Build the demo-data layout preview (must also build)
+        run: npm run build:demo
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: website-dist
+          path: website/dist
+          retention-days: 7

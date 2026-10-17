@@ -1,0 +1,285 @@
+---
+import Icon from './Icon.astro';
+import { release } from '../lib/data';
+
+const ver = release.version;
+const macZip = `Wildmere-${ver}-macOS.zip`;
+const winZip = `Wildmere-${ver}-Windows-x64.zip`;
+const xattr = 'xattr -dr com.apple.quarantine /Applications/Wildmere.app';
+const macSum = `shasum -a 256 ~/Downloads/${macZip}`;
+const winSum = `Get-FileHash .\\${winZip} -Algorithm SHA256`;
+---
+
+<section class="section install" id="install" aria-labelledby="install-title">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal>Installation</p>
+    <h2 class="section-title" id="install-title" data-reveal style="--reveal-delay: 60ms">Up and running in a minute</h2>
+    <p class="lede intro" data-reveal style="--reveal-delay: 120ms">
+      Wildmere is a free, independent release, so the builds are not notarized by Apple or code-signed for Windows. Your system will ask
+      you to confirm the first launch. That is expected, and here is exactly what to click.
+    </p>
+
+    <div class="tabs" data-tabs data-reveal style="--reveal-delay: 160ms">
+      <div class="tablist" role="tablist" aria-label="Operating system">
+        <button type="button" role="tab" id="tab-macos" aria-controls="panel-macos" aria-selected="true" data-tab="macos">
+          <Icon name="laptop" /> macOS
+        </button>
+        <button type="button" role="tab" id="tab-windows" aria-controls="panel-windows" aria-selected="false" data-tab="windows" tabindex="-1">
+          <Icon name="monitor" /> Windows
+        </button>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-macos" aria-labelledby="tab-macos" data-panel="macos">
+        <h3 class="panel-title">macOS 12 or later</h3>
+        <ol class="steps">
+          <li>
+            <strong>Download</strong> <code>{macZip}</code> and double-click it to unzip (Safari may unzip it for you).
+          </li>
+          <li><strong>Drag <code>Wildmere.app</code> into Applications.</strong></li>
+          <li>
+            <strong>Open it once.</strong> macOS will say it cannot verify the app and will not open it. Click <em>Done</em> (not
+            <em>Move to Bin</em>).
+          </li>
+          <li>
+            <strong>Allow it.</strong> Open <em>System Settings › Privacy &amp; Security</em>, scroll to <em>Security</em> and click
+            <em>Open Anyway</em> next to the message about Wildmere. Confirm with your password or Touch ID, then choose
+            <em>Open Anyway</em> once more. You only do this the first time.
+          </li>
+        </ol>
+        <div class="alt">
+          <p>
+            <Icon name="terminal" /> <strong>Prefer Terminal?</strong> This removes the download quarantine flag so macOS opens the app
+            without asking:
+          </p>
+          <div class="code">
+            <code>{xattr}</code>
+            <button type="button" class="copy" data-copy={xattr} aria-label="Copy the xattr command">
+              <Icon name="copy" /><span data-copy-label>Copy</span>
+            </button>
+          </div>
+          <p class="small">
+            On macOS 12 to 14 you can also Control-click the app in Finder and choose <em>Open</em>. Newer versions require the System
+            Settings step above.
+          </p>
+        </div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-windows" aria-labelledby="tab-windows" data-panel="windows">
+        <h3 class="panel-title">Windows 10 / 11 (64-bit)</h3>
+        <ol class="steps">
+          <li><strong>Download</strong> <code>{winZip}</code>.</li>
+          <li>
+            <strong>Extract it.</strong> Right-click the zip, choose <em>Extract All…</em> and pick a folder such as
+            <code>Documents\Games</code>. Do not run the game from inside the zip.
+          </li>
+          <li>
+            <strong>Run <code>Wildmere.exe</code></strong> from the extracted <code>Wildmere</code> folder. Keep everything in that folder
+            together: the game needs <code>Wildmere_Data</code> and <code>UnityPlayer.dll</code> next to the exe.
+          </li>
+          <li>
+            <strong>If SmartScreen appears</strong> ("Windows protected your PC"), click <em>More info</em>, then
+            <em>Run anyway</em>. The build is not code-signed, which is why Windows asks.
+          </li>
+        </ol>
+        <div class="alt">
+          <p class="small">
+            Tip: right-click the zip › <em>Properties</em> › tick <em>Unblock</em> before extracting, and Windows will not ask again.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="verify" data-reveal>
+      <h3><Icon name="shield" /> Verify your download</h3>
+      <p>
+        Compare the result with the SHA-256 shown next to each download above (or in the release's SHA256SUMS file). If they differ,
+        delete the file and download it again.
+      </p>
+      <div class="verify-grid">
+        <div>
+          <span class="lbl">macOS (Terminal)</span>
+          <div class="code">
+            <code>{macSum}</code>
+            <button type="button" class="copy" data-copy={macSum} aria-label="Copy the macOS checksum command">
+              <Icon name="copy" /><span data-copy-label>Copy</span>
+            </button>
+          </div>
+        </div>
+        <div>
+          <span class="lbl">Windows (PowerShell, in your Downloads folder)</span>
+          <div class="code">
+            <code>{winSum}</code>
+            <button type="button" class="copy" data-copy={winSum} aria-label="Copy the Windows checksum command">
+              <Icon name="copy" /><span data-copy-label>Copy</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .install {
+    background: var(--bg-2);
+  }
+  .intro {
+    margin-top: 20px;
+  }
+  .tabs {
+    margin-top: clamp(36px, 5vw, 56px);
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, var(--surface-2), var(--surface));
+    overflow: hidden;
+  }
+  .tablist {
+    display: flex;
+    gap: 4px;
+    padding: 8px;
+    border-bottom: 1px solid var(--line);
+    background: rgba(0, 0, 0, 0.2);
+  }
+  .no-js .tablist {
+    display: none;
+  }
+  [role='tab'] {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 18px;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--muted);
+    font: 600 0.95rem/1 var(--font-body);
+    cursor: pointer;
+  }
+  [role='tab'] :global(svg) {
+    width: 18px;
+    height: 18px;
+  }
+  [role='tab'][aria-selected='true'] {
+    background: var(--surface-2);
+    color: var(--text);
+    box-shadow: inset 0 0 0 1px var(--line-2);
+  }
+  .panel {
+    padding: clamp(22px, 3.5vw, 40px);
+  }
+  .js .panel[hidden] {
+    display: none;
+  }
+  .no-js .panel + .panel {
+    border-top: 1px solid var(--line);
+  }
+  .panel-title {
+    font-size: 1.5rem;
+  }
+  .steps {
+    counter-reset: step;
+    list-style: none;
+    margin: 22px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 16px;
+  }
+  .steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 48px;
+    color: var(--muted);
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: -2px;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--amber) 50%, transparent);
+    color: var(--amber);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .steps strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .steps em,
+  .alt em {
+    font-style: normal;
+    color: var(--bone);
+    font-weight: 500;
+  }
+  .steps code,
+  .alt p code {
+    padding: 1px 6px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.06);
+    overflow-wrap: anywhere;
+  }
+  .alt {
+    display: grid;
+    gap: 12px;
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+  }
+  .alt p :global(svg) {
+    display: inline;
+    width: 18px;
+    height: 18px;
+    vertical-align: -3px;
+    margin-right: 4px;
+    color: var(--glow);
+  }
+  .small {
+    font-size: 0.9rem;
+    color: var(--dim);
+  }
+  .verify {
+    margin-top: 28px;
+    padding: clamp(22px, 3vw, 34px);
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+  }
+  .verify h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.3rem;
+  }
+  .verify h3 :global(svg) {
+    width: 22px;
+    height: 22px;
+    color: var(--glow);
+  }
+  .verify > p {
+    margin-top: 10px;
+    color: var(--muted);
+    max-width: 70ch;
+  }
+  .verify-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 18px;
+  }
+  .lbl {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.78rem;
+    color: var(--dim);
+  }
+  @media (max-width: 860px) {
+    .verify-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

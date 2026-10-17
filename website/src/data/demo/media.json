@@ -1,0 +1,9 @@
+{
+  "hero": null,
+  "gallery": [
+    { "src": "/art/wander.svg", "width": 1600, "height": 900, "caption": "Demo tile: dusk over the mere", "alt": "Placeholder illustration of voxel mountains at dusk." },
+    { "src": "/art/build.svg", "width": 1200, "height": 900, "caption": "Demo tile: a cabin at blue hour", "alt": "Placeholder illustration of a small cabin on an isometric chunk." },
+    { "src": "/art/deep.svg", "width": 1200, "height": 900, "caption": "Demo tile: the glowcap grotto", "alt": "Placeholder illustration of a cave lit by glowing mushrooms." },
+    { "src": "/art/night.svg", "width": 1600, "height": 900, "caption": "Demo tile: moonrise", "alt": "Placeholder illustration of a moonlit lake." }
+  ]
+}

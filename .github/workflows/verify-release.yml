@@ -1,0 +1,235 @@
+# Tests a published release exactly as players get it: download the zips from the
+# GitHub release, check SHA-256, unzip, and run the shipping player's self-test.
+# This is the only place Wildmere runs on real Windows (there is no Windows machine
+# in development), so the Windows job also launches once with graphics (software
+# D3D11 / WARP on the runner) and uploads its screenshot and logs.
+#
+# Triggers: automatically when a release is published (tools/release/publish.sh),
+# or by hand: Actions > Verify release downloads > Run workflow > tag (e.g. v0.1.0).
+name: Verify release downloads
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag to verify, e.g. v0.1.0'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-release-${{ github.event.release.tag_name || inputs.tag }}
+  cancel-in-progress: false
+
+env:
+  TAG: ${{ github.event.release.tag_name || inputs.tag }}
+  GH_TOKEN: ${{ github.token }}
+  SELFTEST_TIMEOUT: '600'
+
+jobs:
+  verify:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    # The Intel Mac job is informational: it exercises the x86_64 slice natively,
+    # but a failure there must not mark the release as broken while Intel is "experimental".
+    continue-on-error: ${{ matrix.experimental }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Windows x64
+            os: windows-latest
+            platform: windows
+            experimental: false
+          - name: macOS Apple Silicon
+            os: macos-latest
+            platform: macos
+            experimental: false
+          - name: macOS Intel (experimental)
+            os: macos-15-intel
+            platform: macos
+            experimental: true
+
+    steps:
+      - name: Fetch the website's release data (for a checksum cross-check)
+        uses: actions/checkout@v7
+        with:
+          sparse-checkout: |
+            website/src/data/release.json
+          sparse-checkout-cone-mode: false
+          lfs: false
+          persist-credentials: false
+
+      - name: Download ${{ env.TAG }} assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          case "${{ matrix.platform }}" in
+            macos)   pattern='Wildmere-*-macOS.zip' ;;
+            windows) pattern='Wildmere-*-Windows-x64.zip' ;;
+          esac
+          mkdir -p dl
+          gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern "$pattern" --pattern 'Wildmere-*-SHA256SUMS.txt' --dir dl
+          ls -l dl
+          zip="$(cd dl && ls Wildmere-*.zip)"
+          [ "$(echo "$zip" | wc -l)" -eq 1 ] || { echo "::error::expected exactly one zip, got: $zip"; exit 1; }
+          echo "ZIP=$zip" >> "$GITHUB_ENV"
+
+      - name: Verify SHA-256
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd dl
+          actual="$( (sha256sum "$ZIP" 2>/dev/null || shasum -a 256 "$ZIP") | awk '{print $1}')"
+          listed="$(awk -v f="$ZIP" '$2 == f {print $1}' Wildmere-*-SHA256SUMS.txt)"
+          digest="$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json assets --jq ".assets[] | select(.name == \"$ZIP\") | .digest // \"\"")"
+          echo "file       $ZIP ($(wc -c < "$ZIP" | tr -d ' ') bytes)"
+          echo "computed   $actual"
+          echo "SHA256SUMS ${listed:-<missing>}"
+          echo "GitHub     ${digest:-<none>}"
+          [ -n "$listed" ] || { echo "::error::$ZIP is not listed in SHA256SUMS"; exit 1; }
+          [ "$actual" = "$listed" ] || { echo "::error::$ZIP does not match SHA256SUMS"; exit 1; }
+          if [ -n "$digest" ] && [ "$digest" != "sha256:$actual" ]; then echo "::error::$ZIP does not match GitHub's digest"; exit 1; fi
+          site="$(node -e '
+            const r = require("../website/src/data/release.json");
+            const a = (r.assets || []).find(x => x.file === process.argv[1]);
+            process.stdout.write("v" + r.version === process.argv[2] && a ? a.sha256 : "");
+          ' "$ZIP" "$TAG" 2>/dev/null || true)"
+          if [ -z "$site" ]; then
+            echo "::notice::website release.json is not on $TAG yet (expected right after publishing); skipped that cross-check"
+          elif [ "$site" != "$actual" ]; then
+            echo "::error::website release.json lists a different sha256 for $ZIP: $site"; exit 1
+          else
+            echo "website    matches"
+          fi
+
+      # ---------------------------------------------------------------- macOS
+      - name: Unzip and inspect the app (macOS)
+        if: matrix.platform == 'macos'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p app logs
+          ditto -x -k "dl/$ZIP" app          # same extraction as Finder / Archive Utility
+          test -d app/Wildmere.app || { echo "::error::zip has no Wildmere.app at its top level"; ls -la app; exit 1; }
+          exe="$(plutil -extract CFBundleExecutable raw -o - app/Wildmere.app/Contents/Info.plist)"
+          bin="app/Wildmere.app/Contents/MacOS/$exe"
+          echo "BIN=$PWD/$bin" >> "$GITHUB_ENV"
+          echo "host arch: $(uname -m); app slices: $(lipo -archs "$bin")"
+          lipo -archs "$bin" | tr ' ' '\n' | grep -x "$(uname -m)" >/dev/null || { echo "::error::the app has no $(uname -m) slice"; exit 1; }
+          codesign --verify --deep --strict --verbose=2 app/Wildmere.app
+          codesign -dv app/Wildmere.app 2>&1 | grep -E '^(Identifier|Format|Signature|TeamIdentifier)=' || true
+          spctl --assess --type execute app/Wildmere.app && echo "Gatekeeper: accepted" || echo "Gatekeeper: rejected (expected: not notarized)"
+
+      - name: Headless self-test (macOS)
+        if: matrix.platform == 'macos'
+        shell: bash
+        run: |
+          set +e   # GitHub runs bash with -e; we want the exit code
+          log="$PWD/logs/selftest.log"
+          perl -e 'alarm shift @ARGV; exec @ARGV' "$SELFTEST_TIMEOUT" "$BIN" -batchmode -nographics -selftest -logFile "$log"
+          rc=$?
+          echo "exit code: $rc"
+          grep -a '^WM_' "$log" || echo "(no WM_ lines in the log)"
+          if [ "$rc" -eq 142 ]; then echo "::error::self-test timed out after ${SELFTEST_TIMEOUT}s"; exit 1; fi
+          [ "$rc" -eq 0 ] || { echo "::error::self-test exited with $rc"; tail -n 60 "$log"; exit 1; }
+          grep -aq 'WM_SELFTEST PASS' "$log" || { echo "::error::exit code 0 but no 'WM_SELFTEST PASS' line"; tail -n 60 "$log"; exit 1; }
+          echo "### ${{ matrix.name }}: WM_SELFTEST PASS" >> "$GITHUB_STEP_SUMMARY"
+
+      # -------------------------------------------------------------- Windows
+      - name: Unzip and inspect the build (Windows)
+        if: matrix.platform == 'windows'
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          New-Item -ItemType Directory -Force app, logs, shots | Out-Null
+          Expand-Archive -Path "dl\$env:ZIP" -DestinationPath app
+          $root = Join-Path $PWD 'app\Wildmere'
+          foreach ($p in 'Wildmere.exe', 'UnityPlayer.dll', 'Wildmere_Data\globalgamemanagers') {
+            if (-not (Test-Path (Join-Path $root $p))) { Write-Output "::error::missing Wildmere\$p in the zip"; exit 1 }
+          }
+          if (-not ((Test-Path (Join-Path $root 'MonoBleedingEdge')) -or (Test-Path (Join-Path $root 'GameAssembly.dll')))) {
+            Write-Output "::error::neither MonoBleedingEdge\ nor GameAssembly.dll in the zip"; exit 1
+          }
+          Get-ChildItem $root | Format-Table Name, Length -AutoSize
+          Add-Content -Path $env:GITHUB_ENV -Value "EXE=$(Join-Path $root 'Wildmere.exe')"
+          Get-CimInstance Win32_VideoController | Select-Object Name, DriverVersion | Format-Table -AutoSize
+
+      - name: Headless self-test (Windows)
+        if: matrix.platform == 'windows'
+        shell: pwsh
+        run: |
+          $log = Join-Path $PWD 'logs\selftest.log'
+          $p = Start-Process -FilePath $env:EXE -ArgumentList @('-batchmode', '-nographics', '-selftest', '-logFile', "`"$log`"") -PassThru -NoNewWindow
+          $null = $p.Handle   # keep the handle so ExitCode is readable after exit
+          if (-not $p.WaitForExit([int]$env:SELFTEST_TIMEOUT * 1000)) {
+            Stop-Process -Id $p.Id -Force
+            Write-Output "::error::self-test timed out after $($env:SELFTEST_TIMEOUT)s"; exit 1
+          }
+          $p.WaitForExit()
+          $code = $p.ExitCode
+          Write-Output "exit code: $code"
+          if (Test-Path $log) { Select-String -Path $log -Pattern '^WM_' | ForEach-Object { $_.Line } } else { Write-Output "::error::no log written"; exit 1 }
+          if ($code -ne 0) { Write-Output "::error::self-test exited with $code"; Get-Content $log -Tail 60; exit 1 }
+          if (-not (Select-String -Path $log -Pattern 'WM_SELFTEST PASS' -Quiet)) {
+            Write-Output "::error::exit code 0 but no 'WM_SELFTEST PASS' line"; Get-Content $log -Tail 60; exit 1
+          }
+          Add-Content -Path $env:GITHUB_STEP_SUMMARY -Value "### ${{ matrix.name }}: WM_SELFTEST PASS"
+
+      - name: Launch with graphics and take a screenshot (Windows, software D3D11)
+        if: matrix.platform == 'windows'
+        shell: pwsh
+        run: |
+          $shots = Join-Path $PWD 'shots'
+          $log = Join-Path $PWD 'logs\graphics.log'
+          $argv = @('-screen-width', '1280', '-screen-height', '720', '-screen-fullscreen', '0', '-force-d3d11',
+                    '-shots', '20', '-shotdir', "`"$shots`"", '-quitafter', '40', '-logFile', "`"$log`"")
+          $p = Start-Process -FilePath $env:EXE -ArgumentList $argv -PassThru
+          $null = $p.Handle
+          if (-not $p.WaitForExit(300000)) {
+            Stop-Process -Id $p.Id -Force
+            Write-Output "::error::graphics run did not quit within 300 s (-quitafter 40)"; exit 1
+          }
+          $p.WaitForExit()
+          $code = $p.ExitCode
+          Write-Output "exit code: $code"
+          if (Test-Path $log) {
+            Select-String -Path $log -Pattern '^WM_|Direct3D|Renderer:|Vendor:|WARP|Basic Render|Failed to' | Select-Object -First 40 | ForEach-Object { $_.Line }
+          } else { Write-Output "::error::no graphics log written"; exit 1 }
+          $images = @(Get-ChildItem $shots -Recurse -Include *.png, *.jpg -ErrorAction SilentlyContinue)
+          Write-Output "screenshots: $($images.Count)"
+          if ($code -ne 0) { Write-Output "::error::graphics run exited with $code"; Get-Content $log -Tail 80; exit 1 }
+          if ($images.Count -eq 0) { Write-Output "::error::no screenshot was written to $shots"; Get-Content $log -Tail 80; exit 1 }
+          # warn (not fail) on an all-black frame: 20 s into a software-rendered launch may still be loading
+          try {
+            Add-Type -AssemblyName System.Drawing
+            $bmp = [System.Drawing.Bitmap]::FromFile($images[0].FullName)
+            $w = $bmp.Width; $h = $bmp.Height
+            $sum = 0; $n = 0
+            for ($x = 0; $x -lt $bmp.Width; $x += [math]::Max(1, [int]($bmp.Width / 40))) {
+              for ($y = 0; $y -lt $bmp.Height; $y += [math]::Max(1, [int]($bmp.Height / 24))) {
+                $c = $bmp.GetPixel($x, $y); $sum += ($c.R + $c.G + $c.B) / 3; $n++
+              }
+            }
+            $bmp.Dispose()
+            $mean = [math]::Round($sum / $n, 1)
+            Write-Output "screenshot $($images[0].Name): $($w)x$($h), mean brightness $mean/255"
+            if ($mean -lt 3) { Write-Output "::warning::the screenshot is (almost) completely black" }
+          } catch { Write-Output "could not analyse the screenshot: $_" }
+          Add-Content -Path $env:GITHUB_STEP_SUMMARY -Value "### Windows graphics run: exit $code, $($images.Count) screenshot(s) (see the artifact)"
+
+      - name: Upload logs and screenshots
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: verify-${{ env.TAG }}-${{ matrix.platform }}-${{ matrix.os }}
+          path: |
+            logs/
+            shots/
+          if-no-files-found: ignore
+          retention-days: 30
