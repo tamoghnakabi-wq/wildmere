@@ -300,6 +300,23 @@ namespace Wildmere.Core
             yield return WaitReady(120f);
             var p = root.Player;
             var camAt = Cli.Vec("camat");
+            if (Cli.Has("camprop") && p != null)
+            {
+                var near = World.Decor.PropRenderer.Instance?.Nearest(p.transform.position, Cli.Str("camprop"));
+                if (near.HasValue)
+                {
+                    camAt = near.Value + new Vector3(3.2f, 2.0f, 3.2f);
+                    Debug.Log($"WM_HARNESS camprop at {near.Value}");
+                    p.Flying = true;
+                    p.Teleport(camAt.Value - Vector3.up * PlayerController.Eye);
+                    var d = (near.Value + Vector3.up * 0.6f - camAt.Value).normalized;
+                    p.Yaw = Mathf.Atan2(d.x, d.z) * Mathf.Rad2Deg;
+                    p.Pitch = -Mathf.Asin(d.y) * Mathf.Rad2Deg;
+                    p.ScriptedMove = Vector2.zero;
+                    yield return WaitArea(p.transform.position, 3, 60f);
+                    camAt = null;
+                }
+            }
             if (camAt.HasValue && p != null)
             {
                 p.Flying = true;
@@ -328,6 +345,7 @@ namespace Wildmere.Core
                 yield return new WaitForEndOfFrame();
                 string path = Path.Combine(dir, $"shot_{n++:00}_{t:0}s.png");
                 ScreenCapture.CaptureScreenshot(path);
+                Debug.Log($"WM_PROPS instances={World.Decor.PropRenderer.Instance?.InstanceCount}");
                 Debug.Log($"WM_SHOT {path} fps={1f / Mathf.Max(0.0001f, Time.smoothDeltaTime):F0} chunks={VoxelWorld.Instance?.Loaded}");
             }
             yield return new WaitForSecondsRealtime(1f);
