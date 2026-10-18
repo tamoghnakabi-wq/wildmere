@@ -203,6 +203,10 @@ namespace Wildmere.Core
             else StarterKit(Player.Inventory);
             Player.Died += () => Debug.Log("WM_PLAYER died");
 
+            var wild = new GameObject("Wildlife");
+            wild.transform.SetParent(World.transform, false);
+            wild.AddComponent<Wildlife.WildlifeManager>();
+
             Interaction = Player.gameObject.AddComponent<BlockInteraction>();
             Interaction.Player = Player;
             Interaction.StationUsed += st => OpenCrafting?.Invoke(st);

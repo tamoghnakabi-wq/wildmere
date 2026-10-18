@@ -1,0 +1,164 @@
+{
+  "name": "Wildmere",
+  "tagline": "Shape the wild.",
+  "description": "Wildmere is an original voxel survival sandbox for macOS and Windows. Explore seeded worlds, mine and craft, light the dark and build a home on the edge of the mere.",
+  "url": null,
+  "pitch": "An original voxel survival sandbox. Wander mist-hung forests, mine ore by torchlight and build a home on the edge of the mere.",
+  "about": {
+    "eyebrow": "The game",
+    "title": "Every block is yours to move.",
+    "body": [
+      "Wildmere is a survival sandbox built one cubic metre at a time. Every world grows from a seed: grassland and birch woods, spruce and dark forest, sandstone desert, snowfields and still, mirror-dark lakes.",
+      "Gather what the land offers, work it at the bench and the furnace, push your torches deeper underground and build whatever you can picture. Wildmere is an independent project in early access for macOS and Windows, so expect rough edges, and expect each release to smooth a few of them."
+    ],
+    "facts": [
+      {
+        "value": "256",
+        "label": "blocks from bedrock to sky"
+      },
+      {
+        "value": "40+",
+        "label": "kinds of block"
+      },
+      {
+        "value": "∞",
+        "label": "seeds to explore"
+      }
+    ]
+  },
+  "spotlights": [
+    {
+      "id": "wander",
+      "eyebrow": "Explore",
+      "title": "No two seeds alike",
+      "body": "Terrain is generated from a seed, column by column, so every world unfolds differently. Follow a river of ridgelines from grassland into spruce country and up to the snowline, then come home by the lakes.",
+      "art": "wander",
+      "image": null,
+      "alt": "Illustration: stepped voxel mountains at dusk above a still lake."
+    },
+    {
+      "id": "build",
+      "eyebrow": "Build",
+      "title": "Gather, craft, settle",
+      "body": "Fell oak, birch, spruce and dark wood, cut planks, and turn stone, sand and clay into something that keeps the weather out. A workbench and a furnace turn raw finds into tools and better materials.",
+      "art": "build",
+      "image": null,
+      "alt": "Illustration: an isometric chunk of land with a small timber cabin, a tree and a pond at blue hour."
+    },
+    {
+      "id": "deep",
+      "eyebrow": "Descend",
+      "title": "Light the deep",
+      "body": "Below the dirt, the stone holds seams of coal, iron and gold. Carry torches down with you, and look out for glowcaps: pale mushrooms that light the caves they grow in.",
+      "art": "deep",
+      "image": null,
+      "alt": "Illustration: a cut-away chunk of earth showing ore seams and a cave lit by a torch and glowing mushrooms."
+    }
+  ],
+  "features": [
+    {
+      "icon": "seed",
+      "title": "Seeded worlds",
+      "body": "Share a seed and a friend gets the same valleys, coastlines and lakes."
+    },
+    {
+      "icon": "pick",
+      "title": "Mine and build",
+      "body": "Over forty kinds of block, from mossy cobblestone to clear glass."
+    },
+    {
+      "icon": "flame",
+      "title": "Craft and smelt",
+      "body": "Work materials at the workbench and fire them in the furnace."
+    },
+    {
+      "icon": "leaf",
+      "title": "Living wilds",
+      "body": "Wildlife roams the forests and plains, and birds take to the sky."
+    },
+    {
+      "icon": "wave",
+      "title": "Atmosphere",
+      "body": "Drifting clouds, moving water and ambient soundscapes."
+    },
+    {
+      "icon": "chip",
+      "title": "Native on Apple Silicon",
+      "body": "A universal macOS build that runs natively on M-series and Intel Macs."
+    }
+  ],
+  "requirements": {
+    "macos": {
+      "label": "macOS",
+      "minimum": [
+        [
+          "OS",
+          "macOS 12 Monterey or later"
+        ],
+        [
+          "Processor",
+          "Apple Silicon or Intel"
+        ],
+        [
+          "Graphics",
+          "Metal-capable GPU"
+        ],
+        [
+          "Memory",
+          "8 GB RAM"
+        ],
+        [
+          "Storage",
+          "About 1 GB free"
+        ]
+      ],
+      "recommended": [
+        [
+          "Processor",
+          "Apple M1 or newer"
+        ],
+        [
+          "Memory",
+          "8 GB RAM or more"
+        ]
+      ]
+    },
+    "windows": {
+      "label": "Windows",
+      "minimum": [
+        [
+          "OS",
+          "Windows 10 or 11, 64-bit"
+        ],
+        [
+          "Graphics",
+          "DirectX 11 GPU"
+        ],
+        [
+          "Memory",
+          "8 GB RAM"
+        ],
+        [
+          "Storage",
+          "About 1 GB free"
+        ]
+      ],
+      "recommended": [
+        [
+          "Graphics",
+          "GeForce GTX 1060-class GPU or better"
+        ],
+        [
+          "Memory",
+          "8 GB RAM or more"
+        ]
+      ]
+    }
+  },
+  "credits": [
+    "Wildmere is an independent, original game. It is not affiliated with or endorsed by Mojang Studios, Microsoft or any other game studio.",
+    "Built with Unity. Unity is a trademark of Unity Technologies.",
+    "Sound effects and ambience are CC0 field recordings; the full list is in AUDIO_CREDITS.md in the repository.",
+    "Typefaces: Fraunces, Inter and JetBrains Mono, all under the SIL Open Font License 1.1."
+  ]
+}

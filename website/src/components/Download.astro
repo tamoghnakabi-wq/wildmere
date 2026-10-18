@@ -1,0 +1,406 @@
+---
+import Icon from './Icon.astro';
+import { release, asset, hasBuilds, releasesUrl, formatMB, formatDate, notesHtml, verification, DEMO } from '../lib/data';
+
+const v = verification();
+const date = formatDate(release.date);
+const cards = [
+  {
+    key: 'macos' as const,
+    name: 'macOS',
+    icon: 'laptop',
+    sub: 'macOS 12 or later · Apple Silicon & Intel',
+    asset: asset('macos'),
+    badges: [
+      v.macArm ? { cls: 'badge-ok', text: 'Verified on Apple Silicon' } : null,
+      v.macIntel ? { cls: 'badge-ok', text: 'Verified on Intel' } : { cls: 'badge-warn', text: 'Intel: experimental' },
+    ].filter(Boolean) as { cls: string; text: string }[],
+    note: 'Ad-hoc signed, not notarized by Apple. macOS asks you to approve it once.',
+  },
+  {
+    key: 'windows' as const,
+    name: 'Windows',
+    icon: 'monitor',
+    sub: 'Windows 10 / 11 · 64-bit · DirectX 11',
+    asset: asset('windows'),
+    badges: [v.windows ? { cls: 'badge-ok', text: 'Verified' } : { cls: 'badge-warn', text: 'Experimental' }],
+    note: 'Not code-signed. SmartScreen may ask you to confirm the first launch.',
+  },
+];
+---
+
+<section class="section download" id="download" aria-labelledby="download-title">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="eyebrow" data-reveal>Download</p>
+        <h2 class="section-title" id="download-title" data-reveal style="--reveal-delay: 60ms">Step into the wild</h2>
+      </div>
+      <div class="version" data-reveal style="--reveal-delay: 120ms">
+        <span class="v">v{release.version}</span>
+        <span>{date ? <>Released <time datetime={release.date}>{date}</time></> : 'In preparation'}</span>
+        <span>Free · Early access</span>
+      </div>
+    </div>
+
+    {
+      !hasBuilds && (
+        <div class="soon" role="status" data-reveal>
+          <Icon name="clock" />
+          <div>
+            <strong>Builds coming soon.</strong> The first public build of Wildmere is being prepared. Downloads will appear here, with
+            their size and SHA-256 checksum, as soon as v{release.version} is published on GitHub.
+          </div>
+          <a class="btn btn-sm btn-ghost" href={release.repo} rel="noopener">
+            <Icon name="repo" /> Follow on GitHub
+          </a>
+        </div>
+      )
+    }
+
+    <div class="cards">
+      {
+        cards.map((c, i) => (
+          <article class="card" data-os-card={c.key} data-reveal style={`--reveal-delay: ${i * 100}ms`} aria-labelledby={`dl-${c.key}`}>
+            <header>
+              <span class="pi">
+                <Icon name={c.icon} />
+              </span>
+              <div>
+                <h3 id={`dl-${c.key}`}>{c.name}</h3>
+                <p class="sub">{c.asset?.label ?? c.sub}</p>
+              </div>
+              <span class="badge badge-you you">Your system</span>
+            </header>
+            <div class="badges">
+              {c.badges.map((b) => (
+                <span class:list={['badge', b.cls]}>{b.text}</span>
+              ))}
+            </div>
+            {c.asset ? (
+              <>
+                {DEMO ? (
+                  <a class="btn btn-primary get" aria-disabled="true" role="link">
+                    <Icon name="download" /> Demo only: no download
+                  </a>
+                ) : (
+                  <a class="btn btn-primary get" href={c.asset.url} rel="noopener">
+                    <Icon name="download" /> Download for {c.name}
+                  </a>
+                )}
+                <dl class="facts">
+                  <div>
+                    <dt>File</dt>
+                    <dd class="mono">{c.asset.file}</dd>
+                  </div>
+                  <div>
+                    <dt>Size</dt>
+                    <dd title={`${c.asset.size.toLocaleString('en-US')} bytes`}>{formatMB(c.asset.size)}</dd>
+                  </div>
+                </dl>
+                <div class="sha">
+                  <span class="sha-label">SHA-256</span>
+                  <div class="code">
+                    <code>{c.asset.sha256}</code>
+                    <button type="button" class="copy" data-copy={c.asset.sha256} aria-label={`Copy SHA-256 checksum for ${c.name}`}>
+                      <Icon name="copy" />
+                      <span data-copy-label>Copy</span>
+                    </button>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <a class="btn get" aria-disabled="true" role="link">
+                <Icon name="clock" /> Coming soon
+              </a>
+            )}
+            <p class="note">
+              <Icon name="shield" /> {c.note} <a href="#install">How to install</a>
+            </p>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="links" data-reveal>
+      <a href={releasesUrl} rel="noopener"><Icon name="repo" /> All releases on GitHub</a>
+      {
+        release.checksums && (
+          <a href={release.checksums} rel="noopener">
+            <Icon name="file" /> SHA256SUMS
+          </a>
+        )
+      }
+      <a href="#install"><Icon name="terminal" /> Verify a download</a>
+    </div>
+
+    {
+      notesHtml && (
+        <details class="notes" data-reveal open>
+          <summary>
+            <span>What's new in v{release.version}</span>
+            {date && <time datetime={release.date}>{date}</time>}
+          </summary>
+          <div class="md" set:html={notesHtml} />
+        </details>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .download {
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--bg) 0%, #071216 60%, var(--bg) 100%);
+  }
+  .glow {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    width: 900px;
+    height: 600px;
+    translate: -50% 0;
+    background: radial-gradient(closest-side, rgba(240, 180, 92, 0.12), transparent);
+    pointer-events: none;
+  }
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+  }
+  .version {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    align-items: baseline;
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+  .version .v {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--bone);
+  }
+  .soon {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 36px;
+    padding: 18px 20px;
+    border-radius: var(--radius);
+    border: 1px dashed color-mix(in srgb, var(--amber) 45%, transparent);
+    background: color-mix(in srgb, var(--amber) 6%, transparent);
+    color: var(--muted);
+  }
+  .soon strong {
+    color: var(--amber-2);
+  }
+  .soon > :global(svg) {
+    flex: none;
+    width: 28px;
+    height: 28px;
+    color: var(--amber);
+  }
+  .soon .btn {
+    flex: none;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(16px, 2vw, 24px);
+    margin-top: 28px;
+  }
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: clamp(22px, 3vw, 34px);
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(220, 240, 235, 0.06), rgba(220, 240, 235, 0.02));
+    transition:
+      border-color 0.4s var(--ease),
+      box-shadow 0.4s var(--ease);
+  }
+  :global([data-os='macos']) [data-os-card='macos'],
+  :global([data-os='windows']) [data-os-card='windows'] {
+    border-color: color-mix(in srgb, var(--amber) 55%, transparent);
+    box-shadow: 0 40px 100px -50px rgba(240, 180, 92, 0.55);
+  }
+  .you {
+    display: none;
+    margin-left: auto;
+  }
+  :global([data-os='macos']) [data-os-card='macos'] .you,
+  :global([data-os='windows']) [data-os-card='windows'] .you {
+    display: inline-flex;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .pi {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    flex: none;
+    border-radius: 12px;
+    border: 1px solid var(--line-2);
+    color: var(--bone);
+  }
+  .pi :global(svg) {
+    width: 24px;
+    height: 24px;
+  }
+  h3 {
+    font-size: 1.7rem;
+  }
+  .sub {
+    color: var(--dim);
+    font-size: 0.86rem;
+  }
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .get {
+    align-self: flex-start;
+  }
+  .facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 28px;
+    margin: 0;
+  }
+  .facts dt,
+  .sha-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+  .facts dd {
+    margin: 2px 0 0;
+    overflow-wrap: anywhere;
+  }
+  .card > * {
+    min-width: 0;
+  }
+  .sha {
+    display: grid;
+    gap: 6px;
+  }
+  .sha code {
+    font-size: 0.78rem;
+    white-space: normal;
+    word-break: break-all;
+    line-height: 1.5;
+  }
+  .note {
+    margin-top: auto;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    color: var(--dim);
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+  .note :global(svg) {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    margin-top: 3px;
+  }
+  .note a {
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 28px;
+    margin-top: 28px;
+  }
+  .links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 0.92rem;
+    text-decoration: none;
+  }
+  .links a:hover {
+    color: var(--text);
+  }
+  .links :global(svg) {
+    width: 18px;
+    height: 18px;
+  }
+  .notes {
+    margin-top: 40px;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: rgba(0, 0, 0, 0.25);
+  }
+  .notes summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 22px;
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    list-style: none;
+  }
+  .notes summary::-webkit-details-marker {
+    display: none;
+  }
+  .notes summary time {
+    font-family: var(--font-body);
+    font-size: 0.86rem;
+    color: var(--dim);
+  }
+  .md {
+    padding: 0 22px 22px;
+    color: var(--muted);
+    font-size: 0.98rem;
+  }
+  .md :global(h1),
+  .md :global(h2),
+  .md :global(h3),
+  .md :global(h4) {
+    margin: 22px 0 8px;
+    font-size: 1.1rem;
+    color: var(--text);
+  }
+  .md :global(ul) {
+    padding-left: 1.2em;
+    margin: 8px 0;
+  }
+  .md :global(p) {
+    margin: 10px 0;
+  }
+  .md :global(a) {
+    color: var(--amber-2);
+  }
+  .md :global(code) {
+    padding: 1px 6px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.06);
+  }
+  @media (max-width: 860px) {
+    .cards {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .soon {
+      flex-wrap: wrap;
+    }
+  }
+</style>

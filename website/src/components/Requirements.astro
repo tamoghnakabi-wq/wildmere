@@ -1,0 +1,200 @@
+---
+import Icon from './Icon.astro';
+import { site, verification } from '../lib/data';
+
+const v = verification();
+const req = site.requirements;
+const platforms = [
+  {
+    key: 'macos',
+    icon: 'laptop',
+    data: req.macos,
+    notes: [
+      { text: 'Apple Silicon', ok: true, status: 'Primary platform' },
+      { text: 'Intel Macs', ok: v.macIntel, status: v.macIntel ? 'Verified' : 'Experimental' },
+    ],
+  },
+  {
+    key: 'windows',
+    icon: 'monitor',
+    data: req.windows,
+    notes: [{ text: 'Windows 10 / 11', ok: v.windows, status: v.windows ? 'Verified' : 'Experimental' }],
+  },
+];
+---
+
+<section class="section requirements" id="requirements" aria-labelledby="req-title">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal>System requirements</p>
+    <h2 class="section-title" id="req-title" data-reveal style="--reveal-delay: 60ms">Will it run?</h2>
+    <p class="lede intro" data-reveal style="--reveal-delay: 120ms">
+      Wildmere is developed on an Apple Silicon Mac. Platforms marked <span class="badge badge-warn">Experimental</span> have passed
+      automated checks at most and have not been played on real hardware yet. Reports are welcome.
+    </p>
+    <div class="cards">
+      {
+        platforms.map((p, i) => (
+          <article class="card" data-os-card={p.key} data-reveal style={`--reveal-delay: ${i * 100}ms`} aria-labelledby={`req-${p.key}`}>
+            <header>
+              <span class="pi">
+                <Icon name={p.icon} />
+              </span>
+              <h3 id={`req-${p.key}`}>{p.data.label}</h3>
+              <span class="badge badge-you you">Your system</span>
+            </header>
+            <ul class="status">
+              {p.notes.map((n) => (
+                <li>
+                  <span>{n.text}</span>
+                  <span class:list={['badge', n.ok ? 'badge-ok' : 'badge-warn']}>{n.status}</span>
+                </li>
+              ))}
+            </ul>
+            <div class="tables">
+              <div>
+                <h4>Minimum</h4>
+                <dl>
+                  {p.data.minimum.map(([k, val]) => (
+                    <div>
+                      <dt>{k}</dt>
+                      <dd>{val}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+              <div>
+                <h4>Recommended</h4>
+                <dl>
+                  {p.data.recommended.map(([k, val]) => (
+                    <div>
+                      <dt>{k}</dt>
+                      <dd>{val}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .requirements {
+    background:
+      radial-gradient(50% 50% at 10% 100%, rgba(240, 180, 92, 0.05), transparent 70%),
+      var(--bg);
+  }
+  .intro {
+    margin-top: 20px;
+  }
+  .intro .badge {
+    vertical-align: 2px;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(16px, 2vw, 24px);
+    margin-top: clamp(36px, 5vw, 60px);
+  }
+  .card {
+    padding: clamp(22px, 3vw, 36px);
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, var(--surface-2), var(--surface));
+    transition:
+      border-color 0.4s var(--ease),
+      box-shadow 0.4s var(--ease);
+  }
+  header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .pi {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    border: 1px solid var(--line-2);
+    color: var(--bone);
+  }
+  .pi :global(svg) {
+    width: 22px;
+    height: 22px;
+  }
+  h3 {
+    font-size: 1.6rem;
+  }
+  .you {
+    display: none;
+    margin-left: auto;
+  }
+  :global([data-os='macos']) [data-os-card='macos'],
+  :global([data-os='windows']) [data-os-card='windows'] {
+    border-color: color-mix(in srgb, var(--amber) 45%, transparent);
+    box-shadow: 0 30px 80px -50px rgba(240, 180, 92, 0.5);
+  }
+  :global([data-os='macos']) [data-os-card='macos'] .you,
+  :global([data-os='windows']) [data-os-card='windows'] .you {
+    display: inline-flex;
+  }
+  .status {
+    list-style: none;
+    margin: 22px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+  }
+  .status li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    background: rgba(0, 0, 0, 0.25);
+    font-size: 0.95rem;
+  }
+  .tables {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 26px;
+  }
+  h4 {
+    margin: 0 0 10px;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--dim);
+    font-weight: 600;
+  }
+  dl {
+    margin: 0;
+    display: grid;
+    gap: 10px;
+  }
+  dt {
+    font-size: 0.78rem;
+    color: var(--dim);
+  }
+  dd {
+    margin: 2px 0 0;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+  @media (max-width: 860px) {
+    .cards {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  @media (max-width: 440px) {
+    .tables {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

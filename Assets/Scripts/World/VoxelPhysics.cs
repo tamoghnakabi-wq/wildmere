@@ -24,8 +24,17 @@ namespace Wildmere.World
         /// <summary>Is the block at (x,y,z) solid for entities?</summary>
         public static bool Solid(VoxelWorld w, int x, int y, int z) => Blocks.IsSolid[w.GetBlock(x, y, z)];
 
-        /// <summary>Any solid block intersecting the box (min..max)?</summary>
+        /// <summary>Extra solid geometry (large decoration props) tested after the voxel grid.</summary>
+        public static System.Func<Vector3, Vector3, bool> ExtraSolid;
+
+        /// <summary>Any solid block (or solid prop) intersecting the box (min..max)?</summary>
         public static bool Overlaps(VoxelWorld w, Vector3 min, Vector3 max)
+        {
+            if (OverlapsVoxels(w, min, max)) return true;
+            return ExtraSolid != null && ExtraSolid(min, max);
+        }
+
+        public static bool OverlapsVoxels(VoxelWorld w, Vector3 min, Vector3 max)
         {
             int x0 = Mathf.FloorToInt(min.x + kSkin), x1 = Mathf.FloorToInt(max.x - kSkin);
             int y0 = Mathf.FloorToInt(min.y + kSkin), y1 = Mathf.FloorToInt(max.y - kSkin);
