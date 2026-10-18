@@ -114,7 +114,7 @@ package_win() {
   ditto "${ZIPFLAGS[@]}" "$stage/Wildmere" "$out"
   rm -rf "$stage"
   check_zip_clean "$out"
-  unzip -Z1 "$out" | grep -qx 'Wildmere/Wildmere.exe' || die "zip layout wrong: Wildmere/Wildmere.exe not found"
+  unzip -Z1 "$out" | grep -x 'Wildmere/Wildmere.exe' || die "zip layout wrong: Wildmere/Wildmere.exe not found"
   local size sha; size="$(size_of "$out")"; sha="$(sha256_of "$out")"
   ok "$name  $(human_mb "$size")  sha256 $sha"
   ASSETS_JSON+=("{\"platform\":\"windows\",\"label\":\"Windows 10/11 (64-bit)\",\"file\":\"$name\",\"size\":$size,\"sha256\":\"$sha\"}")
