@@ -43,6 +43,7 @@ namespace Wildmere.Items
         public int Add(int id, int count, int durability = -1)
         {
             if (id == 0 || count <= 0) return 0;
+            int start = count;
             int max = MaxStack(id);
             if (max > 1)
                 for (int i = 0; i < Size && count > 0; i++)
@@ -61,7 +62,7 @@ namespace Wildmere.Items
                 if (durability >= 0) s.Durability = durability;
                 count -= n;
             }
-            Notify();
+            if (count != start) Notify();
             return count;
         }
 

@@ -122,9 +122,13 @@ namespace Wildmere.Core
             catch (Exception e) { Debug.LogWarning($"WM_SETTINGS unreadable, using defaults: {e.Message}"); Current = new GameSettings(); }
         }
 
+        /// <summary>True when command-line flags changed settings for this session: never write them to disk.</summary>
+        public static bool SessionOnly;
+
         public static void Save()
         {
-            try { File.WriteAllText(FilePath, JsonUtility.ToJson(Current, true)); }
+            if (!SessionOnly)
+                try { File.WriteAllText(FilePath, JsonUtility.ToJson(Current, true)); }
             catch (Exception e) { Debug.LogWarning($"WM_SETTINGS save failed: {e.Message}"); }
             Changed?.Invoke();
         }

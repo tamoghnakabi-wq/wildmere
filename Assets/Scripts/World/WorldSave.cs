@@ -46,7 +46,10 @@ namespace Wildmere.World
             foreach (char ch in name.ToLowerInvariant())
                 sb.Append(char.IsLetterOrDigit(ch) ? ch : '-');
             var s = sb.ToString().Trim('-');
-            return string.IsNullOrEmpty(s) ? "world" : s;
+            if (string.IsNullOrEmpty(s)) return "world";
+            // Windows reserves these device names for any file or folder.
+            if (System.Text.RegularExpressions.Regex.IsMatch(s, "^(con|prn|aux|nul|com[1-9]|lpt[1-9])$")) s = "world-" + s;
+            return s;
         }
 
         public static WorldSave Create(string name, long seed)
@@ -168,8 +171,8 @@ namespace Wildmere.World
         {
             string tmp = path + ".tmp";
             File.WriteAllBytes(tmp, data);
-            if (File.Exists(path)) File.Delete(path);
-            File.Move(tmp, path);
+            if (File.Exists(path)) File.Replace(tmp, path, null);
+            else File.Move(tmp, path);
         }
 
         public void Delete()

@@ -235,7 +235,7 @@ namespace Wildmere.World
             if (dir == 3) return d.LBottom;
             byte facing = 0;
             bool has;
-            if (d.LFront == d.LSide) has = false;
+            if (d.Front == d.Side) has = false;
             else lock (c.Meta) has = c.Meta.TryGetValue(idx, out facing);
             if (has)
             {
@@ -310,6 +310,8 @@ namespace Wildmere.World
                     int ny = y + dy;
                     byte nb = ny < 0 ? B.Bedrock : ny >= mH ? B.Air : mB[ri + frontOff];
                     if (!FaceVisible(b, nb)) continue;
+                    // Leaf-to-leaf faces only matter near the canopy surface; deep interior ones are never seen.
+                    if (shape == RenderShape.Leaves && Blocks.IsLeaves(nb) && !LeafExposed(ri) && !LeafExposed(ri + frontOff)) continue;
 
                     var d = Blocks.Defs[b];
                     int layer = LayerFor(d, dir, Chunk.Index(x, y, z), c);
@@ -348,6 +350,20 @@ namespace Wildmere.World
                         for (int k = 0; k < rw; k++) mMask[n + k + j * w] = 0;
                     u += rw; n += rw;
                 }
+        }
+
+        static readonly int[] kLeafOffs = { 1, -1, P, -P, Layer, -Layer };
+
+        /// <summary>True when a leaf cell touches open space (air, plants, water) on any side.</summary>
+        bool LeafExposed(int i)
+        {
+            if (i < Layer || i >= (mH - 1) * Layer) return true;
+            foreach (int o in kLeafOffs)
+            {
+                byte n = mB[i + o];
+                if (!Blocks.IsOpaque[n] && !Blocks.IsLeaves(n)) return true;
+            }
+            return false;
         }
 
         static void PlaneToLocal(int dir, int s, int u, int v, out int x, out int y, out int z)

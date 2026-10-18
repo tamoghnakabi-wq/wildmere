@@ -73,6 +73,8 @@ namespace Wildmere.Core
             if (Cli.Has("viewdist")) GameSettings.Current.ViewDistance = (int)Cli.Float("viewdist", 10);
             NoSave = Cli.Has("nosave");
             if (Cli.Has("novsync")) { GameSettings.Current.VSync = false; GameSettings.Current.FpsCap = 0; }
+            // Command-line overrides are for this session only: never write them into settings.json.
+            GameSettings.SessionOnly = preset != null || Cli.Has("viewdist") || Cli.Has("novsync");
 
             Atmos = new GameObject("Atmosphere").AddComponent<Atmosphere>();
             Atmos.transform.SetParent(transform, false);
@@ -113,6 +115,13 @@ namespace Wildmere.Core
             ApplyCursor();
             Time.timeScale = s == GameState.Paused ? 0f : 1f;
             Debug.Log($"WM_STATE {s}");
+            // Menus and pause run at a reduced rate so an idle laptop stays cool; play restores the user's settings.
+            if (s == GameState.Paused || s == GameState.MainMenu)
+            {
+                QualitySettings.vSyncCount = 0;
+                Application.targetFrameRate = s == GameState.Paused ? 30 : 45;
+            }
+            else GraphicsApplier.Apply();
             if (s == GameState.MainMenu) MenuBackdrop.Show();
             else if (s == GameState.Loading) MenuBackdrop.Hide();
             StateChanged?.Invoke(s);
@@ -257,12 +266,14 @@ namespace Wildmere.Core
             if (Save == null || Player == null || NoSave) return;
             try
             {
-                var p = Player.transform.position;
+                bool dead = Player.Dead;
+                var p = dead ? Player.SpawnPoint : Player.transform.position; // load lifts it to the surface
                 Save.Meta["player"] = new Dictionary<string, object>
                 {
                     { "x", (double)p.x }, { "y", (double)p.y }, { "z", (double)p.z },
                     { "yaw", (double)Player.Yaw }, { "pitch", (double)Player.Pitch },
-                    { "health", (double)Player.Health }, { "air", (double)Player.Air }, { "flying", Player.Flying },
+                    { "health", dead ? (double)PlayerController.MaxHealth : (double)Player.Health },
+                    { "air", dead ? (double)PlayerController.MaxAir : (double)Player.Air }, { "flying", Player.Flying },
                     { "selected", (double)Player.Inventory.Selected },
                     { "inventory", Player.Inventory.ToJson() },
                     { "spawn", new Dictionary<string, object> { { "x", (double)Player.SpawnPoint.x }, { "y", (double)Player.SpawnPoint.y }, { "z", (double)Player.SpawnPoint.z } } },

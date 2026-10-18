@@ -159,7 +159,8 @@ namespace Wildmere.Wildlife
             {
                 int gx = x + mRng.Next(-3, 4), gz = z + mRng.Next(-3, 4);
                 int gy = w.SurfaceY(gx, gz);
-                if (gy < 1 || w.GetBlock(gx, gy, gz) == B.Water) continue;
+                byte gb = gy >= 1 ? w.GetBlock(gx, gy, gz) : B.Air;
+                if (gy < 1 || gb == B.Water || (s != Species.Songbird && World.Blocks.IsLeaves(gb))) continue;
                 var model = Model(s == Species.Doe ? Species.Doe : s);
                 if (model == null) { Debug.LogWarning($"WM_WILDLIFE missing model for {s}"); return; }
                 var go = new GameObject(s.ToString());

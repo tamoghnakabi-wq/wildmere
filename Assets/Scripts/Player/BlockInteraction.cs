@@ -124,7 +124,7 @@ namespace Wildmere.Player
                 var to = center - d.transform.position;
                 float dist = to.magnitude;
                 if (dist < 2.4f && d.Age > d.PickupDelay && inv.CanFit(d.Stack.Id, 1)) d.Velocity = Vector3.Lerp(d.Velocity, to.normalized * 9f, dt * 8f);
-                if (dist < 1.1f) d.TryCollect(inv);
+                if (dist < 1.1f && inv.CanFit(d.Stack.Id, 1)) d.TryCollect(inv);
             }
         }
 
@@ -200,6 +200,7 @@ namespace Wildmere.Player
             if (!Blocks.Get(existing).Replaceable) return false;
 
             var def = Blocks.Get(id);
+            if (existing == B.Water && def.NeedsSupport) return false;
             if (def.NeedsSupport)
             {
                 byte below = w.GetBlock(p.x, p.y - 1, p.z);
@@ -220,7 +221,7 @@ namespace Wildmere.Player
             }
 
             byte meta = 0;
-            if (def.LFront != def.LSide)
+            if (def.Front != def.Side)
             {
                 // Face the player: 0 +Z, 1 +X, 2 -Z, 3 -X (front points back toward the player).
                 var f = -Player.LookDir; f.y = 0;

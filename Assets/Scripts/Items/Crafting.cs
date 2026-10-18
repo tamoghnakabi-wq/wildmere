@@ -94,6 +94,8 @@ namespace Wildmere.Items
                 for (int z = pz - r; z <= pz + r; z++)
                     for (int x = px - r; x <= px + r; x++)
                     {
+                        float dx = x + 0.5f - p.x, dy = y + 0.5f - (p.y + 0.9f), dz = z + 0.5f - p.z;
+                        if (dx * dx + dy * dy + dz * dz > StationRange * StationRange) continue;
                         byte b = w.GetBlock(x, y, z);
                         if (b == B.Workbench) set.Add(Station.Workbench);
                         else if (b == B.Furnace) set.Add(Station.Furnace);

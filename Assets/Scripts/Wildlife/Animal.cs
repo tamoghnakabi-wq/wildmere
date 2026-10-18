@@ -221,6 +221,21 @@ namespace Wildmere.Wildlife
             return true;
         }
 
+        bool FootprintClear(VoxelWorld w, Vector3 p, int y)
+        {
+            float r = HalfWidth * 0.9f;
+            for (int i = 0; i < 4; i++)
+            {
+                int x = Mathf.FloorToInt(p.x + ((i & 1) == 0 ? -r : r)), z = Mathf.FloorToInt(p.z + ((i & 2) == 0 ? -r : r));
+                for (int k = 0; k < Mathf.CeilToInt(Height); k++)
+                {
+                    byte b = w.GetBlock(x, y + k, z);
+                    if (Blocks.IsSolid[b] || b == B.Water) return false;
+                }
+            }
+            return true;
+        }
+
         void MoveWalker(VoxelWorld w, float dt, Vector3 desired, float speed)
         {
             var pos = transform.position;
@@ -240,10 +255,10 @@ namespace Wildmere.Wildlife
             var next = pos + Velocity * dt;
             int nx = Mathf.FloorToInt(next.x), nz = Mathf.FloorToInt(next.z), y = Mathf.FloorToInt(pos.y + 0.01f);
             int ny = -999;
-            if (Walkable(w, nx, y, nz)) ny = y;
-            else if (Walkable(w, nx, y + 1, nz)) ny = y + 1;
-            else if (Walkable(w, nx, y - 1, nz)) ny = y - 1;
-            else if (Walkable(w, nx, y - 2, nz)) ny = y - 2;
+            if (Walkable(w, nx, y, nz) && FootprintClear(w, next, y)) ny = y;
+            else if (Walkable(w, nx, y + 1, nz) && FootprintClear(w, next, y + 1)) ny = y + 1;
+            else if (Walkable(w, nx, y - 1, nz) && FootprintClear(w, next, y - 1)) ny = y - 1;
+            else if (Walkable(w, nx, y - 2, nz) && FootprintClear(w, next, y - 2)) ny = y - 2;
             if (ny == -999)
             {
                 // Blocked: turn away and pick a new goal.

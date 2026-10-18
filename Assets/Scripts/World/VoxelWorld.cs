@@ -25,6 +25,7 @@ namespace Wildmere.World
         public event Action<int, int, int, byte, byte> BlockChanged;
 
         readonly Dictionary<long, Chunk> mChunks = new Dictionary<long, Chunk>();
+        static readonly System.Random sPopRng = new System.Random();
         WorkerPool mPool;
         ChunkMesher[] mMeshers;
         readonly ConcurrentBag<MeshBuild> mBuilds = new ConcurrentBag<MeshBuild>();
@@ -202,7 +203,13 @@ namespace Wildmere.World
             if (y + 1 < Chunk.SY && !Blocks.IsSolid[id])
             {
                 byte above = c.Blocks[idx + 256];
-                if (Blocks.Defs[above] != null && Blocks.Defs[above].NeedsSupport) SetBlock(x, y + 1, z, B.Air);
+                if (Blocks.Defs[above] != null && Blocks.Defs[above].NeedsSupport)
+                {
+                    SetBlock(x, y + 1, z, B.Air);
+                    // Torches and flowers drop themselves when their support goes (tall grass drops nothing).
+                    int drop = Items.ItemDb.DropOf(Blocks.Defs[above], null, sPopRng);
+                    if (drop != 0) Items.ItemDrop.Spawn(Items.ItemStack.Of(drop, 1), new Vector3(x + 0.5f, y + 1.3f, z + 0.5f), new Vector3(0f, 2f, 0f));
+                }
             }
             return true;
         }
@@ -229,7 +236,8 @@ namespace Wildmere.World
         void Update()
         {
             if (mPool == null) return;
-            int genRadius = ViewDistance + 1;
+            // +2: meshing needs all 8 neighbours, and diagonal neighbours of edge columns lie outside a +1 circle.
+            int genRadius = ViewDistance + 2;
             if (mRingRadius != genRadius) BuildRing(genRadius);
 
             int fcx = Mathf.FloorToInt(Focus.x) >> 4, fcz = Mathf.FloorToInt(Focus.z) >> 4;

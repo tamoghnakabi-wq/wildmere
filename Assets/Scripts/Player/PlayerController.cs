@@ -262,7 +262,7 @@ namespace Wildmere.Player
             {
                 float fall = mFallStartY - pos.y;
                 Landed?.Invoke(fall);
-                if (fall > 3.4f && Submerged < 0.3f) Hurt(Mathf.Floor(fall - 3f), "fall");
+                if (fall > 3.4f && Submerged < 0.3f) Hurt(Mathf.Floor(fall - 3f + 0.06f), "fall"); // landing is detected up to 0.05 m early
                 if (fall > 1.5f) Shake(Mathf.Clamp01((fall - 1.5f) * 0.08f));
             }
             if (Grounded || swimming || Flying) mFallStartY = pos.y;

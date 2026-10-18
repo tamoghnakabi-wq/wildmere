@@ -115,8 +115,8 @@ namespace Wildmere.Core
                 case null: sb.Append("null"); break;
                 case string s: WriteString(sb, s); break;
                 case bool b: sb.Append(b ? "true" : "false"); break;
-                case double d: sb.Append(d.ToString("R", CultureInfo.InvariantCulture)); break;
-                case float f: sb.Append(((double)f).ToString("R", CultureInfo.InvariantCulture)); break;
+                case double d: sb.Append(double.IsNaN(d) || double.IsInfinity(d) ? "0" : d.ToString("R", CultureInfo.InvariantCulture)); break;
+                case float f: sb.Append(float.IsNaN(f) || float.IsInfinity(f) ? "0" : ((double)f).ToString("R", CultureInfo.InvariantCulture)); break;
                 case int n: sb.Append(n.ToString(CultureInfo.InvariantCulture)); break;
                 case long n: sb.Append(n.ToString(CultureInfo.InvariantCulture)); break;
                 case IDictionary<string, object> d:
