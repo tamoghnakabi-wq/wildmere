@@ -1,4 +1,4 @@
-/* Wildmere interface theme. Reference resolution 1920x1080 (the panel scales with screen height).
+/* Wildmere interface theme. Reference resolution 1760x990 (the panel scales with screen height).
    Spacing scale 4/8/12/16/24/32/48/64, radii 8/12/20, motion 150-250 ms ease-out. */
 
 .unity-ui-document__root { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
@@ -548,7 +548,7 @@
 .pause-title { font-size: 54px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-ExtraBold.ttf"); letter-spacing: 2px; }
 .pause-sub { font-size: 17px; color: var(--text-3); margin-top: 6px; margin-bottom: 48px; }
 .death-scrim { background-color: rgba(14, 5, 7, 0.88); }
-.death-vignette { opacity: 0.75; }
+.death-vignette { opacity: 0.55; }
 .death-center { position: absolute; left: 0; right: 0; top: 0; bottom: 0; align-items: center; justify-content: center; }
 .death-title { font-size: 68px; letter-spacing: 4px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-ExtraBold.ttf"); text-shadow: 0 4px 24px rgba(0, 0, 0, 0.867); }
 .death-sub { font-size: 19px; color: rgb(222, 188, 182); margin-top: 10px; margin-bottom: 44px; }
@@ -559,7 +559,7 @@
 .inv-columns { flex-direction: row; align-items: flex-start; }
 .inv-panel { padding: 28px; }
 .inv-title-row { flex-shrink: 0; flex-direction: row; align-items: flex-end; margin-bottom: 18px; }
-.inv-hint { font-size: 13px; color: var(--text-3); margin-left: 16px; margin-bottom: 4px; }
+.inv-hint { font-size: 14px; color: var(--text-3); margin-left: 16px; margin-bottom: 4px; }
 .inv-grid { flex-shrink: 0; }
 .inv-row { flex-direction: row; flex-shrink: 0; }
 .inv-sep { flex-direction: row; align-items: center; margin: 16px 0 12px 0; }

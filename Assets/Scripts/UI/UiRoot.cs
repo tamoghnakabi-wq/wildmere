@@ -78,7 +78,7 @@ namespace Wildmere.UI
             ps.themeStyleSheet = Resources.Load<ThemeStyleSheet>("UI/WildmereTheme");
             if (ps.themeStyleSheet == null) Debug.LogWarning("WM_UI theme missing (Resources/UI/WildmereTheme.tss)");
             ps.scaleMode = PanelScaleMode.ScaleWithScreenSize;
-            ps.referenceResolution = new Vector2Int(1920, 1080);
+            ps.referenceResolution = new Vector2Int(1760, 990); // scale with height; ~9% larger than 1080p-native for legibility at 720p
             ps.screenMatchMode = PanelScreenMatchMode.MatchWidthOrHeight;
             ps.match = 1f;
             ps.sortingOrder = 10;

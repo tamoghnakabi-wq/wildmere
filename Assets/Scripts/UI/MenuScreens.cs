@@ -241,13 +241,19 @@ namespace Wildmere.UI
             DefaultFocus = mCards.Count > 0 ? mCards[0].card : null;
         }
 
+        static readonly Color[] kTileColors =
+        {
+            new Color32(47, 127, 115, 255), new Color32(90, 122, 58, 255), new Color32(154, 116, 50, 255), new Color32(154, 85, 67, 255),
+            new Color32(110, 79, 134, 255), new Color32(70, 96, 127, 255), new Color32(47, 94, 74, 255), new Color32(122, 90, 112, 255),
+        };
+
         VisualElement Card(WorldSave w)
         {
             var card = Ui.Div("world-card");
             card.focusable = true;
             var tile = card.Append(Ui.Div("world-card__tile").Ignore());
             uint h = (uint)(w.Seed ^ (w.Seed >> 32)) * 2654435761u;
-            tile.style.backgroundColor = Color.HSVToRGB((h % 360) / 360f, 0.42f, 0.5f);
+            tile.style.backgroundColor = kTileColors[(h >> 24) % (uint)kTileColors.Length];
             tile.Add(Ui.Text(w.Name.Length > 0 ? w.Name.Substring(0, 1).ToUpperInvariant() : "W", "world-card__initial").Ignore());
             var text = card.Append(Ui.Div("grow").Ignore());
             text.Add(Ui.Text(w.Name, "world-card__name").Ignore());

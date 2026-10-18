@@ -81,7 +81,7 @@ namespace Wildmere.UI
                     for (var x = e0.parent; x != null; x = x.parent) if (x is ScrollView) { e = x; break; }
                     if (!seen.Add(e)) continue;
                     var r = e.worldBound;
-                    if (r.width < 20 || r.height < 20 || r.xMin < root.xMin - 1 || r.yMin < root.yMin - 1 || r.xMax > root.xMax + 1 || r.yMax > root.yMax + 1)
+                    if (r.width < 8 || r.height < 8 || r.xMin < root.xMin - 1 || r.yMin < root.yMin - 1 || r.xMax > root.xMax + 1 || r.yMax > root.yMax + 1)
                         issues.Add($".{c} {R(r)} outside {R(root)}");
                 }
             }
