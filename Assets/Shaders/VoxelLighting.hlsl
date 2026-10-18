@@ -36,7 +36,7 @@ half3 WMShadeSurface(half3 albedo, half smoothness, half occlusion, float3 nWS, 
     ambient += half3(0.5, 0.55, 0.75) * _WM_Precip.w * skyAmb * 0.6; // lightning flash
     // Torch light: warm, gently flickering, with a soft curve (pockets of light in caves).
     half flicker = 0.9 + 0.1 * sin(_Time.y * 9.0 + WMHash(floor(positionWS)) * 40.0) * sin(_Time.y * 3.3 + positionWS.x);
-    half3 torch = _WM_BlockLight.rgb * _WM_BlockLight.a * (pow(blk, 2.4) + pow(blk, 8.0) * 0.6) * flicker;
+    half3 torch = _WM_BlockLight.rgb * _WM_BlockLight.a * (pow(saturate(blk), 2.4) + pow(saturate(blk), 8.0) * 0.6) * flicker;
     color += (ambient * indirectOcc + torch * lerp(1.0, indirectOcc, 0.5)) * brdf.diffuse;
 
     // Sky reflection (sky gradient towards the reflected ray), occluded by sky access; rough surfaces get

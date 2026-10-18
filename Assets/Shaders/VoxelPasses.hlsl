@@ -60,7 +60,7 @@ half4 VoxelFrag(VVaryings i) : SV_Target
 
     half3 albedo = albedoA.rgb;
     if ((flags & (WM_FLAG_TINT_GRASS | WM_FLAG_TINT_FOLIAGE)) != 0)
-        albedo *= lerp(half3(1, 1, 1), WMTint(i.positionWS, flags) * 1.75, mask.a);
+        albedo *= lerp(half3(1, 1, 1), WMTint(i.positionWS, flags) * 1.1, mask.a);
 
     // Subtle per-block variation so large flat areas don't look printed.
     half rnd = i.light.w;
@@ -95,6 +95,18 @@ half4 VoxelFrag(VVaryings i) : SV_Target
         albedo *= 1.0 - puddle * 0.35;
         nxy += WMRainRipples(i.positionWS.xz, _WM_Precip.x) * saturate(wet * 2.0 - 0.6) * (1.0 - far);
         reflectBoost = puddle * 0.8 + wet * 0.2;
+    }
+
+    // Snow settles on open, up-facing surfaces while it snows (patchy at first, full cover later).
+    if (_WM_Surface.x > 0.001 && N.y > 0.5)
+    {
+        half patch = SAMPLE_TEXTURE2D_LOD(_WM_CloudNoise, sampler_WM_CloudNoise, i.positionWS.xz * (1.0 / 9.0), 0).g;
+        half cover = saturate((_WM_Surface.x * 1.35 - patch) * 6.0) * smoothstep(0.82, 0.97, sky);
+        if ((flags & WM_FLAG_PLANT) != 0) cover *= saturate(i.uv.y) * 0.8;
+        albedo = lerp(albedo, half3(0.82, 0.85, 0.9) * (0.96 + 0.08 * rnd), cover);
+        smoothness = lerp(smoothness, 0.35, cover);
+        nxy *= 1.0 - cover * 0.75;
+        occlusion = lerp(occlusion, max(occlusion, 0.8), cover);
     }
 
     half3 nTS = half3(nxy, sqrt(saturate(1.0 - dot(nxy, nxy))));

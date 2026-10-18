@@ -25,6 +25,8 @@ namespace Wildmere.Rendering
 
         RenderTexture mRT;
         int mW, mH;
+        /// <summary>Realtime at which the -gfxshots timer started (-1 before); -strikeat is relative to it.</summary>
+        public static float TimerStart { get; private set; } = -1f;
 
         void Awake()
         {
@@ -36,14 +38,26 @@ namespace Wildmere.Rendering
             };
             mRT.Create();
             Debug.Log($"WM_GFXCAP offscreen target {mW}x{mH}");
+            StartCoroutine(RenderLoop());
             if (Cli.Has("gfxshots")) StartCoroutine(Capture());
         }
 
         void OnDestroy() { if (mRT != null) mRT.Release(); }
 
         // Batchmode players skip camera rendering in the player loop, so render the main camera explicitly
-        // (a full URP frame, including beginCameraRendering passes and post-processing) once per frame.
-        void LateUpdate()
+        // (a full URP frame, including beginCameraRendering passes and post-processing) once per frame, at the
+        // end of the frame so everything queued in Update/LateUpdate (Graphics.RenderMesh) is included.
+        IEnumerator RenderLoop()
+        {
+            var eof = new WaitForEndOfFrame();
+            while (true)
+            {
+                yield return eof;
+                RenderNow();
+            }
+        }
+
+        void RenderNow()
         {
             var cam = Camera.main;
             if (cam == null) return;
@@ -69,12 +83,14 @@ namespace Wildmere.Rendering
             var times = Cli.Floats("gfxshots");
             if (times.Count == 0) times.Add(4f);
             float start = Time.realtimeSinceStartup;
+            TimerStart = start;
             var tex = new Texture2D(mW, mH, TextureFormat.RGB24, false, false);
             int n = 0;
             foreach (var t in times)
             {
                 while (Time.realtimeSinceStartup - start < t) yield return null;
                 yield return new WaitForEndOfFrame();
+                RenderNow();
                 var prev = RenderTexture.active;
                 RenderTexture.active = mRT;
                 tex.ReadPixels(new Rect(0, 0, mW, mH), 0, 0, false);

@@ -31,9 +31,7 @@ Shader "Wildmere/Sky"
 
             float Hash31(float3 p) { p = frac(p * 0.1031); p += dot(p, p.yzx + 33.33); return frac((p.x + p.y) * p.z); }
 
-            // Henyey-Greenstein phase.
-            float HG(float c, float g) { float g2 = g * g; return (1.0 - g2) / (12.566 * pow(max(1.0 + g2 - 2.0 * g * c, 1e-4), 1.5)); }
-
+            
             float3 Stars(float3 d, float up)
             {
                 if (_WM_Stars <= 0.01 || up <= 0) return 0;
@@ -55,55 +53,56 @@ Shader "Wildmere/Sky"
                 return acc * _WM_Stars * smoothstep(0.0, 0.3, up);
             }
 
-            // 2.5D cloud layer: returns (in-scattered colour, transmittance).
+            // 2.5D cloud layer: a heightfield of puffs (column thickness from the shared cloud field) seen
+            // through a slab, with relief parallax, self-shadowing towards the light, powder-darkened cores,
+            // a silver lining against the sun and darker, thicker storm bases. Returns (in-scatter, transmittance).
             float4 Clouds(float3 d, float3 camPos, float2 pixel)
             {
+                if (d.y < 0.004) return float4(0, 0, 0, 1);
                 float h0 = _WM_Clouds.z, thick = _WM_Clouds.w;
                 float camY = min(camPos.y, h0 - 2.0);
-                if (d.y < 0.005) return float4(0, 0, 0, 1);
+                // Relief march: find where the ray first enters a puff (puff top = base + shape * thickness).
+                int q = (int)clamp(_WM_CloudAmbient.a, 1, 12);
+                int steps = q <= 2 ? 2 : (q <= 4 ? 3 : 4);
                 float tA = (h0 - camY) / d.y;
                 float tB = (h0 + thick - camY) / d.y;
-                tB = min(tB, tA + thick * 6.0);
-                int steps = (int)clamp(_WM_CloudAmbient.a, 1, 12);
-                float dt = (tB - tA) / steps;
-                float jitter = WMIGN(pixel + frac(_Time.y * 7.0) * 61.0);
+                float jitter = WMIGN(pixel) * 0.6;
+                float2 hitXZ = camPos.xz + d.xz * tA;
+                float shape = 0;
+                float hf = 0;
+                [loop] for (int i = steps; i >= 0; i--)
+                {
+                    // From the top of the slab downwards: the first height where the column is tall enough.
+                    float f = saturate((i - jitter) / steps);
+                    float t = lerp(tA, tB, f);
+                    float2 xz = camPos.xz + d.xz * t;
+                    float s = WMCloudShape(xz, 1.0);
+                    if (s > f * 0.85 || i == 0) { hitXZ = xz; shape = s; hf = f; break; }
+                }
+                if (shape <= 0.003) return float4(0, 0, 0, 1);
+
                 float3 L = _WM_RealSunDir.y > -0.05 ? _WM_RealSunDir.xyz : _WM_MoonDir.xyz;
                 float c = dot(d, L);
-                // Forward scattering lobe (silver lining) plus a broad back lobe.
-                float phase = HG(c, 0.62) * 0.7 + HG(c, -0.2) * 0.3 + 0.06;
-                float3 sunCol = _WM_CloudLight.rgb;
-                float2 lightOff = L.xz / max(L.y, 0.18) * thick * 0.28;
-                float sigma = 0.045 * (1.0 + _WM_Clouds.y * 1.5);
-                float T = 1.0;
-                float3 S = 0;
-                for (int i = 0; i < steps; i++)
-                {
-                    float t = tA + (i + jitter) * dt;
-                    float3 p = camPos + d * t;
-                    p.y = camY + d.y * t;
-                    float hf = saturate((p.y - h0) / thick);
-                    float shape = WMCloudShape(p.xz, 1.0);
-                    // Heightfield: flat base, rounded top; the edges are thinner and wispy.
-                    float dens = saturate((shape - hf * hf) * 3.0) * smoothstep(0.0, 0.08, hf);
-                    if (dens <= 0.001) continue;
-                    // Optical depth towards the light: how much cloud sits above / sun-ward of this point.
-                    float shapeL = WMCloudShape(p.xz + lightOff, 0.0);
-                    float odL = saturate(shapeL - hf) * 3.0 + saturate(shape - hf) * 1.5;
-                    float beer = exp(-odL * 1.6 * (1.0 + _WM_Clouds.y));
-                    float powder = 1.0 - exp(-dens * 4.0);
-                    float3 amb = _WM_CloudAmbient.rgb * lerp(0.55, 1.15, hf) * (1.0 - _WM_Clouds.y * 0.45);
-                    float3 lit = sunCol * beer * lerp(1.0, powder * 1.6, 0.6) * phase * 7.0 + amb;
-                    float ext = dens * sigma * dt;
-                    float trans = exp(-ext);
-                    S += T * lit * (1.0 - trans);
-                    T *= trans;
-                    if (T < 0.02) break;
-                }
+                // Self-shadowing: how much cloud lies between this point and the light.
+                float2 lstep = L.xz / max(L.y, 0.2) * thick * 0.22;
+                float occ = WMCloudShape(hitXZ + lstep, 0.0);
+                if (q > 4) occ = occ * 0.6 + WMCloudShape(hitXZ + lstep * 2.2, 0.0) * 0.4;
+                float depth = shape * (1.0 + _WM_Clouds.y * 1.5);
+                float beer = exp(-(occ * 2.2 + depth * 1.2) * (1.0 + _WM_Clouds.y));
+                float powder = 1.0 - exp(-shape * 5.0);
+                // Silver lining: thin edges glow when looking towards the light.
+                float edge = 1.0 - smoothstep(0.0, 0.45, shape);
+                float forward = pow(saturate(c), 8.0) * 1.8 + pow(saturate(c), 64.0) * 3.0;
+                float3 sunL = _WM_CloudLight.rgb * (beer * lerp(1.0, powder, 0.5) * (0.65 + 0.35 * saturate(c * 0.5 + 0.5)) + edge * forward * 0.9);
+                float3 amb = _WM_CloudAmbient.rgb * lerp(0.62, 1.12, saturate(hf + (1.0 - shape) * 0.5)) * (1.0 - _WM_Clouds.y * 0.5);
+                float3 col = sunL + amb;
                 // Lightning glows inside the clouds.
-                S += (1.0 - T) * float3(0.7, 0.75, 1.0) * _WM_Lightning.w * (0.6 + 0.8 * pow(saturate(dot(d, _WM_Lightning.xyz) * 0.5 + 0.5), 6.0));
+                col += float3(0.7, 0.75, 1.0) * _WM_Lightning.w * (0.8 + 1.2 * pow(saturate(dot(d, _WM_Lightning.xyz) * 0.5 + 0.5), 6.0)) * (0.5 + shape);
+                float alpha = saturate(shape * 2.2) * lerp(0.92, 1.0, _WM_Clouds.y);
                 // Far clouds fade into the horizon haze.
-                float fade = exp(-tA / 9000.0) * smoothstep(0.005, 0.09, d.y);
-                return float4(S * fade, lerp(1.0, T, fade));
+                float fade = exp(-tA / 12000.0) * smoothstep(0.004, 0.07, d.y) * (1.0 - _WM_Surface.y * 0.65);
+                alpha *= fade;
+                return float4(col * alpha, 1.0 - alpha);
             }
 
             half4 frag(V i) : SV_Target
@@ -145,7 +144,7 @@ Shader "Wildmere/Sky"
                 col = col * cl.a + cl.rgb;
 
                 // Horizon band: haze below and right at the horizon (matches distant terrain fog).
-                float haze = 1.0 - smoothstep(-0.02, 0.1, up);
+                float haze = max(1.0 - smoothstep(-0.02, 0.1 + _WM_Surface.y * 0.6, up), _WM_Surface.y * 0.45);
                 col = lerp(col, WMFogColorDir(normalize(float3(d.x, 0.0, d.z))), haze * 0.85);
                 return half4(col, 1);
             }

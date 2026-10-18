@@ -64,7 +64,7 @@ namespace Wildmere.Rendering
             kCloudAmb = Shader.PropertyToID("_WM_CloudAmbient"), kStars = Shader.PropertyToID("_WM_Stars"),
             kPrecip = Shader.PropertyToID("_WM_Precip"), kLightning = Shader.PropertyToID("_WM_Lightning"),
             kCloudNoise = Shader.PropertyToID("_WM_CloudNoise"), kCaustics = Shader.PropertyToID("_WM_Caustics"),
-            kLightCol = Shader.PropertyToID("_WM_LightColor");
+            kLightCol = Shader.PropertyToID("_WM_LightColor"), kSurface = Shader.PropertyToID("_WM_Surface");
 
         // Sky colours keyed by sun height (sin of elevation), authored in sRGB.
         static readonly (float h, Color zen, Color hor)[] kSky =
@@ -81,6 +81,8 @@ namespace Wildmere.Rendering
         };
 
         float mWetness, mPuddles, mBiomeTimer;
+        /// <summary>Accumulated snow cover 0..1 (grows while snowing, melts slowly otherwise).</summary>
+        public float SnowCover;
         float mTargetDarkness, mTargetForest, mGroundY = 64f;
         Vector2 mCloudOffset;
         float mWaveTime;
@@ -115,6 +117,7 @@ namespace Wildmere.Rendering
             mCloudOffset = new Vector2(Random.Range(0f, 5000f), Random.Range(0f, 5000f));
             if (GetComponent<Weather>() == null) gameObject.AddComponent<Weather>();
             if (OffscreenCapture.Wanted) gameObject.AddComponent<OffscreenCapture>();
+            if (GfxHarness.Wanted) gameObject.AddComponent<GfxHarness>();
             RenderQuality.Install();
         }
 
@@ -185,7 +188,7 @@ namespace Wildmere.Rendering
             Vector3 moonDir = -sunDir;
             float sunH = sunDir.y;
             float day = Mathf.Clamp01((sunH + 0.08f) / 0.3f);                                        // 0 night .. 1 day
-            float golden = Mathf.Clamp01(1f - Mathf.Abs(sunH - 0.07f) / 0.2f) * Mathf.Clamp01((sunH + 0.05f) / 0.08f);
+            float golden = Mathf.Clamp01(1f - Mathf.Abs(sunH - 0.13f) / 0.2f) * Mathf.Clamp01((sunH + 0.05f) / 0.08f);
             float cover = Mathf.Clamp01(Overcast);
             float overcast = Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(0.5f, 0.95f, cover));          // uniform dimming
             float storm = Mathf.Clamp01(Storm);
@@ -196,9 +199,11 @@ namespace Wildmere.Rendering
             Vector3 T = SunTransmittance(sunH);
             float tMax = Mathf.Max(T.x, Mathf.Max(T.y, T.z));
             var sunCol = new Color(T.x / tMax, T.y / tMax, T.z / tMax);
+            // Golden hour: extra warmth beyond plain extinction (aerosols, forward-scattered glow).
+            sunCol *= Color.Lerp(Color.white, new Color(1f, 0.86f, 0.66f), golden);
             float sunLum = 0.2126f * T.x + 0.7152f * T.y + 0.0722f * T.z;
             float horizonFade = Mathf.Clamp01((sunH + 0.035f) / 0.09f);
-            float sunI = 3.6f * Mathf.Pow(sunLum, 0.55f) * horizonFade * (1f - overcast * 0.82f) * (1f - storm * 0.5f);
+            float sunI = 3.25f * Mathf.Pow(sunLum, 0.55f) * horizonFade * (1f - overcast * 0.82f) * (1f - storm * 0.5f);
             var moonCol = new Color(0.56f, 0.68f, 1.0f);
             float moonI = 0.42f * Mathf.Clamp01(moonDir.y * 3.5f) * (1f - overcast * 0.75f);
 
@@ -224,10 +229,10 @@ namespace Wildmere.Rendering
             float avgLum = avg.r * 0.2126f + avg.g * 0.7152f + avg.b * 0.0722f;
             Color ambSky = Color.Lerp(new Color(avgLum, avgLum, avgLum), avg, 0.55f) * 1.35f;
             // Night: moonlit, cool, never pitch black.
-            Color nightAmb = new Color(0.030f, 0.040f, 0.072f) * (1f - overcast * 0.4f);
+            Color nightAmb = new Color(0.036f, 0.046f, 0.084f) * (1f - overcast * 0.4f);
             ambSky = new Color(Mathf.Max(ambSky.r, nightAmb.r), Mathf.Max(ambSky.g, nightAmb.g), Mathf.Max(ambSky.b, nightAmb.b));
             // Golden hour: the sky dome is still blue — cool shadows against the warm sun.
-            ambSky *= Mathf.Lerp(1f, 0.82f, golden);
+            ambSky *= Mathf.Lerp(1f, 0.66f, golden);
             Color bounce = new Color(0.34f, 0.30f, 0.22f) * (useSun ? sunI : moonI * 0.6f) * 0.055f;
             Color ambGround = ambSky * 0.32f + bounce;
             // Dark forest: the canopy eats the sky light.
@@ -248,7 +253,7 @@ namespace Wildmere.Rendering
             float morning = Mathf.Clamp01(1f - Mathf.Abs(TimeOfDay - 0.27f) / 0.07f);
             float mistTarget = Mathf.Clamp01(morning * (0.35f + mTargetForest * 0.65f) + dark * 0.55f + FogBoost * 0.7f + Rain * 0.15f);
             MistAmount = Mathf.MoveTowards(MistAmount, mistTarget, dt / 6f);
-            float mistDensity = MistAmount * 0.045f;
+            float mistDensity = MistAmount * 0.022f;
             float mistBase = mGroundY - 1f;
 
             // ---------------------------------------------------------------- clouds
@@ -263,10 +268,10 @@ namespace Wildmere.Rendering
             float tcMax = Mathf.Max(Tc.x, Mathf.Max(Tc.y, Tc.z));
             float sunUp = Mathf.Clamp01((sunH + 0.06f) / 0.1f);
             Color cloudSun = new Color(Tc.x / tcMax, Tc.y / tcMax, Tc.z / tcMax) * (3.2f * Mathf.Pow(Mathf.Max(Tc.y, 0.02f), 0.4f) * sunUp);
-            Color cloudMoon = moonCol * 0.35f * Mathf.Clamp01(moonDir.y * 3f);
+            Color cloudMoon = moonCol * 0.07f * Mathf.Clamp01(moonDir.y * 3f);
             Color cloudLight = (sunUp > 0.01f ? cloudSun : cloudMoon) * (1f - storm * 0.6f);
             Color cloudAmb = (zen * 0.6f + hor * 0.5f) * 1.1f;
-            cloudAmb = new Color(Mathf.Max(cloudAmb.r, 0.012f), Mathf.Max(cloudAmb.g, 0.015f), Mathf.Max(cloudAmb.b, 0.025f));
+            cloudAmb = new Color(Mathf.Max(cloudAmb.r, 0.010f), Mathf.Max(cloudAmb.g, 0.012f), Mathf.Max(cloudAmb.b, 0.02f));
             cloudAmb *= 1f - storm * 0.5f;
             float cloudShadow = Mathf.Lerp(0.55f, 0.15f, overcast) * day;
 
@@ -274,6 +279,8 @@ namespace Wildmere.Rendering
             float wetTarget = Rain > 0.15f && Snow < 0.5f ? 1f : 0f;
             mWetness = Mathf.MoveTowards(mWetness, wetTarget, dt / (wetTarget > mWetness ? 30f : 120f));
             mPuddles = Mathf.MoveTowards(mPuddles, wetTarget * Mathf.Clamp01(Rain * 1.3f), dt / (wetTarget > 0 ? 90f : 200f));
+            float snowing = Rain * Snow;
+            SnowCover = Mathf.MoveTowards(SnowCover, snowing > 0.2f ? 1f : 0f, dt / (snowing > 0.2f ? 120f : 400f));
 
             // ---------------------------------------------------------------- push globals
             Shader.SetGlobalVector(kSunDir, lightDir);
@@ -284,7 +291,7 @@ namespace Wildmere.Rendering
             Shader.SetGlobalColor(kCave, new Color(0.010f, 0.010f, 0.014f));
             Shader.SetGlobalVector(kBlock, new Vector4(1.0f, 0.56f, 0.26f, 3.2f));
             Shader.SetGlobalColor(kZenith, zen);
-            Shader.SetGlobalColor(kHorizon, hor);
+            Shader.SetGlobalVector(kHorizon, new Vector4(hor.r, hor.g, hor.b, 1f + golden * 2.5f));
             float sunVis = Mathf.Clamp01(sunH * 10f + 0.5f) * (1f - overcast * 0.95f);
             Shader.SetGlobalVector(kSunCol, new Vector4(sunCol.r * 1.25f, sunCol.g * 1.1f, sunCol.b, sunVis));
             Shader.SetGlobalFloat(kStars, Mathf.Clamp01(-sunH * 6f - 0.1f) * (1f - cover * 0.9f));
@@ -305,6 +312,7 @@ namespace Wildmere.Rendering
             Shader.SetGlobalFloat(kUnder, Underwater ? 1f : 0f);
             Shader.SetGlobalColor(kUnderCol, new Color(0.012f, 0.06f, 0.075f) * Mathf.Lerp(0.12f, 1f, day));
             Shader.SetGlobalColor(kLightCol, LightColor);
+            Shader.SetGlobalVector(kSurface, new Vector4(SnowCover, Mathf.Clamp01(FogBoost), 0, 0));
 
             RenderSettings.ambientSkyColor = ambSky;
             RenderSettings.ambientEquatorColor = Color.Lerp(ambSky, ambGround, 0.5f);

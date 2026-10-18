@@ -64,6 +64,7 @@ float4 _WM_Clouds;          // x: coverage 0..1, y: darkness (storm), z: base al
 float4 _WM_CloudLight;      // rgb: sun light reaching the cloud tops, a: cloud-shadow strength on the ground
 float4 _WM_CloudAmbient;    // rgb: ambient light inside the clouds, a: cloud raymarch steps
 float4 _WM_Quality;         // x: caustics, y: cloud shadows, z: puddles, w: distance normal fade (all 0/1)
+float4 _WM_Surface;         // x: snow cover 0..1, y: fog-weather amount 0..1 (hazes the sky), zw: unused
 
 float WMHash(float3 p)
 {
@@ -186,9 +187,12 @@ half3 WMSkyGradient(float3 d)
     col += _WM_SkyHorizon.rgb * 0.18 * exp(-h * 9.0);
     // Sun-ward glow over the whole sky (sunrise/sunset colour wraps around the sun).
     float cs = dot(d, _WM_RealSunDir.xyz);
-    col += _WM_SunColor.rgb * _WM_SunColor.a * (pow(saturate(cs * 0.5 + 0.5), 5.0) * 0.22 * (1.0 - h * 0.6) + pow(saturate(cs), 24.0) * 0.45);
-    // Below the horizon: haze colour so distant fog meets the sky seamlessly.
-    float haze = 1.0 - smoothstep(-0.03, 0.2, up);
+    float glow = _WM_SkyHorizon.a;   // 1 + golden-hour boost
+    col += _WM_SunColor.rgb * _WM_SunColor.a * (pow(saturate(cs * 0.5 + 0.5), 5.0) * 0.2 * glow * (1.0 - h * 0.7) +
+                                                pow(saturate(cs), 24.0) * 0.4 * glow + pow(saturate(cs), 400.0) * 1.5);
+    // Below the horizon: haze colour so distant fog meets the sky seamlessly (fog weather hazes most of the sky).
+    float haze = 1.0 - smoothstep(-0.03, 0.2 + _WM_Surface.y * 0.9, up);
+    haze = max(haze, _WM_Surface.y * 0.55);
     col = lerp(col, WMFogColorDir(normalize(float3(d.x, max(d.y, 0.0) * 0.2, d.z))), haze);
     // Lightning lights up the whole sky (stronger towards the strike).
     col += half3(0.55, 0.6, 0.8) * _WM_Lightning.w * (0.35 + 0.65 * pow(saturate(dot(d, _WM_Lightning.xyz) * 0.5 + 0.5), 4.0));
@@ -245,8 +249,9 @@ half3 WMTint(float3 positionWS, uint flags)
 {
     // Texel centres sit at block centres; bilinear filtering blends neighbouring columns smoothly.
     float2 uv = positionWS.xz / _WM_TintSize;
-    if ((flags & WM_FLAG_TINT_FOLIAGE) != 0) return SRGBToLinear(SAMPLE_TEXTURE2D_LOD(_WM_FoliageTint, sampler_WM_GrassTint, uv, 0).rgb);
-    return SRGBToLinear(SAMPLE_TEXTURE2D_LOD(_WM_GrassTint, sampler_WM_GrassTint, uv, 0).rgb);
+    half3 g = SAMPLE_TEXTURE2D_LOD(_WM_GrassTint, sampler_WM_GrassTint, uv, 0).rgb;
+    half3 f = SAMPLE_TEXTURE2D_LOD(_WM_FoliageTint, sampler_WM_GrassTint, uv, 0).rgb;
+    return SRGBToLinear((flags & WM_FLAG_TINT_FOLIAGE) != 0 ? f : g);
 }
 
 float3 WMTangent(float3 n)
