@@ -52,3 +52,4 @@ sysinfo.txt
 /art-source/**/downloads/
 *.blend1
 /.claude/worktrees/
+/.vercel/
