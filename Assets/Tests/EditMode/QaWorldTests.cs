@@ -301,7 +301,7 @@ namespace Wildmere.Tests
                 total += Area(m.Opaque, d.Item1, d.Item2, d.Item3, out _);
             Assert.AreEqual(10f, total, 1e-3f, "two cubes expose 10 unit faces");
             for (int i = 0; i < m.Opaque.VCount; i++)
-                if (m.Opaque.V[i].NX != 0) Assert.AreNotEqual(9f, m.Opaque.V[i].Pos.x, 1e-4f, "a face was emitted on the shared x = 9 plane");
+                if (m.Opaque.V[i].NX != 0) Assert.Greater(Mathf.Abs(m.Opaque.V[i].Pos.x - 9f), 1e-4f, "a face was emitted on the shared x = 9 plane");
             AssertWinding(m.Opaque, "two blocks");
         }
 
