@@ -345,6 +345,12 @@ namespace Wildmere.Core
                 yield return WaitArea(p.transform.position, Mathf.Min(6, VoxelWorld.Instance.ViewDistance), 90f);
             }
             if (Cli.Has("autoplay") && p != null) StartCoroutine(AutoPlay(p));
+            if (Cli.Has("hold") && p != null && int.TryParse(Cli.Str("hold"), out int holdId) && ItemDb.Exists(holdId))
+            {
+                p.Inventory.Slots[0] = ItemStack.Of(holdId, 1);
+                p.Inventory.Selected = 0;
+                p.Inventory.Notify();
+            }
 
             string dir = Cli.Str("shotdir", Path.Combine(Application.persistentDataPath, "Screenshots"));
             Directory.CreateDirectory(dir);
