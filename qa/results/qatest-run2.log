@@ -1,0 +1,263 @@
+Mono path[0] = '/Users/tamoghnakabi/studioproject/wildmere/.claude/worktrees/agent-qa/Build/mac/Wildmere.app/Contents/Resources/Data/Managed'
+Mono config path = '/Users/tamoghnakabi/studioproject/wildmere/.claude/worktrees/agent-qa/Build/mac/Wildmere.app/Contents/MonoBleedingEdge/etc'
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Loading player data from /Users/tamoghnakabi/studioproject/wildmere/.claude/worktrees/agent-qa/Build/mac/Wildmere.app/Contents/Resources/Data/data.unity3d
+Initialize engine version: 6000.3.22f1 (1c726e1fb402)
+[Subsystems] Discovering subsystems at path /Users/tamoghnakabi/studioproject/wildmere/.claude/worktrees/agent-qa/Build/mac/Wildmere.app/Contents/Resources/Data/UnitySubsystems
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+ preferred device: Apple M4 (high power)
+Metal devices available: 1
+0: Apple M4 (high power)
+Using device Apple M4 (high power)
+Initializing Metal device caps: Apple M4
+Mac GPU Family: 2
+Apple GPU Family: 9
+MSL Version: 3.0
+Has Float MSAA: 1
+Has Float Filtering: 1
+ReadWrite Texture Tier: 2
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.268 seconds
+- Finished resetting the current domain, in  0.006 seconds
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+UnloadTime: 1.708083 ms
+WM_BOOT version=0.1.0 platform=OSXPlayer gfx=Metal gpu='Apple M4' cpu=10 mem=16384MB
+WM_AUDIO bank=75 entries
+WM_GFX preset=Ultra view=14 scale=1 shadows=3/140 ssao=True aa=3
+WM_STATE MainMenu
+WM_QA_INFO boot state=MainMenu batch=True gfx=Metal vsync=False cap=0 preset=Ultra view=14
+WM_STATE Loading
+WM_TEXTURES layers=54 albedo=128x128x56
+WM_UI icons rendered=57 atlas=1024x1024 ms=1427
+WM_UI ready screens=9 theme=True icons=57
+WM_WORLD create seed=20261019 threads=4
+WM_WORLD load name='qatest-20261018134126' seed=20261019 new=True mods=0 spawn=(124.50, 86.00, 139.50)
+WM_PROPS model Boulder_A parts=1/1 color=True fmt=UNorm8 mats=Prop Stone
+WM_PROPS model Boulder_B parts=1/1 color=True fmt=UNorm8 mats=Prop Stone
+WM_PROPS model Boulder_C parts=1/1 color=True fmt=UNorm8 mats=Prop Stone
+WM_PROPS model Rocks_Small_A parts=1/1 color=True fmt=UNorm8 mats=Prop Stone
+WM_PROPS model Rocks_Small_B parts=1/1 color=True fmt=UNorm8 mats=Prop Stone
+WM_PROPS model FallenLog_Oak parts=1/1 color=True fmt=UNorm8 mats=Prop Bark,Prop Wood,Prop Cap
+WM_PROPS model FallenLog_Birch parts=1/1 color=True fmt=UNorm8 mats=Prop Bark,Prop Wood
+WM_PROPS model Stump parts=1/1 color=True fmt=UNorm8 mats=Prop Bark,Prop Wood
+WM_PROPS model MushroomCluster parts=1/1 color=True fmt=UNorm8 mats=Prop Cap
+WM_PROPS model GiantMushroom parts=1/1 color=True fmt=UNorm8 mats=Prop Cap
+WM_PROPS model GlowcapCluster parts=1/1 color=True fmt=UNorm8 mats=Prop Cap,Prop Glow
+WM_PROPS model SandstonePillar parts=1/1 color=True fmt=UNorm8 mats=Prop Stone
+WM_PROPS model DeadTree parts=1/1 color=True fmt=UNorm8 mats=Prop Bark
+WM_PROPS model IceSpike parts=1/1 color=True fmt=UNorm8 mats=Prop Ice
+WM_PROPS model Bush_A parts=1/1 color=True fmt=UNorm8 mats=Prop Leaves,Prop Bark
+WM_PROPS model Bush_B parts=1/1 color=True fmt=UNorm8 mats=Prop Leaves,Prop Bark
+WM_PROPS model Reeds parts=1/1 color=True fmt=UNorm8 mats=Prop Leaves
+WM_PROPS model LilyPad parts=1/1 color=True fmt=UNorm8 mats=Prop Leaves
+WM_WORLD ready in 0.89s chunks=84 meshed=37
+WM_STATE Playing
+WM_GFX preset=Ultra view=14 scale=1 shadows=3/140 ssao=True aa=3
+WM_SAVE ok world='qatest-20261018134126' blocks=0 dir=/Users/tamoghnakabi/Library/Application Support/Wildmere/Wildmere/Worlds/qatest-20261018134126
+WM_QA PASS world_ready t=2.7s chunks=84
+WM_QA PASS world_saved_on_create /Users/tamoghnakabi/Library/Application Support/Wildmere/Wildmere/Worlds/qatest-20261018134126
+WM_QA PASS starter_kit torches=4
+WM_QA PASS arena_stand y=201.000
+WM_QA_INFO group mining t=10s
+WM_QA PASS mine_stone tool=Iron Pickaxe targeted=True broke=True t=0.38s expect=0.38s drop=Cobblestone got=1 dur 251->250
+WM_QA PASS mine_dirt tool=Iron Shovel targeted=True broke=True t=0.13s expect=0.13s drop=Dirt got=1 dur 251->250
+WM_QA PASS mine_grass_block tool=Iron Shovel targeted=True broke=True t=0.15s expect=0.15s drop=Dirt got=1 dur 251->250
+WM_QA PASS mine_sand tool=Iron Shovel targeted=True broke=True t=0.13s expect=0.13s drop=Sand got=1 dur 251->250
+WM_QA PASS mine_sandstone tool=Iron Pickaxe targeted=True broke=True t=0.20s expect=0.20s drop=Sandstone got=1 dur 251->250
+WM_QA PASS mine_gravel tool=Iron Shovel targeted=True broke=True t=0.15s expect=0.15s drop=Gravel got=1 dur 251->250
+WM_QA PASS mine_clay tool=Iron Shovel targeted=True broke=True t=0.15s expect=0.15s drop=Clay got=1 dur 251->250
+WM_QA PASS mine_snow tool=Iron Shovel targeted=True broke=True t=0.05s expect=0.05s drop=Snow got=1 dur 251->250
+WM_QA PASS mine_ice tool=Iron Pickaxe targeted=True broke=True t=0.13s expect=0.13s drop=? got=0 dur 251->250
+WM_QA PASS mine_cobblestone tool=Iron Pickaxe targeted=True broke=True t=0.50s expect=0.50s drop=Cobblestone got=1 dur 251->250
+WM_QA PASS mine_mossy_cobblestone tool=Iron Pickaxe targeted=True broke=True t=0.50s expect=0.50s drop=Mossy Cobblestone got=1 dur 251->250
+WM_QA PASS mine_planks tool=Iron Axe targeted=True broke=True t=0.50s expect=0.50s drop=Planks got=1 dur 251->250
+WM_QA PASS mine_glass tool=? targeted=True broke=True t=0.45s expect=0.45s drop=? got=0 dur 0->0
+WM_QA PASS mine_oak_log tool=Iron Axe targeted=True broke=True t=0.50s expect=0.50s drop=Oak Log got=1 dur 251->250
+WM_QA PASS mine_birch_log tool=Iron Axe targeted=True broke=True t=0.50s expect=0.50s drop=Birch Log got=1 dur 251->250
+WM_QA PASS mine_spruce_log tool=Iron Axe targeted=True broke=True t=0.50s expect=0.50s drop=Spruce Log got=1 dur 251->250
+WM_QA PASS mine_darkwood_log tool=Iron Axe targeted=True broke=True t=0.50s expect=0.50s drop=Darkwood Log got=1 dur 251->250
+WM_QA PASS mine_leaves_oak tool=? targeted=True broke=True t=0.30s expect=0.30s drop=? got=0 dur 0->0
+WM_QA PASS mine_leaves_birch tool=? targeted=True broke=True t=0.30s expect=0.30s drop=? got=0 dur 0->0
+WM_QA PASS mine_leaves_spruce tool=? targeted=True broke=True t=0.30s expect=0.30s drop=? got=0 dur 0->0
+WM_QA PASS mine_leaves_dark tool=? targeted=True broke=True t=0.30s expect=0.30s drop=? got=0 dur 0->0
+WM_QA PASS mine_coal_ore tool=Iron Pickaxe targeted=True broke=True t=0.75s expect=0.75s drop=Coal got=1 dur 251->250
+WM_QA PASS mine_iron_ore tool=Iron Pickaxe targeted=True broke=True t=0.75s expect=0.75s drop=Raw Iron got=1 dur 251->250
+WM_QA PASS mine_gold_ore tool=Iron Pickaxe targeted=True broke=True t=0.75s expect=0.75s drop=Raw Gold got=1 dur 251->250
+WM_QA PASS mine_cactus tool=? targeted=True broke=True t=0.60s expect=0.60s drop=Cactus got=1 dur 0->0
+WM_QA PASS mine_workbench tool=Iron Axe targeted=True broke=True t=0.63s expect=0.63s drop=Workbench got=1 dur 251->250
+WM_QA PASS mine_furnace tool=Iron Pickaxe targeted=True broke=True t=0.88s expect=0.88s drop=Furnace got=1 dur 251->250
+WM_QA PASS mine_torch tool=? targeted=True broke=True t=0.05s expect=0.05s drop=Torch got=1 dur 0->0
+WM_QA PASS mine_tall_grass tool=? targeted=True broke=True t=0.05s expect=0.05s drop=? got=0 dur 0->0
+WM_QA PASS mine_fern tool=? targeted=True broke=True t=0.05s expect=0.05s drop=? got=0 dur 0->0
+WM_QA PASS mine_flower_red tool=? targeted=True broke=True t=0.05s expect=0.05s drop=Emberbloom got=1 dur 0->0
+WM_QA PASS mine_flower_yellow tool=? targeted=True broke=True t=0.05s expect=0.05s drop=Sunpetal got=1 dur 0->0
+WM_QA PASS mine_flower_blue tool=? targeted=True broke=True t=0.05s expect=0.05s drop=Frostbell got=1 dur 0->0
+WM_QA PASS mine_flower_white tool=? targeted=True broke=True t=0.06s expect=0.05s drop=Moonlace got=1 dur 0->0
+WM_QA PASS mine_dead_bush tool=? targeted=True broke=True t=0.05s expect=0.05s drop=Dry Shrub got=1 dur 0->0
+WM_QA PASS mine_mushroom_red tool=? targeted=True broke=True t=0.05s expect=0.05s drop=Red Toadstool got=1 dur 0->0
+WM_QA PASS mine_mushroom_brown tool=? targeted=True broke=True t=0.05s expect=0.05s drop=Brown Cap got=1 dur 0->0
+WM_QA PASS mine_podzol tool=Iron Shovel targeted=True broke=True t=0.13s expect=0.13s drop=Dirt got=1 dur 251->250
+WM_QA PASS mine_snowy_grass tool=Iron Shovel targeted=True broke=True t=0.15s expect=0.15s drop=Dirt got=1 dur 251->250
+WM_QA PASS mine_glowcap tool=? targeted=True broke=True t=0.05s expect=0.05s drop=Glowcap got=1 dur 0->0
+WM_QA_INFO mined 40 block types, 0 bad
+WM_QA PASS bedrock_unbreakable block=Bedrock
+WM_QA_INFO group tools t=94s
+WM_QA PASS stone_by_hand_slow_no_drop t=7.50s expect=7.50s extraItems=0 dur 0->0
+WM_QA PASS iron_ore_wood_pickaxe_no_drop t=7.50s expect=7.50s extraItems=0 dur 60->59
+WM_QA PASS gold_ore_stone_pickaxe_no_drop t=3.75s expect=3.75s extraItems=0 dur 132->131
+WM_QA PASS iron_ore_stone_pickaxe_drops t=1.13s expect=1.13s extraItems=1 dur 132->131
+WM_SAVE ok world='qatest-20261018134126' blocks=363 dir=/Users/tamoghnakabi/Library/Application Support/Wildmere/Wildmere/Worlds/qatest-20261018134126
+WM_QA PASS log_with_pickaxe_hand_speed t=3.00s expect=3.00s extraItems=1 dur 251->250
+WM_QA PASS coal_wood_pickaxe t=2.25s expect=2.25s extraItems=1 dur 60->59
+WM_QA PASS plant_does_not_wear_tool dur 251->251
+WM_QA PASS tool_breaks_at_zero slot0=? events=1
+WM_QA_INFO group placement t=130s
+WM_QA PASS place_into_water cell=Dirt
+WM_QA FAIL torch_not_placed_in_water cell=Torch
+WM_QA PASS place_replaces_tall_grass cell=Cobblestone
+WM_QA PASS flower_replaces_fern_on_grass cell=Frostbell
+WM_QA PASS flower_rejected_on_stone cell=Air
+WM_QA PASS torch_on_floor cell=Torch
+WM_QA PASS torch_needs_floor hit=True adj=(149, 203, 141) cell=Air
+WM_QA PASS torch_rejected_on_leaves cell=Air
+WM_QA PASS torch_pops_without_support above=Air
+WM_QA FAIL popped_torch_drops_item torch in inv=0 drops=0 dirt=1
+WM_QA FAIL popped_flower_drops_item above=Air flowers=0
+WM_QA PASS furnace_faces_player 0:2 90:3 180:0 270:1 (expect 0:2 90:3 180:0 270:1)
+WM_QA PASS no_place_in_feet dirt 64->64
+WM_QA PASS no_place_in_head dirt 64->64
+WM_QA PASS no_place_in_head_crouched cell=Air
+WM_QA PASS no_place_in_wildlife deer=True target=(146, 201, 139) adj=(147, 201, 139) cell=Air
+WM_QA FAIL reach_limit nearHit=False farHit=False eyeToFar=6.08m
+WM_QA_INFO group crafting t=137s
+WM_QA PASS stations_detected Furnace,Workbench
+WM_QA PASS every_recipe_crafts_in_world ok=23/23 failed=
+WM_QA PASS station_gating_in_world gated=15/15
+WM_QA PASS station_range_4_yes_6_no at4=True at6=False
+WM_QA FAIL station_range_is_radius workbench 7.1 m away diagonally counts as near=True (StationRange=4.5)
+WM_QA FAIL workbench_opens_crafting events=0 captured=True after=False
+WM_QA PASS full_inventory_rollback_in_world 
+WM_QA_INFO group drops t=137s
+WM_QA PASS drops_merge dirtDrops=1 counts=4
+WM_QA PASS tool_drops_do_not_merge pickDrops=2
+WM_QA PASS drops_rest_on_floor y=201.12
+WM_QA PASS drops_picked_up dirt=4 picks=2 left=0
+WM_QA PASS full_inventory_leaves_drop drop=2 dirt=0
+WM_QA FAIL no_inventory_event_spam_on_blocked_pickup Inventory.Changed fired 227 times in 1.0s (227 frames) while standing on a drop with a full inventory; frame 4.42 ms vs 4.39 ms without the drop
+WM_QA PASS partial_pickup left=4
+WM_QA PASS drop_despawns_after_lifetime 
+WM_QA_INFO group movement t=149s
+WM_QA PASS crouch_never_walks_off_ledge 90:held@10.25,-0.62 270:held@-9.25,1.61 0:held@1.62,10.25 45:held@10.25,10.25
+WM_QA PASS swim_up_and_out startUnder=True took=1.3s y=1.00 (platform top = +1)
+WM_QA PASS jump_height h=1.34
+WM_QA PASS walk_speed v=4.30 m/s
+WM_QA_INFO group damage t=171s
+WM_QA FAIL fall_damage_thresholds 3m:0 3.5m:0 4m:1 4m:0 4m:1 5m:2 5m:2 5m:2 6m:2 10m:6 (expect floor(h-3) for h>=4)
+WM_QA PASS water_landing_no_damage dmg=0 submerged=1.00
+WM_QA PASS drowning air=0.00 hp=16.0 cause=drown
+WM_QA PASS air_refills air=4.50
+WM_PLAYER died
+WM_QA PASS death dead=True events=1 deathScreen=True capture=True
+WM_QA PASS respawn_restores hp=20 air=10 input=True capture=False
+WM_QA PASS respawn_on_surface_at_spawn pos=(124.50, 86.00, 139.50) surface=85
+WM_QA PASS respawn_lands_safely hp=20 grounded=True
+WM_QA_INFO group pause t=193s
+WM_STATE Paused
+WM_STATE Playing
+WM_QA PASS pause_freezes_world state=Playing moved=2.43
+WM_QA PASS resume timeScale=1
+WM_QA PASS pause_screen_closed_after_resume top=
+WM_QA_INFO group settings t=196s
+WM_GFX preset=Custom view=7 scale=1 shadows=3/140 ssao=True aa=3
+WM_QA PASS settings_persist 
+WM_QA PASS bindings_reset 
+WM_SETTINGS unreadable, using defaults: JSON parse error: Missing a name for object member.
+WM_QA PASS settings_corrupt_falls_back 
+WM_GFX preset=Low view=6 scale=0.8 shadows=1/48 ssao=False aa=1
+WM_GFX preset=Ultra view=14 scale=1 shadows=3/140 ssao=True aa=3
+WM_GFX preset=Medium view=8 scale=0.9 shadows=2/72 ssao=False aa=1
+WM_GFX preset=High view=10 scale=1 shadows=2/96 ssao=True aa=2
+WM_QA PASS preset_switching_runtime Low:view=6 settle=1.0s unmeshed=0/137 errors=0 | Ultra:view=14 settle=2.3s unmeshed=36/665 errors=0 | Medium:view=8 settle=1.0s unmeshed=0/225 errors=0 | High:view=10 settle=1.0s unmeshed=0/349 errors=0
+WM_GFX preset=Ultra view=14 scale=1 shadows=3/140 ssao=True aa=3
+WM_QA_INFO group streaming t=203s
+WM_QA FAIL all_in_view_meshed_at_rest view=14 unmeshed=36/665 (-3,-14) (3,-14) (-6,-13) (6,-13) (-8,-12) (8,-12) (-9,-11) (9,-11) (-10,-10) (10,-10) (-11,-9) (11,-9) ...+24
+WM_QA PASS fly_fast_streams_ahead dist=436m speed=21.8m/s ready(r1)=100.0% ready(r2)=100.0% worstFrame=137ms
+WM_QA FAIL no_holes_after_flight settle=1.7s unmeshed=17/665 (14,3) (-13,6) (13,6) (-12,8) (12,8) (-11,9) (11,9) (-10,10) (10,10) (-9,11) (9,11) (-8,12) ...+5
+WM_QA FAIL no_holes_after_teleport nearReady=0.2s settle=2.4s unmeshed=36/665 (-3,-14) (3,-14) (-6,-13) (6,-13) (-8,-12) (8,-12) (-9,-11) (9,-11) (-10,-10) (10,-10) (-11,-9) (11,-9) ...+24 loaded=749
+WM_QA PASS loaded_columns_bounded loaded=749 bound~1026
+WM_QA PASS arena_survived_round_trip edits re-applied after unload
+WM_QA_INFO group wildlife t=231s
+WM_SAVE ok world='qatest-20261018134126' blocks=478 dir=/Users/tamoghnakabi/Library/Application Support/Wildmere/Wildmere/Worlds/qatest-20261018134126
+WM_QA PASS wildlife_spawns walkers=13 total=23
+WM_QA FAIL wildlife_not_in_blocks stuck=1/13 Deer@(82.1, 112.0, 168.0) in block; Deer@(158.5, 89.0, 156.1) on leaves
+WM_QA FAIL wildlife_on_ground floating=0 onLeaves=1
+WM_QA PASS no_floating_trees logs=2273 trees=240 floating=0 
+WM_QA PASS prop_removed_with_support props 1282->1281 at (127, 86, 134) support y=85
+WM_QA_INFO group persistence t=256s
+WM_QA_INFO persistence: 359 edits in 139 chunks, setFails=0
+WM_QA_INFO verify before save: checked=119 bad=0
+WM_QA PASS edits_survive_unload unloadedFirst=True checked=119 bad=0 
+WM_SAVE ok world='qatest-20261018134126' blocks=878 dir=/Users/tamoghnakabi/Library/Application Support/Wildmere/Wildmere/Worlds/qatest-20261018134126
+WM_QA PASS save_writes_player_state health=13 time=0.829999983310699
+WM_SAVE ok world='qatest-20261018134126' blocks=878 dir=/Users/tamoghnakabi/Library/Application Support/Wildmere/Wildmere/Worlds/qatest-20261018134126
+WM_STATE MainMenu
+WM_WORLD create seed=720261017 threads=4
+WM_GFX preset=Ultra view=14 scale=1 shadows=3/140 ssao=True aa=3
+WM_QA PASS quit_to_menu state=MainMenu
+WM_STATE Loading
+WM_WORLD create seed=20261019 threads=4
+WM_WORLD load name='qatest-20261018134126' seed=20261019 new=False mods=878 spawn=(130.50, 84.00, 145.50)
+WM_WORLD ready in 0.25s chunks=93 meshed=39
+WM_STATE Playing
+WM_GFX preset=Ultra view=14 scale=1 shadows=3/140 ssao=True aa=3
+WM_QA PASS world_reloads 
+WM_QA PASS position_persists_under_roof saved=(130.50, 84.00, 145.50) now=(130.50, 84.00, 145.50) (roof at +3)
+WM_QA PASS look_persists yaw=123.0 pitch=-20.0
+WM_QA PASS inventory_and_durability_persist pick dur=123 axe dur=7 selected=5
+WM_QA PASS time_of_day_persists tod=0.830
+WM_QA PASS health_persists hp=13
+WM_QA_INFO verify after reload: checked=359 bad=0
+WM_QA PASS scattered_edits_persist checked=359/359 bad=0 chunks=139 
+WM_QA PASS furnace_facing_persists 2,3,0,1
+WM_PLAYER died
+WM_SAVE ok world='qatest-20261018134126' blocks=878 dir=/Users/tamoghnakabi/Library/Application Support/Wildmere/Wildmere/Worlds/qatest-20261018134126
+WM_SAVE ok world='qatest-20261018134126' blocks=878 dir=/Users/tamoghnakabi/Library/Application Support/Wildmere/Wildmere/Worlds/qatest-20261018134126
+WM_STATE MainMenu
+WM_WORLD create seed=720261017 threads=4
+WM_GFX preset=Ultra view=14 scale=1 shadows=3/140 ssao=True aa=3
+WM_STATE Loading
+WM_WORLD create seed=20261019 threads=4
+WM_WORLD load name='qatest-20261018134126' seed=20261019 new=False mods=878 spawn=(148.50, 201.00, 139.50)
+WM_WORLD ready in 0.22s chunks=83 meshed=35
+WM_STATE Playing
+WM_GFX preset=Ultra view=14 scale=1 shadows=3/140 ssao=True aa=3
+WM_QA FAIL save_while_dead_reloads_alive_state diedBeforeSave=True savedHealth=0 afterReload hp=0 dead=False deathScreen=False
+WM_QA_INFO restoring player state: after save-while-dead
+WM_QA_INFO group respawnfar t=264s
+WM_PLAYER died
+WM_QA PASS respawn_when_spawn_unloaded spawnUnloaded=True respawnY=86.00 now=(124.50, 86.00, 139.50) surface=85 insideBlocks=False hp=20
+WM_QA_INFO functional done in 272s
+WM_QA PASS no_console_errors warnings=1
+WM_QA FAIL summary pass=115 fail=14 failed=[torch_not_placed_in_water,popped_torch_drops_item,popped_flower_drops_item,reach_limit,station_range_is_radius,workbench_opens_crafting,no_inventory_event_spam_on_blocked_pickup,fall_damage_thresholds,all_in_view_meshed_at_rest,no_holes_after_flight,no_holes_after_teleport,wildlife_not_in_blocks,wildlife_on_ground,save_while_dead_reloads_alive_state]
+WM_SAVE ok world='qatest-20261018134126' blocks=878 dir=/Users/tamoghnakabi/Library/Application Support/Wildmere/Wildmere/Worlds/qatest-20261018134126
+WM_STATE MainMenu
+WM_WORLD create seed=720261017 threads=4
+WM_GFX preset=Ultra view=14 scale=1 shadows=3/140 ssao=True aa=3
+WM_QA_INFO deleted /Users/tamoghnakabi/Library/Application Support/Wildmere/Wildmere/Worlds/qatest-20261018134126
+Thread 0x1709bb000 may have been prematurely finalized
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input System polling thread exited.
+Input System module state changed to: Shutdown.
+Thread 0x16f6d7000 may have been prematurely finalized
+Thread 0x16f7ef000 may have been prematurely finalized
+Thread 0x16f87b000 may have been prematurely finalized
+Thread 0x16f763000 may have been prematurely finalized
