@@ -42,9 +42,10 @@ RECIPES["break/dirt"] = {
               T(SV, "crush.wav")],
     "p": P(BREAK, lp=7000, max_s=0.8), "volume": 0.68}
 RECIPES["place/dirt"] = {
-    "takes": [T(KI, "impactSoft_heavy_000.ogg", rate=0.92), T(KI, "impactSoft_heavy_001.ogg", rate=1.05),
-              T(KI, "impactSoft_heavy_003.ogg"), T("oga_rd_mud", "mud_11.ogg", rate=0.9)],
-    "p": P(PLACE, lp=2500, hp=50), "volume": 0.55}
+    "takes": [T("oga_rd_mud", "mud_18.ogg"), T("oga_rd_mud", "mud_11.ogg", rate=0.9),
+              T("oga_wet_towel", "wet_towel_on_floor-03.flac", rate=0.85),
+              T("oga_wet_towel", "wet_towel_on_floor-07.flac", rate=0.85)],
+    "p": P(PLACE, lp=2500, hp=50, lufs=-21.0, limit_db=9.0), "volume": 0.62}
 
 # ---- sand (Peludo's beach steps 0 and 5 are not used by step/sand)
 RECIPES["dig/sand"] = {

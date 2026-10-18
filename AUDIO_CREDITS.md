@@ -172,6 +172,8 @@ every recording that went into them.
 | Audio/break/stone_04.wav | <https://opengameart.org/content/various-sound-effects-0> | Spring Spring | CC0 1.0 | `break_stone.wav` [0.00-1.20s] |
 | Audio/break/stone_05.wav | <https://opengameart.org/content/breaking-rock> | themightyglider | CC0 1.0 | `rock_break_0.ogg` [0.00-0.44s] |
 | &nbsp;&nbsp;+ layer | <https://opengameart.org/content/75-cc0-breaking-falling-hit-sfx> | rubberduck | CC0 1.0 | `sfx_breaking_and_falling.zip -> bfh1_rock_falling_03.ogg` [0.00-0.85s] |
+| Audio/break/water_01.wav | <https://opengameart.org/content/40-cc0-water-splash-slime-sfx> | rubberduck | CC0 1.0 | `water-splash-slime-sfx.zip -> splash_05.ogg` [0.00-1.18s] |
+| Audio/break/water_02.wav | <https://opengameart.org/content/40-cc0-water-splash-slime-sfx> | rubberduck | CC0 1.0 | `water-splash-slime-sfx.zip -> splash_11.ogg` [0.00-1.13s] |
 | Audio/break/wood_01.wav | <https://opengameart.org/content/35-wooden-crackshitsdestructions> | qubodup | CC0 1.0 | `independent_nu_ljudbank-wood_crack_hit_destruction.7z -> wood_impact/crack02.mp3.flac` [0.08-1.61s] |
 | Audio/break/wood_02.wav | <https://opengameart.org/content/35-wooden-crackshitsdestructions> | qubodup | CC0 1.0 | `independent_nu_ljudbank-wood_crack_hit_destruction.7z -> wood_impact/crack04.mp3.flac` [0.13-1.66s] |
 | Audio/break/wood_03.wav | <https://opengameart.org/content/35-wooden-crackshitsdestructions> | qubodup | CC0 1.0 | `independent_nu_ljudbank-wood_crack_hit_destruction.7z -> wood_impact/crack09.mp3.flac` [0.07-1.60s] |
@@ -217,6 +219,8 @@ every recording that went into them.
 | Audio/dig/stone_04.wav | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactMining_004.ogg` [0.00-0.83s] |
 | Audio/dig/stone_05.wav | <https://opengameart.org/content/various-sound-effects-0> | Spring Spring | CC0 1.0 | `tap_stone.wav` [0.00-0.75s] |
 | Audio/dig/stone_06.wav | <https://opengameart.org/content/various-sound-effects-0> | Spring Spring | CC0 1.0 | `small_rock_impact.wav` [0.00-0.53s] |
+| Audio/dig/water_01.wav | <https://opengameart.org/content/40-cc0-water-splash-slime-sfx> | rubberduck | CC0 1.0 | `water-splash-slime-sfx.zip -> splash_10.ogg` [0.00-0.32s] |
+| Audio/dig/water_02.wav | <https://opengameart.org/content/40-cc0-water-splash-slime-sfx> | rubberduck | CC0 1.0 | `water-splash-slime-sfx.zip -> splash_09.ogg` [0.00-0.36s] |
 | Audio/dig/wood_01.wav | <https://opengameart.org/content/35-wooden-crackshitsdestructions> | qubodup | CC0 1.0 | `independent_nu_ljudbank-wood_crack_hit_destruction.7z -> wood_impact/impactwood02.mp3.flac` [0.10-1.63s] |
 | Audio/dig/wood_02.wav | <https://opengameart.org/content/35-wooden-crackshitsdestructions> | qubodup | CC0 1.0 | `independent_nu_ljudbank-wood_crack_hit_destruction.7z -> wood_impact/impactwood04.mp3.flac` [0.12-1.67s] |
 | Audio/dig/wood_03.wav | <https://opengameart.org/content/35-wooden-crackshitsdestructions> | qubodup | CC0 1.0 | `independent_nu_ljudbank-wood_crack_hit_destruction.7z -> wood_impact/impactwood07.mp3.flac` [0.01-1.53s] |
@@ -240,10 +244,10 @@ every recording that went into them.
 | Audio/music/bluebonnet_01.ogg | <https://opengameart.org/content/bluebonnet> | Kistol | CC0 1.0 | `bluebonnet_in_b_major_2.ogg` [0.00-126.90s] |
 | Audio/music/forget_me_not_01.ogg | <https://opengameart.org/content/forget-me-not> | Kistol | CC0 1.0 | `forget_me_not_in_f_major_0.ogg` [0.00-188.90s] |
 | Audio/music/meadow_thoughts_01.ogg | <https://opengameart.org/content/meadow-thoughts> | Écrivain | CC0 1.0 | `Meadow Thoughts.ogg` [0.00-149.74s] |
-| Audio/place/dirt_01.wav | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactSoft_heavy_000.ogg` [0.00-0.53s, varispeed 0.92] |
-| Audio/place/dirt_02.wav | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactSoft_heavy_001.ogg` [0.00-0.57s, varispeed 1.05] |
-| Audio/place/dirt_03.wav | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactSoft_heavy_003.ogg` [0.00-0.54s] |
-| Audio/place/dirt_04.wav | <https://opengameart.org/content/25-cc0-mud-sfx> | rubberduck | CC0 1.0 | `25-CC0-mud-sfx.zip -> mud_11.ogg` [0.00-0.23s, varispeed 0.9] |
+| Audio/place/dirt_01.wav | <https://opengameart.org/content/25-cc0-mud-sfx> | rubberduck | CC0 1.0 | `25-CC0-mud-sfx.zip -> mud_18.ogg` [0.00-0.59s] |
+| Audio/place/dirt_02.wav | <https://opengameart.org/content/25-cc0-mud-sfx> | rubberduck | CC0 1.0 | `25-CC0-mud-sfx.zip -> mud_11.ogg` [0.00-0.23s, varispeed 0.9] |
+| Audio/place/dirt_03.wav | <https://opengameart.org/content/12-wet-towel-hittingfallingpunching-floor-sounds> | qubodup | CC0 1.0 | `wet_towel_on_floor.7z -> wet_towel_on_floor/wet_towel_on_floor-03.flac` [0.00-0.56s, varispeed 0.85] |
+| Audio/place/dirt_04.wav | <https://opengameart.org/content/12-wet-towel-hittingfallingpunching-floor-sounds> | qubodup | CC0 1.0 | `wet_towel_on_floor.7z -> wet_towel_on_floor/wet_towel_on_floor-07.flac` [0.00-0.67s, varispeed 0.85] |
 | Audio/place/glass_01.wav | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactGlass_medium_000.ogg` [0.00-0.54s] |
 | Audio/place/glass_02.wav | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactGlass_medium_001.ogg` [0.00-0.54s] |
 | Audio/place/glass_03.wav | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactGlass_medium_002.ogg` [0.00-0.54s] |
@@ -278,6 +282,8 @@ every recording that went into them.
 | &nbsp;&nbsp;+ layer | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactPlate_heavy_004.ogg` [0.00-0.56s] |
 | Audio/place/stone_04.wav | <https://opengameart.org/content/moving-boulder> | themightyglider | CC0 1.0 | `move_boulder_0.ogg` [0.00-0.35s] |
 | Audio/place/stone_05.wav | <https://opengameart.org/content/impact> | qubodup | CC0 1.0 | `qubodupImpact.7z -> qubodupImpact/qubodupImpactStone.flac` [0.00-0.50s] |
+| Audio/place/water_01.wav | <https://opengameart.org/content/40-cc0-water-splash-slime-sfx> | rubberduck | CC0 1.0 | `water-splash-slime-sfx.zip -> splash_02.ogg` [0.00-0.72s] |
+| Audio/place/water_02.wav | <https://opengameart.org/content/40-cc0-water-splash-slime-sfx> | rubberduck | CC0 1.0 | `water-splash-slime-sfx.zip -> splash_08.ogg` [0.00-0.69s] |
 | Audio/place/wood_01.wav | <https://opengameart.org/content/wood-and-metal-sound-effects-volume-2> | Ogrebane | CC0 1.0 | `wood_and_metal_vol.2_0.zip -> wood_and_metal_vol.2/wood2.aif` [0.00-0.50s] |
 | Audio/place/wood_02.wav | <https://opengameart.org/content/wood-and-metal-sound-effects-volume-2> | Ogrebane | CC0 1.0 | `wood_and_metal_vol.2_0.zip -> wood_and_metal_vol.2/wood8.aif` [0.00-0.62s] |
 | Audio/place/wood_03.wav | <https://opengameart.org/content/wood-and-metal-sound-effects-volume-2> | Ogrebane | CC0 1.0 | `wood_and_metal_vol.2_0.zip -> wood_and_metal_vol.2/wood12.aif` [0.00-0.62s] |
@@ -314,6 +320,14 @@ every recording that went into them.
 | Audio/step/dirt_04.wav | <https://opengameart.org/content/step-sound-walking> | IgnasD | CC0 1.0 | `Ejimas1.zip -> Ejimas1.ogg` [0.00-0.91s] |
 | Audio/step/dirt_05.wav | <https://opengameart.org/content/25-cc0-mud-sfx> | rubberduck | CC0 1.0 | `25-CC0-mud-sfx.zip -> mud_11.ogg` [0.00-0.23s] |
 | Audio/step/dirt_06.wav | <https://opengameart.org/content/25-cc0-mud-sfx> | rubberduck | CC0 1.0 | `25-CC0-mud-sfx.zip -> mud_18.ogg` [0.00-0.59s] |
+| Audio/step/glass_01.wav | <https://opengameart.org/content/footsteps-leather-cloth-armor> | HaelDB | CC0 1.0 | `footsteps.zip -> footsteps/step_metal (2).ogg` [0.00-0.25s] |
+| &nbsp;&nbsp;+ layer | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactGlass_light_000.ogg` [0.00-0.23s] |
+| Audio/step/glass_02.wav | <https://opengameart.org/content/footsteps-leather-cloth-armor> | HaelDB | CC0 1.0 | `footsteps.zip -> footsteps/step_metal (3).ogg` [0.00-0.26s] |
+| &nbsp;&nbsp;+ layer | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactGlass_light_002.ogg` [0.00-0.21s] |
+| Audio/step/glass_03.wav | <https://opengameart.org/content/footsteps-leather-cloth-armor> | HaelDB | CC0 1.0 | `footsteps.zip -> footsteps/step_metal (4).ogg` [0.00-0.25s] |
+| &nbsp;&nbsp;+ layer | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactGlass_light_003.ogg` [0.00-0.21s] |
+| Audio/step/glass_04.wav | <https://opengameart.org/content/footsteps-leather-cloth-armor> | HaelDB | CC0 1.0 | `footsteps.zip -> footsteps/step_metal.ogg` [0.00-0.25s] |
+| &nbsp;&nbsp;+ layer | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactGlass_light_004.ogg` [0.00-0.21s] |
 | Audio/step/grass_01.wav | <https://opengameart.org/content/fantozzis-footsteps-grasssand-stone> | qubodup | CC0 1.0 | `Fantozzi-footsteps.7z -> Fantozzi-footsteps/ogg/Fantozzi-SandL1.ogg` [0.00-0.44s] |
 | Audio/step/grass_02.wav | <https://opengameart.org/content/fantozzis-footsteps-grasssand-stone> | qubodup | CC0 1.0 | `Fantozzi-footsteps.7z -> Fantozzi-footsteps/ogg/Fantozzi-SandL3.ogg` [0.00-0.30s] |
 | Audio/step/grass_03.wav | <https://opengameart.org/content/fantozzis-footsteps-grasssand-stone> | qubodup | CC0 1.0 | `Fantozzi-footsteps.7z -> Fantozzi-footsteps/ogg/Fantozzi-SandR1.ogg` [0.00-0.41s] |

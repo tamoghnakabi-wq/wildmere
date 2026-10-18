@@ -976,6 +976,36 @@
    "channels": 1
   }
  ],
+ "break/water": [
+  {
+   "file": "Assets/Resources/Audio/break/water_01.wav",
+   "layers": [
+    {
+     "source": "oga_rd_water",
+     "file": "water-splash-slime-sfx.zip -> splash_05.ogg",
+     "t0": 0.0,
+     "t1": 1.177,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.9,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/break/water_02.wav",
+   "layers": [
+    {
+     "source": "oga_rd_water",
+     "file": "water-splash-slime-sfx.zip -> splash_11.ogg",
+     "t0": 0.0,
+     "t1": 1.127,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.9,
+   "channels": 1
+  }
+ ],
  "break/wood": [
   {
    "file": "Assets/Resources/Audio/break/wood_01.wav",
@@ -1624,6 +1654,36 @@
    "channels": 1
   }
  ],
+ "dig/water": [
+  {
+   "file": "Assets/Resources/Audio/dig/water_01.wav",
+   "layers": [
+    {
+     "source": "oga_rd_water",
+     "file": "water-splash-slime-sfx.zip -> splash_10.ogg",
+     "t0": 0.0,
+     "t1": 0.318,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.254,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/dig/water_02.wav",
+   "layers": [
+    {
+     "source": "oga_rd_water",
+     "file": "water-splash-slime-sfx.zip -> splash_09.ogg",
+     "t0": 0.0,
+     "t1": 0.36,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.228,
+   "channels": 1
+  }
+ ],
  "dig/wood": [
   {
    "file": "Assets/Resources/Audio/dig/wood_01.wav",
@@ -1939,11 +1999,10 @@
    "file": "Assets/Resources/Audio/place/dirt_01.wav",
    "layers": [
     {
-     "source": "kenney_impact",
-     "file": "kenney_impact-sounds.zip -> Audio/impactSoft_heavy_000.ogg",
+     "source": "oga_rd_mud",
+     "file": "25-CC0-mud-sfx.zip -> mud_18.ogg",
      "t0": 0.0,
-     "t1": 0.527,
-     "varispeed": 0.92,
+     "t1": 0.589,
      "role": "take"
     }
    ],
@@ -1952,35 +2011,6 @@
   },
   {
    "file": "Assets/Resources/Audio/place/dirt_02.wav",
-   "layers": [
-    {
-     "source": "kenney_impact",
-     "file": "kenney_impact-sounds.zip -> Audio/impactSoft_heavy_001.ogg",
-     "t0": 0.0,
-     "t1": 0.569,
-     "varispeed": 1.05,
-     "role": "take"
-    }
-   ],
-   "seconds": 0.3,
-   "channels": 1
-  },
-  {
-   "file": "Assets/Resources/Audio/place/dirt_03.wav",
-   "layers": [
-    {
-     "source": "kenney_impact",
-     "file": "kenney_impact-sounds.zip -> Audio/impactSoft_heavy_003.ogg",
-     "t0": 0.0,
-     "t1": 0.541,
-     "role": "take"
-    }
-   ],
-   "seconds": 0.3,
-   "channels": 1
-  },
-  {
-   "file": "Assets/Resources/Audio/place/dirt_04.wav",
    "layers": [
     {
      "source": "oga_rd_mud",
@@ -1992,6 +2022,36 @@
     }
    ],
    "seconds": 0.146,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/dirt_03.wav",
+   "layers": [
+    {
+     "source": "oga_wet_towel",
+     "file": "wet_towel_on_floor.7z -> wet_towel_on_floor/wet_towel_on_floor-03.flac",
+     "t0": 0.0,
+     "t1": 0.555,
+     "varispeed": 0.85,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.3,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/dirt_04.wav",
+   "layers": [
+    {
+     "source": "oga_wet_towel",
+     "file": "wet_towel_on_floor.7z -> wet_towel_on_floor/wet_towel_on_floor-07.flac",
+     "t0": 0.0,
+     "t1": 0.671,
+     "varispeed": 0.85,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.3,
    "channels": 1
   }
  ],
@@ -2421,6 +2481,36 @@
     }
    ],
    "seconds": 0.166,
+   "channels": 1
+  }
+ ],
+ "place/water": [
+  {
+   "file": "Assets/Resources/Audio/place/water_01.wav",
+   "layers": [
+    {
+     "source": "oga_rd_water",
+     "file": "water-splash-slime-sfx.zip -> splash_02.ogg",
+     "t0": 0.0,
+     "t1": 0.718,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.48,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/place/water_02.wav",
+   "layers": [
+    {
+     "source": "oga_rd_water",
+     "file": "water-splash-slime-sfx.zip -> splash_08.ogg",
+     "t0": 0.0,
+     "t1": 0.693,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.48,
    "channels": 1
   }
  ],
@@ -2896,6 +2986,92 @@
     }
    ],
    "seconds": 0.36,
+   "channels": 1
+  }
+ ],
+ "step/glass": [
+  {
+   "file": "Assets/Resources/Audio/step/glass_01.wav",
+   "layers": [
+    {
+     "source": "oga_haeldb_steps",
+     "file": "footsteps.zip -> footsteps/step_metal (2).ogg",
+     "t0": 0.0,
+     "t1": 0.247,
+     "role": "take"
+    },
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactGlass_light_000.ogg",
+     "t0": 0.0,
+     "t1": 0.231,
+     "role": "tick"
+    }
+   ],
+   "seconds": 0.247,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/glass_02.wav",
+   "layers": [
+    {
+     "source": "oga_haeldb_steps",
+     "file": "footsteps.zip -> footsteps/step_metal (3).ogg",
+     "t0": 0.0,
+     "t1": 0.263,
+     "role": "take"
+    },
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactGlass_light_002.ogg",
+     "t0": 0.0,
+     "t1": 0.207,
+     "role": "tick"
+    }
+   ],
+   "seconds": 0.263,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/glass_03.wav",
+   "layers": [
+    {
+     "source": "oga_haeldb_steps",
+     "file": "footsteps.zip -> footsteps/step_metal (4).ogg",
+     "t0": 0.0,
+     "t1": 0.247,
+     "role": "take"
+    },
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactGlass_light_003.ogg",
+     "t0": 0.0,
+     "t1": 0.207,
+     "role": "tick"
+    }
+   ],
+   "seconds": 0.247,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/step/glass_04.wav",
+   "layers": [
+    {
+     "source": "oga_haeldb_steps",
+     "file": "footsteps.zip -> footsteps/step_metal.ogg",
+     "t0": 0.0,
+     "t1": 0.247,
+     "role": "take"
+    },
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactGlass_light_004.ogg",
+     "t0": 0.0,
+     "t1": 0.207,
+     "role": "tick"
+    }
+   ],
+   "seconds": 0.247,
    "channels": 1
   }
  ],
