@@ -82,7 +82,6 @@ namespace Wildmere.UI
         public WmSwitch StarterKit { get; private set; }
         public WmChoice DayLength { get; private set; }
         Label mDayHint;
-        static readonly string[] kDayKeys = { "short", "normal", "long" };
         static readonly int[] kDayMinutes = { 10, 20, 40 };
 
         public override void Build()
@@ -169,11 +168,11 @@ namespace Wildmere.UI
         public Dictionary<string, object> WorldSettings()
         {
             int i = Mathf.Clamp(DayLength.Index, 0, 2);
+            // Contract with GameRoot.NewWorld: "starterKit" (bool) and "dayLengthMinutes" (double).
             return new Dictionary<string, object>
             {
                 { "starterKit", StarterKit.Value },
-                { "dayLength", kDayKeys[i] },
-                { "dayLengthSeconds", (double)(kDayMinutes[i] * 60) },
+                { "dayLengthMinutes", (double)kDayMinutes[i] },
             };
         }
 
