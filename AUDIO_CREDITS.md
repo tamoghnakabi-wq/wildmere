@@ -8,6 +8,8 @@ Files marked *PD-self* were released by their recordist with a plain
 public-domain dedication ("I release this work into the public domain ...
 if not legally possible, I grant anyone the right to use this work for any
 purpose, without any conditions"), which is equivalent in effect to CC0.
+The one *PD-US-gov* file is a U.S. Fish and Wildlife Service recording, public
+domain as a work of the U.S. federal government.
 
 Processing (cutting, filtering, loudness, looping, layering) is done by
 `art-source/audio/build.py`; `art-source/audio/fetch.py` re-downloads every
@@ -26,17 +28,27 @@ source and `art-source/audio/sources.json` records file hashes.
 | `kenney_ui` | UI Audio | Kenney (kenney.nl) | CC0 1.0 | <https://kenney.nl/assets/ui-audio> |
 | `oga_boulder` | Moving Boulder | themightyglider | CC0 1.0 | <https://opengameart.org/content/moving-boulder> |
 | `oga_bubbles` | Bubble Sound Effects | BMacZero | CC0 1.0 | <https://opengameart.org/content/bubble-sound-effects> |
+| `oga_catching_fire` | Catching fire | themightyglider | CC0 1.0 | <https://opengameart.org/content/catching-fire> |
 | `oga_cave_in` | Cave In | StarNinjas | CC0 1.0 | <https://opengameart.org/content/cave-in> |
 | `oga_corsica_snow` | 42 Snow and Gravel Footsteps | qubodup | CC0 1.0 | <https://opengameart.org/content/42-snow-and-gravel-footsteps> |
 | `oga_crickets_loop` | Crickets Ambient Noise - loopable | Wolfgang_ | CC0 1.0 | <https://opengameart.org/content/crickets-ambient-noise-loopable> |
 | `oga_drip_loop` | Dripping water loop | qubodup | CC0 1.0 | <https://opengameart.org/content/dripping-water-loop> |
+| `oga_emopreben_pain` | Pain sounds by EmoPreben | EmoPreben | CC0 1.0 | <https://opengameart.org/content/pain-sounds-by-emopreben> |
+| `oga_emopreben_player` | Playersounds 1 - By Emopreben | EmoPreben | CC0 1.0 | <https://opengameart.org/content/playersounds-1-by-emopreben> |
 | `oga_ezwa_splash` | 6 Short water splashes | qubodup | CC0 1.0 | <https://opengameart.org/content/6-short-water-splashes> |
 | `oga_fantozzi` | Fantozzi's Footsteps (Grass/Sand & Stone) | qubodup | CC0 1.0 | <https://opengameart.org/content/fantozzis-footsteps-grasssand-stone> |
+| `oga_fire_crackling` | Fire Crackling | AntumDeluge | CC0 1.0 | <https://opengameart.org/content/fire-crackling> |
+| `oga_fireplace` | Fireplace Sound loop | PagDev | CC0 1.0 | <https://opengameart.org/content/fireplace-sound-loop> |
+| `oga_flare` | Flare ignition | qubodup | CC0 1.0 | <https://opengameart.org/content/flare-ignition> |
 | `oga_glass_break` | Glass Break | TinyWorlds | CC0 1.0 | <https://opengameart.org/content/glass-break> |
 | `oga_haeldb_random` | Random Sounds Samples | HaelDB | CC0 1.0 | <https://opengameart.org/content/random-sounds-samples> |
+| `oga_haeldb_steps` | Footsteps Leather, Cloth, Armor | HaelDB | CC0 1.0 | <https://opengameart.org/content/footsteps-leather-cloth-armor> |
 | `oga_ice_shatter` | Ice breaking/shattering | IgnasD | CC0 1.0 | <https://opengameart.org/content/ice-breakingshattering> |
 | `oga_ignasd_snow` | Walking on snow sound | IgnasD | CC0 1.0 | <https://opengameart.org/content/walking-on-snow-sound> |
 | `oga_ignasd_steps` | Step sound (walking) | IgnasD | CC0 1.0 | <https://opengameart.org/content/step-sound-walking> |
+| `oga_isaiah_birds` | Ambient Bird Sounds | isaiah658 | CC0 1.0 | <https://opengameart.org/content/ambient-bird-sounds> |
+| `oga_jump_landing` | Jump Landing | Macro | CC0 1.0 | <https://opengameart.org/content/jump-landing> |
+| `oga_jumpland` | Jump Landing Sound | qubodup | CC0 1.0 | <https://opengameart.org/content/jump-landing-sound> |
 | `oga_kdd_steps` | Different steps on wood, stone, leaves, gravel and mud | TinyWorlds | CC0 1.0 | <https://opengameart.org/content/different-steps-on-wood-stone-leaves-gravel-and-mud> |
 | `oga_nu_crunch` | 5 break, crunch impacts | qubodup | CC0 1.0 | <https://opengameart.org/content/5-break-crunch-impacts> |
 | `oga_nu_wood` | 35 wooden cracks/hits/destructions | qubodup | CC0 1.0 | <https://opengameart.org/content/35-wooden-crackshitsdestructions> |
@@ -51,9 +63,11 @@ source and `art-source/audio/sources.json` records file hashes.
 | `oga_rain_kresiek2` | AMB Rain Loop 2 | Kresiek The Furry | CC0 1.0 | <https://opengameart.org/content/amb-rain-loop-2> |
 | `oga_rain_thunder` | Rain + Long Thunder | WuxiaScrub | CC0 1.0 | <https://opengameart.org/content/rain-long-thunder> |
 | `oga_rain_ylmir` | Rain (loopable) | Ylmir | CC0 1.0 | <https://opengameart.org/content/rain-loopable> |
+| `oga_rd_100` | 100 CC0 SFX | rubberduck | CC0 1.0 | <https://opengameart.org/content/100-cc0-sfx> |
 | `oga_rd_100v2` | 100 CC0 SFX #2 | rubberduck | CC0 1.0 | <https://opengameart.org/content/100-cc0-sfx-2> |
 | `oga_rd_breaking` | 75 CC0 breaking / falling / hit sfx | rubberduck | CC0 1.0 | <https://opengameart.org/content/75-cc0-breaking-falling-hit-sfx> |
 | `oga_rd_mud` | 25 CC0 mud sfx | rubberduck | CC0 1.0 | <https://opengameart.org/content/25-cc0-mud-sfx> |
+| `oga_rd_rpg` | 80 CC0 RPG SFX | rubberduck | CC0 1.0 | <https://opengameart.org/content/80-cc0-rpg-sfx> |
 | `oga_rd_water` | 40 CC0 water / splash / slime SFX | rubberduck | CC0 1.0 | <https://opengameart.org/content/40-cc0-water-splash-slime-sfx> |
 | `oga_rd_woodmetal` | 100 CC0 metal and wood SFX | rubberduck | CC0 1.0 | <https://opengameart.org/content/100-cc0-metal-and-wood-sfx> |
 | `oga_rock_break` | Breaking Rock | themightyglider | CC0 1.0 | <https://opengameart.org/content/breaking-rock> |
@@ -65,8 +79,11 @@ source and `art-source/audio/sources.json` records file hashes.
 | `oga_underwater` | underwater or space engine rumble | gmason | CC0 1.0 | <https://opengameart.org/content/underwater-or-space-engine-rumble> |
 | `oga_vistula` | Sea and river wave sounds | RandomMind | CC0 1.0 | <https://opengameart.org/content/sea-and-river-wave-sounds> |
 | `oga_water_drops` | Water Drops | CeoxBlackj | CC0 1.0 | <https://opengameart.org/content/water-drops> |
+| `oga_wet_towel` | 12 wet towel hitting/falling/punching floor sounds | qubodup | CC0 1.0 | <https://opengameart.org/content/12-wet-towel-hittingfallingpunching-floor-sounds> |
+| `oga_workshop` | 68 Workshop Sounds | bart | CC0 1.0 | <https://opengameart.org/content/68-workshop-sounds> |
 | `pd_caesar_thunder` | Rain and thunder | Caesar | PD-self | <https://commons.wikimedia.org/wiki/File:Rain_and_thunder.ogg> |
-| `pd_ezwa_storm` | Rain, thunder and other noises / Rain, thunder and birds / Rain and thunder / Thunder and rain on a veranda | ezwa | PD-self | <https://commons.wikimedia.org/wiki/File:Rain_thunder_and_other_noises.ogg> |
+| `pd_elk` | Elk bellow (U.S. Fish and Wildlife Service sound library, 52elkbellow) | U.S. Fish and Wildlife Service | PD-US-gov | <https://commons.wikimedia.org/wiki/File:Elkbellow.ogg> |
+| `pd_ezwa_storm` | Rain, thunder and other noises / Rain, thunder and birds / Rain and thunder / Thunder and rain on a veranda | ezwa | PD-self | <https://commons.wikimedia.org/wiki/File:Rain_and_thunder_(1).ogg> <https://commons.wikimedia.org/wiki/File:Rain_thunder_and_birds.ogg> <https://commons.wikimedia.org/wiki/File:Rain_thunder_and_other_noises.ogg> <https://commons.wikimedia.org/wiki/File:Thunder_and_rain_on_a_v.ogg> |
 | `pd_tonitrus` | Tonitrus (thunder, Southern Finland) | Mysid | PD-self | <https://commons.wikimedia.org/wiki/File:Tonitrus.ogg> |
 
 ## Per-file provenance
@@ -105,6 +122,12 @@ every recording that went into them.
 | &nbsp;&nbsp;+ layer | <https://opengameart.org/content/40-cc0-water-splash-slime-sfx> | rubberduck | CC0 1.0 | `water-splash-slime-sfx.zip -> loop_bubbles_02.ogg` [0.00-7.33s] |
 | Audio/amb/wind_strong_01.ogg | <https://opengameart.org/content/park-ambiences> | Thimras | CC0 1.0 | `park_ambience_wind.wav` [100.00-170.00s] |
 | &nbsp;&nbsp;+ layer | <https://commons.wikimedia.org/wiki/File:Howling_wind.ogg> | Tvabutzku1234 | CC0 1.0 | `Howling_wind.ogg` [20.00-128.31s] |
+| Audio/bird/chirp_01.wav | <https://opengameart.org/content/ambient-bird-sounds> | isaiah658 | CC0 1.0 | `birds-isaiah658_0.ogg` [1.45-4.03s] |
+| Audio/bird/chirp_02.wav | <https://opengameart.org/content/ambient-bird-sounds> | isaiah658 | CC0 1.0 | `birds-isaiah658_0.ogg` [6.75-9.33s] |
+| Audio/bird/chirp_03.wav | <https://opengameart.org/content/ambient-bird-sounds> | isaiah658 | CC0 1.0 | `birds-isaiah658_0.ogg` [11.41-13.99s] |
+| Audio/bird/chirp_04.wav | <https://opengameart.org/content/ambient-bird-sounds> | isaiah658 | CC0 1.0 | `birds-isaiah658_0.ogg` [15.35-17.46s] |
+| Audio/bird/chirp_05.wav | <https://opengameart.org/content/ambient-bird-sounds> | isaiah658 | CC0 1.0 | `birds-isaiah658_0.ogg` [20.49-22.16s] |
+| Audio/bird/chirp_06.wav | <https://opengameart.org/content/ambient-bird-sounds> | isaiah658 | CC0 1.0 | `birds-isaiah658_0.ogg` [23.99-26.52s] |
 | Audio/break/dirt_01.wav | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactSoft_heavy_000.ogg` [0.00-0.53s] |
 | &nbsp;&nbsp;+ layer | <https://opengameart.org/content/cave-in> | StarNinjas | CC0 1.0 | `cave_in_-_starninjas_0.ogg` [1.88-3.43s] |
 | Audio/break/dirt_02.wav | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactSoft_heavy_003.ogg` [0.00-0.54s] |
@@ -150,6 +173,7 @@ every recording that went into them.
 | Audio/break/wood_03.wav | <https://opengameart.org/content/35-wooden-crackshitsdestructions> | qubodup | CC0 1.0 | `independent_nu_ljudbank-wood_crack_hit_destruction.7z -> wood_impact/crack09.mp3.flac` [0.07-1.60s] |
 | Audio/break/wood_04.wav | <https://opengameart.org/content/100-cc0-metal-and-wood-sfx> | rubberduck | CC0 1.0 | `100-CC0-wood-metal-SFX.zip -> wood_breaking_01.ogg` [0.00-0.56s] |
 | Audio/break/wood_05.wav | <https://opengameart.org/content/75-cc0-breaking-falling-hit-sfx> | rubberduck | CC0 1.0 | `sfx_breaking_and_falling.zip -> bfh1_wood_breaking_03.ogg` [0.00-0.49s] |
+| Audio/deer/call_01.wav | <https://commons.wikimedia.org/wiki/File:Elkbellow.ogg> | U.S. Fish and Wildlife Service | PD-US-gov | `Elkbellow.ogg` [0.00-4.60s] |
 | Audio/dig/dirt_01.wav | <https://opengameart.org/content/shovel-sound> | themightyglider | CC0 1.0 | `shovel_0.ogg` [0.00-0.24s] |
 | Audio/dig/dirt_02.wav | <https://opengameart.org/content/25-cc0-mud-sfx> | rubberduck | CC0 1.0 | `25-CC0-mud-sfx.zip -> mud_03.ogg` [0.00-0.73s] |
 | Audio/dig/dirt_03.wav | <https://opengameart.org/content/25-cc0-mud-sfx> | rubberduck | CC0 1.0 | `25-CC0-mud-sfx.zip -> mud_19.ogg` [0.00-0.81s] |
@@ -195,6 +219,19 @@ every recording that went into them.
 | Audio/dig/wood_04.wav | <https://opengameart.org/content/35-wooden-crackshitsdestructions> | qubodup | CC0 1.0 | `independent_nu_ljudbank-wood_crack_hit_destruction.7z -> wood_impact/impactwood10.mp3.flac` [0.00-1.53s] |
 | Audio/dig/wood_05.wav | <https://opengameart.org/content/35-wooden-crackshitsdestructions> | qubodup | CC0 1.0 | `independent_nu_ljudbank-wood_crack_hit_destruction.7z -> wood_impact/impactwood14.mp3.flac` [0.00-0.75s] |
 | Audio/dig/wood_06.wav | <https://opengameart.org/content/35-wooden-crackshitsdestructions> | qubodup | CC0 1.0 | `independent_nu_ljudbank-wood_crack_hit_destruction.7z -> wood_impact/impactwood24.mp3.flac` [0.06-1.51s] |
+| Audio/item/craft_01.wav | <https://opengameart.org/content/68-workshop-sounds> | bart | CC0 1.0 | `workshop.7z -> workshop/workshop - wood hammering.wav` [0.15-1.48s] |
+| Audio/item/craft_02.wav | <https://opengameart.org/content/68-workshop-sounds> | bart | CC0 1.0 | `workshop.7z -> workshop/workshop - wood hammering.wav` [3.98-5.30s] |
+| Audio/item/craft_03.wav | <https://opengameart.org/content/68-workshop-sounds> | bart | CC0 1.0 | `workshop.7z -> workshop/workshop - wood hammering.wav` [6.09-7.40s] |
+| Audio/item/pickup_01.wav | <https://opengameart.org/content/100-cc0-sfx> | rubberduck | CC0 1.0 | `100-CC0-SFX_0.zip -> plop_01.ogg` [0.00-0.30s] |
+| Audio/item/pickup_02.wav | <https://opengameart.org/content/100-cc0-sfx> | rubberduck | CC0 1.0 | `100-CC0-SFX_0.zip -> plop_02.ogg` [0.00-0.36s] |
+| Audio/item/pickup_03.wav | <https://kenney.nl/assets/interface-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_interface-sounds.zip -> Audio/pluck_001.ogg` [0.00-0.10s] |
+| Audio/item/pickup_04.wav | <https://opengameart.org/content/80-cc0-rpg-sfx> | rubberduck | CC0 1.0 | `80-CC0-RPG-SFX_0.zip -> item_gem_01.ogg` [0.00-0.25s] |
+| Audio/item/tool_break_01.wav | <https://opengameart.org/content/35-wooden-crackshitsdestructions> | qubodup | CC0 1.0 | `independent_nu_ljudbank-wood_crack_hit_destruction.7z -> wood_impact/crack05.mp3.flac` [0.01-1.54s] |
+| &nbsp;&nbsp;+ layer | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactMetal_light_002.ogg` [0.00-0.23s] |
+| &nbsp;&nbsp;+ layer | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactMetal_light_004.ogg` [0.00-0.21s] |
+| Audio/item/tool_break_02.wav | <https://opengameart.org/content/100-cc0-metal-and-wood-sfx> | rubberduck | CC0 1.0 | `100-CC0-wood-metal-SFX.zip -> wood_cracking_02.ogg` [0.00-0.25s] |
+| &nbsp;&nbsp;+ layer | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactMetal_light_001.ogg` [0.00-0.25s] |
+| &nbsp;&nbsp;+ layer | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactMetal_light_000.ogg` [0.00-0.37s] |
 | Audio/place/dirt_01.wav | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactSoft_heavy_000.ogg` [0.00-0.53s, varispeed 0.92] |
 | Audio/place/dirt_02.wav | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactSoft_heavy_001.ogg` [0.00-0.57s, varispeed 1.05] |
 | Audio/place/dirt_03.wav | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactSoft_heavy_003.ogg` [0.00-0.54s] |
@@ -239,6 +276,30 @@ every recording that went into them.
 | Audio/place/wood_04.wav | <https://opengameart.org/content/wood-and-metal-sound-effects-volume-2> | Ogrebane | CC0 1.0 | `wood_and_metal_vol.2_0.zip -> wood_and_metal_vol.2/wood16.aif` [0.00-0.62s] |
 | Audio/place/wood_05.wav | <https://opengameart.org/content/100-cc0-metal-and-wood-sfx> | rubberduck | CC0 1.0 | `100-CC0-wood-metal-SFX.zip -> wood_hammer_01.ogg` [0.00-0.31s] |
 | Audio/place/wood_06.wav | <https://opengameart.org/content/100-cc0-metal-and-wood-sfx> | rubberduck | CC0 1.0 | `100-CC0-wood-metal-SFX.zip -> wood_close_02.ogg` [0.00-0.44s] |
+| Audio/player/hurt_01.wav | <https://opengameart.org/content/playersounds-1-by-emopreben> | EmoPreben | CC0 1.0 | `Playersounds - Wav.zip -> Playersounds - Wav/Playersounds - Track 5 - Hurt1.wav` [0.00-0.75s] |
+| Audio/player/hurt_02.wav | <https://opengameart.org/content/playersounds-1-by-emopreben> | EmoPreben | CC0 1.0 | `Playersounds - Wav.zip -> Playersounds - Wav/Playersounds - Track 6 - Hurt2.wav` [0.00-0.82s] |
+| Audio/player/hurt_03.wav | <https://opengameart.org/content/playersounds-1-by-emopreben> | EmoPreben | CC0 1.0 | `Playersounds - Wav.zip -> Playersounds - Wav/Playersounds - Track 7 - Hurt3.wav` [0.00-1.07s] |
+| Audio/player/hurt_04.wav | <https://opengameart.org/content/playersounds-1-by-emopreben> | EmoPreben | CC0 1.0 | `Playersounds - Wav.zip -> Playersounds - Wav/Playersounds - Track 8 - Hurt4.wav` [0.00-0.88s] |
+| Audio/player/hurt_05.wav | <https://opengameart.org/content/pain-sounds-by-emopreben> | EmoPreben | CC0 1.0 | `painsounds.zip -> Painsounds v2 - Track 3 - Huuurh.ogg` [0.00-0.69s] |
+| Audio/player/hurt_06.wav | <https://opengameart.org/content/pain-sounds-by-emopreben> | EmoPreben | CC0 1.0 | `painsounds.zip -> Painsounds v2 - Track 4 - Arrggh .ogg` [0.00-0.63s] |
+| Audio/player/jump_01.wav | <https://kenney.nl/assets/rpg-audio> | Kenney (kenney.nl) | CC0 1.0 | `kenney_rpg-audio.zip -> Audio/cloth1.ogg` [0.00-0.66s] |
+| Audio/player/jump_02.wav | <https://kenney.nl/assets/rpg-audio> | Kenney (kenney.nl) | CC0 1.0 | `kenney_rpg-audio.zip -> Audio/cloth2.ogg` [0.00-0.41s] |
+| Audio/player/jump_03.wav | <https://kenney.nl/assets/rpg-audio> | Kenney (kenney.nl) | CC0 1.0 | `kenney_rpg-audio.zip -> Audio/cloth3.ogg` [0.00-0.48s] |
+| Audio/player/jump_04.wav | <https://kenney.nl/assets/rpg-audio> | Kenney (kenney.nl) | CC0 1.0 | `kenney_rpg-audio.zip -> Audio/cloth4.ogg` [0.00-0.38s] |
+| Audio/player/jump_05.wav | <https://opengameart.org/content/footsteps-leather-cloth-armor> | HaelDB | CC0 1.0 | `footsteps.zip -> footsteps/step_cloth2.ogg` [0.00-0.25s] |
+| Audio/player/land_hard_01.wav | <https://opengameart.org/content/jump-landing> | Macro | CC0 1.0 | `Jump 1.wav` [0.00-0.59s] |
+| &nbsp;&nbsp;+ layer | <https://kenney.nl/assets/rpg-audio> | Kenney (kenney.nl) | CC0 1.0 | `kenney_rpg-audio.zip -> Audio/cloth3.ogg` [0.00-0.48s] |
+| Audio/player/land_hard_02.wav | <https://opengameart.org/content/jump-landing-sound> | qubodup | CC0 1.0 | `jumpland.wav` [0.00-0.41s] |
+| Audio/player/land_hard_03.wav | <https://opengameart.org/content/12-wet-towel-hittingfallingpunching-floor-sounds> | qubodup | CC0 1.0 | `wet_towel_on_floor.7z -> wet_towel_on_floor/wet_towel_on_floor-05.flac` [0.00-0.40s] |
+| &nbsp;&nbsp;+ layer | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactSoft_heavy_003.ogg` [0.00-0.54s] |
+| Audio/rabbit/hop_01.wav | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/footstep_carpet_000.ogg` [0.00-0.17s] |
+| &nbsp;&nbsp;+ layer | <https://opengameart.org/content/20-rustles-dry-leaves> | qubodup | CC0 1.0 | `qubodup-rustle.7z -> rustle/rustle16.flac` [0.00-0.12s] |
+| Audio/rabbit/hop_02.wav | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/footstep_carpet_001.ogg` [0.00-0.14s] |
+| &nbsp;&nbsp;+ layer | <https://opengameart.org/content/20-rustles-dry-leaves> | qubodup | CC0 1.0 | `qubodup-rustle.7z -> rustle/rustle17.flac` [0.00-0.12s] |
+| Audio/rabbit/hop_03.wav | <https://opengameart.org/content/footsteps-leather-cloth-armor> | HaelDB | CC0 1.0 | `footsteps.zip -> footsteps/step_cloth1.ogg` [0.00-0.25s] |
+| &nbsp;&nbsp;+ layer | <https://opengameart.org/content/20-rustles-dry-leaves> | qubodup | CC0 1.0 | `qubodup-rustle.7z -> rustle/rustle19.flac` [0.00-0.10s] |
+| Audio/rabbit/hop_04.wav | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactSoft_medium_000.ogg` [0.00-0.12s, varispeed 1.3] |
+| &nbsp;&nbsp;+ layer | <https://opengameart.org/content/20-rustles-dry-leaves> | qubodup | CC0 1.0 | `qubodup-rustle.7z -> rustle/rustle15.flac` [0.00-0.10s] |
 | Audio/step/dirt_01.wav | <https://opengameart.org/content/fantozzis-footsteps-grasssand-stone> | qubodup | CC0 1.0 | `Fantozzi-footsteps.7z -> Fantozzi-footsteps/ogg/Fantozzi-SandL2.ogg` [0.00-0.32s] |
 | Audio/step/dirt_02.wav | <https://opengameart.org/content/fantozzis-footsteps-grasssand-stone> | qubodup | CC0 1.0 | `Fantozzi-footsteps.7z -> Fantozzi-footsteps/ogg/Fantozzi-SandR2.ogg` [0.00-0.34s] |
 | Audio/step/dirt_03.wav | <https://opengameart.org/content/different-steps-on-wood-stone-leaves-gravel-and-mud> | TinyWorlds | CC0 1.0 | `[kdd]DifferentSteps_0.zip -> mud02.ogg` [0.00-0.26s] |
@@ -297,13 +358,19 @@ every recording that went into them.
 | Audio/thunder/far_01.wav | <https://commons.wikimedia.org/wiki/File:Rain_thunder_and_other_noises.ogg> | ezwa | PD-self | `Rain_thunder_and_other_noises.ogg` [6.50-21.00s] |
 | Audio/thunder/far_02.wav | <https://commons.wikimedia.org/wiki/File:Rain_thunder_and_other_noises.ogg> | ezwa | PD-self | `Rain_thunder_and_other_noises.ogg` [64.50-80.00s] |
 | Audio/thunder/far_03.wav | <https://commons.wikimedia.org/wiki/File:Rain_thunder_and_other_noises.ogg> | ezwa | PD-self | `Rain_thunder_and_other_noises.ogg` [141.00-158.00s] |
-| Audio/thunder/far_04.wav | <https://commons.wikimedia.org/wiki/File:Rain_thunder_and_other_noises.ogg> | ezwa | PD-self | `Rain_and_thunder_(1).ogg` [0.00-15.00s] |
+| Audio/thunder/far_04.wav | <https://commons.wikimedia.org/wiki/File:Rain_and_thunder_(1).ogg> | ezwa | PD-self | `Rain_and_thunder_(1).ogg` [0.00-15.00s] |
 | Audio/thunder/far_05.wav | <https://commons.wikimedia.org/wiki/File:Tonitrus.ogg> | Mysid | PD-self | `Tonitrus.ogg` [20.50-32.20s] |
 | Audio/thunder/near_01.wav | <https://opengameart.org/content/rain-long-thunder> | WuxiaScrub | CC0 1.0 | `rain-thunder.ogg` [20.30-36.00s] |
 | Audio/thunder/near_02.wav | <https://opengameart.org/content/100-cc0-sfx-2> | rubberduck | CC0 1.0 | `sfx_100_v2.zip -> sfx100v2_thunder_01.ogg` [0.00-5.26s] |
-| Audio/thunder/near_03.wav | <https://commons.wikimedia.org/wiki/File:Rain_thunder_and_other_noises.ogg> | ezwa | PD-self | `Thunder_and_rain_on_a_v.ogg` [2.60-19.00s] |
+| Audio/thunder/near_03.wav | <https://commons.wikimedia.org/wiki/File:Thunder_and_rain_on_a_v.ogg> | ezwa | PD-self | `Thunder_and_rain_on_a_v.ogg` [2.60-19.00s] |
 | Audio/thunder/near_04.wav | <https://commons.wikimedia.org/wiki/File:Rain_and_thunder.ogg> | Caesar | PD-self | `Rain_and_thunder.ogg` [1.40-16.50s] |
-| Audio/thunder/near_05.wav | <https://commons.wikimedia.org/wiki/File:Rain_thunder_and_other_noises.ogg> | ezwa | PD-self | `Rain_thunder_and_birds.ogg` [3.00-17.50s] |
+| Audio/thunder/near_05.wav | <https://commons.wikimedia.org/wiki/File:Rain_thunder_and_birds.ogg> | ezwa | PD-self | `Rain_thunder_and_birds.ogg` [3.00-17.50s] |
+| Audio/torch/crackle_01.wav | <https://opengameart.org/content/fireplace-sound-loop> | PagDev | CC0 1.0 | `fire.wav` [0.00-29.26s] |
+| &nbsp;&nbsp;+ layer | <https://opengameart.org/content/fire-crackling> | AntumDeluge | CC0 1.0 | `fire-1.wav` [0.00-2.87s] |
+| Audio/torch/place_01.wav | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactWood_light_002.ogg` [0.00-0.26s] |
+| &nbsp;&nbsp;+ layer | <https://opengameart.org/content/flare-ignition> | qubodup | CC0 1.0 | `ignition.flac` [0.00-1.17s] |
+| Audio/torch/place_02.wav | <https://opengameart.org/content/80-cc0-rpg-sfx> | rubberduck | CC0 1.0 | `80-CC0-RPG-SFX_0.zip -> item_wood_02.ogg` [0.00-0.26s] |
+| &nbsp;&nbsp;+ layer | <https://opengameart.org/content/catching-fire> | themightyglider | CC0 1.0 | `flame_0.ogg` [0.00-0.45s] |
 | Audio/ui/click_01.wav | <https://kenney.nl/assets/ui-audio> | Kenney (kenney.nl) | CC0 1.0 | `kenney_ui-audio.zip -> Audio/click1.ogg` [0.00-0.09s] |
 | Audio/ui/click_02.wav | <https://kenney.nl/assets/ui-audio> | Kenney (kenney.nl) | CC0 1.0 | `kenney_ui-audio.zip -> Audio/click3.ogg` [0.00-0.08s] |
 | Audio/ui/click_03.wav | <https://kenney.nl/assets/interface-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_interface-sounds.zip -> Audio/select_001.ogg` [0.00-0.04s] |
@@ -319,3 +386,10 @@ every recording that went into them.
 | Audio/ui/hover_02.wav | <https://kenney.nl/assets/ui-audio> | Kenney (kenney.nl) | CC0 1.0 | `kenney_ui-audio.zip -> Audio/rollover5.ogg` [0.00-0.11s] |
 | Audio/ui/open_01.wav | <https://kenney.nl/assets/rpg-audio> | Kenney (kenney.nl) | CC0 1.0 | `kenney_rpg-audio.zip -> Audio/handleSmallLeather.ogg` [0.00-0.34s] |
 | Audio/ui/open_02.wav | <https://kenney.nl/assets/rpg-audio> | Kenney (kenney.nl) | CC0 1.0 | `kenney_rpg-audio.zip -> Audio/bookOpen.ogg` [0.00-0.15s] |
+| Audio/water/splash_in_01.wav | <https://opengameart.org/content/40-cc0-water-splash-slime-sfx> | rubberduck | CC0 1.0 | `water-splash-slime-sfx.zip -> splash_01.ogg` [0.00-1.38s] |
+| Audio/water/splash_in_02.wav | <https://opengameart.org/content/40-cc0-water-splash-slime-sfx> | rubberduck | CC0 1.0 | `water-splash-slime-sfx.zip -> splash_07.ogg` [0.00-1.26s] |
+| Audio/water/splash_in_03.wav | <https://opengameart.org/content/water-splash-and-sand-footsteps> | Peludo | CC0 1.0 | `splash1_0.wav` [0.00-2.56s] |
+| Audio/water/splash_in_04.wav | <https://opengameart.org/content/6-short-water-splashes> | qubodup | CC0 1.0 | `ezwa-water_splash.7z -> ezwa-water_splash/water_splash-01.flac` [0.00-1.12s] |
+| Audio/water/splash_out_01.wav | <https://opengameart.org/content/water-splash-and-sand-footsteps> | Peludo | CC0 1.0 | `splash2_0.wav` [0.00-1.71s] |
+| Audio/water/splash_out_02.wav | <https://opengameart.org/content/40-cc0-water-splash-slime-sfx> | rubberduck | CC0 1.0 | `water-splash-slime-sfx.zip -> splash_13.ogg` [0.00-0.76s] |
+| Audio/water/splash_out_03.wav | <https://opengameart.org/content/6-short-water-splashes> | qubodup | CC0 1.0 | `ezwa-water_splash.7z -> ezwa-water_splash/water_splash-04.flac` [0.00-1.31s] |

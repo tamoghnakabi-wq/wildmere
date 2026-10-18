@@ -328,6 +328,16 @@ def build_one(name, R):
     return manifest, entries
 
 
+def short_licence(lic):
+    if lic.startswith("CC0"):
+        return "CC0 1.0"
+    if "PD-self" in lic:
+        return "PD-self"
+    if "federal government" in lic:
+        return "PD-US-gov"
+    return lic
+
+
 def credits(prov, sources):
     lines = ["# Audio credits", "",
              "Every sound in Wildmere is a real recording made by the people credited",
@@ -338,6 +348,8 @@ def credits(prov, sources):
              "public-domain dedication (\"I release this work into the public domain ...",
              "if not legally possible, I grant anyone the right to use this work for any",
              "purpose, without any conditions\"), which is equivalent in effect to CC0.",
+             "The one *PD-US-gov* file is a U.S. Fish and Wildlife Service recording, public",
+             "domain as a work of the U.S. federal government.",
              "",
              "Processing (cutting, filtering, loudness, looping, layering) is done by",
              "`art-source/audio/build.py`; `art-source/audio/fetch.py` re-downloads every",
@@ -345,10 +357,19 @@ def credits(prov, sources):
              "", "## Sources", "",
              "| Id | Title | Author | Licence | Page |", "|---|---|---|---|---|"]
     used = sorted({l["source"] for v in prov.values() for e in v for l in e["layers"]})
+    def page_of(s, fname):
+        # Commons hosts one file per page, so point at that file's own page
+        if s["site"] == "commons.wikimedia.org":
+            return "https://commons.wikimedia.org/wiki/File:" + fname.replace(" ", "_")
+        return s["page"]
+
     for sid in used:
         s = sources[sid]
-        lic = "CC0 1.0" if s["licence"].startswith("CC0") else "PD-self"
-        lines.append(f"| `{sid}` | {s['title']} | {s['author']} | {lic} | <{s['page']}> |")
+        lic = short_licence(s["licence"])
+        pages = sorted({page_of(s, l["file"]) for v in prov.values() for e in v for l in e["layers"]
+                        if l["source"] == sid})
+        lines.append(f"| `{sid}` | {s['title']} | {s['author']} | {lic} | " +
+                     " ".join(f"<{p}>" for p in pages) + " |")
     lines += ["", "## Per-file provenance", "",
               "Time ranges are in seconds within the original file. Layered sounds list",
               "every recording that went into them.", "",
@@ -358,11 +379,11 @@ def credits(prov, sources):
         for e in prov[name]:
             for k, l in enumerate(e["layers"]):
                 s = sources[l["source"]]
-                lic = "CC0 1.0" if s["licence"].startswith("CC0") else "PD-self"
+                lic = short_licence(s["licence"])
                 f = e["file"].replace("Assets/Resources/", "") if k == 0 else "&nbsp;&nbsp;+ layer"
                 rng = f"{l['t0']:.2f}-{l['t1']:.2f}s"
                 extra = f", varispeed {l['varispeed']}" if "varispeed" in l else ""
-                lines.append(f"| {f} | <{s['page']}> | {s['author']} | {lic} | "
+                lines.append(f"| {f} | <{page_of(s, l['file'])}> | {s['author']} | {lic} | "
                              f"`{l['file']}` [{rng}{extra}] |")
     return "\n".join(lines) + "\n"
 

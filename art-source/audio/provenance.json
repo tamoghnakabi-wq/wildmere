@@ -364,6 +364,92 @@
    "channels": 2
   }
  ],
+ "bird/chirp": [
+  {
+   "file": "Assets/Resources/Audio/bird/chirp_01.wav",
+   "layers": [
+    {
+     "source": "oga_isaiah_birds",
+     "file": "birds-isaiah658_0.ogg",
+     "t0": 1.452,
+     "t1": 4.028,
+     "role": "take"
+    }
+   ],
+   "seconds": 2.5,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/bird/chirp_02.wav",
+   "layers": [
+    {
+     "source": "oga_isaiah_birds",
+     "file": "birds-isaiah658_0.ogg",
+     "t0": 6.752,
+     "t1": 9.328,
+     "role": "take"
+    }
+   ],
+   "seconds": 2.5,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/bird/chirp_03.wav",
+   "layers": [
+    {
+     "source": "oga_isaiah_birds",
+     "file": "birds-isaiah658_0.ogg",
+     "t0": 11.414,
+     "t1": 13.99,
+     "role": "take"
+    }
+   ],
+   "seconds": 2.5,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/bird/chirp_04.wav",
+   "layers": [
+    {
+     "source": "oga_isaiah_birds",
+     "file": "birds-isaiah658_0.ogg",
+     "t0": 15.346,
+     "t1": 17.456,
+     "role": "take"
+    }
+   ],
+   "seconds": 2.05,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/bird/chirp_05.wav",
+   "layers": [
+    {
+     "source": "oga_isaiah_birds",
+     "file": "birds-isaiah658_0.ogg",
+     "t0": 20.494,
+     "t1": 22.16,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.576,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/bird/chirp_06.wav",
+   "layers": [
+    {
+     "source": "oga_isaiah_birds",
+     "file": "birds-isaiah658_0.ogg",
+     "t0": 23.986,
+     "t1": 26.522,
+     "role": "take"
+    }
+   ],
+   "seconds": 2.39,
+   "channels": 1
+  }
+ ],
  "break/dirt": [
   {
    "file": "Assets/Resources/Audio/break/dirt_01.wav",
@@ -959,6 +1045,22 @@
     }
    ],
    "seconds": 0.312,
+   "channels": 1
+  }
+ ],
+ "deer/call": [
+  {
+   "file": "Assets/Resources/Audio/deer/call_01.wav",
+   "layers": [
+    {
+     "source": "pd_elk",
+     "file": "Elkbellow.ogg",
+     "t0": 0.0,
+     "t1": 4.6,
+     "role": "take"
+    }
+   ],
+   "seconds": 4.49,
    "channels": 1
   }
  ],
@@ -1608,6 +1710,166 @@
    "channels": 1
   }
  ],
+ "item/craft": [
+  {
+   "file": "Assets/Resources/Audio/item/craft_01.wav",
+   "layers": [
+    {
+     "source": "oga_workshop",
+     "file": "workshop.7z -> workshop/workshop - wood hammering.wav",
+     "t0": 0.15,
+     "t1": 1.48,
+     "role": "take"
+    }
+   ],
+   "seconds": 1.262,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/item/craft_02.wav",
+   "layers": [
+    {
+     "source": "oga_workshop",
+     "file": "workshop.7z -> workshop/workshop - wood hammering.wav",
+     "t0": 3.98,
+     "t1": 5.3,
+     "role": "take"
+    }
+   ],
+   "seconds": 1.278,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/item/craft_03.wav",
+   "layers": [
+    {
+     "source": "oga_workshop",
+     "file": "workshop.7z -> workshop/workshop - wood hammering.wav",
+     "t0": 6.09,
+     "t1": 7.4,
+     "role": "take"
+    }
+   ],
+   "seconds": 1.26,
+   "channels": 1
+  }
+ ],
+ "item/pickup": [
+  {
+   "file": "Assets/Resources/Audio/item/pickup_01.wav",
+   "layers": [
+    {
+     "source": "oga_rd_100",
+     "file": "100-CC0-SFX_0.zip -> plop_01.ogg",
+     "t0": 0.0,
+     "t1": 0.3,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.132,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/item/pickup_02.wav",
+   "layers": [
+    {
+     "source": "oga_rd_100",
+     "file": "100-CC0-SFX_0.zip -> plop_02.ogg",
+     "t0": 0.0,
+     "t1": 0.359,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.172,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/item/pickup_03.wav",
+   "layers": [
+    {
+     "source": "kenney_interface",
+     "file": "kenney_interface-sounds.zip -> Audio/pluck_001.ogg",
+     "t0": 0.0,
+     "t1": 0.1,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.1,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/item/pickup_04.wav",
+   "layers": [
+    {
+     "source": "oga_rd_rpg",
+     "file": "80-CC0-RPG-SFX_0.zip -> item_gem_01.ogg",
+     "t0": 0.0,
+     "t1": 0.247,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.247,
+   "channels": 1
+  }
+ ],
+ "item/tool_break": [
+  {
+   "file": "Assets/Resources/Audio/item/tool_break_01.wav",
+   "layers": [
+    {
+     "source": "oga_nu_wood",
+     "file": "independent_nu_ljudbank-wood_crack_hit_destruction.7z -> wood_impact/crack05.mp3.flac",
+     "t0": 0.012,
+     "t1": 1.54,
+     "role": "take"
+    },
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactMetal_light_002.ogg",
+     "t0": 0.0,
+     "t1": 0.233,
+     "role": "head"
+    },
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactMetal_light_004.ogg",
+     "t0": 0.0,
+     "t1": 0.21,
+     "role": "drop"
+    }
+   ],
+   "seconds": 0.9,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/item/tool_break_02.wav",
+   "layers": [
+    {
+     "source": "oga_rd_woodmetal",
+     "file": "100-CC0-wood-metal-SFX.zip -> wood_cracking_02.ogg",
+     "t0": 0.0,
+     "t1": 0.251,
+     "role": "take"
+    },
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactMetal_light_001.ogg",
+     "t0": 0.0,
+     "t1": 0.249,
+     "role": "head"
+    },
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactMetal_light_000.ogg",
+     "t0": 0.0,
+     "t1": 0.373,
+     "role": "drop"
+    }
+   ],
+   "seconds": 0.474,
+   "channels": 1
+  }
+ ],
  "place/dirt": [
   {
    "file": "Assets/Resources/Audio/place/dirt_01.wav",
@@ -2181,6 +2443,309 @@
     }
    ],
    "seconds": 0.278,
+   "channels": 1
+  }
+ ],
+ "player/hurt": [
+  {
+   "file": "Assets/Resources/Audio/player/hurt_01.wav",
+   "layers": [
+    {
+     "source": "oga_emopreben_player",
+     "file": "Playersounds - Wav.zip -> Playersounds - Wav/Playersounds - Track 5 - Hurt1.wav",
+     "t0": 0.0,
+     "t1": 0.75,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.522,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/player/hurt_02.wav",
+   "layers": [
+    {
+     "source": "oga_emopreben_player",
+     "file": "Playersounds - Wav.zip -> Playersounds - Wav/Playersounds - Track 6 - Hurt2.wav",
+     "t0": 0.0,
+     "t1": 0.82,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.754,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/player/hurt_03.wav",
+   "layers": [
+    {
+     "source": "oga_emopreben_player",
+     "file": "Playersounds - Wav.zip -> Playersounds - Wav/Playersounds - Track 7 - Hurt3.wav",
+     "t0": 0.0,
+     "t1": 1.07,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.852,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/player/hurt_04.wav",
+   "layers": [
+    {
+     "source": "oga_emopreben_player",
+     "file": "Playersounds - Wav.zip -> Playersounds - Wav/Playersounds - Track 8 - Hurt4.wav",
+     "t0": 0.0,
+     "t1": 0.88,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.82,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/player/hurt_05.wav",
+   "layers": [
+    {
+     "source": "oga_emopreben_pain",
+     "file": "painsounds.zip -> Painsounds v2 - Track 3 - Huuurh.ogg",
+     "t0": 0.0,
+     "t1": 0.69,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.658,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/player/hurt_06.wav",
+   "layers": [
+    {
+     "source": "oga_emopreben_pain",
+     "file": "painsounds.zip -> Painsounds v2 - Track 4 - Arrggh .ogg",
+     "t0": 0.0,
+     "t1": 0.63,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.538,
+   "channels": 1
+  }
+ ],
+ "player/jump": [
+  {
+   "file": "Assets/Resources/Audio/player/jump_01.wav",
+   "layers": [
+    {
+     "source": "kenney_rpg",
+     "file": "kenney_rpg-audio.zip -> Audio/cloth1.ogg",
+     "t0": 0.0,
+     "t1": 0.661,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.45,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/player/jump_02.wav",
+   "layers": [
+    {
+     "source": "kenney_rpg",
+     "file": "kenney_rpg-audio.zip -> Audio/cloth2.ogg",
+     "t0": 0.0,
+     "t1": 0.415,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.348,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/player/jump_03.wav",
+   "layers": [
+    {
+     "source": "kenney_rpg",
+     "file": "kenney_rpg-audio.zip -> Audio/cloth3.ogg",
+     "t0": 0.0,
+     "t1": 0.477,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.45,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/player/jump_04.wav",
+   "layers": [
+    {
+     "source": "kenney_rpg",
+     "file": "kenney_rpg-audio.zip -> Audio/cloth4.ogg",
+     "t0": 0.0,
+     "t1": 0.384,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.384,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/player/jump_05.wav",
+   "layers": [
+    {
+     "source": "oga_haeldb_steps",
+     "file": "footsteps.zip -> footsteps/step_cloth2.ogg",
+     "t0": 0.0,
+     "t1": 0.25,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.25,
+   "channels": 1
+  }
+ ],
+ "player/land_hard": [
+  {
+   "file": "Assets/Resources/Audio/player/land_hard_01.wav",
+   "layers": [
+    {
+     "source": "oga_jump_landing",
+     "file": "Jump 1.wav",
+     "t0": 0.0,
+     "t1": 0.586,
+     "role": "take"
+    },
+    {
+     "source": "kenney_rpg",
+     "file": "kenney_rpg-audio.zip -> Audio/cloth3.ogg",
+     "t0": 0.0,
+     "t1": 0.477,
+     "role": "cloth"
+    }
+   ],
+   "seconds": 0.586,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/player/land_hard_02.wav",
+   "layers": [
+    {
+     "source": "oga_jumpland",
+     "file": "jumpland.wav",
+     "t0": 0.0,
+     "t1": 0.408,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.408,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/player/land_hard_03.wav",
+   "layers": [
+    {
+     "source": "oga_wet_towel",
+     "file": "wet_towel_on_floor.7z -> wet_towel_on_floor/wet_towel_on_floor-05.flac",
+     "t0": 0.0,
+     "t1": 0.4,
+     "role": "take"
+    },
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactSoft_heavy_003.ogg",
+     "t0": 0.0,
+     "t1": 0.541,
+     "role": "body"
+    }
+   ],
+   "seconds": 0.392,
+   "channels": 1
+  }
+ ],
+ "rabbit/hop": [
+  {
+   "file": "Assets/Resources/Audio/rabbit/hop_01.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/footstep_carpet_000.ogg",
+     "t0": 0.0,
+     "t1": 0.167,
+     "role": "take"
+    },
+    {
+     "source": "oga_qubodup_rustle",
+     "file": "qubodup-rustle.7z -> rustle/rustle16.flac",
+     "t0": 0.0,
+     "t1": 0.12,
+     "role": "grass"
+    }
+   ],
+   "seconds": 0.108,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/rabbit/hop_02.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/footstep_carpet_001.ogg",
+     "t0": 0.0,
+     "t1": 0.142,
+     "role": "take"
+    },
+    {
+     "source": "oga_qubodup_rustle",
+     "file": "qubodup-rustle.7z -> rustle/rustle17.flac",
+     "t0": 0.0,
+     "t1": 0.12,
+     "role": "grass"
+    }
+   ],
+   "seconds": 0.142,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/rabbit/hop_03.wav",
+   "layers": [
+    {
+     "source": "oga_haeldb_steps",
+     "file": "footsteps.zip -> footsteps/step_cloth1.ogg",
+     "t0": 0.0,
+     "t1": 0.25,
+     "role": "take"
+    },
+    {
+     "source": "oga_qubodup_rustle",
+     "file": "qubodup-rustle.7z -> rustle/rustle19.flac",
+     "t0": 0.0,
+     "t1": 0.1,
+     "role": "grass"
+    }
+   ],
+   "seconds": 0.25,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/rabbit/hop_04.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactSoft_medium_000.ogg",
+     "t0": 0.0,
+     "t1": 0.115,
+     "varispeed": 1.3,
+     "role": "take"
+    },
+    {
+     "source": "oga_qubodup_rustle",
+     "file": "qubodup-rustle.7z -> rustle/rustle15.flac",
+     "t0": 0.0,
+     "t1": 0.1,
+     "role": "grass"
+    }
+   ],
+   "seconds": 0.1,
    "channels": 1
   }
  ],
@@ -3095,6 +3660,77 @@
    "channels": 1
   }
  ],
+ "torch/crackle": [
+  {
+   "file": "Assets/Resources/Audio/torch/crackle_01.wav",
+   "layers": [
+    {
+     "source": "oga_fireplace",
+     "file": "fire.wav",
+     "t0": 0.0,
+     "t1": 29.264,
+     "role": "fire",
+     "loop_from": 0.4
+    },
+    {
+     "source": "oga_fire_crackling",
+     "file": "fire-1.wav",
+     "t0": 0.0,
+     "t1": 2.871,
+     "role": "crackles",
+     "loop_from": 0.1,
+     "tiled": 12,
+     "pseudo_stereo": true
+    }
+   ],
+   "seconds": 24.0,
+   "channels": 1
+  }
+ ],
+ "torch/place": [
+  {
+   "file": "Assets/Resources/Audio/torch/place_01.wav",
+   "layers": [
+    {
+     "source": "kenney_impact",
+     "file": "kenney_impact-sounds.zip -> Audio/impactWood_light_002.ogg",
+     "t0": 0.0,
+     "t1": 0.263,
+     "role": "take"
+    },
+    {
+     "source": "oga_flare",
+     "file": "ignition.flac",
+     "t0": 0.0,
+     "t1": 1.169,
+     "role": "ignite"
+    }
+   ],
+   "seconds": 1.2,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/torch/place_02.wav",
+   "layers": [
+    {
+     "source": "oga_rd_rpg",
+     "file": "80-CC0-RPG-SFX_0.zip -> item_wood_02.ogg",
+     "t0": 0.0,
+     "t1": 0.263,
+     "role": "take"
+    },
+    {
+     "source": "oga_catching_fire",
+     "file": "flame_0.ogg",
+     "t0": 0.0,
+     "t1": 0.45,
+     "role": "ignite"
+    }
+   ],
+   "seconds": 0.5,
+   "channels": 1
+  }
+ ],
  "ui/click": [
   {
    "file": "Assets/Resources/Audio/ui/click_01.wav",
@@ -3314,6 +3950,108 @@
     }
    ],
    "seconds": 0.139,
+   "channels": 1
+  }
+ ],
+ "water/splash_in": [
+  {
+   "file": "Assets/Resources/Audio/water/splash_in_01.wav",
+   "layers": [
+    {
+     "source": "oga_rd_water",
+     "file": "water-splash-slime-sfx.zip -> splash_01.ogg",
+     "t0": 0.0,
+     "t1": 1.381,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.904,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/water/splash_in_02.wav",
+   "layers": [
+    {
+     "source": "oga_rd_water",
+     "file": "water-splash-slime-sfx.zip -> splash_07.ogg",
+     "t0": 0.0,
+     "t1": 1.26,
+     "role": "take"
+    }
+   ],
+   "seconds": 1.14,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/water/splash_in_03.wav",
+   "layers": [
+    {
+     "source": "oga_peludo",
+     "file": "splash1_0.wav",
+     "t0": 0.0,
+     "t1": 2.555,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.83,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/water/splash_in_04.wav",
+   "layers": [
+    {
+     "source": "oga_ezwa_splash",
+     "file": "ezwa-water_splash.7z -> ezwa-water_splash/water_splash-01.flac",
+     "t0": 0.0,
+     "t1": 1.12,
+     "role": "take"
+    }
+   ],
+   "seconds": 1.066,
+   "channels": 1
+  }
+ ],
+ "water/splash_out": [
+  {
+   "file": "Assets/Resources/Audio/water/splash_out_01.wav",
+   "layers": [
+    {
+     "source": "oga_peludo",
+     "file": "splash2_0.wav",
+     "t0": 0.0,
+     "t1": 1.707,
+     "role": "take"
+    }
+   ],
+   "seconds": 1.026,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/water/splash_out_02.wav",
+   "layers": [
+    {
+     "source": "oga_rd_water",
+     "file": "water-splash-slime-sfx.zip -> splash_13.ogg",
+     "t0": 0.0,
+     "t1": 0.764,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.722,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/water/splash_out_03.wav",
+   "layers": [
+    {
+     "source": "oga_ezwa_splash",
+     "file": "ezwa-water_splash.7z -> ezwa-water_splash/water_splash-04.flac",
+     "t0": 0.0,
+     "t1": 1.315,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.914,
    "channels": 1
   }
  ]

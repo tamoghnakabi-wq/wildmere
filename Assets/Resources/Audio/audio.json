@@ -90,6 +90,18 @@
     "volume": 0.6,
     "loop": true
   },
+  "bird/chirp": {
+    "files": [
+      "Audio/bird/chirp_01",
+      "Audio/bird/chirp_02",
+      "Audio/bird/chirp_03",
+      "Audio/bird/chirp_04",
+      "Audio/bird/chirp_05",
+      "Audio/bird/chirp_06"
+    ],
+    "volume": 0.5,
+    "loop": false
+  },
   "break/dirt": {
     "files": [
       "Audio/break/dirt_01",
@@ -174,6 +186,13 @@
       "Audio/break/wood_05"
     ],
     "volume": 0.68,
+    "loop": false
+  },
+  "deer/call": {
+    "files": [
+      "Audio/deer/call_01"
+    ],
+    "volume": 0.7,
     "loop": false
   },
   "dig/dirt": {
@@ -269,6 +288,33 @@
     "volume": 0.55,
     "loop": false
   },
+  "item/craft": {
+    "files": [
+      "Audio/item/craft_01",
+      "Audio/item/craft_02",
+      "Audio/item/craft_03"
+    ],
+    "volume": 0.55,
+    "loop": false
+  },
+  "item/pickup": {
+    "files": [
+      "Audio/item/pickup_01",
+      "Audio/item/pickup_02",
+      "Audio/item/pickup_03",
+      "Audio/item/pickup_04"
+    ],
+    "volume": 0.45,
+    "loop": false
+  },
+  "item/tool_break": {
+    "files": [
+      "Audio/item/tool_break_01",
+      "Audio/item/tool_break_02"
+    ],
+    "volume": 0.6,
+    "loop": false
+  },
   "place/dirt": {
     "files": [
       "Audio/place/dirt_01",
@@ -349,6 +395,48 @@
       "Audio/place/wood_06"
     ],
     "volume": 0.55,
+    "loop": false
+  },
+  "player/hurt": {
+    "files": [
+      "Audio/player/hurt_01",
+      "Audio/player/hurt_02",
+      "Audio/player/hurt_03",
+      "Audio/player/hurt_04",
+      "Audio/player/hurt_05",
+      "Audio/player/hurt_06"
+    ],
+    "volume": 0.7,
+    "loop": false
+  },
+  "player/jump": {
+    "files": [
+      "Audio/player/jump_01",
+      "Audio/player/jump_02",
+      "Audio/player/jump_03",
+      "Audio/player/jump_04",
+      "Audio/player/jump_05"
+    ],
+    "volume": 0.4,
+    "loop": false
+  },
+  "player/land_hard": {
+    "files": [
+      "Audio/player/land_hard_01",
+      "Audio/player/land_hard_02",
+      "Audio/player/land_hard_03"
+    ],
+    "volume": 0.65,
+    "loop": false
+  },
+  "rabbit/hop": {
+    "files": [
+      "Audio/rabbit/hop_01",
+      "Audio/rabbit/hop_02",
+      "Audio/rabbit/hop_03",
+      "Audio/rabbit/hop_04"
+    ],
+    "volume": 0.45,
     "loop": false
   },
   "step/dirt": {
@@ -479,6 +567,21 @@
     "volume": 0.9,
     "loop": false
   },
+  "torch/crackle": {
+    "files": [
+      "Audio/torch/crackle_01"
+    ],
+    "volume": 0.45,
+    "loop": true
+  },
+  "torch/place": {
+    "files": [
+      "Audio/torch/place_01",
+      "Audio/torch/place_02"
+    ],
+    "volume": 0.5,
+    "loop": false
+  },
   "ui/click": {
     "files": [
       "Audio/ui/click_01",
@@ -528,6 +631,25 @@
       "Audio/ui/open_02"
     ],
     "volume": 0.4,
+    "loop": false
+  },
+  "water/splash_in": {
+    "files": [
+      "Audio/water/splash_in_01",
+      "Audio/water/splash_in_02",
+      "Audio/water/splash_in_03",
+      "Audio/water/splash_in_04"
+    ],
+    "volume": 0.7,
+    "loop": false
+  },
+  "water/splash_out": {
+    "files": [
+      "Audio/water/splash_out_01",
+      "Audio/water/splash_out_02",
+      "Audio/water/splash_out_03"
+    ],
+    "volume": 0.6,
     "loop": false
   }
 }

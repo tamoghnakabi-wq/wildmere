@@ -2001,6 +2001,23 @@
   "site": "commons.wikimedia.org",
   "title": "Waves / Forest lawn creek / Walking through woods"
  },
+ "pd_elk": {
+  "author": "U.S. Fish and Wildlife Service",
+  "files": [
+   {
+    "bytes": 73388,
+    "extracted": false,
+    "file": "Elkbellow.ogg",
+    "sha256": "10416a7d5f8e827d6df782d1805314409e343a90ed29afd698280feadf79353d",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/96/Elkbellow.ogg"
+   }
+  ],
+  "licence": "Public domain (U.S. federal government work)",
+  "licence_files": [],
+  "page": "https://commons.wikimedia.org/wiki/File:Elkbellow.ogg",
+  "site": "commons.wikimedia.org",
+  "title": "Elk bellow (U.S. Fish and Wildlife Service sound library, 52elkbellow)"
+ },
  "pd_ezwa_storm": {
   "author": "ezwa",
   "files": [
