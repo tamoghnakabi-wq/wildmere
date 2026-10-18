@@ -1,0 +1,105 @@
+Mono path[0] = '/Users/tamoghnakabi/studioproject/wildmere/.claude/worktrees/agent-qa/Build/mac/Wildmere.app/Contents/Resources/Data/Managed'
+Mono config path = '/Users/tamoghnakabi/studioproject/wildmere/.claude/worktrees/agent-qa/Build/mac/Wildmere.app/Contents/MonoBleedingEdge/etc'
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Loading player data from /Users/tamoghnakabi/studioproject/wildmere/.claude/worktrees/agent-qa/Build/mac/Wildmere.app/Contents/Resources/Data/data.unity3d
+Initialize engine version: 6000.3.22f1 (1c726e1fb402)
+[Subsystems] Discovering subsystems at path /Users/tamoghnakabi/studioproject/wildmere/.claude/worktrees/agent-qa/Build/mac/Wildmere.app/Contents/Resources/Data/UnitySubsystems
+GfxDevice: creating device client; kGfxThreadingModeThreaded
+ preferred device: Apple M4 (high power)
+Metal devices available: 1
+0: Apple M4 (high power)
+Using device Apple M4 (high power)
+Initializing Metal device caps: Apple M4
+Mac GPU Family: 2
+Apple GPU Family: 9
+MSL Version: 3.0
+Has Float MSAA: 1
+Has Float Filtering: 1
+ReadWrite Texture Tier: 2
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.264 seconds
+- Finished resetting the current domain, in  0.004 seconds
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+UnloadTime: 0.916792 ms
+WM_BOOT version=0.1.0 platform=OSXPlayer gfx=Metal gpu='Apple M4' cpu=10 mem=16384MB
+WM_AUDIO bank=75 entries
+WM_GFX preset=High view=10 scale=1 shadows=2/96 ssao=True aa=2
+WM_STATE MainMenu
+WM_QA_INFO boot state=MainMenu batch=False gfx=Metal vsync=True cap=0 preset=High view=10
+WM_STATE Loading
+WM_TEXTURES layers=54 albedo=128x128x56
+WM_UI icons rendered=57 atlas=1024x1024 ms=591
+WM_UI ready screens=9 theme=True icons=57
+WM_WORLD create seed=1337 threads=4
+WM_WORLD load name='qasoak-20261018135844' seed=1337 new=True mods=0 spawn=(297.50, 71.00, -94.50)
+WM_PROPS model Boulder_A parts=1/1 color=True fmt=UNorm8 mats=Prop Stone
+WM_PROPS model Boulder_B parts=1/1 color=True fmt=UNorm8 mats=Prop Stone
+WM_PROPS model Boulder_C parts=1/1 color=True fmt=UNorm8 mats=Prop Stone
+WM_PROPS model Rocks_Small_A parts=1/1 color=True fmt=UNorm8 mats=Prop Stone
+WM_PROPS model Rocks_Small_B parts=1/1 color=True fmt=UNorm8 mats=Prop Stone
+WM_PROPS model FallenLog_Oak parts=1/1 color=True fmt=UNorm8 mats=Prop Bark,Prop Wood,Prop Cap
+WM_PROPS model FallenLog_Birch parts=1/1 color=True fmt=UNorm8 mats=Prop Bark,Prop Wood
+WM_PROPS model Stump parts=1/1 color=True fmt=UNorm8 mats=Prop Bark,Prop Wood
+WM_PROPS model MushroomCluster parts=1/1 color=True fmt=UNorm8 mats=Prop Cap
+WM_PROPS model GiantMushroom parts=1/1 color=True fmt=UNorm8 mats=Prop Cap
+WM_PROPS model GlowcapCluster parts=1/1 color=True fmt=UNorm8 mats=Prop Cap,Prop Glow
+WM_PROPS model SandstonePillar parts=1/1 color=True fmt=UNorm8 mats=Prop Stone
+WM_PROPS model DeadTree parts=1/1 color=True fmt=UNorm8 mats=Prop Bark
+WM_PROPS model IceSpike parts=1/1 color=True fmt=UNorm8 mats=Prop Ice
+WM_PROPS model Bush_A parts=1/1 color=True fmt=UNorm8 mats=Prop Leaves,Prop Bark
+WM_PROPS model Bush_B parts=1/1 color=True fmt=UNorm8 mats=Prop Leaves,Prop Bark
+WM_PROPS model Reeds parts=1/1 color=True fmt=UNorm8 mats=Prop Leaves
+WM_PROPS model LilyPad parts=1/1 color=True fmt=UNorm8 mats=Prop Leaves
+WM_WORLD ready in 0.73s chunks=74 meshed=27
+WM_STATE Playing
+WM_GFX preset=High view=10 scale=1 shadows=2/96 ssao=True aa=2
+WM_QA_INFO soak start dur=600s nosave=True view=10 vsync=True
+WM_QA_SOAK n=0 t=0 phase=walk monoMB=67.8 unityMB=244.0 reservedMB=317.3 gfxMB=0.0 meshes=415 gameObjects=534 materials=130 chunks=421 meshed=333 verts=2657480 drops=0 animals=3 props=798 frames=1 avgMs=16.73 p99Ms=16.73 maxMs=16.7 gc0=0 pos=(298, 71, -95) errors=0
+WM_QA_SOAK n=1 t=30 phase=fly monoMB=72.3 unityMB=252.8 reservedMB=333.3 gfxMB=0.0 meshes=555 gameObjects=939 materials=134 chunks=472 meshed=418 verts=2804308 drops=0 animals=19 props=751 frames=1641 avgMs=18.28 p99Ms=33.51 maxMs=202.8 gc0=4 pos=(402, 76, -55) errors=0
+WM_QA_SOAK n=2 t=60 phase=mine monoMB=73.8 unityMB=246.3 reservedMB=376.2 gfxMB=0.0 meshes=570 gameObjects=724 materials=134 chunks=466 meshed=411 verts=1581656 drops=0 animals=4 props=559 frames=1724 avgMs=17.41 p99Ms=29.70 maxMs=242.5 gc0=16 pos=(744, 71, -207) errors=0
+WM_QA_SOAK n=3 t=90 phase=walk monoMB=79.0 unityMB=252.4 reservedMB=376.2 gfxMB=0.0 meshes=573 gameObjects=807 materials=134 chunks=465 meshed=409 verts=1684812 drops=3 animals=8 props=595 frames=1713 avgMs=17.51 p99Ms=33.40 maxMs=232.7 gc0=17 pos=(744, 69, -222) errors=0
+WM_QA_SOAK n=4 t=120 phase=fly monoMB=82.0 unityMB=256.4 reservedMB=376.2 gfxMB=0.0 meshes=573 gameObjects=805 materials=134 chunks=472 meshed=423 verts=1781116 drops=2 animals=8 props=586 frames=1783 avgMs=16.83 p99Ms=25.32 maxMs=33.7 gc0=19 pos=(707, 79, -200) errors=0
+WM_QA_SOAK n=5 t=150 phase=mine monoMB=80.4 unityMB=241.5 reservedMB=376.2 gfxMB=0.0 meshes=573 gameObjects=645 materials=134 chunks=471 meshed=411 verts=1417940 drops=2 animals=0 props=931 frames=1778 avgMs=16.87 p99Ms=26.58 maxMs=34.1 gc0=32 pos=(574, 69, 154) errors=0
+WM_QA_SOAK n=6 t=180 phase=walk monoMB=83.7 unityMB=241.0 reservedMB=378.2 gfxMB=0.0 meshes=573 gameObjects=805 materials=134 chunks=472 meshed=416 verts=1399928 drops=2 animals=8 props=900 frames=1753 avgMs=17.11 p99Ms=30.45 maxMs=35.8 gc0=32 pos=(573, 68, 142) errors=0
+WM_QA_SOAK n=7 t=210 phase=fly monoMB=90.2 unityMB=244.5 reservedMB=378.2 gfxMB=0.0 meshes=573 gameObjects=804 materials=134 chunks=470 meshed=419 verts=1485384 drops=2 animals=8 props=562 frames=1775 avgMs=16.90 p99Ms=27.33 maxMs=33.8 gc0=34 pos=(569, 74, 63) errors=0
+WM_QA_SOAK n=8 t=240 phase=mine monoMB=89.2 unityMB=368.7 reservedMB=468.3 gfxMB=0.0 meshes=573 gameObjects=856 materials=134 chunks=472 meshed=412 verts=4291396 drops=2 animals=10 props=1555 frames=1643 avgMs=18.25 p99Ms=33.45 maxMs=174.6 gc0=47 pos=(340, 72, -236) errors=0
+WM_QA_SOAK n=9 t=270 phase=walk monoMB=90.7 unityMB=370.3 reservedMB=468.3 gfxMB=0.0 meshes=574 gameObjects=1035 materials=134 chunks=472 meshed=412 verts=4291332 drops=3 animals=22 props=1554 frames=1482 avgMs=20.24 p99Ms=33.83 maxMs=50.1 gc0=48 pos=(347, 71, -231) errors=0
+WM_QA_SOAK n=10 t=300 phase=fly monoMB=96.8 unityMB=394.6 reservedMB=502.9 gfxMB=0.0 meshes=574 gameObjects=973 materials=134 chunks=470 meshed=418 verts=4034224 drops=3 animals=20 props=1287 frames=1383 avgMs=21.69 p99Ms=40.79 maxMs=358.3 gc0=49 pos=(375, 74, -173) errors=0
+WM_QA_SOAK n=11 t=330 phase=mine monoMB=88.5 unityMB=394.7 reservedMB=502.9 gfxMB=0.0 meshes=574 gameObjects=1071 materials=134 chunks=470 meshed=418 verts=4034292 drops=3 animals=25 props=1287 frames=1442 avgMs=20.80 p99Ms=39.14 maxMs=55.3 gc0=50 pos=(375, 75, -173) errors=0
+WM_QA_SOAK n=12 t=360 phase=walk monoMB=89.5 unityMB=388.9 reservedMB=502.9 gfxMB=0.0 meshes=575 gameObjects=1063 materials=134 chunks=472 meshed=420 verts=3880056 drops=4 animals=25 props=1200 frames=1291 avgMs=23.25 p99Ms=41.02 maxMs=50.4 gc0=51 pos=(358, 69, -166) errors=0
+WM_QA_SOAK n=13 t=390 phase=fly monoMB=90.8 unityMB=365.0 reservedMB=502.9 gfxMB=0.0 meshes=575 gameObjects=950 materials=134 chunks=471 meshed=422 verts=3294396 drops=2 animals=16 props=1059 frames=1359 avgMs=22.06 p99Ms=41.05 maxMs=49.9 gc0=53 pos=(247, 72, -162) errors=0
+WM_QA_SOAK n=14 t=420 phase=mine monoMB=97.5 unityMB=293.8 reservedMB=496.4 gfxMB=0.0 meshes=579 gameObjects=680 materials=134 chunks=470 meshed=413 verts=1307956 drops=2 animals=2 props=252 frames=1719 avgMs=17.45 p99Ms=33.41 maxMs=134.3 gc0=63 pos=(27, 83, 143) errors=0
+WM_QA_SOAK n=15 t=450 phase=walk monoMB=87.2 unityMB=294.9 reservedMB=512.4 gfxMB=0.0 meshes=579 gameObjects=865 materials=134 chunks=472 meshed=421 verts=1317128 drops=4 animals=15 props=231 frames=1675 avgMs=17.91 p99Ms=33.43 maxMs=37.4 gc0=65 pos=(18, 77, 151) errors=0
+WM_QA_SOAK n=16 t=480 phase=fly monoMB=89.2 unityMB=295.1 reservedMB=512.4 gfxMB=0.0 meshes=579 gameObjects=883 materials=134 chunks=472 meshed=421 verts=1317396 drops=4 animals=15 props=241 frames=1690 avgMs=17.75 p99Ms=33.42 maxMs=44.0 gc0=65 pos=(10, 72, 126) errors=0
+WM_QA_SOAK n=17 t=510 phase=mine monoMB=97.6 unityMB=298.5 reservedMB=480.4 gfxMB=0.0 meshes=579 gameObjects=653 materials=134 chunks=467 meshed=411 verts=1417092 drops=4 animals=0 props=259 frames=1781 avgMs=16.85 p99Ms=26.87 maxMs=33.5 gc0=75 pos=(-119, 63, -231) errors=0
+WM_QA_SOAK n=18 t=540 phase=walk monoMB=100.5 unityMB=312.4 reservedMB=480.4 gfxMB=0.0 meshes=581 gameObjects=655 materials=134 chunks=472 meshed=418 verts=1363532 drops=5 animals=0 props=260 frames=1758 avgMs=17.06 p99Ms=26.76 maxMs=217.5 gc0=76 pos=(-124, 63, -227) errors=0
+WM_PLAYER died
+WM_QA_SOAK n=19 t=570 phase=fly monoMB=90.9 unityMB=318.9 reservedMB=496.4 gfxMB=0.0 meshes=581 gameObjects=653 materials=134 chunks=491 meshed=431 verts=1372556 drops=4 animals=0 props=245 frames=1757 avgMs=17.08 p99Ms=19.84 maxMs=357.8 gc0=77 pos=(-80, 55, -199) errors=0
+WM_QA_SOAK n=20 t=600 phase=mine monoMB=100.6 unityMB=440.1 reservedMB=528.4 gfxMB=0.0 meshes=581 gameObjects=653 materials=134 chunks=491 meshed=433 verts=4364760 drops=4 animals=0 props=1603 frames=1684 avgMs=17.81 p99Ms=33.54 maxMs=47.4 gc0=88 pos=(281, 63, -311) errors=0
+WM_QA PASS soak_no_console_errors 
+WM_QA PASS summary pass=1 fail=0 failed=[]
+WM_STATE MainMenu
+WM_WORLD create seed=720261017 threads=4
+WM_GFX preset=High view=10 scale=1 shadows=2/96 ssao=True aa=2
+Thread 0x1719d3000 may have been prematurely finalized
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input System polling thread exited.
+Input System module state changed to: Shutdown.
+Thread 0x170807000 may have been prematurely finalized
+Thread 0x17091f000 may have been prematurely finalized
+Thread 0x1709ab000 may have been prematurely finalized
+Thread 0x170893000 may have been prematurely finalized
+Thread 0x170b4f000 may have been prematurely finalized
+Thread 0x170c67000 may have been prematurely finalized
+Thread 0x170a37000 may have been prematurely finalized
+Thread 0x170bdb000 may have been prematurely finalized
+Thread 0x170ac3000 may have been prematurely finalized
