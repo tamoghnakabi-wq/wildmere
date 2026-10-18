@@ -1,0 +1,4 @@
+exit=0 samples=60 interval=10.0s settings=defaults args=-qatest soak -qasec 600 -nosave
+phase=walk     n= 20 cpu% median=  52.1 mean=  53.5 max=  72.7  rssMB first=673 last=492 max=729
+phase=fly      n= 21 cpu% median=  67.2 mean=  62.7 max=  89.3  rssMB first=539 last=596 max=771
+phase=mine     n= 19 cpu% median=  58.6 mean=-170.5 max=  72.4  rssMB first=616 last=0 max=704

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<test-run id="2" testcasecount="71" result="Failed(Child)" total="71" passed="70" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:47Z" duration="5.5927305">
-  <test-suite type="TestSuite" id="1000" name="Wildmere" fullname="Wildmere" runstate="Runnable" testcasecount="71" result="Failed" site="Child" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:47Z" duration="5.592731" total="71" passed="70" failed="1" inconclusive="0" skipped="0" asserts="0">
+<test-run id="2" testcasecount="72" result="Failed(Child)" total="72" passed="70" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:52Z" duration="2.2409836">
+  <test-suite type="TestSuite" id="1000" name="Wildmere" fullname="Wildmere" runstate="Runnable" testcasecount="72" result="Failed" site="Child" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:52Z" duration="2.240984" total="72" passed="70" failed="2" inconclusive="0" skipped="0" asserts="0">
     <properties>
       <property name="platform" value="EditMode" />
     </properties>
     <failure>
       <message><![CDATA[One or more child tests had errors]]></message>
     </failure>
-    <test-suite type="Assembly" id="1087" name="Wildmere.Tests.EditMode.dll" fullname="/Users/tamoghnakabi/studioproject/wildmere/.claude/worktrees/agent-qa/Library/ScriptAssemblies/Wildmere.Tests.EditMode.dll" runstate="Runnable" testcasecount="71" result="Failed" site="Child" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:47Z" duration="5.584573" total="71" passed="70" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <test-suite type="Assembly" id="1088" name="Wildmere.Tests.EditMode.dll" fullname="/Users/tamoghnakabi/studioproject/wildmere/.claude/worktrees/agent-qa/Library/ScriptAssemblies/Wildmere.Tests.EditMode.dll" runstate="Runnable" testcasecount="72" result="Failed" site="Child" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:52Z" duration="2.238325" total="72" passed="70" failed="2" inconclusive="0" skipped="0" asserts="0">
       <properties>
-        <property name="_PID" value="39492" />
+        <property name="_PID" value="6533" />
         <property name="_APPDOMAIN" value="Unity Child Domain" />
         <property name="platform" value="EditMode" />
         <property name="EditorOnly" value="True" />
@@ -17,235 +17,253 @@
       <failure>
         <message><![CDATA[One or more child tests had errors]]></message>
       </failure>
-      <test-suite type="TestSuite" id="1088" name="Wildmere" fullname="Wildmere" runstate="Runnable" testcasecount="71" result="Failed" site="Child" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:47Z" duration="5.583980" total="71" passed="70" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <test-suite type="TestSuite" id="1089" name="Wildmere" fullname="Wildmere" runstate="Runnable" testcasecount="72" result="Failed" site="Child" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:52Z" duration="2.238179" total="72" passed="70" failed="2" inconclusive="0" skipped="0" asserts="0">
         <properties />
         <failure>
           <message><![CDATA[One or more child tests had errors]]></message>
         </failure>
-        <test-suite type="TestSuite" id="1089" name="Tests" fullname="Wildmere.Tests" runstate="Runnable" testcasecount="71" result="Failed" site="Child" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:47Z" duration="5.583483" total="71" passed="70" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <test-suite type="TestSuite" id="1090" name="Tests" fullname="Wildmere.Tests" runstate="Runnable" testcasecount="72" result="Failed" site="Child" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:52Z" duration="2.238029" total="72" passed="70" failed="2" inconclusive="0" skipped="0" asserts="0">
           <properties />
           <failure>
             <message><![CDATA[One or more child tests had errors]]></message>
           </failure>
-          <test-suite type="TestFixture" id="1023" name="QaCraftingTests" fullname="Wildmere.Tests.QaCraftingTests" classname="Wildmere.Tests.QaCraftingTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.054490" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestFixture" id="1024" name="QaCraftingTests" fullname="Wildmere.Tests.QaCraftingTests" classname="Wildmere.Tests.QaCraftingTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.017644" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-case id="1031" name="ConsumingInputs_FreesRoomForOutput" fullname="Wildmere.Tests.QaCraftingTests.ConsumingInputs_FreesRoomForOutput" methodname="ConsumingInputs_FreesRoomForOutput" classname="Wildmere.Tests.QaCraftingTests" runstate="Runnable" seed="944979450" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.021132" asserts="0">
+            <test-case id="1032" name="ConsumingInputs_FreesRoomForOutput" fullname="Wildmere.Tests.QaCraftingTests.ConsumingInputs_FreesRoomForOutput" methodname="ConsumingInputs_FreesRoomForOutput" classname="Wildmere.Tests.QaCraftingTests" runstate="Runnable" seed="471056497" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.007350" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1026" name="EveryRecipe_CraftsExactlyOnce_WithExactInputs" fullname="Wildmere.Tests.QaCraftingTests.EveryRecipe_CraftsExactlyOnce_WithExactInputs" methodname="EveryRecipe_CraftsExactlyOnce_WithExactInputs" classname="Wildmere.Tests.QaCraftingTests" runstate="Runnable" seed="1000501983" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.001269" asserts="0">
+            <test-case id="1027" name="EveryRecipe_CraftsExactlyOnce_WithExactInputs" fullname="Wildmere.Tests.QaCraftingTests.EveryRecipe_CraftsExactlyOnce_WithExactInputs" methodname="EveryRecipe_CraftsExactlyOnce_WithExactInputs" classname="Wildmere.Tests.QaCraftingTests" runstate="Runnable" seed="1079411870" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000407" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1025" name="EveryToolAndStationIsCraftable" fullname="Wildmere.Tests.QaCraftingTests.EveryToolAndStationIsCraftable" methodname="EveryToolAndStationIsCraftable" classname="Wildmere.Tests.QaCraftingTests" runstate="Runnable" seed="1856063144" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.002295" asserts="0">
+            <test-case id="1026" name="EveryToolAndStationIsCraftable" fullname="Wildmere.Tests.QaCraftingTests.EveryToolAndStationIsCraftable" methodname="EveryToolAndStationIsCraftable" classname="Wildmere.Tests.QaCraftingTests" runstate="Runnable" seed="1796635542" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000814" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1029" name="FullInventory_RollsBackExactly" fullname="Wildmere.Tests.QaCraftingTests.FullInventory_RollsBackExactly" methodname="FullInventory_RollsBackExactly" classname="Wildmere.Tests.QaCraftingTests" runstate="Runnable" seed="217333275" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.002078" asserts="0">
+            <test-case id="1030" name="FullInventory_RollsBackExactly" fullname="Wildmere.Tests.QaCraftingTests.FullInventory_RollsBackExactly" methodname="FullInventory_RollsBackExactly" classname="Wildmere.Tests.QaCraftingTests" runstate="Runnable" seed="1608931316" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000746" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1028" name="MissingInputs_ChangeNothing" fullname="Wildmere.Tests.QaCraftingTests.MissingInputs_ChangeNothing" methodname="MissingInputs_ChangeNothing" classname="Wildmere.Tests.QaCraftingTests" runstate="Runnable" seed="646717376" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.001131" asserts="0">
+            <test-case id="1029" name="MissingInputs_ChangeNothing" fullname="Wildmere.Tests.QaCraftingTests.MissingInputs_ChangeNothing" methodname="MissingInputs_ChangeNothing" classname="Wildmere.Tests.QaCraftingTests" runstate="Runnable" seed="1222516597" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000373" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1030" name="PartialFit_RollsBackExactly" fullname="Wildmere.Tests.QaCraftingTests.PartialFit_RollsBackExactly" methodname="PartialFit_RollsBackExactly" classname="Wildmere.Tests.QaCraftingTests" runstate="Runnable" seed="1343924013" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.000395" asserts="0">
+            <test-case id="1031" name="PartialFit_RollsBackExactly" fullname="Wildmere.Tests.QaCraftingTests.PartialFit_RollsBackExactly" methodname="PartialFit_RollsBackExactly" classname="Wildmere.Tests.QaCraftingTests" runstate="Runnable" seed="42932396" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000133" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1024" name="Recipes_AreWellFormed" fullname="Wildmere.Tests.QaCraftingTests.Recipes_AreWellFormed" methodname="Recipes_AreWellFormed" classname="Wildmere.Tests.QaCraftingTests" runstate="Runnable" seed="1611390231" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.006030" asserts="0">
+            <test-case id="1025" name="Recipes_AreWellFormed" fullname="Wildmere.Tests.QaCraftingTests.Recipes_AreWellFormed" methodname="Recipes_AreWellFormed" classname="Wildmere.Tests.QaCraftingTests" runstate="Runnable" seed="658537583" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.002196" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1032" name="StarterProgression_IsReachable" fullname="Wildmere.Tests.QaCraftingTests.StarterProgression_IsReachable" methodname="StarterProgression_IsReachable" classname="Wildmere.Tests.QaCraftingTests" runstate="Runnable" seed="728546463" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.001137" asserts="0">
+            <test-case id="1033" name="StarterProgression_IsReachable" fullname="Wildmere.Tests.QaCraftingTests.StarterProgression_IsReachable" methodname="StarterProgression_IsReachable" classname="Wildmere.Tests.QaCraftingTests" runstate="Runnable" seed="857999478" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000251" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1027" name="StationRecipes_NeedTheirStation" fullname="Wildmere.Tests.QaCraftingTests.StationRecipes_NeedTheirStation" methodname="StationRecipes_NeedTheirStation" classname="Wildmere.Tests.QaCraftingTests" runstate="Runnable" seed="1560539285" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.000904" asserts="0">
+            <test-case id="1028" name="StationRecipes_NeedTheirStation" fullname="Wildmere.Tests.QaCraftingTests.StationRecipes_NeedTheirStation" methodname="StationRecipes_NeedTheirStation" classname="Wildmere.Tests.QaCraftingTests" runstate="Runnable" seed="1436917345" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000263" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
           </test-suite>
-          <test-suite type="TestFixture" id="1008" name="QaInventoryTests" fullname="Wildmere.Tests.QaInventoryTests" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.018355" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
-            <properties />
-            <test-case id="1010" name="Add_FillsExistingStacksBeforeEmptySlots" fullname="Wildmere.Tests.QaInventoryTests.Add_FillsExistingStacksBeforeEmptySlots" methodname="Add_FillsExistingStacksBeforeEmptySlots" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="1725881685" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.000400" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1012" name="Add_IgnoresEmptyAndNonPositive" fullname="Wildmere.Tests.QaInventoryTests.Add_IgnoresEmptyAndNonPositive" methodname="Add_IgnoresEmptyAndNonPositive" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="519770108" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.000515" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1011" name="Add_ReturnsLeftoverWhenFull" fullname="Wildmere.Tests.QaInventoryTests.Add_ReturnsLeftoverWhenFull" methodname="Add_ReturnsLeftoverWhenFull" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="216520586" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.000139" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1009" name="Add_StacksTo64_ThenOverflowsToNextSlot" fullname="Wildmere.Tests.QaInventoryTests.Add_StacksTo64_ThenOverflowsToNextSlot" methodname="Add_StacksTo64_ThenOverflowsToNextSlot" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="836290022" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.000135" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1014" name="Add_WithDurability_KeepsWear" fullname="Wildmere.Tests.QaInventoryTests.Add_WithDurability_KeepsWear" methodname="Add_WithDurability_KeepsWear" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="1992674625" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.000089" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1017" name="CanFit_AgreesWithAdd" fullname="Wildmere.Tests.QaInventoryTests.CanFit_AgreesWithAdd" methodname="CanFit_AgreesWithAdd" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="1878129054" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.006019" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1016" name="CanFit_RespectsStackRoomAndTools" fullname="Wildmere.Tests.QaInventoryTests.CanFit_RespectsStackRoomAndTools" methodname="CanFit_RespectsStackRoomAndTools" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="766408278" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.000316" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1020" name="Changed_FiresOnMutation" fullname="Wildmere.Tests.QaInventoryTests.Changed_FiresOnMutation" methodname="Changed_FiresOnMutation" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="1015186548" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.000507" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1018" name="ConsumeSelected_EmptiesSlotAtZero" fullname="Wildmere.Tests.QaInventoryTests.ConsumeSelected_EmptiesSlotAtZero" methodname="ConsumeSelected_EmptiesSlotAtZero" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="641102581" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.000207" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1019" name="DamageSelected_WearsAndBreaksTools_IgnoresBlocks" fullname="Wildmere.Tests.QaInventoryTests.DamageSelected_WearsAndBreaksTools_IgnoresBlocks" methodname="DamageSelected_WearsAndBreaksTools_IgnoresBlocks" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="901677557" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.000296" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1022" name="FromJson_SkipsUnknownIdsAndBadSlots" fullname="Wildmere.Tests.QaInventoryTests.FromJson_SkipsUnknownIdsAndBadSlots" methodname="FromJson_SkipsUnknownIdsAndBadSlots" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="676679171" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.001054" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1021" name="Json_RoundTripPreservesSlotsCountsDurability" fullname="Wildmere.Tests.QaInventoryTests.Json_RoundTripPreservesSlotsCountsDurability" methodname="Json_RoundTripPreservesSlotsCountsDurability" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="234169287" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.004014" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1015" name="Remove_TakesFromTheBackAndReportsCount" fullname="Wildmere.Tests.QaInventoryTests.Remove_TakesFromTheBackAndReportsCount" methodname="Remove_TakesFromTheBackAndReportsCount" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="233499670" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.000245" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1013" name="Tools_DoNotStack_AndStartAtFullDurability" fullname="Wildmere.Tests.QaInventoryTests.Tools_DoNotStack_AndStartAtFullDurability" methodname="Tools_DoNotStack_AndStartAtFullDurability" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="2109471307" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.000369" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-          </test-suite>
-          <test-suite type="TestFixture" id="1033" name="QaItemDbTests" fullname="Wildmere.Tests.QaItemDbTests" classname="Wildmere.Tests.QaItemDbTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.013420" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
-            <properties />
-            <test-case id="1039" name="Drops" fullname="Wildmere.Tests.QaItemDbTests.Drops" methodname="Drops" classname="Wildmere.Tests.QaItemDbTests" runstate="Runnable" seed="422872684" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.001936" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1034" name="EveryBlockExceptWaterHasAnItem_AndBlockItemsPlaceThemselves" fullname="Wildmere.Tests.QaItemDbTests.EveryBlockExceptWaterHasAnItem_AndBlockItemsPlaceThemselves" methodname="EveryBlockExceptWaterHasAnItem_AndBlockItemsPlaceThemselves" classname="Wildmere.Tests.QaItemDbTests" runstate="Runnable" seed="1073132724" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.002003" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1040" name="EveryDropIsARealItem" fullname="Wildmere.Tests.QaItemDbTests.EveryDropIsARealItem" methodname="EveryDropIsARealItem" classname="Wildmere.Tests.QaItemDbTests" runstate="Runnable" seed="1332477043" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.002524" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1038" name="HarvestTiers" fullname="Wildmere.Tests.QaItemDbTests.HarvestTiers" methodname="HarvestTiers" classname="Wildmere.Tests.QaItemDbTests" runstate="Runnable" seed="987823729" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.000550" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1037" name="KnownBreakTimes" fullname="Wildmere.Tests.QaItemDbTests.KnownBreakTimes" methodname="KnownBreakTimes" classname="Wildmere.Tests.QaItemDbTests" runstate="Runnable" seed="371603448" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.001165" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1036" name="MatchingTool_IsFaster_HigherTierNotSlower_WrongToolSameAsHand" fullname="Wildmere.Tests.QaItemDbTests.MatchingTool_IsFaster_HigherTierNotSlower_WrongToolSameAsHand" methodname="MatchingTool_IsFaster_HigherTierNotSlower_WrongToolSameAsHand" classname="Wildmere.Tests.QaItemDbTests" runstate="Runnable" seed="451241479" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.003149" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1035" name="Unbreakables_AreInfinite_BreakablesFinite" fullname="Wildmere.Tests.QaItemDbTests.Unbreakables_AreInfinite_BreakablesFinite" methodname="Unbreakables_AreInfinite_BreakablesFinite" classname="Wildmere.Tests.QaItemDbTests" runstate="Runnable" seed="1757723741" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.000470" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-          </test-suite>
-          <test-suite type="TestFixture" id="1041" name="QaJsonTests" fullname="Wildmere.Tests.QaJsonTests" classname="Wildmere.Tests.QaJsonTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.015067" total="6" passed="5" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestFixture" id="1008" name="QaInventoryTests" fullname="Wildmere.Tests.QaInventoryTests" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" testcasecount="15" result="Failed" site="Child" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.008134" total="15" passed="14" failed="1" inconclusive="0" skipped="0" asserts="0">
             <properties />
             <failure>
               <message><![CDATA[One or more child tests had errors]]></message>
             </failure>
-            <test-case id="1045" name="Accessors_FallBackOnMissingOrWrongType" fullname="Wildmere.Tests.QaJsonTests.Accessors_FallBackOnMissingOrWrongType" methodname="Accessors_FallBackOnMissingOrWrongType" classname="Wildmere.Tests.QaJsonTests" runstate="Runnable" seed="23164525" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.000604" asserts="0">
+            <test-case id="1010" name="Add_FillsExistingStacksBeforeEmptySlots" fullname="Wildmere.Tests.QaInventoryTests.Add_FillsExistingStacksBeforeEmptySlots" methodname="Add_FillsExistingStacksBeforeEmptySlots" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="2117264043" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000105" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1044" name="DoublesRoundTripExactly" fullname="Wildmere.Tests.QaJsonTests.DoublesRoundTripExactly" methodname="DoublesRoundTripExactly" classname="Wildmere.Tests.QaJsonTests" runstate="Runnable" seed="1573300624" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.005013" asserts="0">
+            <test-case id="1012" name="Add_IgnoresEmptyAndNonPositive" fullname="Wildmere.Tests.QaInventoryTests.Add_IgnoresEmptyAndNonPositive" methodname="Add_IgnoresEmptyAndNonPositive" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="1859906900" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000159" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1043" name="IntsFloatsLongs_WriteAsNumbers" fullname="Wildmere.Tests.QaJsonTests.IntsFloatsLongs_WriteAsNumbers" methodname="IntsFloatsLongs_WriteAsNumbers" classname="Wildmere.Tests.QaJsonTests" runstate="Runnable" seed="1986255189" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.000465" asserts="0">
+            <test-case id="1011" name="Add_ReturnsLeftoverWhenFull" fullname="Wildmere.Tests.QaInventoryTests.Add_ReturnsLeftoverWhenFull" methodname="Add_ReturnsLeftoverWhenFull" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="2131100294" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000049" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1046" name="MalformedInput_Throws" fullname="Wildmere.Tests.QaJsonTests.MalformedInput_Throws" methodname="MalformedInput_Throws" classname="Wildmere.Tests.QaJsonTests" runstate="Runnable" seed="395748752" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.001032" asserts="0">
+            <test-case id="1009" name="Add_StacksTo64_ThenOverflowsToNextSlot" fullname="Wildmere.Tests.QaInventoryTests.Add_StacksTo64_ThenOverflowsToNextSlot" methodname="Add_StacksTo64_ThenOverflowsToNextSlot" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="183402973" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000051" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1047" name="NonFiniteNumbers_ProduceParseableJson" fullname="Wildmere.Tests.QaJsonTests.NonFiniteNumbers_ProduceParseableJson" methodname="NonFiniteNumbers_ProduceParseableJson" classname="Wildmere.Tests.QaJsonTests" runstate="Runnable" seed="1844601691" result="Failed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.004780" asserts="0">
+            <test-case id="1021" name="Add_ThatAddsNothing_DoesNotRaiseChanged" fullname="Wildmere.Tests.QaInventoryTests.Add_ThatAddsNothing_DoesNotRaiseChanged" methodname="Add_ThatAddsNothing_DoesNotRaiseChanged" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="2022293318" result="Failed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.001578" asserts="0">
+              <properties>
+                <property name="Category" value="KnownDefect" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Changed fired although nothing changed
+  Expected: 0
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[at Wildmere.Tests.QaInventoryTests.Add_ThatAddsNothing_DoesNotRaiseChanged () [0x0004c] in /Users/tamoghnakabi/studioproject/wildmere/.claude/worktrees/agent-qa/Assets/Tests/EditMode/QaInventoryCraftingTests.cs:194
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1014" name="Add_WithDurability_KeepsWear" fullname="Wildmere.Tests.QaInventoryTests.Add_WithDurability_KeepsWear" methodname="Add_WithDurability_KeepsWear" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="1677023719" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000036" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1017" name="CanFit_AgreesWithAdd" fullname="Wildmere.Tests.QaInventoryTests.CanFit_AgreesWithAdd" methodname="CanFit_AgreesWithAdd" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="635501534" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.002285" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1016" name="CanFit_RespectsStackRoomAndTools" fullname="Wildmere.Tests.QaInventoryTests.CanFit_RespectsStackRoomAndTools" methodname="CanFit_RespectsStackRoomAndTools" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="1517767407" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000100" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1020" name="Changed_FiresOnMutation" fullname="Wildmere.Tests.QaInventoryTests.Changed_FiresOnMutation" methodname="Changed_FiresOnMutation" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="2090051659" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000141" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1018" name="ConsumeSelected_EmptiesSlotAtZero" fullname="Wildmere.Tests.QaInventoryTests.ConsumeSelected_EmptiesSlotAtZero" methodname="ConsumeSelected_EmptiesSlotAtZero" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="1935196900" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000072" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1019" name="DamageSelected_WearsAndBreaksTools_IgnoresBlocks" fullname="Wildmere.Tests.QaInventoryTests.DamageSelected_WearsAndBreaksTools_IgnoresBlocks" methodname="DamageSelected_WearsAndBreaksTools_IgnoresBlocks" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="770053070" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000113" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1023" name="FromJson_SkipsUnknownIdsAndBadSlots" fullname="Wildmere.Tests.QaInventoryTests.FromJson_SkipsUnknownIdsAndBadSlots" methodname="FromJson_SkipsUnknownIdsAndBadSlots" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="1470817368" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000412" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1022" name="Json_RoundTripPreservesSlotsCountsDurability" fullname="Wildmere.Tests.QaInventoryTests.Json_RoundTripPreservesSlotsCountsDurability" methodname="Json_RoundTripPreservesSlotsCountsDurability" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="1339863956" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.001257" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1015" name="Remove_TakesFromTheBackAndReportsCount" fullname="Wildmere.Tests.QaInventoryTests.Remove_TakesFromTheBackAndReportsCount" methodname="Remove_TakesFromTheBackAndReportsCount" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="1547860664" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000078" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1013" name="Tools_DoNotStack_AndStartAtFullDurability" fullname="Wildmere.Tests.QaInventoryTests.Tools_DoNotStack_AndStartAtFullDurability" methodname="Tools_DoNotStack_AndStartAtFullDurability" classname="Wildmere.Tests.QaInventoryTests" runstate="Runnable" seed="1646714849" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000129" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1034" name="QaItemDbTests" fullname="Wildmere.Tests.QaItemDbTests" classname="Wildmere.Tests.QaItemDbTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.004573" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1040" name="Drops" fullname="Wildmere.Tests.QaItemDbTests.Drops" methodname="Drops" classname="Wildmere.Tests.QaItemDbTests" runstate="Runnable" seed="1345590032" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000649" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1035" name="EveryBlockExceptWaterHasAnItem_AndBlockItemsPlaceThemselves" fullname="Wildmere.Tests.QaItemDbTests.EveryBlockExceptWaterHasAnItem_AndBlockItemsPlaceThemselves" methodname="EveryBlockExceptWaterHasAnItem_AndBlockItemsPlaceThemselves" classname="Wildmere.Tests.QaItemDbTests" runstate="Runnable" seed="2017949680" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000632" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1041" name="EveryDropIsARealItem" fullname="Wildmere.Tests.QaItemDbTests.EveryDropIsARealItem" methodname="EveryDropIsARealItem" classname="Wildmere.Tests.QaItemDbTests" runstate="Runnable" seed="1086824954" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000926" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1039" name="HarvestTiers" fullname="Wildmere.Tests.QaItemDbTests.HarvestTiers" methodname="HarvestTiers" classname="Wildmere.Tests.QaItemDbTests" runstate="Runnable" seed="347031195" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000173" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1038" name="KnownBreakTimes" fullname="Wildmere.Tests.QaItemDbTests.KnownBreakTimes" methodname="KnownBreakTimes" classname="Wildmere.Tests.QaItemDbTests" runstate="Runnable" seed="326500721" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000391" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1037" name="MatchingTool_IsFaster_HigherTierNotSlower_WrongToolSameAsHand" fullname="Wildmere.Tests.QaItemDbTests.MatchingTool_IsFaster_HigherTierNotSlower_WrongToolSameAsHand" methodname="MatchingTool_IsFaster_HigherTierNotSlower_WrongToolSameAsHand" classname="Wildmere.Tests.QaItemDbTests" runstate="Runnable" seed="1102737230" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.001081" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1036" name="Unbreakables_AreInfinite_BreakablesFinite" fullname="Wildmere.Tests.QaItemDbTests.Unbreakables_AreInfinite_BreakablesFinite" methodname="Unbreakables_AreInfinite_BreakablesFinite" classname="Wildmere.Tests.QaItemDbTests" runstate="Runnable" seed="1057784586" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000142" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1042" name="QaJsonTests" fullname="Wildmere.Tests.QaJsonTests" classname="Wildmere.Tests.QaJsonTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.004062" total="6" passed="5" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1046" name="Accessors_FallBackOnMissingOrWrongType" fullname="Wildmere.Tests.QaJsonTests.Accessors_FallBackOnMissingOrWrongType" methodname="Accessors_FallBackOnMissingOrWrongType" classname="Wildmere.Tests.QaJsonTests" runstate="Runnable" seed="38918652" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000182" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1045" name="DoublesRoundTripExactly" fullname="Wildmere.Tests.QaJsonTests.DoublesRoundTripExactly" methodname="DoublesRoundTripExactly" classname="Wildmere.Tests.QaJsonTests" runstate="Runnable" seed="258505368" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.001830" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1044" name="IntsFloatsLongs_WriteAsNumbers" fullname="Wildmere.Tests.QaJsonTests.IntsFloatsLongs_WriteAsNumbers" methodname="IntsFloatsLongs_WriteAsNumbers" classname="Wildmere.Tests.QaJsonTests" runstate="Runnable" seed="981114574" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000121" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1047" name="MalformedInput_Throws" fullname="Wildmere.Tests.QaJsonTests.MalformedInput_Throws" methodname="MalformedInput_Throws" classname="Wildmere.Tests.QaJsonTests" runstate="Runnable" seed="1862645993" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000361" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1048" name="NonFiniteNumbers_ProduceParseableJson" fullname="Wildmere.Tests.QaJsonTests.NonFiniteNumbers_ProduceParseableJson" methodname="NonFiniteNumbers_ProduceParseableJson" classname="Wildmere.Tests.QaJsonTests" runstate="Runnable" seed="1847565019" result="Failed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000530" asserts="0">
               <properties>
                 <property name="Category" value="KnownDefect" />
                 <property name="retryIteration" value="0" />
@@ -266,40 +284,40 @@
 ]]></stack-trace>
               </failure>
             </test-case>
-            <test-case id="1042" name="RoundTrip_NestedValues" fullname="Wildmere.Tests.QaJsonTests.RoundTrip_NestedValues" methodname="RoundTrip_NestedValues" classname="Wildmere.Tests.QaJsonTests" runstate="Runnable" seed="1914938338" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.001656" asserts="0">
+            <test-case id="1043" name="RoundTrip_NestedValues" fullname="Wildmere.Tests.QaJsonTests.RoundTrip_NestedValues" methodname="RoundTrip_NestedValues" classname="Wildmere.Tests.QaJsonTests" runstate="Runnable" seed="84013357" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000528" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
           </test-suite>
-          <test-suite type="TestFixture" id="1055" name="QaMesherTests" fullname="Wildmere.Tests.QaMesherTests" classname="Wildmere.Tests.QaMesherTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.102721" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestFixture" id="1056" name="QaMesherTests" fullname="Wildmere.Tests.QaMesherTests" classname="Wildmere.Tests.QaMesherTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.037213" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-case id="1057" name="AdjacentBlocks_HideSharedFace" fullname="Wildmere.Tests.QaMesherTests.AdjacentBlocks_HideSharedFace" methodname="AdjacentBlocks_HideSharedFace" classname="Wildmere.Tests.QaMesherTests" runstate="Runnable" seed="1227929374" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.014670" asserts="0">
+            <test-case id="1058" name="AdjacentBlocks_HideSharedFace" fullname="Wildmere.Tests.QaMesherTests.AdjacentBlocks_HideSharedFace" methodname="AdjacentBlocks_HideSharedFace" classname="Wildmere.Tests.QaMesherTests" runstate="Runnable" seed="669609002" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.005552" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1060" name="BottomOfWorld_NotMeshed_AndPlantsAreCutout" fullname="Wildmere.Tests.QaMesherTests.BottomOfWorld_NotMeshed_AndPlantsAreCutout" methodname="BottomOfWorld_NotMeshed_AndPlantsAreCutout" classname="Wildmere.Tests.QaMesherTests" runstate="Runnable" seed="2075984544" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.004207" asserts="0">
+            <test-case id="1061" name="BottomOfWorld_NotMeshed_AndPlantsAreCutout" fullname="Wildmere.Tests.QaMesherTests.BottomOfWorld_NotMeshed_AndPlantsAreCutout" methodname="BottomOfWorld_NotMeshed_AndPlantsAreCutout" classname="Wildmere.Tests.QaMesherTests" runstate="Runnable" seed="2064306193" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.001405" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1058" name="ChunkBorder_NeighbourCullsFace_AndAirNeighbourShowsIt" fullname="Wildmere.Tests.QaMesherTests.ChunkBorder_NeighbourCullsFace_AndAirNeighbourShowsIt" methodname="ChunkBorder_NeighbourCullsFace_AndAirNeighbourShowsIt" classname="Wildmere.Tests.QaMesherTests" runstate="Runnable" seed="250850494" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.008494" asserts="0">
+            <test-case id="1059" name="ChunkBorder_NeighbourCullsFace_AndAirNeighbourShowsIt" fullname="Wildmere.Tests.QaMesherTests.ChunkBorder_NeighbourCullsFace_AndAirNeighbourShowsIt" methodname="ChunkBorder_NeighbourCullsFace_AndAirNeighbourShowsIt" classname="Wildmere.Tests.QaMesherTests" runstate="Runnable" seed="1284985342" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.003050" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1062" name="FancyLeavesOff_HidesInnerLeafFaces" fullname="Wildmere.Tests.QaMesherTests.FancyLeavesOff_HidesInnerLeafFaces" methodname="FancyLeavesOff_HidesInnerLeafFaces" classname="Wildmere.Tests.QaMesherTests" runstate="Runnable" seed="1928294152" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.015984" asserts="0">
+            <test-case id="1063" name="FancyLeavesOff_HidesInnerLeafFaces" fullname="Wildmere.Tests.QaMesherTests.FancyLeavesOff_HidesInnerLeafFaces" methodname="FancyLeavesOff_HidesInnerLeafFaces" classname="Wildmere.Tests.QaMesherTests" runstate="Runnable" seed="829785755" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.005720" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1059" name="FlatFloor_GreedyMergesIntoOneTopQuad" fullname="Wildmere.Tests.QaMesherTests.FlatFloor_GreedyMergesIntoOneTopQuad" methodname="FlatFloor_GreedyMergesIntoOneTopQuad" classname="Wildmere.Tests.QaMesherTests" runstate="Runnable" seed="918400198" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.007336" asserts="0">
+            <test-case id="1060" name="FlatFloor_GreedyMergesIntoOneTopQuad" fullname="Wildmere.Tests.QaMesherTests.FlatFloor_GreedyMergesIntoOneTopQuad" methodname="FlatFloor_GreedyMergesIntoOneTopQuad" classname="Wildmere.Tests.QaMesherTests" runstate="Runnable" seed="68356119" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.002627" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
@@ -307,149 +325,149 @@
               <output><![CDATA[bottom quads=1 total verts=8
 ]]></output>
             </test-case>
-            <test-case id="1063" name="FurnaceFacing_UsesFrontLayerOnTheFacingSide" fullname="Wildmere.Tests.QaMesherTests.FurnaceFacing_UsesFrontLayerOnTheFacingSide" methodname="FurnaceFacing_UsesFrontLayerOnTheFacingSide" classname="Wildmere.Tests.QaMesherTests" runstate="Runnable" seed="403831985" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.032155" asserts="0">
+            <test-case id="1064" name="FurnaceFacing_UsesFrontLayerOnTheFacingSide" fullname="Wildmere.Tests.QaMesherTests.FurnaceFacing_UsesFrontLayerOnTheFacingSide" methodname="FurnaceFacing_UsesFrontLayerOnTheFacingSide" classname="Wildmere.Tests.QaMesherTests" runstate="Runnable" seed="995025837" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.011942" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1056" name="SingleBlock_SixFaces_24Verts_CorrectWinding" fullname="Wildmere.Tests.QaMesherTests.SingleBlock_SixFaces_24Verts_CorrectWinding" methodname="SingleBlock_SixFaces_24Verts_CorrectWinding" classname="Wildmere.Tests.QaMesherTests" runstate="Runnable" seed="237837102" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.010014" asserts="0">
+            <test-case id="1057" name="SingleBlock_SixFaces_24Verts_CorrectWinding" fullname="Wildmere.Tests.QaMesherTests.SingleBlock_SixFaces_24Verts_CorrectWinding" methodname="SingleBlock_SixFaces_24Verts_CorrectWinding" classname="Wildmere.Tests.QaMesherTests" runstate="Runnable" seed="1518136546" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.003665" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1061" name="Water_TopIsLowered_AndHidesWaterWaterFaces" fullname="Wildmere.Tests.QaMesherTests.Water_TopIsLowered_AndHidesWaterWaterFaces" methodname="Water_TopIsLowered_AndHidesWaterWaterFaces" classname="Wildmere.Tests.QaMesherTests" runstate="Runnable" seed="2085473331" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.007694" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-          </test-suite>
-          <test-suite type="TestFixture" id="1064" name="QaPhysicsTests" fullname="Wildmere.Tests.QaPhysicsTests" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:42Z" duration="0.258348" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
-            <properties />
-            <test-case id="1065" name="GetBlock_Bounds" fullname="Wildmere.Tests.QaPhysicsTests.GetBlock_Bounds" methodname="GetBlock_Bounds" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="291229556" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.014068" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1075" name="Grounded_OverhangingEdge" fullname="Wildmere.Tests.QaPhysicsTests.Grounded_OverhangingEdge" methodname="Grounded_OverhangingEdge" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="1724821599" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:41Z" duration="0.007504" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1070" name="Move_FallLandsFlush" fullname="Wildmere.Tests.QaPhysicsTests.Move_FallLandsFlush" methodname="Move_FallLandsFlush" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="1049160290" result="Passed" start-time="2026-10-18 13:21:41Z" end-time="2026-10-18 13:21:42Z" duration="0.007967" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1073" name="Move_HeadBump" fullname="Wildmere.Tests.QaPhysicsTests.Move_HeadBump" methodname="Move_HeadBump" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="1673231516" result="Passed" start-time="2026-10-18 13:21:42Z" end-time="2026-10-18 13:21:42Z" duration="0.007108" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1071" name="Move_NoTunnellingAtHighSpeed" fullname="Wildmere.Tests.QaPhysicsTests.Move_NoTunnellingAtHighSpeed" methodname="Move_NoTunnellingAtHighSpeed" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="402580497" result="Passed" start-time="2026-10-18 13:21:42Z" end-time="2026-10-18 13:21:42Z" duration="0.007179" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1072" name="Move_WallStopsFlush_AndSlides" fullname="Wildmere.Tests.QaPhysicsTests.Move_WallStopsFlush_AndSlides" methodname="Move_WallStopsFlush_AndSlides" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="1568887927" result="Passed" start-time="2026-10-18 13:21:42Z" end-time="2026-10-18 13:21:42Z" duration="0.007379" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1074" name="NonSolidBlocks_DoNotCollide" fullname="Wildmere.Tests.QaPhysicsTests.NonSolidBlocks_DoNotCollide" methodname="NonSolidBlocks_DoNotCollide" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="372676127" result="Passed" start-time="2026-10-18 13:21:42Z" end-time="2026-10-18 13:21:42Z" duration="0.007005" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1066" name="Raycast_Down_HitsTopFace" fullname="Wildmere.Tests.QaPhysicsTests.Raycast_Down_HitsTopFace" methodname="Raycast_Down_HitsTopFace" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="1711258901" result="Passed" start-time="2026-10-18 13:21:42Z" end-time="2026-10-18 13:21:42Z" duration="0.008203" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1069" name="Raycast_MatchesBruteForce" fullname="Wildmere.Tests.QaPhysicsTests.Raycast_MatchesBruteForce" methodname="Raycast_MatchesBruteForce" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="62312058" result="Passed" start-time="2026-10-18 13:21:42Z" end-time="2026-10-18 13:21:42Z" duration="0.166017" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1067" name="Raycast_RespectsReach" fullname="Wildmere.Tests.QaPhysicsTests.Raycast_RespectsReach" methodname="Raycast_RespectsReach" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="1741896579" result="Passed" start-time="2026-10-18 13:21:42Z" end-time="2026-10-18 13:21:42Z" duration="0.007383" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1068" name="Raycast_WaterSkippedUnlessRequested_PlantsHit" fullname="Wildmere.Tests.QaPhysicsTests.Raycast_WaterSkippedUnlessRequested_PlantsHit" methodname="Raycast_WaterSkippedUnlessRequested_PlantsHit" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="1529686260" result="Passed" start-time="2026-10-18 13:21:42Z" end-time="2026-10-18 13:21:42Z" duration="0.007408" asserts="0">
-              <properties>
-                <property name="retryIteration" value="0" />
-                <property name="repeatIteration" value="0" />
-              </properties>
-            </test-case>
-            <test-case id="1076" name="Submersion_SamplesFeetWaistEyes" fullname="Wildmere.Tests.QaPhysicsTests.Submersion_SamplesFeetWaistEyes" methodname="Submersion_SamplesFeetWaistEyes" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="473714004" result="Passed" start-time="2026-10-18 13:21:42Z" end-time="2026-10-18 13:21:42Z" duration="0.007267" asserts="0">
+            <test-case id="1062" name="Water_TopIsLowered_AndHidesWaterWaterFaces" fullname="Wildmere.Tests.QaMesherTests.Water_TopIsLowered_AndHidesWaterWaterFaces" methodname="Water_TopIsLowered_AndHidesWaterWaterFaces" classname="Wildmere.Tests.QaMesherTests" runstate="Runnable" seed="1508082323" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.002678" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
           </test-suite>
-          <test-suite type="TestFixture" id="1048" name="QaWorldSaveTests" fullname="Wildmere.Tests.QaWorldSaveTests" classname="Wildmere.Tests.QaWorldSaveTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-18 13:21:42Z" end-time="2026-10-18 13:21:42Z" duration="0.122628" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestFixture" id="1065" name="QaPhysicsTests" fullname="Wildmere.Tests.QaPhysicsTests" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.092249" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-case id="1053" name="CorruptModsFile_Throws" fullname="Wildmere.Tests.QaWorldSaveTests.CorruptModsFile_Throws" methodname="CorruptModsFile_Throws" classname="Wildmere.Tests.QaWorldSaveTests" runstate="Runnable" seed="1837057437" result="Passed" start-time="2026-10-18 13:21:42Z" end-time="2026-10-18 13:21:42Z" duration="0.041239" asserts="0">
+            <test-case id="1066" name="GetBlock_Bounds" fullname="Wildmere.Tests.QaPhysicsTests.GetBlock_Bounds" methodname="GetBlock_Bounds" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="1537548035" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.004760" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1050" name="LaterEditWins_AndRevertToAirIsKept" fullname="Wildmere.Tests.QaWorldSaveTests.LaterEditWins_AndRevertToAirIsKept" methodname="LaterEditWins_AndRevertToAirIsKept" classname="Wildmere.Tests.QaWorldSaveTests" runstate="Runnable" seed="1385774913" result="Passed" start-time="2026-10-18 13:21:42Z" end-time="2026-10-18 13:21:42Z" duration="0.008044" asserts="0">
+            <test-case id="1076" name="Grounded_OverhangingEdge" fullname="Wildmere.Tests.QaPhysicsTests.Grounded_OverhangingEdge" methodname="Grounded_OverhangingEdge" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="860742594" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.002685" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1049" name="Mods_RoundTrip_ManyChunks_NegativeCoords_Meta" fullname="Wildmere.Tests.QaWorldSaveTests.Mods_RoundTrip_ManyChunks_NegativeCoords_Meta" methodname="Mods_RoundTrip_ManyChunks_NegativeCoords_Meta" classname="Wildmere.Tests.QaWorldSaveTests" runstate="Runnable" seed="1499359276" result="Passed" start-time="2026-10-18 13:21:42Z" end-time="2026-10-18 13:21:42Z" duration="0.060977" asserts="0">
+            <test-case id="1071" name="Move_FallLandsFlush" fullname="Wildmere.Tests.QaPhysicsTests.Move_FallLandsFlush" methodname="Move_FallLandsFlush" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="1116652670" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.002802" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1052" name="NewerFormat_IsRejected_CorruptMetaIsNull" fullname="Wildmere.Tests.QaWorldSaveTests.NewerFormat_IsRejected_CorruptMetaIsNull" methodname="NewerFormat_IsRejected_CorruptMetaIsNull" classname="Wildmere.Tests.QaWorldSaveTests" runstate="Runnable" seed="1124819168" result="Passed" start-time="2026-10-18 13:21:42Z" end-time="2026-10-18 13:21:42Z" duration="0.004825" asserts="0">
+            <test-case id="1074" name="Move_HeadBump" fullname="Wildmere.Tests.QaPhysicsTests.Move_HeadBump" methodname="Move_HeadBump" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="1186987904" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.002553" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1072" name="Move_NoTunnellingAtHighSpeed" fullname="Wildmere.Tests.QaPhysicsTests.Move_NoTunnellingAtHighSpeed" methodname="Move_NoTunnellingAtHighSpeed" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="1708692208" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.002532" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1073" name="Move_WallStopsFlush_AndSlides" fullname="Wildmere.Tests.QaPhysicsTests.Move_WallStopsFlush_AndSlides" methodname="Move_WallStopsFlush_AndSlides" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="2004974472" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.002667" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1075" name="NonSolidBlocks_DoNotCollide" fullname="Wildmere.Tests.QaPhysicsTests.NonSolidBlocks_DoNotCollide" methodname="NonSolidBlocks_DoNotCollide" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="217547499" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.002530" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1067" name="Raycast_Down_HitsTopFace" fullname="Wildmere.Tests.QaPhysicsTests.Raycast_Down_HitsTopFace" methodname="Raycast_Down_HitsTopFace" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="2069263937" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.002869" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1070" name="Raycast_MatchesBruteForce" fullname="Wildmere.Tests.QaPhysicsTests.Raycast_MatchesBruteForce" methodname="Raycast_MatchesBruteForce" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="1191821014" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.059738" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1068" name="Raycast_RespectsReach" fullname="Wildmere.Tests.QaPhysicsTests.Raycast_RespectsReach" methodname="Raycast_RespectsReach" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="673580311" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.002639" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1069" name="Raycast_WaterSkippedUnlessRequested_PlantsHit" fullname="Wildmere.Tests.QaPhysicsTests.Raycast_WaterSkippedUnlessRequested_PlantsHit" methodname="Raycast_WaterSkippedUnlessRequested_PlantsHit" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="361258864" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.002558" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1077" name="Submersion_SamplesFeetWaistEyes" fullname="Wildmere.Tests.QaPhysicsTests.Submersion_SamplesFeetWaistEyes" methodname="Submersion_SamplesFeetWaistEyes" classname="Wildmere.Tests.QaPhysicsTests" runstate="Runnable" seed="1861060967" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.002581" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1049" name="QaWorldSaveTests" fullname="Wildmere.Tests.QaWorldSaveTests" classname="Wildmere.Tests.QaWorldSaveTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.055291" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1054" name="CorruptModsFile_Throws" fullname="Wildmere.Tests.QaWorldSaveTests.CorruptModsFile_Throws" methodname="CorruptModsFile_Throws" classname="Wildmere.Tests.QaWorldSaveTests" runstate="Runnable" seed="1831711948" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.026273" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1051" name="LaterEditWins_AndRevertToAirIsKept" fullname="Wildmere.Tests.QaWorldSaveTests.LaterEditWins_AndRevertToAirIsKept" methodname="LaterEditWins_AndRevertToAirIsKept" classname="Wildmere.Tests.QaWorldSaveTests" runstate="Runnable" seed="1705056917" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.002782" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1050" name="Mods_RoundTrip_ManyChunks_NegativeCoords_Meta" fullname="Wildmere.Tests.QaWorldSaveTests.Mods_RoundTrip_ManyChunks_NegativeCoords_Meta" methodname="Mods_RoundTrip_ManyChunks_NegativeCoords_Meta" classname="Wildmere.Tests.QaWorldSaveTests" runstate="Runnable" seed="977095846" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.022614" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1053" name="NewerFormat_IsRejected_CorruptMetaIsNull" fullname="Wildmere.Tests.QaWorldSaveTests.NewerFormat_IsRejected_CorruptMetaIsNull" methodname="NewerFormat_IsRejected_CorruptMetaIsNull" classname="Wildmere.Tests.QaWorldSaveTests" runstate="Runnable" seed="111750816" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.001639" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
               <output><![CDATA[
 IgnoreFailingMessages:true
-WM_SAVE world /var/folders/wr/yvg2g9yj5xn7507rslp77n1c0000gn/T/wm-qa-save-ec1c6afc4d3849e8a7c831a35a23bcf8 is from a newer version (99)
-WM_SAVE unreadable world /var/folders/wr/yvg2g9yj5xn7507rslp77n1c0000gn/T/wm-qa-save-ec1c6afc4d3849e8a7c831a35a23bcf8: unexpected end of JSON
+WM_SAVE world /var/folders/wr/yvg2g9yj5xn7507rslp77n1c0000gn/T/wm-qa-save-79319bcb6e9d46598e4dee24a0f7b30a is from a newer version (99)
+WM_SAVE unreadable world /var/folders/wr/yvg2g9yj5xn7507rslp77n1c0000gn/T/wm-qa-save-79319bcb6e9d46598e4dee24a0f7b30a: unexpected end of JSON
 
 IgnoreFailingMessages:false
 ]]></output>
             </test-case>
-            <test-case id="1051" name="SaveTwice_OverwritesCleanly" fullname="Wildmere.Tests.QaWorldSaveTests.SaveTwice_OverwritesCleanly" methodname="SaveTwice_OverwritesCleanly" classname="Wildmere.Tests.QaWorldSaveTests" runstate="Runnable" seed="821681737" result="Passed" start-time="2026-10-18 13:21:42Z" end-time="2026-10-18 13:21:42Z" duration="0.004325" asserts="0">
+            <test-case id="1052" name="SaveTwice_OverwritesCleanly" fullname="Wildmere.Tests.QaWorldSaveTests.SaveTwice_OverwritesCleanly" methodname="SaveTwice_OverwritesCleanly" classname="Wildmere.Tests.QaWorldSaveTests" runstate="Runnable" seed="613691875" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.001048" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1054" name="Slug_IsFilesystemSafe" fullname="Wildmere.Tests.QaWorldSaveTests.Slug_IsFilesystemSafe" methodname="Slug_IsFilesystemSafe" classname="Wildmere.Tests.QaWorldSaveTests" runstate="Runnable" seed="1647034005" result="Passed" start-time="2026-10-18 13:21:42Z" end-time="2026-10-18 13:21:42Z" duration="0.000667" asserts="0">
+            <test-case id="1055" name="Slug_IsFilesystemSafe" fullname="Wildmere.Tests.QaWorldSaveTests.Slug_IsFilesystemSafe" methodname="Slug_IsFilesystemSafe" classname="Wildmere.Tests.QaWorldSaveTests" runstate="Runnable" seed="749376281" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:50Z" duration="0.000193" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
           </test-suite>
-          <test-suite type="TestFixture" id="1077" name="WorldGenTests" fullname="Wildmere.Tests.WorldGenTests" classname="Wildmere.Tests.WorldGenTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-10-18 13:21:42Z" end-time="2026-10-18 13:21:47Z" duration="4.996197" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestFixture" id="1078" name="WorldGenTests" fullname="Wildmere.Tests.WorldGenTests" classname="Wildmere.Tests.WorldGenTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:52Z" duration="2.018096" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-case id="1081" name="BiomeCoverage" fullname="Wildmere.Tests.WorldGenTests.BiomeCoverage" methodname="BiomeCoverage" classname="Wildmere.Tests.WorldGenTests" runstate="Runnable" seed="2120889138" result="Passed" start-time="2026-10-18 13:21:42Z" end-time="2026-10-18 13:21:45Z" duration="2.788472" asserts="0">
+            <test-case id="1082" name="BiomeCoverage" fullname="Wildmere.Tests.WorldGenTests.BiomeCoverage" methodname="BiomeCoverage" classname="Wildmere.Tests.WorldGenTests" runstate="Runnable" seed="952511770" result="Passed" start-time="2026-10-18 18:12:50Z" end-time="2026-10-18 18:12:51Z" duration="1.079707" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
@@ -458,7 +476,7 @@ IgnoreFailingMessages:false
 seed 20261017: Plains=14.1% TemperateForest=12.1% River=3.8% SnowyMountains=10.1% DarkForest=20.3% Ocean=27.3% Beach=1.8% Desert=10.4%
 ]]></output>
             </test-case>
-            <test-case id="1082" name="CaveOpeningsExist" fullname="Wildmere.Tests.WorldGenTests.CaveOpeningsExist" methodname="CaveOpeningsExist" classname="Wildmere.Tests.WorldGenTests" runstate="Runnable" seed="1563550474" result="Passed" start-time="2026-10-18 13:21:45Z" end-time="2026-10-18 13:21:45Z" duration="0.587817" asserts="0">
+            <test-case id="1083" name="CaveOpeningsExist" fullname="Wildmere.Tests.WorldGenTests.CaveOpeningsExist" methodname="CaveOpeningsExist" classname="Wildmere.Tests.WorldGenTests" runstate="Runnable" seed="1654121893" result="Passed" start-time="2026-10-18 18:12:51Z" end-time="2026-10-18 18:12:51Z" duration="0.259262" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
@@ -466,21 +484,21 @@ seed 20261017: Plains=14.1% TemperateForest=12.1% River=3.8% SnowyMountains=10.1
               <output><![CDATA[cave-opening columns in 160 chunks: 125
 ]]></output>
             </test-case>
-            <test-case id="1078" name="Deterministic" fullname="Wildmere.Tests.WorldGenTests.Deterministic" methodname="Deterministic" classname="Wildmere.Tests.WorldGenTests" runstate="Runnable" seed="1077741542" result="Passed" start-time="2026-10-18 13:21:45Z" end-time="2026-10-18 13:21:45Z" duration="0.250455" asserts="0">
+            <test-case id="1079" name="Deterministic" fullname="Wildmere.Tests.WorldGenTests.Deterministic" methodname="Deterministic" classname="Wildmere.Tests.WorldGenTests" runstate="Runnable" seed="651923847" result="Passed" start-time="2026-10-18 18:12:51Z" end-time="2026-10-18 18:12:51Z" duration="0.089070" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1086" name="GenerationSpeed" fullname="Wildmere.Tests.WorldGenTests.GenerationSpeed" methodname="GenerationSpeed" classname="Wildmere.Tests.WorldGenTests" runstate="Runnable" seed="69417077" result="Passed" start-time="2026-10-18 13:21:45Z" end-time="2026-10-18 13:21:46Z" duration="0.275090" asserts="0">
+            <test-case id="1087" name="GenerationSpeed" fullname="Wildmere.Tests.WorldGenTests.GenerationSpeed" methodname="GenerationSpeed" classname="Wildmere.Tests.WorldGenTests" runstate="Runnable" seed="917743737" result="Passed" start-time="2026-10-18 18:12:51Z" end-time="2026-10-18 18:12:51Z" duration="0.119752" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
-              <output><![CDATA[WM_WORLDGEN_PERF 2.67 ms per 16x256x16 column (single thread, editor Mono)
+              <output><![CDATA[WM_WORLDGEN_PERF 1.18 ms per 16x256x16 column (single thread, editor Mono)
 ]]></output>
             </test-case>
-            <test-case id="1083" name="OreVeinsWithinRanges" fullname="Wildmere.Tests.WorldGenTests.OreVeinsWithinRanges" methodname="OreVeinsWithinRanges" classname="Wildmere.Tests.WorldGenTests" runstate="Runnable" seed="1822197050" result="Passed" start-time="2026-10-18 13:21:46Z" end-time="2026-10-18 13:21:46Z" duration="0.071864" asserts="0">
+            <test-case id="1084" name="OreVeinsWithinRanges" fullname="Wildmere.Tests.WorldGenTests.OreVeinsWithinRanges" methodname="OreVeinsWithinRanges" classname="Wildmere.Tests.WorldGenTests" runstate="Runnable" seed="835402422" result="Passed" start-time="2026-10-18 18:12:51Z" end-time="2026-10-18 18:12:51Z" duration="0.031381" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
@@ -488,13 +506,13 @@ seed 20261017: Plains=14.1% TemperateForest=12.1% River=3.8% SnowyMountains=10.1
               <output><![CDATA[ores in 24 chunks: coal=1977 iron=1386 gold=277
 ]]></output>
             </test-case>
-            <test-case id="1079" name="ParallelEqualsSerial" fullname="Wildmere.Tests.WorldGenTests.ParallelEqualsSerial" methodname="ParallelEqualsSerial" classname="Wildmere.Tests.WorldGenTests" runstate="Runnable" seed="1130145527" result="Passed" start-time="2026-10-18 13:21:46Z" end-time="2026-10-18 13:21:46Z" duration="0.214434" asserts="0">
+            <test-case id="1080" name="ParallelEqualsSerial" fullname="Wildmere.Tests.WorldGenTests.ParallelEqualsSerial" methodname="ParallelEqualsSerial" classname="Wildmere.Tests.WorldGenTests" runstate="Runnable" seed="1825195249" result="Passed" start-time="2026-10-18 18:12:51Z" end-time="2026-10-18 18:12:52Z" duration="0.093273" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1085" name="SpawnIsDryAndOpen" fullname="Wildmere.Tests.WorldGenTests.SpawnIsDryAndOpen" methodname="SpawnIsDryAndOpen" classname="Wildmere.Tests.WorldGenTests" runstate="Runnable" seed="1394259295" result="Passed" start-time="2026-10-18 13:21:46Z" end-time="2026-10-18 13:21:46Z" duration="0.332015" asserts="0">
+            <test-case id="1086" name="SpawnIsDryAndOpen" fullname="Wildmere.Tests.WorldGenTests.SpawnIsDryAndOpen" methodname="SpawnIsDryAndOpen" classname="Wildmere.Tests.WorldGenTests" runstate="Runnable" seed="386277922" result="Passed" start-time="2026-10-18 18:12:52Z" end-time="2026-10-18 18:12:52Z" duration="0.135911" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
@@ -503,7 +521,7 @@ seed 20261017: Plains=14.1% TemperateForest=12.1% River=3.8% SnowyMountains=10.1
 seed 20261017: spawn (-260, 69, -204) biome Plains
 ]]></output>
             </test-case>
-            <test-case id="1080" name="TreesConsistentAcrossBorders" fullname="Wildmere.Tests.WorldGenTests.TreesConsistentAcrossBorders" methodname="TreesConsistentAcrossBorders" classname="Wildmere.Tests.WorldGenTests" runstate="Runnable" seed="1589439513" result="Passed" start-time="2026-10-18 13:21:46Z" end-time="2026-10-18 13:21:47Z" duration="0.177267" asserts="0">
+            <test-case id="1081" name="TreesConsistentAcrossBorders" fullname="Wildmere.Tests.WorldGenTests.TreesConsistentAcrossBorders" methodname="TreesConsistentAcrossBorders" classname="Wildmere.Tests.WorldGenTests" runstate="Runnable" seed="851147222" result="Passed" start-time="2026-10-18 18:12:52Z" end-time="2026-10-18 18:12:52Z" duration="0.078171" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
@@ -514,7 +532,7 @@ SnowyMountains: chunk -26,16 trunks=4 leaves=804 border-crossing trees=44
 Plains: chunk 21,0 trunks=1 leaves=92 border-crossing trees=2
 ]]></output>
             </test-case>
-            <test-case id="1084" name="WaterSealedVegetationAndPropsGrounded" fullname="Wildmere.Tests.WorldGenTests.WaterSealedVegetationAndPropsGrounded" methodname="WaterSealedVegetationAndPropsGrounded" classname="Wildmere.Tests.WorldGenTests" runstate="Runnable" seed="2089032363" result="Passed" start-time="2026-10-18 13:21:47Z" end-time="2026-10-18 13:21:47Z" duration="0.292611" asserts="0">
+            <test-case id="1085" name="WaterSealedVegetationAndPropsGrounded" fullname="Wildmere.Tests.WorldGenTests.WaterSealedVegetationAndPropsGrounded" methodname="WaterSealedVegetationAndPropsGrounded" classname="Wildmere.Tests.WorldGenTests" runstate="Runnable" seed="949013474" result="Passed" start-time="2026-10-18 18:12:52Z" end-time="2026-10-18 18:12:52Z" duration="0.129118" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
