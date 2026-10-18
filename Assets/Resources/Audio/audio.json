@@ -177,6 +177,14 @@
     "volume": 0.7,
     "loop": false
   },
+  "break/water": {
+    "files": [
+      "Audio/break/water_01",
+      "Audio/break/water_02"
+    ],
+    "volume": 0.6,
+    "loop": false
+  },
   "break/wood": {
     "files": [
       "Audio/break/wood_01",
@@ -276,6 +284,14 @@
     "volume": 0.55,
     "loop": false
   },
+  "dig/water": {
+    "files": [
+      "Audio/dig/water_01",
+      "Audio/dig/water_02"
+    ],
+    "volume": 0.5,
+    "loop": false
+  },
   "dig/wood": {
     "files": [
       "Audio/dig/wood_01",
@@ -350,7 +366,7 @@
       "Audio/place/dirt_03",
       "Audio/place/dirt_04"
     ],
-    "volume": 0.55,
+    "volume": 0.62,
     "loop": false
   },
   "place/glass": {
@@ -409,6 +425,14 @@
       "Audio/place/stone_03",
       "Audio/place/stone_04",
       "Audio/place/stone_05"
+    ],
+    "volume": 0.55,
+    "loop": false
+  },
+  "place/water": {
+    "files": [
+      "Audio/place/water_01",
+      "Audio/place/water_02"
     ],
     "volume": 0.55,
     "loop": false
@@ -475,6 +499,16 @@
       "Audio/step/dirt_04",
       "Audio/step/dirt_05",
       "Audio/step/dirt_06"
+    ],
+    "volume": 0.3,
+    "loop": false
+  },
+  "step/glass": {
+    "files": [
+      "Audio/step/glass_01",
+      "Audio/step/glass_02",
+      "Audio/step/glass_03",
+      "Audio/step/glass_04"
     ],
     "volume": 0.3,
     "loop": false

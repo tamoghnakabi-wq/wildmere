@@ -38,6 +38,23 @@ RECIPES["player/land_hard"] = {
               [T("oga_wet_towel", "wet_towel_on_floor-05.flac", g=-3), T(KI, "impactSoft_heavy_003.ogg", role="body")]],
     "p": P(ONE, hp=45, max_s=0.6, lufs=-17.0), "volume": 0.65}
 
+# ------------------------------------------------------------------ keys AudioManager also asks for
+# step/glass: hard shoe on a slab with a faint glassy tick
+RECIPES["step/glass"] = {
+    "takes": [[T("oga_haeldb_steps", f"step_metal{n}.ogg", g=4), T(KI, f"impactGlass_light_00{k}.ogg", g=-14, role="tick")]
+              for n, k in ((" (2)", 0), (" (3)", 2), (" (4)", 3), ("", 4))],
+    "p": P(ONE, hp=90, max_s=0.35, fade_out_ms=70, lufs=-18.0), "volume": 0.30}
+# SoundMat.Water: placing/scooping water and the (rare) dig/break of a water block
+RECIPES["place/water"] = {
+    "takes": [T("oga_rd_water", "splash_02.ogg"), T("oga_rd_water", "splash_08.ogg")],
+    "p": P(ONE, hp=90, max_s=0.48, fade_out_ms=150, lufs=-19.0), "volume": 0.55}
+RECIPES["dig/water"] = {
+    "takes": [T("oga_rd_water", "splash_10.ogg"), T("oga_rd_water", "splash_09.ogg")],
+    "p": P(ONE, hp=90, max_s=0.35, fade_out_ms=80, lufs=-20.0), "volume": 0.5}
+RECIPES["break/water"] = {
+    "takes": [T("oga_rd_water", "splash_05.ogg"), T("oga_rd_water", "splash_11.ogg")],
+    "p": P(ONE, hp=80, max_s=0.9, fade_out_ms=200, lufs=-17.0), "volume": 0.6}
+
 # ------------------------------------------------------------------ water
 RECIPES["water/splash_in"] = {
     "takes": [T("oga_rd_water", "splash_01.ogg"), T("oga_rd_water", "splash_07.ogg"),

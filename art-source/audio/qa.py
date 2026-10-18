@@ -101,7 +101,7 @@ def main():
     total = 0
     for name, ent in manifest.items():
         lo, hi = group_range(name)
-        mono_sigs, mm = [], []
+        mono_sigs, mm, m100 = [], [], []
         if not (0.0 <= ent["volume"] <= 1.0):
             fails.append(f"{name}: volume {ent['volume']} outside 0..1")
         for rel in ent["files"]:
@@ -164,9 +164,17 @@ def main():
                     fails.append(f"{tag}: loop spectral step {sp[0]:.1f} dB vs interior p95 {sp[1]:.1f} dB")
             lm = dsp.loudness(x, sr) if dur > 3 else dsp.momentary_max(x, sr)
             mm.append(dsp.momentary_max(x, sr))      # beds: their loudest 400 ms ("peaks")
+            m100.append(dsp.momentary_max(x, sr, win=0.1))
             mono_sigs.append(m[:int(min(len(m), 3 * sr))])
             rows.append(f"{tag:44s} {x.shape[1]}ch {dur:6.2f}s pk {dsp.db(pk):6.2f} tp {dsp.db(tp):6.2f} "
                         f"{'LUFS' if dur > 3 else 'Mmax'} {lm:6.1f} dc {dc:.4f}{seam}")
+        # every variant of a one-shot should be equally loud (100 ms loudness)
+        if len(m100) > 1 and not ent["loop"] and not name.startswith("music/"):
+            spread = max(m100) - min(m100)
+            if spread > 4.0:
+                fails.append(f"{name}: variant loudness spread {spread:.1f} dB")
+            elif spread > 2.5:
+                warns.append(f"{name}: variant loudness spread {spread:.1f} dB")
         # variants
         k = len(mono_sigs)
         worst = 0.0
@@ -187,6 +195,26 @@ def main():
                     fails.append(f"{name}: variants {i + 1} and {j + 1} cut from overlapping ranges of {a[1]}")
         if mm:
             eff[name] = (float(np.max(mm)) + 20 * np.log10(max(ent["volume"], 1e-4)), k, worst)
+    # dig / break / place of one material must be distinct sounds, not re-labels
+    def mono_of(rel):
+        p = os.path.join(RES, rel + ".wav")
+        x, sr = dsp.read_wav(p)
+        return x[:3 * sr, 0]
+    mats = sorted({n.split("/")[1] for n in manifest if n.startswith(("dig/", "break/", "place/"))})
+    for mat in mats:
+        groups = [g for g in ("dig", "break", "place") if f"{g}/{mat}" in manifest]
+        for a in range(len(groups)):
+            for b in range(a + 1, len(groups)):
+                ga, gb = groups[a], groups[b]
+                for fa in manifest[f"{ga}/{mat}"]["files"]:
+                    for fb in manifest[f"{gb}/{mat}"]["files"]:
+                        c = dsp.max_xcorr(mono_of(fa), mono_of(fb))
+                        if c >= XCORR_FAIL:
+                            fails.append(f"{ga}/{mat} vs {gb}/{mat}: {os.path.basename(fa)} ~ "
+                                         f"{os.path.basename(fb)} (xcorr {c:.2f})")
+                        elif c >= XCORR_WARN:
+                            warns.append(f"{ga}/{mat} vs {gb}/{mat}: {os.path.basename(fa)} similar to "
+                                         f"{os.path.basename(fb)} (xcorr {c:.2f})")
     # mix relationships
     amb = [v[0] for n, v in eff.items() if n.startswith("amb/")]
     steps = [v[0] for n, v in eff.items() if n.startswith("step/")]
