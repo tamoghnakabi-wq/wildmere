@@ -68,9 +68,9 @@ namespace Wildmere.Player
                         r.gameObject.layer = Layers.Viewmodel;
                     }
                     // Grip at origin, long axis +Y: tilt it forward like a held tool.
-                    go.transform.localScale = Vector3.one * 0.55f;
-                    go.transform.localRotation = Quaternion.Euler(-35f, -12f, 6f);
-                    go.transform.localPosition = new Vector3(0.02f, -0.06f, -0.05f);
+                    go.transform.localScale = Vector3.one * 0.34f;
+                    go.transform.localRotation = Quaternion.Euler(-28f, -18f, 10f);
+                    go.transform.localPosition = new Vector3(0.06f, -0.04f, 0.02f);
                 }
                 else
                 {

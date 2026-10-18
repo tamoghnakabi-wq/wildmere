@@ -255,7 +255,8 @@ namespace Wildmere.World.Gen
                         double ex = 0, ez = 0; int ey = top;
                         for (int k = 1; k <= len; k++)
                         {
-                            ex = cx + Math.Cos(a) * (k + 0.6); ez = cz + Math.Sin(a) * (k + 0.6); ey = top - 1 + (k + 1) / 2;
+                            // trunk centre is (x + 1, z + 1) in continuous coordinates: the first segment touches the trunk
+                            ex = x + 1.0 + Math.Cos(a) * (k + 0.6); ez = z + 1.0 + Math.Sin(a) * (k + 0.6); ey = top - 1 + (k + 1) / 2;
                             Log(ch, bx, bz, (int)Math.Floor(ex), ey, (int)Math.Floor(ez), B.LogDark);
                         }
                         Blob(ch, bx, bz, t.Hash + (ulong)b * 31, Math.Floor(ex), ey + 1, Math.Floor(ez), 2.2, 1.5, B.LeavesDark, 0.35);

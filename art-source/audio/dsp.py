@@ -161,12 +161,14 @@ def loudness(x, sr=SR):
     return float(-0.691 + 10 * np.log10(np.mean(g2 if g2.size else g)))
 
 
-def momentary_max(x, sr=SR):
-    """Max 400 ms (momentary) loudness -- the right measure for short one-shots."""
+def momentary_max(x, sr=SR, win=0.4):
+    """Max loudness over a sliding `win` window (0.4 s = BS.1770 momentary; 0.1 s
+    for levelling short impacts against longer sounds, roughly the ear's own
+    integration time for transients)."""
     y = kweight(x, sr)
     if y.ndim == 1:
         y = y[:, None]
-    blk, hop = int(0.4 * sr), int(0.02 * sr)
+    blk, hop = int(win * sr), int(min(0.02, win / 4) * sr)
     if y.shape[0] <= blk:
         e = np.sum(np.sum(y ** 2, axis=0)) / blk   # pad the window with silence
         return float(-0.691 + 10 * np.log10(max(e, 1e-12)))
@@ -226,7 +228,7 @@ def level_limited(x, target, ceiling_db=-1.0, max_gr_db=6.0, sr=SR):
     """Bring a one-shot to `target` momentary loudness, limiting at most
     `max_gr_db` of peak; beyond that, the clip stays quieter instead."""
     c = undb(ceiling_db) * undb(-0.6)          # leave room for inter-sample peaks
-    m = momentary_max(x, sr)
+    m = momentary_max(x, sr, win=0.1)
     g = undb(target - m)
     tp = true_peak(x) * g
     over = db(tp / c) if tp > c else 0.0

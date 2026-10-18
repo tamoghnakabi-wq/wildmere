@@ -52,6 +52,15 @@ namespace Wildmere.UI
             return b;
         }
 
+        /// <summary>Button with a leading vector glyph and a label (Button text would draw under children).</summary>
+        public static Button IconBtn(GlyphKind glyph, string text, Action onClick, string sound, params string[] classes)
+        {
+            var b = Btn("", onClick, sound, classes);
+            b.Add(new Glyph(glyph, "btn__glyph", "btn__glyph--lead"));
+            b.Add(Text(text, "btn__label").Ignore());
+            return b;
+        }
+
         /// <summary>Hook click + hover sounds onto any button-like element.</summary>
         public static void Wire(Button b, Action onClick, string sound = null)
         {

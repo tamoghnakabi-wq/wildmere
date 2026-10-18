@@ -245,6 +245,19 @@ def level(clips, P, kind):
         if pk > dsp.undb(ceil):
             g *= dsp.undb(ceil) / pk
         return [c * g for c in clips]
+    if kind != "bed" and P.get("limit_db", 6.0) > 0:
+        # one-shots: every variant of a name at the SAME loudness (100 ms window),
+        # so the game never plays a random quiet one. The group target is the
+        # recipe's target or, if lower, what the peakiest variant reaches with at
+        # most limit_db of limiting.
+        c_ = dsp.undb(ceil) * dsp.undb(-0.6)
+        reach = [dsp.momentary_max(c, win=0.1) + dsp.db(c_ / max(dsp.true_peak(c), 1e-9)) +
+                 P.get("limit_db", 6.0) for c in clips]
+        g_tgt = min(tgt, min(reach))
+        if g_tgt < tgt - 6.0:
+            print(f"   note: group target {g_tgt:.1f} is {tgt - g_tgt:.1f} dB under the recipe's {tgt:.1f}")
+        tgt = g_tgt
+        P["_group_target"] = round(tgt, 2)
     for c in clips:
         if kind == "bed":
             y, _ = dsp.gain_to(c, tgt, ceil - P.get("codec_margin_db", 0.0), measure=dsp.loudness)
@@ -257,6 +270,13 @@ def level(clips, P, kind):
         else:
             y, _ = dsp.gain_to(c, tgt, ceil, measure=dsp.momentary_max)
         out.append(y)
+    if kind != "bed" and P.get("limit_db", 6.0) > 0 and len(out) > 1:
+        # limiting a spike also lowers the loudness around it, so finish by
+        # matching every variant to the quietest one (gain reduction only)
+        lv = [dsp.momentary_max(y, win=0.1) for y in out]
+        floor_ = min(lv)
+        out = [y * dsp.undb(floor_ - l) for y, l in zip(out, lv)]
+        P["_group_target"] = round(floor_, 2)
     return out
 
 

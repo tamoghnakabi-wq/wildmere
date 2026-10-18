@@ -47,7 +47,7 @@ namespace Wildmere.World.Gen
             // Altitude: rock and snow (any climate), snowy mountain floors.
             if (H >= snowLine || clim == Biome.SnowyMountains)
             {
-                if (steep || (slope == 2 && H >= snowLine && h01 < 0.45)) { top = B.Stone; sub = B.Stone; return; }
+                if (steep || (slope == 2 && H >= snowLine && patch > 0.15)) { top = B.Stone; sub = B.Stone; return; }
                 if (H >= snowLine)
                 {
                     top = B.Snow; sub = slope == 0 || h01 < 0.4 ? B.Snow : B.Stone; subD = 1 + (slope == 0 ? 1 : 0);
@@ -125,7 +125,7 @@ namespace Wildmere.World.Gen
 
         // Plains, Forest, DarkForest, Desert, Snowy
         static readonly double[] kGrass = { 153, 218, 82, 116, 194, 70, 84, 150, 56, 214, 206, 118, 128, 178, 124 };
-        static readonly double[] kFoliage = { 100, 160, 52, 78, 140, 45, 52, 98, 36, 150, 160, 74, 70, 108, 80 };
+        static readonly double[] kFoliage = { 100, 160, 52, 78, 140, 45, 66, 118, 44, 150, 160, 74, 70, 108, 80 };
 
         static UnityEngine.Color32 Tint(in Col c, double[] t, bool foliage)
         {

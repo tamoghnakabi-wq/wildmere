@@ -43,6 +43,85 @@ static class Program
             }
             case "probe": Probe(long.Parse(args[1])); return 0;
             case "checks": return Checks(long.Parse(args[1]));
+            case "spots":
+            {
+                var g = new TerrainGenerator(long.Parse(args[1]));
+                foreach (Biome b in new[] { Biome.Plains, Biome.TemperateForest, Biome.DarkForest, Biome.Desert, Biome.SnowyMountains, Biome.River, Biome.Beach, Biome.Ocean })
+                    if (Wildmere.Tests.WorldGenChecks.FindBiomeChunk(g, b, out int cx, out int cz))
+                    {
+                        var c = g.SampleColumn(cx * 16 + 8, cz * 16 + 8);
+                        Console.WriteLine($"{b,-16} chunk {cx},{cz} centre {cx * 16 + 8},{cz * 16 + 8} h={c.Height} water={c.Water}");
+                    }
+                return 0;
+            }
+            case "deep":
+            {
+                // block-level checks on many random 3x3 areas (rare-case hunting)
+                var g = new TerrainGenerator(long.Parse(args[1]));
+                int n = args.Length > 2 ? int.Parse(args[2]) : 60, fails = 0;
+                var r = new SplitMix(4242);
+                for (int i = 0; i < n; i++)
+                {
+                    int cx = r.Range(-200, 200), cz = r.Range(-200, 200);
+                    var ar = new Wildmere.Tests.WorldGenChecks.Area(g, cx, cz);
+                    string e = Wildmere.Tests.WorldGenChecks.TreeBlocks(ar, out _, out _) ?? Wildmere.Tests.WorldGenChecks.VegetationAndProps(ar, out _, out _)
+                               ?? Wildmere.Tests.WorldGenChecks.SealedWater(ar) ?? Wildmere.Tests.WorldGenChecks.TreeDecisionsAgree(g, cx, cz, out _);
+                    if (e != null) { fails++; Console.WriteLine($"FAIL area {cx},{cz} ({g.SampleColumn(cx * 16 + 8, cz * 16 + 8).Biome}): {e}"); }
+                }
+                Console.WriteLine($"deep: {n} areas, {fails} failures");
+                return fails == 0 ? 0 : 1;
+            }
+            case "dump":
+            {
+                var g = new TerrainGenerator(long.Parse(args[1]));
+                int x = int.Parse(args[2]), y = int.Parse(args[3]), z = int.Parse(args[4]);
+                var ar = new Wildmere.Tests.WorldGenChecks.Area(g, x >> 4, z >> 4);
+                var trees = new List<TerrainGenerator.Tree>();
+                g.CollectTrees(x >> 4, z >> 4, trees);
+                foreach (var t in trees) if (Math.Abs(t.X - x) <= 8 && Math.Abs(t.Z - z) <= 8) Console.WriteLine($"tree {t.Type} at {t.X},{t.Y},{t.Z} (col h={g.SampleColumn(t.X, t.Z).Height})");
+                for (int yy = y + 6; yy >= y - 4; yy--)
+                {
+                    var sb = new System.Text.StringBuilder($"y={yy,3}: ");
+                    for (int dx = -3; dx <= 3; dx++) sb.Append($"{ar.Get(x + dx, yy, z),3} ");
+                    Console.WriteLine(sb);
+                }
+                return 0;
+            }
+            case "riverforest":
+            {
+                var g = new TerrainGenerator(long.Parse(args[1]));
+                for (int r = 0; r < 1500; r += 8)
+                    for (int k = 0; k < 64; k++)
+                    {
+                        int x = (int)(Math.Cos(k * 0.0982) * r), z = (int)(Math.Sin(k * 0.0982) * r);
+                        var c = g.SampleColumn(x, z);
+                        if (!c.River || c.Frozen) continue;
+                        int forest = 0;
+                        for (int q = 0; q < 8; q++) { var n = g.SampleColumn(x + (int)(Math.Cos(q * 0.785) * 24), z + (int)(Math.Sin(q * 0.785) * 24)); if (n.Biome == Biome.TemperateForest) forest++; }
+                        if (forest >= 4) { Console.WriteLine($"river in forest at {x},{z} water={c.Water} h={c.Height}"); return 0; }
+                    }
+                return 1;
+            }
+            case "peak":
+            {
+                var g = new TerrainGenerator(long.Parse(args[1]));
+                int x0 = int.Parse(args[2]), z0 = int.Parse(args[3]), x1 = int.Parse(args[4]), z1 = int.Parse(args[5]);
+                int bx = 0, bz = 0, bh = -1;
+                for (int z = z0; z <= z1; z += 4) for (int x = x0; x <= x1; x += 4) { var c = g.SampleColumn(x, z); if (c.Height > bh) { bh = c.Height; bx = x; bz = z; } }
+                Console.WriteLine($"peak {bx},{bz} h={bh} {g.SampleColumn(bx, bz).Biome}");
+                return 0;
+            }
+            case "col":
+            {
+                var g = new TerrainGenerator(long.Parse(args[1]));
+                for (int i = 2; i + 1 < args.Length; i += 2)
+                {
+                    int x = int.Parse(args[i]), z = int.Parse(args[i + 1]);
+                    var c = g.SampleColumn(x, z);
+                    Console.WriteLine($"{x},{z}: h={c.Height} water={c.Water} biome={c.Biome} T={c.Temperature:F2} H={c.Humidity:F2} river={c.River} lake={c.Lake} ocean={c.Ocean} frozen={c.Frozen}");
+                }
+                return 0;
+            }
         }
         Console.WriteLine("unknown mode");
         return 2;

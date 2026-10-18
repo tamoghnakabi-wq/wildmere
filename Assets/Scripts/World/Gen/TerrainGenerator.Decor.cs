@@ -112,6 +112,7 @@ namespace Wildmere.World.Gen
 
             // 3. Glowing fungi on cave floors.
             var rng = new SplitMix(Seed ^ unchecked(Chunk.Key(ch.CX, ch.CZ) * 0x2545F4914F6CDD1DL));
+            int firstCave = ch.Props.Count;
             for (int k = 0; k < 10; k++)
             {
                 int lx = rng.Range(0, 16), lz = rng.Range(0, 16);
@@ -127,6 +128,7 @@ namespace Wildmere.World.Gen
                 if (!Solidish(floor) || floor == B.Water) continue;
                 bool dark = c.WDk > 0.3f;
                 if (pick > (dark ? 0.85 : 0.45)) continue;
+                if (CaveAnchorTaken(ch, firstCave, bx + lx, y, bz + lz)) continue;
                 ch.Props.Add(new PropPlacement { X = bx + lx, Y = y, Z = bz + lz, Kind = pick < 0.3 ? PropCatalog.GlowcapCluster : PropCatalog.MushroomCluster, Yaw = (float)(pick * 3600 % 360), Scale = 0.8f + (float)(pick * 0.5) });
                 // scatter a few glowcap blocks around (light underground)
                 for (int g = 0; g < 4; g++)
@@ -136,7 +138,7 @@ namespace Wildmere.World.Gen
                     int gc = gx + (gz << 4);
                     for (int gy = y + 2; gy >= y - 2 && gy > 5; gy--)
                     {
-                        if (blocks[gc + (gy << 8)] == B.Air && Solidish(blocks[gc + ((gy - 1) << 8)]))
+                        if (blocks[gc + (gy << 8)] == B.Air && Solidish(blocks[gc + ((gy - 1) << 8)]) && !CaveAnchorTaken(ch, firstCave, bx + gx, gy, bz + gz))
                         {
                             blocks[gc + (gy << 8)] = rng.NextDouble() < 0.7 ? B.GlowCap : B.MushroomBrown;
                             break;
@@ -144,6 +146,16 @@ namespace Wildmere.World.Gen
                     }
                 }
             }
+        }
+
+        static bool CaveAnchorTaken(Chunk ch, int first, int x, int y, int z)
+        {
+            for (int i = first; i < ch.Props.Count; i++)
+            {
+                var p = ch.Props[i];
+                if (p.X == x && p.Z == z && Math.Abs(p.Y - y) <= 1) return true;
+            }
+            return false;
         }
 
         static bool Near(Scratch s, int lx, int lz)
