@@ -66,7 +66,7 @@ namespace Wildmere.World.Gen
             public readonly List<Tree> Trees = new List<Tree>(96);
             public readonly bool[] Reserved = new bool[256];  // props/plants occupancy per inner column
             public readonly byte[] Slope = new byte[256];
-            public readonly bool[] WetNear = new bool[256];
+            public readonly int[] NWater = new int[256];
             public readonly int[] Cap = new int[256];
             // caves
             public readonly double[] CaveA = new double[5 * 5 * 66], CaveB = new double[5 * 5 * 66], CaveC = new double[5 * 5 * 66];
