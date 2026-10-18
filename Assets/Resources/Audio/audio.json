@@ -478,5 +478,56 @@
     ],
     "volume": 0.9,
     "loop": false
+  },
+  "ui/click": {
+    "files": [
+      "Audio/ui/click_01",
+      "Audio/ui/click_02",
+      "Audio/ui/click_03",
+      "Audio/ui/click_04",
+      "Audio/ui/click_05"
+    ],
+    "volume": 0.35,
+    "loop": false
+  },
+  "ui/close": {
+    "files": [
+      "Audio/ui/close_01",
+      "Audio/ui/close_02"
+    ],
+    "volume": 0.4,
+    "loop": false
+  },
+  "ui/confirm": {
+    "files": [
+      "Audio/ui/confirm_01",
+      "Audio/ui/confirm_02"
+    ],
+    "volume": 0.35,
+    "loop": false
+  },
+  "ui/error": {
+    "files": [
+      "Audio/ui/error_01",
+      "Audio/ui/error_02"
+    ],
+    "volume": 0.35,
+    "loop": false
+  },
+  "ui/hover": {
+    "files": [
+      "Audio/ui/hover_01",
+      "Audio/ui/hover_02"
+    ],
+    "volume": 0.25,
+    "loop": false
+  },
+  "ui/open": {
+    "files": [
+      "Audio/ui/open_01",
+      "Audio/ui/open_02"
+    ],
+    "volume": 0.4,
+    "loop": false
   }
 }

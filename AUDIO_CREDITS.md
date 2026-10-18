@@ -21,6 +21,9 @@ source and `art-source/audio/sources.json` records file hashes.
 | `cm_light_rain` | Light Rain Distant Thunder July 5th 2016 | kvgarlic | CC0 1.0 | <https://commons.wikimedia.org/wiki/File:Light_Rain_Distant_Thunder_July_5th_2016.wav> |
 | `cm_nightjar` | Caprimulgus europaeus (nightjar song) | ElsaDono | CC0 1.0 | <https://commons.wikimedia.org/wiki/File:Caprimulgus_europaeus.ogg> |
 | `kenney_impact` | Impact Sounds | Kenney (kenney.nl) | CC0 1.0 | <https://kenney.nl/assets/impact-sounds> |
+| `kenney_interface` | Interface Sounds | Kenney (kenney.nl) | CC0 1.0 | <https://kenney.nl/assets/interface-sounds> |
+| `kenney_rpg` | RPG Audio | Kenney (kenney.nl) | CC0 1.0 | <https://kenney.nl/assets/rpg-audio> |
+| `kenney_ui` | UI Audio | Kenney (kenney.nl) | CC0 1.0 | <https://kenney.nl/assets/ui-audio> |
 | `oga_boulder` | Moving Boulder | themightyglider | CC0 1.0 | <https://opengameart.org/content/moving-boulder> |
 | `oga_bubbles` | Bubble Sound Effects | BMacZero | CC0 1.0 | <https://opengameart.org/content/bubble-sound-effects> |
 | `oga_cave_in` | Cave In | StarNinjas | CC0 1.0 | <https://opengameart.org/content/cave-in> |
@@ -301,3 +304,18 @@ every recording that went into them.
 | Audio/thunder/near_03.wav | <https://commons.wikimedia.org/wiki/File:Rain_thunder_and_other_noises.ogg> | ezwa | PD-self | `Thunder_and_rain_on_a_v.ogg` [2.60-19.00s] |
 | Audio/thunder/near_04.wav | <https://commons.wikimedia.org/wiki/File:Rain_and_thunder.ogg> | Caesar | PD-self | `Rain_and_thunder.ogg` [1.40-16.50s] |
 | Audio/thunder/near_05.wav | <https://commons.wikimedia.org/wiki/File:Rain_thunder_and_other_noises.ogg> | ezwa | PD-self | `Rain_thunder_and_birds.ogg` [3.00-17.50s] |
+| Audio/ui/click_01.wav | <https://kenney.nl/assets/ui-audio> | Kenney (kenney.nl) | CC0 1.0 | `kenney_ui-audio.zip -> Audio/click1.ogg` [0.00-0.09s] |
+| Audio/ui/click_02.wav | <https://kenney.nl/assets/ui-audio> | Kenney (kenney.nl) | CC0 1.0 | `kenney_ui-audio.zip -> Audio/click3.ogg` [0.00-0.08s] |
+| Audio/ui/click_03.wav | <https://kenney.nl/assets/interface-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_interface-sounds.zip -> Audio/select_001.ogg` [0.00-0.04s] |
+| Audio/ui/click_04.wav | <https://kenney.nl/assets/interface-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_interface-sounds.zip -> Audio/select_002.ogg` [0.00-0.04s] |
+| Audio/ui/click_05.wav | <https://kenney.nl/assets/ui-audio> | Kenney (kenney.nl) | CC0 1.0 | `kenney_ui-audio.zip -> Audio/mouseclick1.ogg` [0.00-0.06s] |
+| Audio/ui/close_01.wav | <https://kenney.nl/assets/rpg-audio> | Kenney (kenney.nl) | CC0 1.0 | `kenney_rpg-audio.zip -> Audio/bookClose.ogg` [0.00-0.23s] |
+| Audio/ui/close_02.wav | <https://kenney.nl/assets/rpg-audio> | Kenney (kenney.nl) | CC0 1.0 | `kenney_rpg-audio.zip -> Audio/handleSmallLeather2.ogg` [0.00-0.31s] |
+| Audio/ui/confirm_01.wav | <https://kenney.nl/assets/interface-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_interface-sounds.zip -> Audio/confirmation_001.ogg` [0.00-0.29s] |
+| Audio/ui/confirm_02.wav | <https://kenney.nl/assets/interface-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_interface-sounds.zip -> Audio/confirmation_003.ogg` [0.00-0.32s] |
+| Audio/ui/error_01.wav | <https://kenney.nl/assets/interface-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_interface-sounds.zip -> Audio/error_008.ogg` [0.00-0.14s] |
+| Audio/ui/error_02.wav | <https://kenney.nl/assets/interface-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_interface-sounds.zip -> Audio/error_004.ogg` [0.00-0.10s] |
+| Audio/ui/hover_01.wav | <https://kenney.nl/assets/ui-audio> | Kenney (kenney.nl) | CC0 1.0 | `kenney_ui-audio.zip -> Audio/rollover2.ogg` [0.00-0.05s] |
+| Audio/ui/hover_02.wav | <https://kenney.nl/assets/ui-audio> | Kenney (kenney.nl) | CC0 1.0 | `kenney_ui-audio.zip -> Audio/rollover5.ogg` [0.00-0.11s] |
+| Audio/ui/open_01.wav | <https://kenney.nl/assets/rpg-audio> | Kenney (kenney.nl) | CC0 1.0 | `kenney_rpg-audio.zip -> Audio/handleSmallLeather.ogg` [0.00-0.34s] |
+| Audio/ui/open_02.wav | <https://kenney.nl/assets/rpg-audio> | Kenney (kenney.nl) | CC0 1.0 | `kenney_rpg-audio.zip -> Audio/bookOpen.ogg` [0.00-0.15s] |

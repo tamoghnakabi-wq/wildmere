@@ -3094,5 +3094,227 @@
    "seconds": 14.5,
    "channels": 1
   }
+ ],
+ "ui/click": [
+  {
+   "file": "Assets/Resources/Audio/ui/click_01.wav",
+   "layers": [
+    {
+     "source": "kenney_ui",
+     "file": "kenney_ui-audio.zip -> Audio/click1.ogg",
+     "t0": 0.0,
+     "t1": 0.091,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.088,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/ui/click_02.wav",
+   "layers": [
+    {
+     "source": "kenney_ui",
+     "file": "kenney_ui-audio.zip -> Audio/click3.ogg",
+     "t0": 0.0,
+     "t1": 0.083,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.063,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/ui/click_03.wav",
+   "layers": [
+    {
+     "source": "kenney_interface",
+     "file": "kenney_interface-sounds.zip -> Audio/select_001.ogg",
+     "t0": 0.0,
+     "t1": 0.04,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.04,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/ui/click_04.wav",
+   "layers": [
+    {
+     "source": "kenney_interface",
+     "file": "kenney_interface-sounds.zip -> Audio/select_002.ogg",
+     "t0": 0.0,
+     "t1": 0.04,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.04,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/ui/click_05.wav",
+   "layers": [
+    {
+     "source": "kenney_ui",
+     "file": "kenney_ui-audio.zip -> Audio/mouseclick1.ogg",
+     "t0": 0.0,
+     "t1": 0.056,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.056,
+   "channels": 1
+  }
+ ],
+ "ui/close": [
+  {
+   "file": "Assets/Resources/Audio/ui/close_01.wav",
+   "layers": [
+    {
+     "source": "kenney_rpg",
+     "file": "kenney_rpg-audio.zip -> Audio/bookClose.ogg",
+     "t0": 0.0,
+     "t1": 0.231,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.175,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/ui/close_02.wav",
+   "layers": [
+    {
+     "source": "kenney_rpg",
+     "file": "kenney_rpg-audio.zip -> Audio/handleSmallLeather2.ogg",
+     "t0": 0.0,
+     "t1": 0.307,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.222,
+   "channels": 1
+  }
+ ],
+ "ui/confirm": [
+  {
+   "file": "Assets/Resources/Audio/ui/confirm_01.wav",
+   "layers": [
+    {
+     "source": "kenney_interface",
+     "file": "kenney_interface-sounds.zip -> Audio/confirmation_001.ogg",
+     "t0": 0.0,
+     "t1": 0.29,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.29,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/ui/confirm_02.wav",
+   "layers": [
+    {
+     "source": "kenney_interface",
+     "file": "kenney_interface-sounds.zip -> Audio/confirmation_003.ogg",
+     "t0": 0.0,
+     "t1": 0.322,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.322,
+   "channels": 1
+  }
+ ],
+ "ui/error": [
+  {
+   "file": "Assets/Resources/Audio/ui/error_01.wav",
+   "layers": [
+    {
+     "source": "kenney_interface",
+     "file": "kenney_interface-sounds.zip -> Audio/error_008.ogg",
+     "t0": 0.0,
+     "t1": 0.139,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.139,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/ui/error_02.wav",
+   "layers": [
+    {
+     "source": "kenney_interface",
+     "file": "kenney_interface-sounds.zip -> Audio/error_004.ogg",
+     "t0": 0.0,
+     "t1": 0.104,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.104,
+   "channels": 1
+  }
+ ],
+ "ui/hover": [
+  {
+   "file": "Assets/Resources/Audio/ui/hover_01.wav",
+   "layers": [
+    {
+     "source": "kenney_ui",
+     "file": "kenney_ui-audio.zip -> Audio/rollover2.ogg",
+     "t0": 0.0,
+     "t1": 0.054,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.038,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/ui/hover_02.wav",
+   "layers": [
+    {
+     "source": "kenney_ui",
+     "file": "kenney_ui-audio.zip -> Audio/rollover5.ogg",
+     "t0": 0.0,
+     "t1": 0.109,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.109,
+   "channels": 1
+  }
+ ],
+ "ui/open": [
+  {
+   "file": "Assets/Resources/Audio/ui/open_01.wav",
+   "layers": [
+    {
+     "source": "kenney_rpg",
+     "file": "kenney_rpg-audio.zip -> Audio/handleSmallLeather.ogg",
+     "t0": 0.0,
+     "t1": 0.338,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.232,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/ui/open_02.wav",
+   "layers": [
+    {
+     "source": "kenney_rpg",
+     "file": "kenney_rpg-audio.zip -> Audio/bookOpen.ogg",
+     "t0": 0.0,
+     "t1": 0.151,
+     "role": "take"
+    }
+   ],
+   "seconds": 0.139,
+   "channels": 1
+  }
  ]
 }
