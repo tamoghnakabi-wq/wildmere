@@ -84,7 +84,7 @@
     {
       "icon": "chip",
       "title": "Native on Apple Silicon",
-      "body": "A universal macOS build that runs natively on M-series and Intel Macs."
+      "body": "One universal macOS app for Apple Silicon and Intel Macs (Intel support is experimental)."
     }
   ],
   "requirements": {
@@ -158,7 +158,7 @@
   "credits": [
     "Wildmere is an independent, original game. It is not affiliated with or endorsed by Mojang Studios, Microsoft or any other game studio.",
     "Built with Unity. Unity is a trademark of Unity Technologies.",
-    "Sound effects and ambience are CC0 field recordings; the full list is in AUDIO_CREDITS.md in the repository.",
+    "Sound effects, ambience and music are CC0 and public-domain recordings; every file is credited in AUDIO_CREDITS.md in the repository.",
     "Typefaces: Fraunces, Inter and JetBrains Mono, all under the SIL Open Font License 1.1."
   ]
 }
