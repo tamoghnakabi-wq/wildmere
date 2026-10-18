@@ -95,3 +95,4 @@ RECIPES["step/water"] = {
 
 
 import recipes_blocks  # noqa: E402,F401  (dig / break / place)
+import recipes_amb  # noqa: E402,F401  (ambience beds)

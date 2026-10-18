@@ -155,6 +155,82 @@ def loopify(y, P):
     return out, s
 
 
+def _circ_filters(y, o):
+    if o.get("hp"):
+        y = dsp.highpass(y, o["hp"], order=o.get("hp_order", 4), circular=True)
+    if o.get("lp"):
+        y = dsp.lowpass(y, o["lp"], order=o.get("lp_order", 2), circular=True)
+    for fc, gdb, q in o.get("eq", []):
+        y = dsp.eq_peak(y, fc, gdb, q, circular=True)
+    if o.get("shelf"):
+        fc, gdb, hi = o["shelf"]
+        y = dsp.shelf(y, fc, gdb, high=hi, circular=True)
+    return y
+
+
+def bed_layer(o, L, X):
+    """One layer of a loop bed, returned as a seamless loop of exactly L samples.
+
+    Long sources: dsp.make_loop (equal-power crossfade at the seam). Short sources:
+    loop at L/k and tile k times. Mono sources become pseudo-stereo by pairing the
+    loop with itself rotated half a period (still seamless, decorrelated L/R).
+    `insert` places a short take at given times (wrapping), for sparse accents.
+    """
+    x, pv = take(o["take"])
+    pv["role"] = o.get("role", "bed layer")
+    x = dsp.remove_dc(x)
+    if o.get("declick", True) and "insert" not in o:
+        x, _ = dsp.declick(x)
+    if "insert" in o:
+        clip = dsp.fade(x, 5.0, 200.0)
+        y = np.zeros((L, 2))
+        for t in o["insert"]:
+            a = int(t * SR) % L
+            n = min(clip.shape[0], L)
+            idx = (np.arange(n) + a) % L
+            y[idx] += clip[:n]
+    else:
+        n = x.shape[0]
+        if n >= L + X:
+            y, s = dsp.make_loop(x, L / SR, X / SR, search=o.get("search"))
+            pv["loop_from"] = round(pv["t0"] + s / SR, 3)
+        else:
+            k = max(2, int(np.ceil(L / n)))
+            while L % k or (L // k + min(X, (L // k) // 3)) > n:
+                k += 1
+            sub = L // k
+            Xs = min(X, sub // 3)
+            y, s = dsp.make_loop(x, sub / SR, Xs / SR)
+            y = np.tile(y, (k, 1))
+            pv["loop_from"] = round(pv["t0"] + s / SR, 3)
+            pv["tiled"] = k
+        corr = float(np.sum(y[:, 0] * y[:, 1]) / np.sqrt(np.sum(y[:, 0] ** 2) * np.sum(y[:, 1] ** 2) + 1e-20))
+        if o.get("pseudo", corr > 0.98):
+            y = np.stack([y[:, 0], np.roll(y[:, 1], L // 2)], 1)
+            pv["pseudo_stereo"] = True
+        if o.get("width") is not None:
+            mid = y.mean(axis=1, keepdims=True)
+            y = mid + (y - mid) * o["width"]
+    y = _circ_filters(y, o)
+    return y * dsp.undb(o.get("gain", 0.0)), pv
+
+
+def build_bed(layers, P):
+    L = int(P.get("loop_s", 50.0) * SR)
+    X = int(P.get("xfade_s", 3.0) * SR)
+    out, provs = np.zeros((L, 2)), []
+    for o in layers:
+        y, pv = bed_layer(o, L, X)
+        out += y
+        provs.append(pv)
+    out = _circ_filters(out, {"hp": P.get("hp", 30.0), "lp": P.get("lp"), "eq": P.get("eq", []),
+                              "shelf": P.get("shelf")})
+    out -= np.mean(out, axis=0)
+    if P.get("mono"):
+        out = dsp.to_mono(out)
+    return out, provs
+
+
 def level(clips, P, kind):
     """Normalise a group: one-shots to a momentary-loudness target, beds to an
     integrated target; peaks never above the ceiling (default -1 dBFS)."""
@@ -171,7 +247,7 @@ def level(clips, P, kind):
         return [c * g for c in clips]
     for c in clips:
         if kind == "bed":
-            y, _ = dsp.gain_to(c, tgt, ceil, measure=dsp.loudness)
+            y, _ = dsp.gain_to(c, tgt, ceil - P.get("codec_margin_db", 0.0), measure=dsp.loudness)
         elif P.get("limit_db", 6.0) > 0:
             y = dsp.level_limited(c, tgt, ceil, max_gr_db=P.get("limit_db", 6.0))
             y = dsp.zero_mean_faded(y)           # limiting can be asymmetric
@@ -211,7 +287,11 @@ def build_one(name, R):
     kind = R.get("kind", "oneshot")
     P = dict(R.get("p", {}))
     clips, provs = [], []
-    for spec in R["takes"]:
+    for layers in R.get("beds", []):
+        y, pv = build_bed(layers, P)
+        clips.append(y)
+        provs.append(pv)
+    for spec in R.get("takes", []):
         parts = spec if isinstance(spec, list) else [spec]
         layers, lprov = [], []
         for t in parts:

@@ -17,10 +17,16 @@ source and `art-source/audio/sources.json` records file hashes.
 
 | Id | Title | Author | Licence | Page |
 |---|---|---|---|---|
+| `cm_howling_wind` | Howling wind | Tvabutzku1234 | CC0 1.0 | <https://commons.wikimedia.org/wiki/File:Howling_wind.ogg> |
+| `cm_light_rain` | Light Rain Distant Thunder July 5th 2016 | kvgarlic | CC0 1.0 | <https://commons.wikimedia.org/wiki/File:Light_Rain_Distant_Thunder_July_5th_2016.wav> |
+| `cm_nightjar` | Caprimulgus europaeus (nightjar song) | ElsaDono | CC0 1.0 | <https://commons.wikimedia.org/wiki/File:Caprimulgus_europaeus.ogg> |
 | `kenney_impact` | Impact Sounds | Kenney (kenney.nl) | CC0 1.0 | <https://kenney.nl/assets/impact-sounds> |
 | `oga_boulder` | Moving Boulder | themightyglider | CC0 1.0 | <https://opengameart.org/content/moving-boulder> |
+| `oga_bubbles` | Bubble Sound Effects | BMacZero | CC0 1.0 | <https://opengameart.org/content/bubble-sound-effects> |
 | `oga_cave_in` | Cave In | StarNinjas | CC0 1.0 | <https://opengameart.org/content/cave-in> |
 | `oga_corsica_snow` | 42 Snow and Gravel Footsteps | qubodup | CC0 1.0 | <https://opengameart.org/content/42-snow-and-gravel-footsteps> |
+| `oga_crickets_loop` | Crickets Ambient Noise - loopable | Wolfgang_ | CC0 1.0 | <https://opengameart.org/content/crickets-ambient-noise-loopable> |
+| `oga_drip_loop` | Dripping water loop | qubodup | CC0 1.0 | <https://opengameart.org/content/dripping-water-loop> |
 | `oga_ezwa_splash` | 6 Short water splashes | qubodup | CC0 1.0 | <https://opengameart.org/content/6-short-water-splashes> |
 | `oga_fantozzi` | Fantozzi's Footsteps (Grass/Sand & Stone) | qubodup | CC0 1.0 | <https://opengameart.org/content/fantozzis-footsteps-grasssand-stone> |
 | `oga_glass_break` | Glass Break | TinyWorlds | CC0 1.0 | <https://opengameart.org/content/glass-break> |
@@ -32,11 +38,15 @@ source and `art-source/audio/sources.json` records file hashes.
 | `oga_nu_crunch` | 5 break, crunch impacts | qubodup | CC0 1.0 | <https://opengameart.org/content/5-break-crunch-impacts> |
 | `oga_nu_wood` | 35 wooden cracks/hits/destructions | qubodup | CC0 1.0 | <https://opengameart.org/content/35-wooden-crackshitsdestructions> |
 | `oga_ogrebane_wm2` | Wood and Metal Sound Effects: Volume 2 | Ogrebane | CC0 1.0 | <https://opengameart.org/content/wood-and-metal-sound-effects-volume-2> |
+| `oga_park` | Park ambiences | Thimras | CC0 1.0 | <https://opengameart.org/content/park-ambiences> |
 | `oga_peludo` | Water Splash and sand footsteps | Peludo | CC0 1.0 | <https://opengameart.org/content/water-splash-and-sand-footsteps> |
 | `oga_qubodup_drysnow` | 4 dry snow steps | qubodup | CC0 1.0 | <https://opengameart.org/content/4-dry-snow-steps> |
 | `oga_qubodup_impact` | Impact | qubodup | CC0 1.0 | <https://opengameart.org/content/impact> |
 | `oga_qubodup_rustle` | 20 Rustles of dry leaves | qubodup | CC0 1.0 | <https://opengameart.org/content/20-rustles-dry-leaves> |
 | `oga_qubodup_wetsnow` | 9 wet snow steps | qubodup | CC0 1.0 | <https://opengameart.org/content/9-wet-snow-steps> |
+| `oga_rain_gutter` | Rain in the Gutter Loop | Ogrebane | CC0 1.0 | <https://opengameart.org/content/rain-gutter-loop> |
+| `oga_rain_kresiek2` | AMB Rain Loop 2 | Kresiek The Furry | CC0 1.0 | <https://opengameart.org/content/amb-rain-loop-2> |
+| `oga_rain_ylmir` | Rain (loopable) | Ylmir | CC0 1.0 | <https://opengameart.org/content/rain-loopable> |
 | `oga_rd_100v2` | 100 CC0 SFX #2 | rubberduck | CC0 1.0 | <https://opengameart.org/content/100-cc0-sfx-2> |
 | `oga_rd_breaking` | 75 CC0 breaking / falling / hit sfx | rubberduck | CC0 1.0 | <https://opengameart.org/content/75-cc0-breaking-falling-hit-sfx> |
 | `oga_rd_mud` | 25 CC0 mud sfx | rubberduck | CC0 1.0 | <https://opengameart.org/content/25-cc0-mud-sfx> |
@@ -45,6 +55,12 @@ source and `art-source/audio/sources.json` records file hashes.
 | `oga_rock_break` | Breaking Rock | themightyglider | CC0 1.0 | <https://opengameart.org/content/breaking-rock> |
 | `oga_shovel` | Shovel Sound | themightyglider | CC0 1.0 | <https://opengameart.org/content/shovel-sound> |
 | `oga_spring_various` | Various Sound Effects | Spring Spring | CC0 1.0 | <https://opengameart.org/content/various-sound-effects-0> |
+| `oga_syncopika_cicada` | cicada sounds | syncopika | CC0 1.0 | <https://opengameart.org/content/cicada-sounds> |
+| `oga_syncopika_crickets` | cricket sounds | syncopika | CC0 1.0 | <https://opengameart.org/content/cricket-sounds> |
+| `oga_tree_creak` | Tree Creaking | AntumDeluge | CC0 1.0 | <https://opengameart.org/content/tree-creaking> |
+| `oga_underwater` | underwater or space engine rumble | gmason | CC0 1.0 | <https://opengameart.org/content/underwater-or-space-engine-rumble> |
+| `oga_vistula` | Sea and river wave sounds | RandomMind | CC0 1.0 | <https://opengameart.org/content/sea-and-river-wave-sounds> |
+| `oga_water_drops` | Water Drops | CeoxBlackj | CC0 1.0 | <https://opengameart.org/content/water-drops> |
 
 ## Per-file provenance
 
@@ -53,6 +69,35 @@ every recording that went into them.
 
 | Shipped file | Source page | Author | Licence | Original file [range] |
 |---|---|---|---|---|
+| Audio/amb/cave_01.ogg | <https://opengameart.org/content/dripping-water-loop> | qubodup | CC0 1.0 | `atmosbasement.mp3_.flac` [0.00-20.06s] |
+| &nbsp;&nbsp;+ layer | <https://opengameart.org/content/water-drops> | CeoxBlackj | CC0 1.0 | `water drops.mp3` [60.00-150.00s] |
+| &nbsp;&nbsp;+ layer | <https://opengameart.org/content/underwater-or-space-engine-rumble> | gmason | CC0 1.0 | `deep_rumble.ogg` [0.00-84.59s] |
+| Audio/amb/dark_forest_01.ogg | <https://opengameart.org/content/park-ambiences> | Thimras | CC0 1.0 | `park_ambience_wind.wav` [150.00-250.00s] |
+| &nbsp;&nbsp;+ layer | <https://opengameart.org/content/park-ambiences> | Thimras | CC0 1.0 | `park_ambience_birds.wav` [20.00-120.00s] |
+| &nbsp;&nbsp;+ layer | <https://opengameart.org/content/tree-creaking> | AntumDeluge | CC0 1.0 | `tree_creak.flac` [0.00-3.00s] |
+| Audio/amb/desert_wind_01.ogg | <https://opengameart.org/content/park-ambiences> | Thimras | CC0 1.0 | `park_ambience_wind.wav` [0.00-100.00s] |
+| &nbsp;&nbsp;+ layer | <https://commons.wikimedia.org/wiki/File:Howling_wind.ogg> | Tvabutzku1234 | CC0 1.0 | `Howling_wind.ogg` [60.00-128.31s] |
+| Audio/amb/forest_day_01.ogg | <https://opengameart.org/content/park-ambiences> | Thimras | CC0 1.0 | `park_ambience_birds.wav` [130.00-215.00s] |
+| &nbsp;&nbsp;+ layer | <https://opengameart.org/content/park-ambiences> | Thimras | CC0 1.0 | `park_ambience_wind.wav` [190.00-250.00s] |
+| Audio/amb/night_01.ogg | <https://opengameart.org/content/cricket-sounds> | syncopika | CC0 1.0 | `cricketsounds090613.wav` [0.00-38.54s] |
+| &nbsp;&nbsp;+ layer | <https://opengameart.org/content/crickets-ambient-noise-loopable> | Wolfgang_ | CC0 1.0 | `crickets_1.mp3` [0.00-11.45s] |
+| &nbsp;&nbsp;+ layer | <https://commons.wikimedia.org/wiki/File:Caprimulgus_europaeus.ogg> | ElsaDono | CC0 1.0 | `Caprimulgus_europaeus.ogg` [0.00-21.94s] |
+| Audio/amb/ocean_shore_01.ogg | <https://opengameart.org/content/sea-and-river-wave-sounds> | RandomMind | CC0 1.0 | `VistulaShort_0.mp3` [75.00-135.00s] |
+| Audio/amb/plains_day_01.ogg | <https://opengameart.org/content/park-ambiences> | Thimras | CC0 1.0 | `park_ambience_wind.wav` [40.00-105.00s] |
+| &nbsp;&nbsp;+ layer | <https://opengameart.org/content/cicada-sounds> | syncopika | CC0 1.0 | `082526-cicadasounds2_0.ogg` [6.00-34.56s] |
+| &nbsp;&nbsp;+ layer | <https://opengameart.org/content/park-ambiences> | Thimras | CC0 1.0 | `park_ambience_birds.wav` [300.00-400.00s] |
+| Audio/amb/rain_heavy_01.ogg | <https://opengameart.org/content/amb-rain-loop-2> | Kresiek The Furry | CC0 1.0 | `amb_rain2.flac` [40.00-110.00s] |
+| &nbsp;&nbsp;+ layer | <https://opengameart.org/content/rain-loopable> | Ylmir | CC0 1.0 | `Rain OGG.zip -> 2.ogg` [0.00-26.00s] |
+| &nbsp;&nbsp;+ layer | <https://opengameart.org/content/rain-gutter-loop> | Ogrebane | CC0 1.0 | `rain-gutter-loop_0.mp3` [0.00-61.60s] |
+| Audio/amb/rain_light_01.ogg | <https://commons.wikimedia.org/wiki/File:Light_Rain_Distant_Thunder_July_5th_2016.wav> | kvgarlic | CC0 1.0 | `Light_Rain_Distant_Thunder_July_5th_2016.wav` [29.50-68.50s] |
+| Audio/amb/river_01.ogg | <https://opengameart.org/content/park-ambiences> | Thimras | CC0 1.0 | `park_ambience_river.wav` [240.00-330.00s] |
+| Audio/amb/snow_wind_01.ogg | <https://commons.wikimedia.org/wiki/File:Howling_wind.ogg> | Tvabutzku1234 | CC0 1.0 | `Howling_wind.ogg` [0.00-128.31s] |
+| &nbsp;&nbsp;+ layer | <https://opengameart.org/content/park-ambiences> | Thimras | CC0 1.0 | `park_ambience_wind.wav` [190.00-256.00s] |
+| Audio/amb/underwater_01.ogg | <https://opengameart.org/content/underwater-or-space-engine-rumble> | gmason | CC0 1.0 | `underwater_or_space_engine_0.ogg` [0.00-84.59s] |
+| &nbsp;&nbsp;+ layer | <https://opengameart.org/content/bubble-sound-effects> | BMacZero | CC0 1.0 | `bubbles-loop1-amp.wav` [0.00-4.85s] |
+| &nbsp;&nbsp;+ layer | <https://opengameart.org/content/40-cc0-water-splash-slime-sfx> | rubberduck | CC0 1.0 | `water-splash-slime-sfx.zip -> loop_bubbles_02.ogg` [0.00-7.33s] |
+| Audio/amb/wind_strong_01.ogg | <https://opengameart.org/content/park-ambiences> | Thimras | CC0 1.0 | `park_ambience_wind.wav` [100.00-170.00s] |
+| &nbsp;&nbsp;+ layer | <https://commons.wikimedia.org/wiki/File:Howling_wind.ogg> | Tvabutzku1234 | CC0 1.0 | `Howling_wind.ogg` [20.00-128.31s] |
 | Audio/break/dirt_01.wav | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactSoft_heavy_000.ogg` [0.00-0.53s] |
 | &nbsp;&nbsp;+ layer | <https://opengameart.org/content/cave-in> | StarNinjas | CC0 1.0 | `cave_in_-_starninjas_0.ogg` [1.88-3.43s] |
 | Audio/break/dirt_02.wav | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactSoft_heavy_003.ogg` [0.00-0.54s] |

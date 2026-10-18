@@ -1,4 +1,95 @@
 {
+  "amb/cave": {
+    "files": [
+      "Audio/amb/cave_01"
+    ],
+    "volume": 0.65,
+    "loop": true
+  },
+  "amb/dark_forest": {
+    "files": [
+      "Audio/amb/dark_forest_01"
+    ],
+    "volume": 0.6,
+    "loop": true
+  },
+  "amb/desert_wind": {
+    "files": [
+      "Audio/amb/desert_wind_01"
+    ],
+    "volume": 0.6,
+    "loop": true
+  },
+  "amb/forest_day": {
+    "files": [
+      "Audio/amb/forest_day_01"
+    ],
+    "volume": 0.65,
+    "loop": true
+  },
+  "amb/night": {
+    "files": [
+      "Audio/amb/night_01"
+    ],
+    "volume": 0.6,
+    "loop": true
+  },
+  "amb/ocean_shore": {
+    "files": [
+      "Audio/amb/ocean_shore_01"
+    ],
+    "volume": 0.65,
+    "loop": true
+  },
+  "amb/plains_day": {
+    "files": [
+      "Audio/amb/plains_day_01"
+    ],
+    "volume": 0.6,
+    "loop": true
+  },
+  "amb/rain_heavy": {
+    "files": [
+      "Audio/amb/rain_heavy_01"
+    ],
+    "volume": 0.6,
+    "loop": true
+  },
+  "amb/rain_light": {
+    "files": [
+      "Audio/amb/rain_light_01"
+    ],
+    "volume": 0.6,
+    "loop": true
+  },
+  "amb/river": {
+    "files": [
+      "Audio/amb/river_01"
+    ],
+    "volume": 0.65,
+    "loop": true
+  },
+  "amb/snow_wind": {
+    "files": [
+      "Audio/amb/snow_wind_01"
+    ],
+    "volume": 0.6,
+    "loop": true
+  },
+  "amb/underwater": {
+    "files": [
+      "Audio/amb/underwater_01"
+    ],
+    "volume": 0.6,
+    "loop": true
+  },
+  "amb/wind_strong": {
+    "files": [
+      "Audio/amb/wind_strong_01"
+    ],
+    "volume": 0.6,
+    "loop": true
+  },
   "break/dirt": {
     "files": [
       "Audio/break/dirt_01",

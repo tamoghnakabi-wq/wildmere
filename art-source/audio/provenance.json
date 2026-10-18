@@ -1,4 +1,369 @@
 {
+ "amb/cave": [
+  {
+   "file": "Assets/Resources/Audio/amb/cave_01.ogg",
+   "layers": [
+    {
+     "source": "oga_drip_loop",
+     "file": "atmosbasement.mp3_.flac",
+     "t0": 0.0,
+     "t1": 20.063,
+     "role": "drips",
+     "loop_from": 2.5,
+     "tiled": 3
+    },
+    {
+     "source": "oga_water_drops",
+     "file": "water drops.mp3",
+     "t0": 60.0,
+     "t1": 150.0,
+     "role": "far drops",
+     "loop_from": 70.1,
+     "pseudo_stereo": true
+    },
+    {
+     "source": "oga_underwater",
+     "file": "deep_rumble.ogg",
+     "t0": 0.0,
+     "t1": 84.589,
+     "role": "room tone",
+     "loop_from": 20.9,
+     "pseudo_stereo": true
+    }
+   ],
+   "seconds": 40.0,
+   "channels": 2
+  }
+ ],
+ "amb/dark_forest": [
+  {
+   "file": "Assets/Resources/Audio/amb/dark_forest_01.ogg",
+   "layers": [
+    {
+     "source": "oga_park",
+     "file": "park_ambience_wind.wav",
+     "t0": 150.0,
+     "t1": 250.0,
+     "role": "low wind",
+     "loop_from": 162.5
+    },
+    {
+     "source": "oga_park",
+     "file": "park_ambience_birds.wav",
+     "t0": 20.0,
+     "t1": 120.0,
+     "role": "far birds",
+     "loop_from": 58.8
+    },
+    {
+     "source": "oga_tree_creak",
+     "file": "tree_creak.flac",
+     "t0": 0.0,
+     "t1": 3.0,
+     "role": "tree creak"
+    }
+   ],
+   "seconds": 58.0,
+   "channels": 2
+  }
+ ],
+ "amb/desert_wind": [
+  {
+   "file": "Assets/Resources/Audio/amb/desert_wind_01.ogg",
+   "layers": [
+    {
+     "source": "oga_park",
+     "file": "park_ambience_wind.wav",
+     "t0": 0.0,
+     "t1": 100.0,
+     "role": "wind",
+     "loop_from": 19.6
+    },
+    {
+     "source": "cm_howling_wind",
+     "file": "Howling_wind.ogg",
+     "t0": 60.0,
+     "t1": 128.306,
+     "role": "whistle",
+     "loop_from": 73.1,
+     "pseudo_stereo": true
+    }
+   ],
+   "seconds": 52.0,
+   "channels": 2
+  }
+ ],
+ "amb/forest_day": [
+  {
+   "file": "Assets/Resources/Audio/amb/forest_day_01.ogg",
+   "layers": [
+    {
+     "source": "oga_park",
+     "file": "park_ambience_birds.wav",
+     "t0": 130.0,
+     "t1": 215.0,
+     "role": "bed layer",
+     "loop_from": 130.2
+    },
+    {
+     "source": "oga_park",
+     "file": "park_ambience_wind.wav",
+     "t0": 190.0,
+     "t1": 250.0,
+     "role": "leaf air",
+     "loop_from": 191.9
+    }
+   ],
+   "seconds": 55.0,
+   "channels": 2
+  }
+ ],
+ "amb/night": [
+  {
+   "file": "Assets/Resources/Audio/amb/night_01.ogg",
+   "layers": [
+    {
+     "source": "oga_syncopika_crickets",
+     "file": "cricketsounds090613.wav",
+     "t0": 0.0,
+     "t1": 38.542,
+     "role": "crickets",
+     "loop_from": 0.0,
+     "pseudo_stereo": true
+    },
+    {
+     "source": "oga_crickets_loop",
+     "file": "crickets_1.mp3",
+     "t0": 0.0,
+     "t1": 11.452,
+     "role": "crickets, wide",
+     "loop_from": 1.1,
+     "tiled": 5
+    },
+    {
+     "source": "cm_nightjar",
+     "file": "Caprimulgus_europaeus.ogg",
+     "t0": 0.0,
+     "t1": 21.943,
+     "role": "distant nightjar",
+     "loop_from": 1.1,
+     "tiled": 2,
+     "pseudo_stereo": true
+    }
+   ],
+   "seconds": 35.5,
+   "channels": 2
+  }
+ ],
+ "amb/ocean_shore": [
+  {
+   "file": "Assets/Resources/Audio/amb/ocean_shore_01.ogg",
+   "layers": [
+    {
+     "source": "oga_vistula",
+     "file": "VistulaShort_0.mp3",
+     "t0": 75.0,
+     "t1": 135.0,
+     "role": "bed layer",
+     "loop_from": 77.6
+    }
+   ],
+   "seconds": 52.0,
+   "channels": 2
+  }
+ ],
+ "amb/plains_day": [
+  {
+   "file": "Assets/Resources/Audio/amb/plains_day_01.ogg",
+   "layers": [
+    {
+     "source": "oga_park",
+     "file": "park_ambience_wind.wav",
+     "t0": 40.0,
+     "t1": 105.0,
+     "role": "wind in grass",
+     "loop_from": 40.0
+    },
+    {
+     "source": "oga_syncopika_cicada",
+     "file": "082526-cicadasounds2_0.ogg",
+     "t0": 6.0,
+     "t1": 34.563,
+     "role": "insects",
+     "loop_from": 9.4,
+     "tiled": 3
+    },
+    {
+     "source": "oga_park",
+     "file": "park_ambience_birds.wav",
+     "t0": 300.0,
+     "t1": 400.0,
+     "role": "distant birds",
+     "loop_from": 302.7
+    }
+   ],
+   "seconds": 56.0,
+   "channels": 2
+  }
+ ],
+ "amb/rain_heavy": [
+  {
+   "file": "Assets/Resources/Audio/amb/rain_heavy_01.ogg",
+   "layers": [
+    {
+     "source": "oga_rain_kresiek2",
+     "file": "amb_rain2.flac",
+     "t0": 40.0,
+     "t1": 110.0,
+     "role": "rain",
+     "loop_from": 52.7
+    },
+    {
+     "source": "oga_rain_ylmir",
+     "file": "Rain OGG.zip -> 2.ogg",
+     "t0": 0.0,
+     "t1": 26.0,
+     "role": "downpour",
+     "loop_from": 4.6,
+     "tiled": 3
+    },
+    {
+     "source": "oga_rain_gutter",
+     "file": "rain-gutter-loop_0.mp3",
+     "t0": 0.0,
+     "t1": 61.597,
+     "role": "gutter",
+     "loop_from": 0.4
+    }
+   ],
+   "seconds": 54.0,
+   "channels": 2
+  }
+ ],
+ "amb/rain_light": [
+  {
+   "file": "Assets/Resources/Audio/amb/rain_light_01.ogg",
+   "layers": [
+    {
+     "source": "cm_light_rain",
+     "file": "Light_Rain_Distant_Thunder_July_5th_2016.wav",
+     "t0": 29.5,
+     "t1": 68.5,
+     "role": "light rain",
+     "loop_from": 32.0
+    }
+   ],
+   "seconds": 34.0,
+   "channels": 2
+  }
+ ],
+ "amb/river": [
+  {
+   "file": "Assets/Resources/Audio/amb/river_01.ogg",
+   "layers": [
+    {
+     "source": "oga_park",
+     "file": "park_ambience_river.wav",
+     "t0": 240.0,
+     "t1": 330.0,
+     "role": "bed layer",
+     "loop_from": 270.9
+    }
+   ],
+   "seconds": 55.0,
+   "channels": 2
+  }
+ ],
+ "amb/snow_wind": [
+  {
+   "file": "Assets/Resources/Audio/amb/snow_wind_01.ogg",
+   "layers": [
+    {
+     "source": "cm_howling_wind",
+     "file": "Howling_wind.ogg",
+     "t0": 0.0,
+     "t1": 128.306,
+     "role": "howl",
+     "loop_from": 10.4,
+     "pseudo_stereo": true
+    },
+    {
+     "source": "oga_park",
+     "file": "park_ambience_wind.wav",
+     "t0": 190.0,
+     "t1": 256.0,
+     "role": "air",
+     "loop_from": 194.7
+    }
+   ],
+   "seconds": 58.0,
+   "channels": 2
+  }
+ ],
+ "amb/underwater": [
+  {
+   "file": "Assets/Resources/Audio/amb/underwater_01.ogg",
+   "layers": [
+    {
+     "source": "oga_underwater",
+     "file": "underwater_or_space_engine_0.ogg",
+     "t0": 0.0,
+     "t1": 84.589,
+     "role": "muffled sea",
+     "loop_from": 2.5,
+     "pseudo_stereo": true
+    },
+    {
+     "source": "oga_bubbles",
+     "file": "bubbles-loop1-amp.wav",
+     "t0": 0.0,
+     "t1": 4.853,
+     "role": "bubbles",
+     "loop_from": 0.1,
+     "tiled": 15,
+     "pseudo_stereo": true
+    },
+    {
+     "source": "oga_rd_water",
+     "file": "water-splash-slime-sfx.zip -> loop_bubbles_02.ogg",
+     "t0": 0.0,
+     "t1": 7.334,
+     "role": "bubbles",
+     "loop_from": 0.2,
+     "tiled": 9,
+     "pseudo_stereo": true
+    }
+   ],
+   "seconds": 48.0,
+   "channels": 2
+  }
+ ],
+ "amb/wind_strong": [
+  {
+   "file": "Assets/Resources/Audio/amb/wind_strong_01.ogg",
+   "layers": [
+    {
+     "source": "oga_park",
+     "file": "park_ambience_wind.wav",
+     "t0": 100.0,
+     "t1": 170.0,
+     "role": "gusts",
+     "loop_from": 107.5
+    },
+    {
+     "source": "cm_howling_wind",
+     "file": "Howling_wind.ogg",
+     "t0": 20.0,
+     "t1": 128.306,
+     "role": "howl",
+     "loop_from": 23.0,
+     "pseudo_stereo": true
+    }
+   ],
+   "seconds": 55.0,
+   "channels": 2
+  }
+ ],
  "break/dirt": [
   {
    "file": "Assets/Resources/Audio/break/dirt_01.wav",
