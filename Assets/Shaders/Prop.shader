@@ -39,7 +39,7 @@ Shader "Wildmere/Prop"
             #pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
             #pragma multi_compile_fragment _ _SCREEN_SPACE_OCCLUSION
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
-            #include "VoxelCommon.hlsl"
+            #include "VoxelLighting.hlsl"
 
             struct A { float4 positionOS : POSITION; float3 normalOS : NORMAL; float4 color : COLOR; UNITY_VERTEX_INPUT_INSTANCE_ID };
             struct V { float4 positionCS : SV_POSITION; float3 positionWS : TEXCOORD0; half3 normalWS : TEXCOORD1; half4 color : TEXCOORD2; UNITY_VERTEX_INPUT_INSTANCE_ID };
@@ -80,18 +80,18 @@ Shader "Wildmere/Prop"
                     albedo *= lerp(1.0, saturate(lum / 0.45), _DetailAmount);
                 }
 
-                BRDFData brdf; half alpha = 1;
-                InitializeBRDFData(albedo, 0, half3(0, 0, 0), _Smoothness, alpha, brdf);
-                float3 Vd = GetWorldSpaceNormalizeViewDir(i.positionWS);
-                float2 suv = GetNormalizedScreenSpaceUV(i.positionCS);
-                AmbientOcclusionFactor ssao = GetScreenSpaceAmbientOcclusion(suv);
-                Light sun = GetMainLight(TransformWorldToShadowCoord(i.positionWS), i.positionWS, half4(1, 1, 1, 1));
-                sun.shadowAttenuation *= smoothstep(0.25, 0.85, _SkyLight) * ssao.directAmbientOcclusion;
-                half3 color = LightingPhysicallyBased(brdf, sun, N, Vd);
-                half sky2 = _SkyLight * _SkyLight;
-                half3 hemi = lerp(_WM_AmbientGround.rgb, _WM_AmbientSky.rgb, saturate(N.y * 0.5 + 0.5));
-                color += (hemi * sky2 + _WM_CaveAmbient.rgb) * brdf.diffuse * ssao.indirectAmbientOcclusion;
-                color += albedo * _Emission;
+                // Same lighting model as the terrain (sun + cloud shadow, sky-scaled hemisphere ambient, SSAO,
+                // wetness), with the per-instance sky light standing in for the voxel sky light.
+                half smooth = _Smoothness;
+                half wet = _WM_Wetness * saturate(_SkyLight * 1.6 - 0.5) * saturate(N.y * 0.7 + 0.3);
+                albedo *= lerp(1.0, 0.7, wet);
+                smooth = lerp(smooth, max(smooth, 0.75), wet);
+                half3 color = WMShadeSurface(albedo, smooth, 1.0, N, i.positionWS, i.positionCS, _SkyLight, 0, wet * 0.2);
+                if (_Emission > 0)
+                {
+                    half pulse = 0.82 + 0.18 * sin(_Time.y * 1.4 + dot(i.positionWS, float3(1.3, 0.7, 2.1)));
+                    color += albedo * _Emission * pulse;
+                }
                 color = WMApplyFog(color, i.positionWS);
                 return half4(color, 1);
             }
