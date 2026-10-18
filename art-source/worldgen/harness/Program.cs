@@ -87,6 +87,21 @@ static class Program
                 }
                 return 0;
             }
+            case "riverforest":
+            {
+                var g = new TerrainGenerator(long.Parse(args[1]));
+                for (int r = 0; r < 1500; r += 8)
+                    for (int k = 0; k < 64; k++)
+                    {
+                        int x = (int)(Math.Cos(k * 0.0982) * r), z = (int)(Math.Sin(k * 0.0982) * r);
+                        var c = g.SampleColumn(x, z);
+                        if (!c.River || c.Frozen) continue;
+                        int forest = 0;
+                        for (int q = 0; q < 8; q++) { var n = g.SampleColumn(x + (int)(Math.Cos(q * 0.785) * 24), z + (int)(Math.Sin(q * 0.785) * 24)); if (n.Biome == Biome.TemperateForest) forest++; }
+                        if (forest >= 4) { Console.WriteLine($"river in forest at {x},{z} water={c.Water} h={c.Height}"); return 0; }
+                    }
+                return 1;
+            }
             case "peak":
             {
                 var g = new TerrainGenerator(long.Parse(args[1]));
