@@ -1,4 +1,99 @@
 {
-  "hero": null,
-  "gallery": []
+  "hero": {
+    "image": "/media/hero.webp",
+    "alt": "Sunrise in Wildmere: low sun breaking through a line of voxel trees, light shafts over a flower meadow."
+  },
+  "gallery": [
+    {
+      "src": "/media/shots/sunrise-forest.webp",
+      "width": 1600,
+      "height": 900,
+      "caption": "Sunrise through the woods",
+      "alt": "Low morning sun shining through a row of blocky trees, with visible light shafts and haze over grass and flowers."
+    },
+    {
+      "src": "/media/shots/golden-hour-plains.webp",
+      "width": 1600,
+      "height": 900,
+      "caption": "Golden hour on the plains",
+      "alt": "Late-afternoon light over rolling grassland, with sandstone hills and lit clouds behind."
+    },
+    {
+      "src": "/media/shots/snowy-mountains.webp",
+      "width": 1600,
+      "height": 900,
+      "caption": "Snowy mountains",
+      "alt": "A massive snow-capped voxel mountain with exposed rock and spruce forest on the lower slopes."
+    },
+    {
+      "src": "/media/shots/lake-golden-hour.webp",
+      "width": 1600,
+      "height": 900,
+      "caption": "A lake at golden hour",
+      "alt": "Calm water reflecting a warm evening sky beside a shoreline of trees and sand."
+    },
+    {
+      "src": "/media/shots/dark-forest.webp",
+      "width": 1600,
+      "height": 900,
+      "caption": "The dark forest",
+      "alt": "Inside a dense dark forest: thick trunks, deep shade, red toadstools and glowing glowcap mushrooms."
+    },
+    {
+      "src": "/media/shots/thunderstorm.webp",
+      "width": 1600,
+      "height": 900,
+      "caption": "Thunderstorm",
+      "alt": "Heavy rain sweeping across a meadow under a dark sky, with a lightning bolt over the hills."
+    },
+    {
+      "src": "/media/shots/snowfall.webp",
+      "width": 1600,
+      "height": 900,
+      "caption": "Snowfall",
+      "alt": "Snow falling and settling on the ground, grass and flowers of a meadow."
+    },
+    {
+      "src": "/media/shots/lake-noon.webp",
+      "width": 1600,
+      "height": 900,
+      "caption": "Clear water at noon",
+      "alt": "A sunlit lake with clear turquoise shallows, lily pads and a forested shore."
+    },
+    {
+      "src": "/media/shots/glowcap-cave.webp",
+      "width": 1600,
+      "height": 900,
+      "caption": "Glowcap cave",
+      "alt": "An underground cavern lit by a torch and a cluster of cyan glowing mushrooms."
+    },
+    {
+      "src": "/media/shots/underwater.webp",
+      "width": 1600,
+      "height": 900,
+      "caption": "Under the lake",
+      "alt": "Underwater view looking up at the surface, with lily pads silhouetted against the light."
+    },
+    {
+      "src": "/media/shots/night.webp",
+      "width": 1600,
+      "height": 900,
+      "caption": "Night",
+      "alt": "A moonlit meadow at night under a starry sky, with a held torch glowing warmly."
+    },
+    {
+      "src": "/media/shots/inventory-crafting.webp",
+      "width": 1600,
+      "height": 900,
+      "caption": "Inventory and crafting",
+      "alt": "The inventory grid and hotbar beside the crafting panel, with recipes, stations and a tool tooltip."
+    },
+    {
+      "src": "/media/shots/main-menu.webp",
+      "width": 1600,
+      "height": 900,
+      "caption": "Main menu",
+      "alt": "The Wildmere title screen over a live view of a river winding between forest and desert."
+    }
+  ]
 }
