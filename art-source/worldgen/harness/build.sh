@@ -12,5 +12,5 @@ mkdir -p "$H/bin"
   -r:System.IO.Compression.dll -out:"$H/bin/wg.exe" \
   "$H"/*.cs "$ROOT"/Assets/Scripts/World/Gen/*.cs \
   "$ROOT/Assets/Scripts/World/Chunk.cs" "$ROOT/Assets/Scripts/World/Blocks.cs" \
-  "$ROOT/Assets/Scripts/World/IWorldGenerator.cs"
+  "$ROOT/Assets/Scripts/World/IWorldGenerator.cs" "$ROOT/Assets/Tests/EditMode/WorldGenChecks.cs"
 if [ "$#" -gt 0 ]; then exec "$MONO" "$H/bin/wg.exe" "$@"; fi

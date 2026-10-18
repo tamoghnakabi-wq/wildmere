@@ -114,8 +114,9 @@ namespace Wildmere.World.Gen
         /// <summary>Does a cave open the top block of this column? (only possible in entrance zones)</summary>
         bool CarvedTop(Scratch s, int x, int z, int H)
         {
-            if (GetCol(s, x, z).Ent <= 0 || CapOf(s, x, z) < H) return false;
-            return CaveCarvedDirect(x, H, z);
+            Col c = GetCol(s, x, z);
+            if (c.Ent <= 0 || CapOf(s, x, z) < H) return false;
+            return CaveCarvedDirect(x, H, z, c.Ent, c.H);
         }
 
         /// <summary>Is any tree trunk within r blocks of (x, z)? Uses (and overwrites) this thread's chunk cache.</summary>

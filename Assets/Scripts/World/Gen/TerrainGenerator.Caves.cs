@@ -21,9 +21,11 @@ namespace Wildmere.World.Gen
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static bool CaveTest(double a, double b, double ch, int y)
+        static bool CaveTest(double a, double b, double ch, int y, double ent, int surface)
         {
             double r2 = 0.0032 + 0.0018 * SS(70, 20, y);
+            // entrance zones: tunnels swell near the surface so they break through as cave mouths
+            if (ent > 0) r2 *= 1 + 2.2 * ent * SS(surface - 16, surface - 3, y);
             if (a * a + b * b < r2) return true;
             double thr = 0.40 + 0.6 * (SS(42, 60, y) + SS(15, 6, y));
             return ch > thr;
@@ -55,6 +57,9 @@ namespace Wildmere.World.Gen
                 {
                     int cap = s.Cap[x + z * 16];
                     if (cap < CaveMinY) continue;
+                    Col cc0 = GetCol(s, bx + x, bz + z);
+                    double ent = EntBoost(cc0.Ent);
+                    int surface = cc0.H;
                     if (cap > maxCap) cap = maxCap;
                     int ix = x >> 2, iz = z >> 2;
                     double tx = (x & 3) * 0.25, tz = (z & 3) * 0.25;
@@ -71,7 +76,7 @@ namespace Wildmere.World.Gen
                     {
                         int k = y >> 2; double ty = (y & 3) * 0.25;
                         double a = Lerp(ca[k], ca[k + 1], ty), b = Lerp(cb[k], cb[k + 1], ty), ch = Lerp(cc[k], cc[k + 1], ty);
-                        if (!CaveTest(a, b, ch, y)) continue;
+                        if (!CaveTest(a, b, ch, y, ent, surface)) continue;
                         int idx = col + (y << 8);
                         byte old = blocks[idx];
                         if (old == B.Air || old == B.Water || old == B.Bedrock || old == B.Ice) continue;
@@ -81,7 +86,7 @@ namespace Wildmere.World.Gen
         }
 
         /// <summary>Is (x,y,z) carved by caves (ignoring the column ceiling)? Same arithmetic as <see cref="CarveCaves"/>.</summary>
-        bool CaveCarvedDirect(int x, int y, int z)
+        bool CaveCarvedDirect(int x, int y, int z, float colEnt, int surface)
         {
             if (y < CaveMinY) return false;
             int X0 = FloorDiv(x, 4) * 4, Z0 = FloorDiv(z, 4) * 4, k = y >> 2;
@@ -102,7 +107,11 @@ namespace Wildmere.World.Gen
                 CaveLattice(X0 + 4, Y, Z0 + 4, out double a11, out double b11, out double c11);
                 ak1 = Bilin(a00, a10, a01, a11, tx, tz); bk1 = Bilin(b00, b10, b01, b11, tx, tz); ck1 = Bilin(c00, c10, c01, c11, tx, tz);
             }
-            return CaveTest(Lerp(ak0, ak1, ty), Lerp(bk0, bk1, ty), Lerp(ck0, ck1, ty), y);
+            return CaveTest(Lerp(ak0, ak1, ty), Lerp(bk0, bk1, ty), Lerp(ck0, ck1, ty), y, EntBoost(colEnt), surface);
         }
+
+        static double EntBoost(float ent) => ent > 0 ? SS(0, 0.25, ent) : 0;
+
+
     }
 }

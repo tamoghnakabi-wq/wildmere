@@ -42,9 +42,38 @@ static class Program
                 return 0;
             }
             case "probe": Probe(long.Parse(args[1])); return 0;
+            case "checks": return Checks(long.Parse(args[1]));
         }
         Console.WriteLine("unknown mode");
         return 2;
+    }
+
+    static int Checks(long seed)
+    {
+        var g = new TerrainGenerator(seed);
+        int fails = 0;
+        void R(string name, string err) { Console.WriteLine($"{(err == null ? "PASS" : "FAIL")} {name} {err}"); if (err != null) fails++; }
+        var sw = Stopwatch.StartNew();
+        R("determinism", Wildmere.Tests.WorldGenChecks.Determinism(seed, Wildmere.Tests.WorldGenChecks.SpreadChunks(24)));
+        R("parallel==serial", Wildmere.Tests.WorldGenChecks.ParallelEqualsSerial(seed, Wildmere.Tests.WorldGenChecks.SpreadChunks(64, 1), 8));
+        var cov = Wildmere.Tests.WorldGenChecks.Coverage(g, 4096, 32);
+        var sb = new System.Text.StringBuilder();
+        foreach (var kv in cov) sb.Append($" {kv.Key}={kv.Value:P1}");
+        Console.WriteLine("coverage" + sb);
+        R("coverage", Wildmere.Tests.WorldGenChecks.CoverageVerdict(cov));
+        int open = Wildmere.Tests.WorldGenChecks.CaveOpenings(g, Wildmere.Tests.WorldGenChecks.SpreadChunks(160, 7));
+        R($"cave openings ({open})", open > 0 ? null : "none");
+        R("ores", Wildmere.Tests.WorldGenChecks.OreRanges(g, Wildmere.Tests.WorldGenChecks.SpreadChunks(24, 11), out int coal, out int iron, out int gold));
+        Console.WriteLine($"ores coal={coal} iron={iron} gold={gold}");
+        var log = new System.Text.StringBuilder();
+        R("biome areas", Wildmere.Tests.WorldGenChecks.BiomeAreaReport(g, log));
+        Console.Write(log);
+        R("spawn", Wildmere.Tests.WorldGenChecks.SpawnOk(g, out var sp));
+        Console.WriteLine($"spawn {sp} {g.SampleBiome(sp.x, sp.z).Biome}");
+        double ms = Wildmere.Tests.WorldGenChecks.MsPerChunk(g, 96);
+        R($"speed {ms:F2} ms/chunk", ms <= 4.0 ? null : "too slow");
+        Console.WriteLine($"total {sw.Elapsed.TotalSeconds:F1}s, {fails} failures");
+        return fails == 0 ? 0 : 1;
     }
 
     static void Probe(long seed)
