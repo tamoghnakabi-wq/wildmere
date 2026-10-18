@@ -181,6 +181,19 @@ namespace Wildmere.Tests
             Assert.GreaterOrEqual(n, 4);
         }
 
+        [Test, Category("KnownDefect")]
+        public void Add_ThatAddsNothing_DoesNotRaiseChanged()
+        {
+            // QA-D10: BlockInteraction calls TryCollect -> Inventory.Add every frame while the player stands on a drop
+            // that does not fit; Add always calls Notify(), so HUD/inventory screen refresh ~fps times per second.
+            var inv = new Inventory();
+            inv.Add(B.Stone, 64 * Inventory.Size);
+            int n = 0;
+            inv.Changed += () => n++;
+            Assert.AreEqual(1, inv.Add(B.Dirt, 1));
+            Assert.AreEqual(0, n, "Changed fired although nothing changed");
+        }
+
         [Test]
         public void Json_RoundTripPreservesSlotsCountsDurability()
         {

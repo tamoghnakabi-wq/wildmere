@@ -1402,12 +1402,16 @@ namespace Wildmere.QA
             string phase = "";
             long gc0 = GC.CollectionCount(0);
             int sample = 0;
+            bool skipNext = false;
+            float sampleCost = 0;
             Info($"soak start dur={dur}s nosave={R.NoSave} view={W.ViewDistance} vsync={GameSettings.Current.VSync}");
             while (t < dur && P != null)
             {
                 float dt = Time.unscaledDeltaTime;
                 t += dt; phaseT += dt;
-                frames.Add(dt * 1000f);
+                // The frame after a sample pays for FindObjectsOfTypeAll; keep it out of the frame statistics.
+                if (skipNext) { skipNext = false; sampleCost = dt * 1000f; }
+                else frames.Add(dt * 1000f);
                 string want = (int)(t / 30f) % 3 == 0 ? "walk" : (int)(t / 30f) % 3 == 1 ? "fly" : "mine";
                 if (want != phase) { phase = want; phaseT = 0; EnterSoakPhase(p, phase); }
                 SoakStep(p, phase, phaseT);
@@ -1425,8 +1429,9 @@ namespace Wildmere.QA
                               $"gfxMB={Profiler.GetAllocatedMemoryForGraphicsDriver() / 1048576f:F1} meshes={meshes} gameObjects={gos} materials={mats} " +
                               $"chunks={W.Loaded} meshed={W.MeshedCount} verts={W.TotalVertices} drops={ItemDrop.All.Count} animals={Wildlife.WildlifeManager.Instance?.Count} " +
                               $"props={World.Decor.PropRenderer.Instance?.InstanceCount} frames={frames.Count} avgMs={avg:F2} p99Ms={p99:F2} maxMs={mx:F1} gc0={GC.CollectionCount(0) - gc0} " +
-                              $"pos={p.transform.position:F0} errors={mErrors.Count}");
+                              $"pos={p.transform.position:F0} errors={mErrors.Count} prevSampleFrameMs={sampleCost:F0}");
                     frames.Clear();
+                    skipNext = true;
                 }
                 yield return null;
             }
