@@ -225,6 +225,7 @@ namespace Wildmere.QA
 
         static IEnumerator Use()
         {
+            if (R.UiCapture) { UI.UiRoot.Instance?.Back(); yield return null; }
             BI.ScriptedUse = true;
             yield return null; yield return null;
             BI.ScriptedUse = false;
@@ -538,7 +539,7 @@ namespace Wildmere.QA
             var wm = Wildlife.WildlifeManager.Instance;
             if (wm != null)
             {
-                var deerCell = new Vector3Int(mA.x - 3, Y0 + 1, mA.z + 1);
+                var deerCell = new Vector3Int(mA.x - 3, Y0 + 1, mA.z + 3); // the aim ray must not graze a furnace (right-click opens it)
                 var deer = wm.SpawnAt(Wildlife.Species.Deer, new Vector3(deerCell.x + 0.5f, Y0 + 1f, deerCell.z + 0.5f));
                 Hold(B.Dirt);
                 yield return Aim(new Vector3(deerCell.x + 0.5f, Y0 + 1.0f, deerCell.z + 0.5f));
@@ -552,6 +553,7 @@ namespace Wildmere.QA
             else Check("no_place_in_wildlife", false, "no WildlifeManager");
 
             // 8. Reach: 4.5 m reachable, 5.5 m not.
+            if (R.UiCapture) { UI.UiRoot.Instance?.Back(); yield return Frames(2); }
             var near = new Vector3Int(mA.x, Y0 + 2, mA.z + 5);
             var far = new Vector3Int(mA.x - 1, Y0 + 2, mA.z + 6);
             Set(near, B.Planks); Set(far, B.Planks);
@@ -1069,7 +1071,16 @@ namespace Wildmere.QA
                     var min = new Vector3(pos.x - a.HalfWidth + 0.05f, pos.y + 0.05f, pos.z - a.HalfWidth + 0.05f);
                     var max = new Vector3(pos.x + a.HalfWidth - 0.05f, pos.y + a.Height, pos.z + a.HalfWidth - 0.05f);
                     byte below = W.GetBlock(Mathf.FloorToInt(pos.x), Mathf.FloorToInt(pos.y - 0.05f), Mathf.FloorToInt(pos.z));
-                    if (VoxelPhysics.OverlapsVoxels(W, min, max)) { stuck++; notes.Add($"{a.Kind}@{pos:F1} in block"); }
+                    if (VoxelPhysics.OverlapsVoxels(W, min, max))
+                    {
+                        stuck++;
+                        var hits = new List<string>();
+                        for (int y = Mathf.FloorToInt(min.y); y <= Mathf.FloorToInt(max.y); y++)
+                            for (int z = Mathf.FloorToInt(min.z); z <= Mathf.FloorToInt(max.z); z++)
+                                for (int x = Mathf.FloorToInt(min.x); x <= Mathf.FloorToInt(max.x); x++)
+                                    if (VoxelPhysics.Solid(W, x, y, z)) hits.Add($"{Blocks.Get(W.GetBlock(x, y, z)).Name}({x},{y},{z})");
+                        notes.Add($"{a.Kind}@{pos:F2} overlaps {string.Join(",", hits)}");
+                    }
                     if (!Blocks.IsSolid[below]) { floating++; notes.Add($"{a.Kind}@{pos:F1} over {Blocks.Get(below).Name}"); }
                     if (Blocks.IsLeaves(below)) { onLeaves++; notes.Add($"{a.Kind}@{pos:F1} on leaves"); }
                 }
