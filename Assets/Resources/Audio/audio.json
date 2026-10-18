@@ -360,7 +360,7 @@
       "Audio/step/dirt_05",
       "Audio/step/dirt_06"
     ],
-    "volume": 0.38,
+    "volume": 0.3,
     "loop": false
   },
   "step/grass": {
@@ -371,7 +371,7 @@
       "Audio/step/grass_04",
       "Audio/step/grass_05"
     ],
-    "volume": 0.38,
+    "volume": 0.3,
     "loop": false
   },
   "step/gravel": {
@@ -383,7 +383,7 @@
       "Audio/step/gravel_05",
       "Audio/step/gravel_06"
     ],
-    "volume": 0.38,
+    "volume": 0.3,
     "loop": false
   },
   "step/leaves": {
@@ -395,7 +395,7 @@
       "Audio/step/leaves_05",
       "Audio/step/leaves_06"
     ],
-    "volume": 0.36,
+    "volume": 0.3,
     "loop": false
   },
   "step/sand": {
@@ -407,7 +407,7 @@
       "Audio/step/sand_05",
       "Audio/step/sand_06"
     ],
-    "volume": 0.36,
+    "volume": 0.3,
     "loop": false
   },
   "step/snow": {
@@ -419,7 +419,7 @@
       "Audio/step/snow_05",
       "Audio/step/snow_06"
     ],
-    "volume": 0.38,
+    "volume": 0.3,
     "loop": false
   },
   "step/stone": {
@@ -431,7 +431,7 @@
       "Audio/step/stone_05",
       "Audio/step/stone_06"
     ],
-    "volume": 0.4,
+    "volume": 0.3,
     "loop": false
   },
   "step/water": {
@@ -443,7 +443,7 @@
       "Audio/step/water_05",
       "Audio/step/water_06"
     ],
-    "volume": 0.4,
+    "volume": 0.3,
     "loop": false
   },
   "step/wood": {
@@ -454,7 +454,7 @@
       "Audio/step/wood_04",
       "Audio/step/wood_05"
     ],
-    "volume": 0.4,
+    "volume": 0.3,
     "loop": false
   }
 }

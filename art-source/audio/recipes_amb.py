@@ -14,10 +14,14 @@ def L(take, **o):
     return d
 
 
-def BED(layers, loop_s=50.0, lufs=-22.0, volume=0.6, **p):
-    pp = {"loop_s": loop_s, "xfade_s": 3.0, "lufs": lufs, "hp": 30.0, "codec_margin_db": 1.0}
+def BED(layers, loop_s=50.0, lufs=-22.0, volume=0.6, fmt="ogg", **p):
+    """fmt: Ogg Vorbis q6 for broadband beds (saves ~85 % of the size); WAV for
+    low-frequency, smooth beds, where the encoder's last block left an audible step
+    at the loop point (caught by qa.py's wrap test)."""
+    pp = {"loop_s": loop_s, "xfade_s": 3.0, "lufs": lufs, "hp": 30.0,
+          "codec_margin_db": 1.0 if fmt == "ogg" else 0.0}
     pp.update(p)
-    return {"kind": "bed", "beds": [layers], "p": pp, "volume": volume, "loop": True, "fmt": "ogg"}
+    return {"kind": "bed", "beds": [layers], "p": pp, "volume": volume, "loop": True, "fmt": fmt}
 
 
 PARK = "oga_park"
@@ -41,7 +45,7 @@ RECIPES["amb/night"] = BED([
     L(T("oga_syncopika_crickets", "cricket*"), hp=1500, role="crickets"),
     L(T("oga_crickets_loop", "crickets_1.mp3"), hp=1800, gain=-8, role="crickets, wide"),
     L(T("cm_nightjar", "Caprimulgus_europaeus.ogg"), hp=400, lp=6000, gain=-16, role="distant nightjar"),
-], loop_s=35.5, lufs=-28, volume=0.6)
+], loop_s=32, lufs=-28, volume=0.6)
 
 # deep, dark and calm: low wind through big trees, far birds, an occasional creak
 RECIPES["amb/dark_forest"] = BED([
@@ -75,7 +79,7 @@ RECIPES["amb/underwater"] = BED([
     L(T("oga_underwater", "underwater_or_space_engine*"), hp=25, lp=900, role="muffled sea"),
     L(T("oga_bubbles", "bubbles-loop1-amp.wav"), lp=2500, gain=-14, role="bubbles"),
     L(T("oga_rd_water", "loop_bubbles_02.ogg"), lp=2000, gain=-16, role="bubbles"),
-], loop_s=48, lufs=-24, volume=0.6)
+], loop_s=40, lufs=-24, volume=0.6, fmt="wav")
 
 # a small river falling over a low step, birds and frogs around it
 RECIPES["amb/river"] = BED([

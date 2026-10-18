@@ -70,6 +70,22 @@ def spec_db(x, sr):
     return np.array([20 * np.log10(np.mean(X[(f >= a) & (f < b)])) for a, b in zip(edges[:-1], edges[1:])])
 
 
+def seam_stats(x, sr):
+    """(seam, interior p95) for 250 ms level steps and 1 s spectral steps."""
+    m = x.mean(axis=1) if x.ndim == 2 else x
+    w = int(0.25 * sr)
+    k = len(m) // w
+    lev = np.array([dsp.db(dsp.rms(m[i * w:(i + 1) * w])) for i in range(k)])
+    steps = np.abs(np.diff(lev))
+    seam_l = abs(lev[-1] - lev[0])
+    w2 = sr
+    k2 = len(m) // w2
+    specs = [spec_db(m[i * w2:(i + 1) * w2], sr) for i in range(k2)]
+    sd = np.array([np.sqrt(np.mean((specs[i + 1] - specs[i]) ** 2)) for i in range(k2 - 1)])
+    seam_s = float(np.sqrt(np.mean((spec_db(m[-w2:], sr) - spec_db(m[:w2], sr)) ** 2)))
+    return (float(seam_l), float(np.percentile(steps, 95))), (seam_s, float(np.percentile(sd, 95)))
+
+
 def group_range(name):
     for k, v in DUR.items():
         if name.startswith(k):
@@ -132,20 +148,22 @@ def main():
                     warns.append(f"{tag}: onset at {onset * 1000:.0f} ms")
             seam = ""
             if ent["loop"]:
+                # sample continuity at the wrap vs the clip's own interior
                 s = dsp.seam_report(x, sr)
-                n = min(x.shape[0] // 4, sr)
-                sd = float(np.sqrt(np.mean((spec_db(x[-n:], sr) - spec_db(x[:n], sr)) ** 2)))
-                seam = f" seam jump {s['wrap_jump_vs_p99']:.2f} lvl {s['edge_level_diff_db']:.2f}dB spec {sd:.1f}dB"
+                # level / spectrum change across the seam vs. changes between any two
+                # neighbouring windows inside the loop (beds are not stationary: a
+                # bird call can start anywhere, the seam only has to look ordinary)
+                lv, sp = seam_stats(x, sr)
+                seam = (f" seam jump {s['wrap_jump_vs_p99']:.2f} lvl {lv[0]:.2f}dB (p95 {lv[1]:.2f})"
+                        f" spec {sp[0]:.1f}dB (p95 {sp[1]:.1f})")
                 if s["wrap_jump_vs_p99"] > 1.0:
                     fails.append(f"{tag}: loop wrap discontinuity {s['wrap_jump_vs_p99']:.2f}x interior p99")
-                if s["edge_level_diff_db"] > 3.0:
-                    fails.append(f"{tag}: loop level jump {s['edge_level_diff_db']:.2f} dB")
-                elif s["edge_level_diff_db"] > 1.5:
-                    warns.append(f"{tag}: loop level step {s['edge_level_diff_db']:.2f} dB")
-                if sd > 6.0:
-                    warns.append(f"{tag}: loop spectral step {sd:.1f} dB")
+                if lv[0] > max(lv[1], 1.0) + 0.5:
+                    fails.append(f"{tag}: loop level step {lv[0]:.2f} dB vs interior p95 {lv[1]:.2f} dB")
+                if sp[0] > max(sp[1], 2.0) + 1.0:
+                    fails.append(f"{tag}: loop spectral step {sp[0]:.1f} dB vs interior p95 {sp[1]:.1f} dB")
             lm = dsp.loudness(x, sr) if dur > 3 else dsp.momentary_max(x, sr)
-            mm.append(dsp.momentary_max(x, sr) if dur <= 3 else lm)
+            mm.append(dsp.momentary_max(x, sr))      # beds: their loudest 400 ms ("peaks")
             mono_sigs.append(m[:int(min(len(m), 3 * sr))])
             rows.append(f"{tag:44s} {x.shape[1]}ch {dur:6.2f}s pk {dsp.db(pk):6.2f} tp {dsp.db(tp):6.2f} "
                         f"{'LUFS' if dur > 3 else 'Mmax'} {lm:6.1f} dc {dc:.4f}{seam}")
@@ -182,7 +200,7 @@ def main():
     if mb > 120:
         fails.append(f"size: {mb:.1f} MB > 120 MB")
     out = ["Wildmere audio QA", "=" * 17, f"{len(manifest)} names, {sum(len(e['files']) for e in manifest.values())} files, {mb:.1f} MB", ""]
-    out += ["Effective level per name (loudest variant + 20log10(volume); beds = integrated LUFS):"]
+    out += ["Effective level per name (loudest 400 ms of the loudest variant + 20log10(volume)):"]
     for n in sorted(eff):
         v = eff[n]
         out.append(f"  {n:24s} {v[0]:6.1f}  variants {v[1]}  max xcorr {v[2]:.2f}")

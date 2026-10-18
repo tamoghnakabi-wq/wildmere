@@ -128,7 +128,7 @@
      "t0": 0.0,
      "t1": 38.542,
      "role": "crickets",
-     "loop_from": 0.0,
+     "loop_from": 3.3,
      "pseudo_stereo": true
     },
     {
@@ -137,8 +137,8 @@
      "t0": 0.0,
      "t1": 11.452,
      "role": "crickets, wide",
-     "loop_from": 1.1,
-     "tiled": 5
+     "loop_from": 0.0,
+     "tiled": 4
     },
     {
      "source": "cm_nightjar",
@@ -146,12 +146,12 @@
      "t0": 0.0,
      "t1": 21.943,
      "role": "distant nightjar",
-     "loop_from": 1.1,
+     "loop_from": 0.3,
      "tiled": 2,
      "pseudo_stereo": true
     }
    ],
-   "seconds": 35.5,
+   "seconds": 32.0,
    "channels": 2
   }
  ],
@@ -302,7 +302,7 @@
  ],
  "amb/underwater": [
   {
-   "file": "Assets/Resources/Audio/amb/underwater_01.ogg",
+   "file": "Assets/Resources/Audio/amb/underwater_01.wav",
    "layers": [
     {
      "source": "oga_underwater",
@@ -310,7 +310,7 @@
      "t0": 0.0,
      "t1": 84.589,
      "role": "muffled sea",
-     "loop_from": 2.5,
+     "loop_from": 0.6,
      "pseudo_stereo": true
     },
     {
@@ -319,8 +319,8 @@
      "t0": 0.0,
      "t1": 4.853,
      "role": "bubbles",
-     "loop_from": 0.1,
-     "tiled": 15,
+     "loop_from": 0.0,
+     "tiled": 12,
      "pseudo_stereo": true
     },
     {
@@ -329,12 +329,12 @@
      "t0": 0.0,
      "t1": 7.334,
      "role": "bubbles",
-     "loop_from": 0.2,
-     "tiled": 9,
+     "loop_from": 0.3,
+     "tiled": 8,
      "pseudo_stereo": true
     }
    ],
-   "seconds": 48.0,
+   "seconds": 40.0,
    "channels": 2
   }
  ],

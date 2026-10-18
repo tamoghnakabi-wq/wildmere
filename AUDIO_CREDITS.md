@@ -93,7 +93,7 @@ every recording that went into them.
 | Audio/amb/river_01.ogg | <https://opengameart.org/content/park-ambiences> | Thimras | CC0 1.0 | `park_ambience_river.wav` [240.00-330.00s] |
 | Audio/amb/snow_wind_01.ogg | <https://commons.wikimedia.org/wiki/File:Howling_wind.ogg> | Tvabutzku1234 | CC0 1.0 | `Howling_wind.ogg` [0.00-128.31s] |
 | &nbsp;&nbsp;+ layer | <https://opengameart.org/content/park-ambiences> | Thimras | CC0 1.0 | `park_ambience_wind.wav` [190.00-256.00s] |
-| Audio/amb/underwater_01.ogg | <https://opengameart.org/content/underwater-or-space-engine-rumble> | gmason | CC0 1.0 | `underwater_or_space_engine_0.ogg` [0.00-84.59s] |
+| Audio/amb/underwater_01.wav | <https://opengameart.org/content/underwater-or-space-engine-rumble> | gmason | CC0 1.0 | `underwater_or_space_engine_0.ogg` [0.00-84.59s] |
 | &nbsp;&nbsp;+ layer | <https://opengameart.org/content/bubble-sound-effects> | BMacZero | CC0 1.0 | `bubbles-loop1-amp.wav` [0.00-4.85s] |
 | &nbsp;&nbsp;+ layer | <https://opengameart.org/content/40-cc0-water-splash-slime-sfx> | rubberduck | CC0 1.0 | `water-splash-slime-sfx.zip -> loop_bubbles_02.ogg` [0.00-7.33s] |
 | Audio/amb/wind_strong_01.ogg | <https://opengameart.org/content/park-ambiences> | Thimras | CC0 1.0 | `park_ambience_wind.wav` [100.00-170.00s] |

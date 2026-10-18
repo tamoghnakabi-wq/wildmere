@@ -1,21 +1,21 @@
 Wildmere audio QA
 =================
-46 names, 182 files, 22.8 MB
+46 names, 182 files, 30.0 MB
 
-Effective level per name (loudest variant + 20log10(volume); beds = integrated LUFS):
-  amb/cave                  -33.7  variants 1  max xcorr 0.00
-  amb/dark_forest           -33.0  variants 1  max xcorr 0.00
-  amb/desert_wind           -28.4  variants 1  max xcorr 0.00
-  amb/forest_day            -27.8  variants 1  max xcorr 0.00
-  amb/night                 -32.4  variants 1  max xcorr 0.00
-  amb/ocean_shore           -26.7  variants 1  max xcorr 0.00
-  amb/plains_day            -29.5  variants 1  max xcorr 0.00
-  amb/rain_heavy            -24.5  variants 1  max xcorr 0.00
-  amb/rain_light            -34.5  variants 1  max xcorr 0.00
-  amb/river                 -26.7  variants 1  max xcorr 0.00
-  amb/snow_wind             -27.4  variants 1  max xcorr 0.00
-  amb/underwater            -28.4  variants 1  max xcorr 0.00
-  amb/wind_strong           -24.4  variants 1  max xcorr 0.00
+Effective level per name (loudest 400 ms of the loudest variant + 20log10(volume)):
+  amb/cave                  -28.1  variants 1  max xcorr 0.00
+  amb/dark_forest           -20.5  variants 1  max xcorr 0.00
+  amb/desert_wind           -24.6  variants 1  max xcorr 0.00
+  amb/forest_day            -21.6  variants 1  max xcorr 0.00
+  amb/night                 -30.2  variants 1  max xcorr 0.00
+  amb/ocean_shore           -19.7  variants 1  max xcorr 0.00
+  amb/plains_day            -27.3  variants 1  max xcorr 0.00
+  amb/rain_heavy            -23.2  variants 1  max xcorr 0.00
+  amb/rain_light            -29.7  variants 1  max xcorr 0.00
+  amb/river                 -25.2  variants 1  max xcorr 0.00
+  amb/snow_wind             -24.8  variants 1  max xcorr 0.00
+  amb/underwater            -27.2  variants 1  max xcorr 0.00
+  amb/wind_strong           -21.7  variants 1  max xcorr 0.00
   break/dirt                -18.4  variants 4  max xcorr 0.40
   break/glass               -17.9  variants 6  max xcorr 0.09
   break/gravel              -17.8  variants 5  max xcorr 0.25
@@ -40,33 +40,19 @@ Effective level per name (loudest variant + 20log10(volume); beds = integrated L
   place/snow                -24.2  variants 4  max xcorr 0.25
   place/stone               -23.2  variants 5  max xcorr 0.38
   place/wood                -23.2  variants 6  max xcorr 0.19
-  step/dirt                 -26.6  variants 6  max xcorr 0.46
-  step/grass                -27.9  variants 5  max xcorr 0.17
-  step/gravel               -27.6  variants 6  max xcorr 0.20
-  step/leaves               -27.5  variants 6  max xcorr 0.33
-  step/sand                 -26.9  variants 6  max xcorr 0.13
-  step/snow                 -27.1  variants 6  max xcorr 0.37
-  step/stone                -26.0  variants 6  max xcorr 0.15
-  step/water                -26.5  variants 6  max xcorr 0.10
-  step/wood                 -26.0  variants 5  max xcorr 0.44
+  step/dirt                 -28.6  variants 6  max xcorr 0.46
+  step/grass                -29.9  variants 5  max xcorr 0.17
+  step/gravel               -29.6  variants 6  max xcorr 0.20
+  step/leaves               -29.0  variants 6  max xcorr 0.33
+  step/sand                 -28.5  variants 6  max xcorr 0.13
+  step/snow                 -29.1  variants 6  max xcorr 0.37
+  step/stone                -28.5  variants 6  max xcorr 0.15
+  step/water                -29.0  variants 6  max xcorr 0.10
+  step/wood                 -28.5  variants 5  max xcorr 0.44
 
-FAIL (3):
-  amb/forest_day forest_day_01.ogg: loop level jump 4.82 dB
-  amb/underwater underwater_01.ogg: loop wrap discontinuity 9.07x interior p99
-  mix: loudest footsteps -26.0 not 3 dB below median ambience -28.4
+FAIL (0):
 
-WARN (17):
-  amb/cave cave_01.ogg: loop level step 2.64 dB
-  amb/cave cave_01.ogg: loop spectral step 8.1 dB
-  amb/dark_forest dark_forest_01.ogg: loop level step 1.69 dB
-  amb/desert_wind desert_wind_01.ogg: loop level step 2.43 dB
-  amb/night night_01.ogg: loop level step 2.85 dB
-  amb/night night_01.ogg: loop spectral step 12.9 dB
-  amb/ocean_shore ocean_shore_01.ogg: loop spectral step 6.2 dB
-  amb/snow_wind snow_wind_01.ogg: loop level step 1.65 dB
-  amb/snow_wind snow_wind_01.ogg: loop spectral step 10.1 dB
-  amb/underwater underwater_01.ogg: loop spectral step 9.8 dB
-  amb/wind_strong wind_strong_01.ogg: loop level step 2.30 dB
+WARN (6):
   break/leaves leaves_01.wav: onset at 44 ms
   break/leaves leaves_04.wav: onset at 42 ms
   break/wood wood_02.wav: onset at 44 ms
@@ -75,19 +61,19 @@ WARN (17):
   step/water water_02.wav: onset at 42 ms
 
 Per file:
-  amb/cave cave_01.ogg                         2ch  40.00s pk  -5.20 tp  -5.13 LUFS  -30.0 dc 0.0001 seam jump 0.53 lvl 2.64dB spec 8.1dB
-  amb/dark_forest dark_forest_01.ogg           2ch  58.00s pk  -2.16 tp  -2.10 LUFS  -28.5 dc 0.0000 seam jump 0.92 lvl 1.69dB spec 4.9dB
-  amb/desert_wind desert_wind_01.ogg           2ch  52.00s pk -12.28 tp -12.28 LUFS  -24.0 dc 0.0000 seam jump 0.51 lvl 2.43dB spec 5.2dB
-  amb/forest_day forest_day_01.ogg             2ch  55.00s pk  -6.66 tp  -6.66 LUFS  -24.0 dc 0.0000 seam jump 0.25 lvl 4.82dB spec 3.6dB
-  amb/night night_01.ogg                       2ch  35.50s pk -15.07 tp -15.02 LUFS  -28.0 dc 0.0000 seam jump 0.09 lvl 2.85dB spec 12.9dB
-  amb/ocean_shore ocean_shore_01.ogg           2ch  52.00s pk  -7.44 tp  -7.44 LUFS  -23.0 dc 0.0000 seam jump 0.50 lvl 1.08dB spec 6.2dB
-  amb/plains_day plains_day_01.ogg             2ch  56.00s pk  -8.21 tp  -8.02 LUFS  -25.1 dc 0.0000 seam jump 0.16 lvl 0.05dB spec 2.8dB
-  amb/rain_heavy rain_heavy_01.ogg             2ch  54.00s pk  -5.54 tp  -5.54 LUFS  -20.0 dc 0.0000 seam jump 0.55 lvl 0.76dB spec 2.1dB
-  amb/rain_light rain_light_01.ogg             2ch  34.00s pk  -1.98 tp  -1.98 LUFS  -30.1 dc 0.0000 seam jump 0.89 lvl 0.37dB spec 3.1dB
-  amb/river river_01.ogg                       2ch  55.00s pk  -8.68 tp  -8.68 LUFS  -23.0 dc 0.0000 seam jump 0.22 lvl 0.08dB spec 0.9dB
-  amb/snow_wind snow_wind_01.ogg               2ch  58.00s pk -12.42 tp -12.42 LUFS  -23.0 dc 0.0000 seam jump 0.20 lvl 1.65dB spec 10.1dB
-  amb/underwater underwater_01.ogg             2ch  48.00s pk -12.02 tp -12.01 LUFS  -24.0 dc 0.0001 seam jump 9.07 lvl 1.12dB spec 9.8dB
-  amb/wind_strong wind_strong_01.ogg           2ch  55.00s pk  -9.94 tp  -9.93 LUFS  -20.0 dc 0.0000 seam jump 0.20 lvl 2.30dB spec 3.6dB
+  amb/cave cave_01.ogg                         2ch  40.00s pk  -5.20 tp  -5.13 LUFS  -30.0 dc 0.0001 seam jump 0.53 lvl 4.23dB (p95 4.36) spec 8.1dB (p95 11.5)
+  amb/dark_forest dark_forest_01.ogg           2ch  58.00s pk  -2.16 tp  -2.10 LUFS  -28.5 dc 0.0000 seam jump 0.92 lvl 2.11dB (p95 4.16) spec 4.9dB (p95 17.5)
+  amb/desert_wind desert_wind_01.ogg           2ch  52.00s pk -12.28 tp -12.28 LUFS  -24.0 dc 0.0000 seam jump 0.51 lvl 2.23dB (p95 3.81) spec 5.2dB (p95 5.1)
+  amb/forest_day forest_day_01.ogg             2ch  55.00s pk  -6.66 tp  -6.66 LUFS  -24.0 dc 0.0000 seam jump 0.25 lvl 5.19dB (p95 4.93) spec 3.6dB (p95 7.2)
+  amb/night night_01.ogg                       2ch  32.00s pk -14.06 tp -13.99 LUFS  -28.0 dc 0.0000 seam jump 0.65 lvl 0.59dB (p95 2.09) spec 3.5dB (p95 16.1)
+  amb/ocean_shore ocean_shore_01.ogg           2ch  52.00s pk  -7.44 tp  -7.44 LUFS  -23.0 dc 0.0000 seam jump 0.50 lvl 1.22dB (p95 3.65) spec 6.2dB (p95 8.3)
+  amb/plains_day plains_day_01.ogg             2ch  56.00s pk  -8.21 tp  -8.02 LUFS  -25.1 dc 0.0000 seam jump 0.16 lvl 0.29dB (p95 1.56) spec 2.8dB (p95 3.0)
+  amb/rain_heavy rain_heavy_01.ogg             2ch  54.00s pk  -5.54 tp  -5.54 LUFS  -20.0 dc 0.0000 seam jump 0.55 lvl 0.86dB (p95 1.36) spec 2.1dB (p95 2.2)
+  amb/rain_light rain_light_01.ogg             2ch  34.00s pk  -1.98 tp  -1.98 LUFS  -30.1 dc 0.0000 seam jump 0.89 lvl 0.32dB (p95 4.51) spec 3.1dB (p95 5.2)
+  amb/river river_01.ogg                       2ch  55.00s pk  -8.68 tp  -8.68 LUFS  -23.0 dc 0.0000 seam jump 0.22 lvl 0.14dB (p95 0.76) spec 0.9dB (p95 1.6)
+  amb/snow_wind snow_wind_01.ogg               2ch  58.00s pk -12.42 tp -12.42 LUFS  -23.0 dc 0.0000 seam jump 0.20 lvl 2.06dB (p95 3.22) spec 10.1dB (p95 18.4)
+  amb/underwater underwater_01.wav             2ch  40.00s pk -12.14 tp -12.14 LUFS  -24.0 dc 0.0000 seam jump 0.36 lvl 1.16dB (p95 2.34) spec 13.2dB (p95 13.2)
+  amb/wind_strong wind_strong_01.ogg           2ch  55.00s pk  -9.94 tp  -9.93 LUFS  -20.0 dc 0.0000 seam jump 0.20 lvl 2.16dB (p95 3.19) spec 3.6dB (p95 12.2)
   break/dirt dirt_01.wav                       1ch   0.80s pk  -1.60 tp  -1.59 Mmax  -15.0 dc 0.0000
   break/dirt dirt_02.wav                       1ch   0.80s pk  -1.60 tp  -1.56 Mmax  -15.5 dc 0.0000
   break/dirt dirt_03.wav                       1ch   0.46s pk  -1.60 tp  -1.60 Mmax  -15.9 dc 0.0000
