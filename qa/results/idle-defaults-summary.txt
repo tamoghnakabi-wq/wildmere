@@ -1,0 +1,6 @@
+exit=0 samples=81 interval=2.0s settings=defaults args=-qatest idle -nosave
+phase=menu     n= 20 cpu% median=  43.3 mean=  46.1 max=  68.1  rssMB first=399 last=657 max=657
+phase=play     n= 20 cpu% median=  40.9 mean=  40.3 max=  45.3  rssMB first=691 last=698 max=698
+phase=paused   n= 20 cpu% median=  54.7 mean=  53.0 max=  78.0  rssMB first=698 last=339 max=699
+phase=menu2    n= 20 cpu% median=  42.3 mean=  42.2 max=  56.9  rssMB first=402 last=313 max=402
+phase=end      n=  1 cpu% median=-4191.1 mean=-4191.1 max=-4191.1  rssMB first=0 last=0 max=0

@@ -100,7 +100,7 @@ if [ -n "$WIN_ZIP" ]; then
   w="$WORK/win/Wildmere"; problems=""
   [ -f "$w/Wildmere.exe" ] && [ "$(head -c 2 "$w/Wildmere.exe")" = "MZ" ] || problems+=" Wildmere.exe"
   [ -f "$w/UnityPlayer.dll" ] || problems+=" UnityPlayer.dll"
-  [ -f "$w/Wildmere_Data/globalgamemanagers" ] || problems+=" Wildmere_Data/"
+  { [ -f "$w/Wildmere_Data/globalgamemanagers" ] || [ -f "$w/Wildmere_Data/data.unity3d" ]; } || problems+=" Wildmere_Data/"
   [ -d "$w/MonoBleedingEdge" ] || [ -f "$w/GameAssembly.dll" ] || problems+=" MonoBleedingEdge/|GameAssembly.dll"
   if [ -z "$problems" ]; then record PASS "Windows layout" "Wildmere/ has exe, UnityPlayer.dll, Wildmere_Data, runtime"
   else record FAIL "Windows layout" "missing:$problems"; fi

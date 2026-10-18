@@ -4,7 +4,7 @@
 Explore an endless procedurally generated world: snow-capped mountains, temperate and dark forests,
 desert dunes and mesas, flower plains, rivers and coasts. Mine it, build in it, and watch the light change.
 
-**Download and install:** see the [Wildmere website](https://github.com/tamoghnakabi-wq/wildmere/releases) and
+**Download and install:** [wildmere-game.vercel.app](https://wildmere-game.vercel.app) ([GitHub Releases](https://github.com/tamoghnakabi-wq/wildmere/releases)), and
 [docs/INSTALL.md](docs/INSTALL.md). Builds are unsigned (macOS ad-hoc signed, not notarized; Windows unsigned) —
 the install guide explains the one-time Gatekeeper / SmartScreen step.
 

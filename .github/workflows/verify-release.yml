@@ -150,8 +150,12 @@ jobs:
           New-Item -ItemType Directory -Force app, logs, shots | Out-Null
           Expand-Archive -Path "dl\$env:ZIP" -DestinationPath app
           $root = Join-Path $PWD 'app\Wildmere'
-          foreach ($p in 'Wildmere.exe', 'UnityPlayer.dll', 'Wildmere_Data\globalgamemanagers') {
+          foreach ($p in 'Wildmere.exe', 'UnityPlayer.dll') {
             if (-not (Test-Path (Join-Path $root $p))) { Write-Output "::error::missing Wildmere\$p in the zip"; exit 1 }
+          }
+          # LZ4-compressed builds pack globalgamemanagers into data.unity3d.
+          if (-not ((Test-Path (Join-Path $root 'Wildmere_Data\globalgamemanagers')) -or (Test-Path (Join-Path $root 'Wildmere_Data\data.unity3d')))) {
+            Write-Output "::error::Wildmere_Data looks incomplete"; exit 1
           }
           if (-not ((Test-Path (Join-Path $root 'MonoBleedingEdge')) -or (Test-Path (Join-Path $root 'GameAssembly.dll')))) {
             Write-Output "::error::neither MonoBleedingEdge\ nor GameAssembly.dll in the zip"; exit 1

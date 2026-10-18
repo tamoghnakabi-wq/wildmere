@@ -99,7 +99,7 @@ package_win() {
   local f
   for f in Wildmere.exe UnityPlayer.dll; do [ -f "$w/$f" ] || die "Windows build is missing $f"; done
   [ -d "$w/Wildmere_Data" ] || die "Windows build is missing Wildmere_Data/"
-  [ -f "$w/Wildmere_Data/globalgamemanagers" ] || die "Wildmere_Data/ looks incomplete (no globalgamemanagers)"
+  { [ -f "$w/Wildmere_Data/globalgamemanagers" ] || [ -f "$w/Wildmere_Data/data.unity3d" ]; } || die "Wildmere_Data/ looks incomplete (no globalgamemanagers or data.unity3d)"
   if [ ! -d "$w/MonoBleedingEdge" ] && [ ! -f "$w/GameAssembly.dll" ]; then
     die "Windows build has neither MonoBleedingEdge/ (Mono) nor GameAssembly.dll (IL2CPP)"
   fi
@@ -114,7 +114,7 @@ package_win() {
   ditto "${ZIPFLAGS[@]}" "$stage/Wildmere" "$out"
   rm -rf "$stage"
   check_zip_clean "$out"
-  unzip -Z1 "$out" | grep -qx 'Wildmere/Wildmere.exe' || die "zip layout wrong: Wildmere/Wildmere.exe not found"
+  unzip -Z1 "$out" | grep -x 'Wildmere/Wildmere.exe' || die "zip layout wrong: Wildmere/Wildmere.exe not found"
   local size sha; size="$(size_of "$out")"; sha="$(sha256_of "$out")"
   ok "$name  $(human_mb "$size")  sha256 $sha"
   ASSETS_JSON+=("{\"platform\":\"windows\",\"label\":\"Windows 10/11 (64-bit)\",\"file\":\"$name\",\"size\":$size,\"sha256\":\"$sha\"}")

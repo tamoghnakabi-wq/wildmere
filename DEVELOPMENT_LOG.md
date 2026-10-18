@@ -19,6 +19,21 @@ Phase 2–4 in parallel (world gen, graphics, UI, audio agents running in worktr
 - Wildlife: deer/doe/rabbits/songbirds, biome spawning, graze/wander/flee/perch/fly AI, procedural animation.
 - Main-menu live world backdrop.
 
+## Distribution status (2026-10-18)
+- Public repo: https://github.com/tamoghnakabi-wq/wildmere (LFS for binaries).
+- Website: Vercel project `wildmere` (team tamoghna1, root `website`, Git-connected, production = main),
+  public at https://wildmere-game.vercel.app (wildmere.vercel.app belongs to an unrelated site). Production
+  protection set to previews-only so the site is public. Shows "Builds coming soon" until release.json has assets.
+- RC check (prerelease v0.1.0-rc.1 + verify-release.yml run 39130730211): Windows x64 self-test 19/19 and a
+  rendered D3D11 (WARP) screenshot; macOS Apple Silicon 19/19; macOS Intel x86_64 19/19 (universal app).
+- Release tooling fixes: accept LZ4 data.unity3d; grep -q SIGPIPE false failure under pipefail.
+
+## Merged since last update
+- World generation (biomes/rivers/lakes/caves/trees/props; 9 EditMode tests), audio bank (75 names, 265 files,
+  CC0/PD, QA), UI Toolkit interface (42/42 -uitest incl. layout checks), AudioManager, app icon.
+- Perf (M4 Air, 1600x900, vsync off): Low 480 fps, Medium 281, High 216, Ultra 160 avg; 4 worker threads
+  remove the 60–130 ms streaming spikes seen with 6–8.
+
 ## In progress (agent worktrees under .claude/worktrees, branches worktree-agent-*)
 - World generation (biomes, rivers, caves, trees, props placement) — fresh agent.
 - Graphics phase 2 (lighting, water, clouds, weather system, post) — owns Assets/Shaders + Scripts/Rendering.

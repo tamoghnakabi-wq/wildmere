@@ -1,0 +1,99 @@
+Mono path[0] = '/Users/tamoghnakabi/studioproject/wildmere/.claude/worktrees/agent-qa/Build/mac/Wildmere.app/Contents/Resources/Data/Managed'
+Mono config path = '/Users/tamoghnakabi/studioproject/wildmere/.claude/worktrees/agent-qa/Build/mac/Wildmere.app/Contents/MonoBleedingEdge/etc'
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Loading player data from /Users/tamoghnakabi/studioproject/wildmere/.claude/worktrees/agent-qa/Build/mac/Wildmere.app/Contents/Resources/Data/data.unity3d
+Initialize engine version: 6000.3.22f1 (1c726e1fb402)
+[Subsystems] Discovering subsystems at path /Users/tamoghnakabi/studioproject/wildmere/.claude/worktrees/agent-qa/Build/mac/Wildmere.app/Contents/Resources/Data/UnitySubsystems
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+ preferred device: Apple M4 (high power)
+Metal devices available: 1
+0: Apple M4 (high power)
+Using device Apple M4 (high power)
+Initializing Metal device caps: Apple M4
+Mac GPU Family: 2
+Apple GPU Family: 9
+MSL Version: 3.0
+Has Float MSAA: 1
+Has Float Filtering: 1
+ReadWrite Texture Tier: 2
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.115 seconds
+- Finished resetting the current domain, in  0.002 seconds
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+UnloadTime: 0.548042 ms
+WM_BOOT version=0.1.0 platform=OSXPlayer gfx=Metal gpu='Apple M4' cpu=10 mem=16384MB
+WM_AUDIO bank=75 entries
+WM_GFX preset=Low view=6 scale=0.8 shadows=1/48 ssao=False aa=1
+WM_STATE MainMenu
+WM_QA_INFO boot state=MainMenu batch=True gfx=Metal vsync=False cap=0 preset=Low view=6
+WM_STATE Loading
+WM_TEXTURES layers=54 albedo=128x128x56
+WM_UI icons rendered=57 atlas=1024x1024 ms=472
+WM_UI ready screens=9 theme=True icons=57
+WM_WORLD create seed=20261019 threads=4
+WM_WORLD load name='qatest-20261018134731' seed=20261019 new=True mods=0 spawn=(124.50, 86.00, 139.50)
+WM_PROPS model Boulder_A parts=1/1 color=True fmt=UNorm8 mats=Prop Stone
+WM_PROPS model Boulder_B parts=1/1 color=True fmt=UNorm8 mats=Prop Stone
+WM_PROPS model Boulder_C parts=1/1 color=True fmt=UNorm8 mats=Prop Stone
+WM_PROPS model Rocks_Small_A parts=1/1 color=True fmt=UNorm8 mats=Prop Stone
+WM_PROPS model Rocks_Small_B parts=1/1 color=True fmt=UNorm8 mats=Prop Stone
+WM_PROPS model FallenLog_Oak parts=1/1 color=True fmt=UNorm8 mats=Prop Bark,Prop Wood,Prop Cap
+WM_PROPS model FallenLog_Birch parts=1/1 color=True fmt=UNorm8 mats=Prop Bark,Prop Wood
+WM_PROPS model Stump parts=1/1 color=True fmt=UNorm8 mats=Prop Bark,Prop Wood
+WM_PROPS model MushroomCluster parts=1/1 color=True fmt=UNorm8 mats=Prop Cap
+WM_PROPS model GiantMushroom parts=1/1 color=True fmt=UNorm8 mats=Prop Cap
+WM_PROPS model GlowcapCluster parts=1/1 color=True fmt=UNorm8 mats=Prop Cap,Prop Glow
+WM_PROPS model SandstonePillar parts=1/1 color=True fmt=UNorm8 mats=Prop Stone
+WM_PROPS model DeadTree parts=1/1 color=True fmt=UNorm8 mats=Prop Bark
+WM_PROPS model IceSpike parts=1/1 color=True fmt=UNorm8 mats=Prop Ice
+WM_PROPS model Bush_A parts=1/1 color=True fmt=UNorm8 mats=Prop Leaves,Prop Bark
+WM_PROPS model Bush_B parts=1/1 color=True fmt=UNorm8 mats=Prop Leaves,Prop Bark
+WM_PROPS model Reeds parts=1/1 color=True fmt=UNorm8 mats=Prop Leaves
+WM_PROPS model LilyPad parts=1/1 color=True fmt=UNorm8 mats=Prop Leaves
+WM_WORLD ready in 0.17s chunks=78 meshed=33
+WM_STATE Playing
+WM_GFX preset=Low view=6 scale=0.8 shadows=1/48 ssao=False aa=1
+WM_SAVE ok world='qatest-20261018134731' blocks=0 dir=/Users/tamoghnakabi/Library/Application Support/Wildmere/Wildmere/Worlds/qatest-20261018134731
+WM_QA PASS world_ready t=0.8s chunks=78
+WM_QA PASS world_saved_on_create /Users/tamoghnakabi/Library/Application Support/Wildmere/Wildmere/Worlds/qatest-20261018134731
+WM_QA PASS starter_kit torches=4
+WM_QA PASS arena_stand y=201.000
+WM_QA_INFO group settings t=2s
+WM_GFX preset=Low view=6 scale=0.8 shadows=1/48 ssao=False aa=1
+WM_QA FAIL cli_overrides_not_persisted file before: preset=Ultra view=14 vsync=False -> after Save(): preset=Low view=6 vsync=False
+WM_GFX preset=Custom view=7 scale=0.8 shadows=1/48 ssao=False aa=1
+WM_QA PASS settings_persist 
+WM_QA PASS bindings_reset 
+WM_SETTINGS unreadable, using defaults: JSON parse error: Missing a name for object member.
+WM_QA PASS settings_corrupt_falls_back 
+WM_GFX preset=Low view=6 scale=0.8 shadows=1/48 ssao=False aa=1
+WM_GFX preset=Ultra view=14 scale=1 shadows=3/140 ssao=True aa=3
+WM_GFX preset=Medium view=8 scale=0.9 shadows=2/72 ssao=False aa=1
+WM_GFX preset=High view=10 scale=1 shadows=2/96 ssao=True aa=2
+WM_QA PASS preset_switching_runtime Low:view=6 settle=1.0s unmeshed=8/137 errors=0 | Ultra:view=14 settle=2.7s unmeshed=36/665 errors=0 | Medium:view=8 settle=1.0s unmeshed=0/225 errors=0 | High:view=10 settle=1.0s unmeshed=0/349 errors=0
+WM_GFX preset=Ultra view=14 scale=1 shadows=3/140 ssao=True aa=3
+WM_QA_INFO functional done in 9s
+WM_QA PASS no_console_errors warnings=1
+WM_QA FAIL summary pass=9 fail=1 failed=[cli_overrides_not_persisted]
+WM_SAVE ok world='qatest-20261018134731' blocks=361 dir=/Users/tamoghnakabi/Library/Application Support/Wildmere/Wildmere/Worlds/qatest-20261018134731
+WM_STATE MainMenu
+WM_WORLD create seed=720261017 threads=4
+WM_GFX preset=Ultra view=14 scale=1 shadows=3/140 ssao=True aa=3
+WM_QA_INFO deleted /Users/tamoghnakabi/Library/Application Support/Wildmere/Wildmere/Worlds/qatest-20261018134731
+Thread 0x16d7cf000 may have been prematurely finalized
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input System polling thread exited.
+Input System module state changed to: Shutdown.
+Thread 0x16c577000 may have been prematurely finalized
+Thread 0x16c603000 may have been prematurely finalized
+Thread 0x16c68f000 may have been prematurely finalized
+Thread 0x16c71b000 may have been prematurely finalized
