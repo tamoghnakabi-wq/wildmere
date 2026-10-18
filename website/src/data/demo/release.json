@@ -1,0 +1,27 @@
+{
+  "version": "0.1.0",
+  "date": "2026-10-20",
+  "notes": "**DEMO DATA, not a real release.** This file only exists to preview the layout with `npm run build:demo`.\n\n### New\n- Seeded world generation with grassland, forest, desert and snow biomes\n- Workbench and furnace crafting\n- Torches and glowcaps light the caves\n\n### Known issues\n- Windows build has not been tested on real hardware yet\n- Intel Macs are untested",
+  "repo": "https://github.com/tamoghnakabi-wq/wildmere",
+  "checksums": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.0/Wildmere-0.1.0-SHA256SUMS.txt",
+  "assets": [
+    {
+      "platform": "macos",
+      "label": "macOS (Apple Silicon & Intel)",
+      "file": "Wildmere-0.1.0-macOS.zip",
+      "url": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.0/Wildmere-0.1.0-macOS.zip",
+      "size": 187654321,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "verified": { "arm64": true, "x64": false }
+    },
+    {
+      "platform": "windows",
+      "label": "Windows 10/11 (64-bit)",
+      "file": "Wildmere-0.1.0-Windows-x64.zip",
+      "url": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.0/Wildmere-0.1.0-Windows-x64.zip",
+      "size": 154321987,
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "verified": false
+    }
+  ]
+}

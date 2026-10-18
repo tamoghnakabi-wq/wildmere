@@ -1,0 +1,233 @@
+---
+import Icon from './Icon.astro';
+import type { Shot } from '../lib/data';
+
+interface Props {
+  shots: Shot[];
+}
+const { shots } = Astro.props;
+---
+
+<section class="section gallery" id="gallery" aria-labelledby="gallery-title">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal>Gallery</p>
+    <h2 class="section-title" id="gallery-title" data-reveal style="--reveal-delay: 60ms">Postcards from the wild</h2>
+    <ul class="shots" data-gallery>
+      {
+        shots.map((s, i) => (
+          <li class:list={['shot', { lead: i === 0 && shots.length > 2 }]} data-reveal style={`--reveal-delay: ${(i % 3) * 80}ms`}>
+            <button
+              type="button"
+              class="shot-btn"
+              data-index={i}
+              data-src={s.src}
+              data-caption={s.caption ?? ''}
+              data-alt={s.alt}
+              aria-label={`Open screenshot ${i + 1} of ${shots.length}: ${s.caption || s.alt}`}
+            >
+              <img
+                src={s.src}
+                srcset={s.srcset}
+                sizes={i === 0 && shots.length > 2 ? '(max-width: 760px) 100vw, 66vw' : '(max-width: 760px) 100vw, 33vw'}
+                alt={s.alt}
+                width={s.width}
+                height={s.height}
+                loading="lazy"
+                decoding="async"
+              />
+              {s.caption && <span class="cap">{s.caption}</span>}
+            </button>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <dialog class="lightbox" data-lightbox aria-label="Screenshot viewer">
+    <figure>
+      <img data-lb-img alt="" />
+      <figcaption>
+        <span data-lb-cap></span>
+        <span class="count" data-lb-count></span>
+      </figcaption>
+    </figure>
+    <button type="button" class="lb-btn lb-close" data-lb-close aria-label="Close viewer"><Icon name="close" /></button>
+    <button type="button" class="lb-btn lb-prev" data-lb-prev aria-label="Previous screenshot"><Icon name="left" /></button>
+    <button type="button" class="lb-btn lb-next" data-lb-next aria-label="Next screenshot"><Icon name="right" /></button>
+  </dialog>
+</section>
+
+<style>
+  .gallery {
+    background: linear-gradient(180deg, var(--bg-2), var(--bg));
+  }
+  .shots {
+    list-style: none;
+    margin: clamp(40px, 6vw, 72px) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(10px, 1.4vw, 18px);
+  }
+  .shot.lead {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  .shot-btn {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--bg-3);
+    cursor: zoom-in;
+    aspect-ratio: 16 / 9;
+  }
+  .shot.lead .shot-btn {
+    aspect-ratio: auto;
+    min-height: 100%;
+  }
+  .shot-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition:
+      transform 1.2s var(--ease),
+      filter 0.6s var(--ease);
+  }
+  .shot-btn:hover img {
+    transform: scale(1.04);
+    filter: brightness(1.08);
+  }
+  .cap {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 28px 14px 12px;
+    background: linear-gradient(0deg, rgba(2, 5, 9, 0.85), transparent);
+    color: var(--text);
+    font-size: 0.86rem;
+    text-align: left;
+    opacity: 0;
+    transform: translateY(6px);
+    transition:
+      opacity 0.35s var(--ease),
+      transform 0.35s var(--ease);
+  }
+  .shot-btn:hover .cap,
+  .shot-btn:focus-visible .cap {
+    opacity: 1;
+    transform: none;
+  }
+
+  .lightbox {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: rgba(2, 4, 6, 0.94);
+    color: var(--text);
+  }
+  .lightbox[open] {
+    display: grid;
+    place-items: center;
+    animation: lb-in 0.3s var(--ease);
+  }
+  .lightbox::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+  }
+  @keyframes lb-in {
+    from {
+      opacity: 0;
+    }
+  }
+  .lightbox figure {
+    margin: 0;
+    display: grid;
+    gap: 14px;
+    justify-items: center;
+    max-width: min(92vw, 1600px);
+  }
+  .lightbox img {
+    max-width: 100%;
+    max-height: calc(100dvh - 140px);
+    width: auto;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+  }
+  .lightbox figcaption {
+    display: flex;
+    gap: 16px;
+    align-items: baseline;
+    color: var(--muted);
+    font-size: 0.92rem;
+    padding-inline: 16px;
+    text-align: center;
+  }
+  .count {
+    color: var(--dim);
+    font-variant-numeric: tabular-nums;
+  }
+  .lb-btn {
+    position: fixed;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    border: 1px solid var(--line-2);
+    background: rgba(5, 8, 10, 0.6);
+    color: var(--text);
+    cursor: pointer;
+  }
+  .lb-btn:hover {
+    background: rgba(30, 40, 44, 0.8);
+  }
+  .lb-btn :global(svg) {
+    width: 22px;
+    height: 22px;
+  }
+  .lb-close {
+    top: 16px;
+    right: 16px;
+  }
+  .lb-prev {
+    left: 16px;
+    top: 50%;
+    translate: 0 -50%;
+  }
+  .lb-next {
+    right: 16px;
+    top: 50%;
+    translate: 0 -50%;
+  }
+  @media (max-width: 760px) {
+    .shots {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .shot.lead {
+      grid-column: auto;
+      grid-row: auto;
+    }
+    .shot.lead .shot-btn {
+      aspect-ratio: 16 / 9;
+    }
+    .cap {
+      opacity: 1;
+      transform: none;
+    }
+    .lb-prev,
+    .lb-next {
+      top: auto;
+      bottom: 16px;
+      translate: none;
+    }
+  }
+</style>

@@ -195,6 +195,7 @@ namespace Wildmere.World
                     if (n != null) Remesh(n, -500f);
                 }
 
+            Decor.PropRenderer.Instance?.OnBlockChanged(x, y, z);
             BlockChanged?.Invoke(x, y, z, old, id);
 
             // Plants and torches need a block underneath.

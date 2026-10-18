@@ -1,0 +1,357 @@
+---
+import Icon from './Icon.astro';
+import { NIGHT, skyLayer, landLayer, foreLayer, svgWrap } from '../lib/art';
+import { wordmarkInner, WORDMARK_WIDTH, WORDMARK_HEIGHT } from '../lib/brand';
+import { site, release, hero, hasBuilds, asset } from '../lib/data';
+
+const mac = asset('macos');
+const win = asset('windows');
+const sky = svgWrap(skyLayer(NIGHT, 'hs'));
+const land = svgWrap(landLayer(NIGHT, 'hl'));
+const fore = svgWrap(foreLayer(NIGHT, 'hf', 3, { glowcaps: true, fireflies: true }));
+const wmViewBox = `0 0 ${WORDMARK_WIDTH} ${WORDMARK_HEIGHT}`;
+const videoType = (src: string) => (src.endsWith('.webm') ? 'video/webm' : 'video/mp4');
+---
+
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="hero-art" aria-hidden="true">
+    {
+      hero ? (
+        hero.video?.length ? (
+          <video class="hero-media" autoplay muted loop playsinline preload="metadata" poster={hero.image} data-hero-video>
+            {hero.video.map((v) => (
+              <source src={v} type={videoType(v)} />
+            ))}
+          </video>
+        ) : (
+          <img class="hero-media" src={hero.image} alt="" fetchpriority="high" decoding="async" />
+        )
+      ) : (
+        <>
+          <div class="layer" data-depth="0.12" set:html={sky} />
+          <div class="mist mist-far" data-depth="0.2" />
+          <div class="layer" data-depth="0.22" set:html={land} />
+          <div class="mist mist-near" data-depth="0.3" />
+          <div class="layer" data-depth="0.34" set:html={fore} />
+        </>
+      )
+    }
+  </div>
+  <div class="hero-shade"></div>
+
+  <div class="hero-content wrap">
+    <p class="eyebrow" data-reveal>Original voxel survival · macOS &amp; Windows</p>
+    <h1 id="hero-title" class="hero-title" data-reveal style="--reveal-delay: 80ms">
+      <svg viewBox={wmViewBox} role="img" aria-label={site.name} set:html={wordmarkInner('hero-wm', 'currentColor')} />
+    </h1>
+    <div class="reflection" aria-hidden="true" data-reveal style="--reveal-delay: 160ms">
+      <svg viewBox={wmViewBox} set:html={wordmarkInner('hero-wm-r', 'currentColor')} />
+    </div>
+    <p class="tagline" data-reveal style="--reveal-delay: 220ms">{site.tagline}</p>
+    <p class="pitch" data-reveal style="--reveal-delay: 300ms">{site.pitch}</p>
+    <div class="cta" data-reveal style="--reveal-delay: 380ms">
+      {
+        hasBuilds ? (
+          <a
+            class="btn btn-primary"
+            href="#download"
+            data-hero-cta
+            data-has-macos={mac ? '1' : undefined}
+            data-has-windows={win ? '1' : undefined}
+          >
+            <Icon name="download" />
+            <span data-hero-cta-label>Download v{release.version}</span>
+          </a>
+        ) : (
+          <a class="btn" aria-disabled="true" role="link" title="The first build is being prepared">
+            <Icon name="clock" />
+            Builds coming soon
+          </a>
+        )
+      }
+      <a class="btn btn-ghost" href="#game">
+        Discover the world <Icon name="arrow" />
+      </a>
+    </div>
+    <p class="meta" data-reveal style="--reveal-delay: 440ms">
+      <span>v{release.version}</span><span aria-hidden="true">·</span><span>Early access</span><span aria-hidden="true">·</span><span
+        >Free download</span
+      >
+    </p>
+  </div>
+
+  <p class="art-note">{hero ? (hero.caption ?? 'In-game footage') : 'Illustration, not in-game footage'}</p>
+  <a class="scroll-cue" href="#game" aria-label="Scroll to the game overview">
+    <span></span>
+  </a>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: grid;
+    align-items: center;
+    isolation: isolate;
+    overflow: hidden;
+    padding-top: var(--header-h);
+    padding-bottom: 96px;
+  }
+  .hero-art,
+  .hero-art .layer,
+  .hero-shade {
+    position: absolute;
+    inset: 0;
+  }
+  .hero-art {
+    z-index: -2;
+    background: #020509;
+  }
+  .hero-art .layer,
+  .hero-art .mist {
+    will-change: transform;
+  }
+  .hero-art :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+  .hero-media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .mist {
+    position: absolute;
+    left: -20%;
+    right: -20%;
+    pointer-events: none;
+    opacity: 0.55;
+  }
+  .mist-far {
+    top: 52%;
+    height: 22%;
+    background:
+      radial-gradient(40% 50% at 30% 50%, rgba(160, 205, 200, 0.16), transparent 70%),
+      radial-gradient(35% 45% at 75% 55%, rgba(160, 205, 200, 0.12), transparent 70%);
+    animation: drift 60s linear infinite alternate;
+  }
+  .mist-near {
+    top: 66%;
+    height: 18%;
+    background:
+      radial-gradient(45% 50% at 20% 50%, rgba(170, 215, 210, 0.14), transparent 70%),
+      radial-gradient(30% 40% at 65% 45%, rgba(170, 215, 210, 0.1), transparent 70%);
+    animation: drift 44s linear infinite alternate-reverse;
+  }
+  @keyframes drift {
+    from {
+      translate: -6% 0;
+    }
+    to {
+      translate: 6% 0;
+    }
+  }
+  .hero-shade {
+    z-index: -1;
+    background:
+      radial-gradient(70% 60% at 30% 42%, rgba(2, 5, 9, 0.55), transparent 70%),
+      linear-gradient(180deg, rgba(2, 5, 9, 0.55) 0%, transparent 22%, transparent 70%, var(--bg) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: -6vh;
+  }
+  .hero-title {
+    margin-top: 22px;
+    width: min(100%, 760px);
+    color: var(--bone);
+    filter: drop-shadow(0 6px 30px rgba(0, 0, 0, 0.55));
+  }
+  .hero-title svg {
+    width: 100%;
+    height: auto;
+  }
+  .reflection {
+    width: min(100%, 760px);
+    margin-top: 6px;
+    height: clamp(14px, 3vw, 34px);
+    overflow: hidden;
+    color: var(--glow);
+  }
+  .reflection svg {
+    opacity: 0.32;
+    width: 100%;
+    height: auto;
+    transform: scaleY(-1);
+    -webkit-mask-image: linear-gradient(0deg, #000 0%, transparent 38%);
+    mask-image: linear-gradient(0deg, #000 0%, transparent 38%);
+    filter: blur(0.6px);
+  }
+  .tagline {
+    margin-top: clamp(12px, 2vw, 22px);
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 3.6vw, 2.8rem);
+    font-weight: 460;
+    letter-spacing: -0.01em;
+    color: var(--amber-2);
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.6);
+  }
+  .pitch {
+    margin-top: 14px;
+    max-width: 50ch;
+    font-size: clamp(1.02rem, 1.35vw, 1.18rem);
+    color: #cbd6d2;
+    text-shadow: 0 1px 18px rgba(0, 0, 0, 0.7);
+  }
+  .cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 22px;
+    color: var(--muted);
+    font-size: 0.86rem;
+    letter-spacing: 0.04em;
+  }
+  .art-note {
+    position: absolute;
+    right: var(--gutter);
+    bottom: 22px;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(235, 239, 233, 0.45);
+  }
+  .scroll-cue {
+    position: absolute;
+    left: 50%;
+    bottom: 22px;
+    translate: -50% 0;
+    width: 26px;
+    height: 42px;
+    border-radius: 999px;
+    border: 1.5px solid rgba(235, 239, 233, 0.35);
+  }
+  .scroll-cue span {
+    position: absolute;
+    left: 50%;
+    top: 9px;
+    width: 3px;
+    height: 8px;
+    margin-left: -1.5px;
+    border-radius: 2px;
+    background: var(--bone);
+    animation: cue 2.2s var(--ease) infinite;
+  }
+  @keyframes cue {
+    0% {
+      opacity: 0;
+      transform: translateY(0);
+    }
+    30% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+  }
+
+  /* inline-SVG animation hooks generated in src/lib/art.ts */
+  .hero-art :global(.tw) {
+    animation: twinkle 5s ease-in-out infinite;
+  }
+  .hero-art :global(.tw2) {
+    animation-duration: 7s;
+    animation-delay: -2s;
+  }
+  .hero-art :global(.tw3) {
+    animation-duration: 3.6s;
+    animation-delay: -1s;
+  }
+  @keyframes twinkle {
+    50% {
+      opacity: 0.08;
+    }
+  }
+  .hero-art :global(.ff) {
+    transform-box: fill-box;
+    animation: firefly 9s ease-in-out infinite alternate;
+  }
+  .hero-art :global(.ff2) {
+    animation-duration: 12s;
+    animation-delay: -4s;
+  }
+  .hero-art :global(.ff3) {
+    animation-duration: 7s;
+    animation-delay: -2s;
+  }
+  .hero-art :global(.ff4) {
+    animation-duration: 14s;
+    animation-delay: -7s;
+  }
+  @keyframes firefly {
+    0% {
+      transform: translate(0, 0);
+      opacity: 0.2;
+    }
+    40% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate(40px, -26px);
+      opacity: 0.35;
+    }
+  }
+  .hero-art :global(.glowcap circle) {
+    animation: pulse 4.5s ease-in-out infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .hero-art :global(.gc2 circle) {
+    animation-delay: -1.5s;
+  }
+  .hero-art :global(.gc3 circle) {
+    animation-delay: -3s;
+  }
+  @keyframes pulse {
+    50% {
+      opacity: 0.55;
+      transform: scale(0.88);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      align-items: start;
+      padding-top: calc(var(--header-h) + 8vh);
+    }
+    .hero-content {
+      margin-top: 0;
+    }
+    .cta {
+      width: 100%;
+    }
+    .cta .btn {
+      flex: 1 1 100%;
+    }
+    .art-note {
+      left: var(--gutter);
+      right: auto;
+      bottom: 16px;
+    }
+    .scroll-cue {
+      display: none;
+    }
+  }
+</style>

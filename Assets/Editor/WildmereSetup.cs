@@ -211,6 +211,9 @@ public static class WildmereSetup
     {
         var gs = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/GraphicsSettings.asset")[0];
         var so = new SerializedObject(gs);
+        // Runtime-created materials mean the build can't see instancing/fog usage: keep those variants.
+        var inst = so.FindProperty("m_InstancingStripping"); if (inst != null) inst.intValue = 2; // Keep All
+        var fog = so.FindProperty("m_FogStripping"); if (fog != null) fog.intValue = 1;
         var arr = so.FindProperty("m_AlwaysIncludedShaders");
         var have = new System.Collections.Generic.HashSet<Object>();
         for (int i = 0; i < arr.arraySize; i++) { var o = arr.GetArrayElementAtIndex(i).objectReferenceValue; if (o != null) have.Add(o); }

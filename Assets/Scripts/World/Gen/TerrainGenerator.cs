@@ -126,6 +126,21 @@ namespace Wildmere.World.Gen
                         blocks[idx + 256] = (byte)(B.FlowerRed + (int)(SplitMix.Hash01(Seed, bx + x, bz + z, 32) * 4));
                 }
 
+            // A few decoration props so the prop renderer has something to draw.
+            for (int z = 0; z < 16; z++)
+                for (int x = 0; x < 16; x++)
+                {
+                    double r = SplitMix.Hash01(Seed, bx + x, bz + z, 41);
+                    if (r > 0.006) continue;
+                    int h = heights[x + z * 16];
+                    if (h <= SeaLevel + 1 || h >= Chunk.SY - 3) continue;
+                    int idx = Chunk.Index(x, h, z);
+                    if (blocks[idx] != B.Grass || (blocks[idx + 256] != B.Air && !Blocks.IsPlant(blocks[idx + 256]))) continue;
+                    int kind = (int)(SplitMix.Hash01(Seed, bx + x, bz + z, 42) * 8) switch { 0 => 0, 1 => 1, 2 => 2, 3 => 3, 4 => 14, 5 => 15, 6 => 7, _ => 5 };
+                    c.Props.Add(new PropPlacement { X = bx + x, Y = h + 1, Z = bz + z, Kind = (byte)kind,
+                        Yaw = (float)(SplitMix.Hash01(Seed, bx + x, bz + z, 43) * 360), Scale = 0.8f + (float)SplitMix.Hash01(Seed, bx + x, bz + z, 44) * 0.5f });
+                }
+
             c.RecomputeHeights();
         }
 
