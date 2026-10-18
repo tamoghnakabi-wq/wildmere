@@ -87,8 +87,18 @@ namespace Wildmere.Rendering
             }
             if (dive)
             {
-                eye = water + Vector3.up * -3.5f;
-                Place(p, eye, eye + dir * 10f + Vector3.up * 1.5f);
+                // Mid-depth over the deepest nearby column.
+                Vector3 best = water; int bestDepth = 0;
+                for (int dx = -6; dx <= 6; dx += 2)
+                    for (int dz = -6; dz <= 6; dz += 2)
+                    {
+                        int x = Mathf.FloorToInt(water.x) + dx, z = Mathf.FloorToInt(water.z) + dz, y = (int)water.y, d = 0;
+                        while (y - d > 2 && w.GetBlock(x, y - d, z) == B.Water) d++;
+                        if (d > bestDepth) { bestDepth = d; best = new Vector3(x + 0.5f, y, z + 0.5f); }
+                    }
+                eye = best + Vector3.up * (0.6f - bestDepth * 0.5f);
+                Place(p, eye, eye + dir * 10f + Vector3.up * 0.8f);
+                Debug.Log($"WM_GFXCAM underwater depth={bestDepth}");
             }
             else Place(p, eye, water + dir * 25f + Vector3.up * -2f);
             Debug.Log($"WM_GFXCAM water eye={eye} water={water}");
@@ -125,20 +135,32 @@ namespace Wildmere.Rendering
             Debug.Log($"WM_GFXCAM forest eye={eye} score={bestScore:F2} biome={gen.SampleBiome(Mathf.FloorToInt(best.x), Mathf.FloorToInt(best.z)).Biome}");
         }
 
+        // A real cave room: mostly air in a 7 x 3 x 7 box around the spot.
+        static bool OpenCave(VoxelWorld w, int x, int y, int z)
+        {
+            int air = 0;
+            for (int dx = -3; dx <= 3; dx++)
+                for (int dz = -3; dz <= 3; dz++)
+                    for (int dy = 0; dy <= 2; dy++)
+                        if (w.GetBlock(x + dx, y + dy, z + dz) == B.Air) air++;
+            return air >= 110;
+        }
+
         IEnumerator Cave(Player.PlayerController p, VoxelWorld w, Vector3 origin)
         {
             yield return WaitLoaded(w, origin);
             // Find an air pocket 8+ blocks under the surface within the loaded area.
-            for (int r = 0; r < 64; r += 2)
+            for (int r = 0; r < 120; r += 2)
                 for (int a = 0; a < 16; a++)
                 {
                     float ang = a / 16f * Mathf.PI * 2f;
                     int x = Mathf.FloorToInt(origin.x + Mathf.Cos(ang) * r), z = Mathf.FloorToInt(origin.z + Mathf.Sin(ang) * r);
                     int sy = w.SurfaceY(x, z);
                     if (sy < 0) continue;
+                    if (w.Gen is World.Gen.TerrainGenerator tg) sy = Mathf.Min(sy, tg.SampleColumn(x, z).Height);   // ignore trees
                     for (int y = sy - 8; y > 12; y--)
                     {
-                        if (w.GetBlock(x, y, z) == B.Air && w.GetBlock(x, y + 1, z) == B.Air && Blocks.IsOpaque[w.GetBlock(x, y - 1, z)])
+                        if (w.GetBlock(x, y, z) == B.Air && w.GetBlock(x, y + 1, z) == B.Air && Blocks.IsOpaque[w.GetBlock(x, y - 1, z)] && OpenCave(w, x, y, z))
                         {
                             // Light it with a few torches so the cave lighting is visible.
                             var eye = new Vector3(x + 0.5f, y + Player.PlayerController.Eye, z + 0.5f);

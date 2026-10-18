@@ -86,7 +86,7 @@ namespace Wildmere.Rendering
             float exposure = -0.05f + night * 0.75f + darkForest * 0.3f + overcast * 0.2f + sBrightness * 0.8f;
             sColor.postExposure.Override(exposure);
             sColor.contrast.Override(Mathf.Lerp(12f, 4f, grey) + golden * 4f - night * 2f);
-            sColor.saturation.Override(0f + golden * 10f - night * 22f - grey * 18f - darkForest * 8f + blueHour * 4f);
+            sColor.saturation.Override(-4f + golden * 12f - night * 22f - grey * 18f - darkForest * 8f + blueHour * 4f);
             sWhite.temperature.Override(2f + golden * 20f - night * 16f - blueHour * 6f - grey * 5f - darkForest * 3f + (underwater ? -18f : 0f));
             sWhite.tint.Override(-darkForest * 6f + golden * 2f + (underwater ? -10f : 0f));
             sSplit.balance.Override(Mathf.Lerp(15f, -20f, night));

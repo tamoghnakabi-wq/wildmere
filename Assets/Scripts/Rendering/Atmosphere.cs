@@ -203,7 +203,7 @@ namespace Wildmere.Rendering
             sunCol *= Color.Lerp(Color.white, new Color(1f, 0.86f, 0.66f), golden);
             float sunLum = 0.2126f * T.x + 0.7152f * T.y + 0.0722f * T.z;
             float horizonFade = Mathf.Clamp01((sunH + 0.035f) / 0.09f);
-            float sunI = 3.25f * Mathf.Pow(sunLum, 0.55f) * horizonFade * (1f - overcast * 0.82f) * (1f - storm * 0.5f);
+            float sunI = 3.1f * Mathf.Pow(sunLum, 0.55f) * (1f + golden * 0.45f) * horizonFade * (1f - overcast * 0.82f) * (1f - storm * 0.5f);
             var moonCol = new Color(0.56f, 0.68f, 1.0f);
             float moonI = 0.42f * Mathf.Clamp01(moonDir.y * 3.5f) * (1f - overcast * 0.75f);
 

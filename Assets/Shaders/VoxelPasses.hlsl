@@ -60,7 +60,7 @@ half4 VoxelFrag(VVaryings i) : SV_Target
 
     half3 albedo = albedoA.rgb;
     if ((flags & (WM_FLAG_TINT_GRASS | WM_FLAG_TINT_FOLIAGE)) != 0)
-        albedo *= lerp(half3(1, 1, 1), WMTint(i.positionWS, flags) * 1.1, mask.a);
+        albedo *= lerp(half3(1, 1, 1), WMTint(i.positionWS, flags) * ((flags & WM_FLAG_PLANT) != 0 ? 0.72 : 0.88), mask.a);
 
     // Subtle per-block variation so large flat areas don't look printed.
     half rnd = i.light.w;
