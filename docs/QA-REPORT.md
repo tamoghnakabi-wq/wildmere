@@ -1,5 +1,11 @@
 # Wildmere QA report
 
+> **Status (lead, 2026-10-19):** all 12 defects (D1–D12) and code-review items R1, R2 and R4 are fixed on `main`
+> (commit 02de4dc). After the fixes: `-qatest` 129/129, EditMode 72/72 (KnownDefect tests now pass),
+> `-selftest` 19/19, `-uitest` 42/42. Buried leaf faces are also culled (−21 % vertices on the benchmark path).
+> R3 (`-nosave` is harness-only), R5 (gold/flint uses) and R6 (dropped items not saved) remain open by design.
+
+
 Date: 2026-10-19. Branch `worktree-agent-qa` (from `main` @ 1d647ea; no game code changed by QA).
 Machine: MacBook Air M4 (4P+6E), 16 GB, macOS 27.0.1, Metal. Unity 6000.3.22f1, URP 17.3.
 Build: `tools/build.sh mac` (Universal, Release) with the new QA harness compiled in.
