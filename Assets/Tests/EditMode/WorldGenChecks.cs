@@ -146,11 +146,50 @@ namespace Wildmere.Tests
             return null;
         }
 
-        /// <summary>Block-level tree checks on the centre chunk of a 3x3 area: no orphan leaves, no floating or wet trunks.</summary>
-        public static string TreeBlocks(Area ar, out int logs, out int leaves)
+        /// <summary>
+        /// Block-level tree checks on the centre chunk of a 3x3 area: no orphan leaves, every log connected (through
+        /// logs, 26-neighbourhood) to a trunk standing on dry ground, no trunk base in or beside water, cacti on sand.
+        /// </summary>
+        public static string TreeBlocks(Area ar, out int trunks, out int leaves)
         {
-            logs = 0; leaves = 0;
+            trunks = 0; leaves = 0;
             int x0 = ar.CX * 16, z0 = ar.CZ * 16;
+            // flood fill "supported" logs across the whole area
+            var supported = new HashSet<int>();
+            var queue = new Queue<(int, int, int)>();
+            int Key(int x, int y, int z) => (x - ar.X0) + (z - ar.Z0) * 48 + y * 48 * 48;
+            for (int z = ar.Z0; z < ar.Z0 + 48; z++)
+                for (int x = ar.X0; x < ar.X0 + 48; x++)
+                    for (int y = 1; y < Chunk.SY - 1; y++)
+                    {
+                        byte b = ar.Get(x, y, z);
+                        if (!IsLog(b)) continue;
+                        bool edge = x - ar.X0 < 8 || z - ar.Z0 < 8 || x - ar.X0 >= 40 || z - ar.Z0 >= 40;
+                        byte below = ar.Get(x, y - 1, z);
+                        if (Ground(below) || edge)
+                        {
+                            if (Ground(below) && x >= x0 && x < x0 + 16 && z >= z0 && z < z0 + 16)
+                            {
+                                trunks++;
+                                if (below == B.Ice) return $"trunk on ice at {x},{y},{z}";
+                                foreach (var (nx, nz) in new[] { (1, 0), (-1, 0), (0, 1), (0, -1) })
+                                    if (ar.Get(x + nx, y, z + nz) == B.Water) return $"trunk base beside water at {x},{y},{z}";
+                            }
+                            if (supported.Add(Key(x, y, z))) queue.Enqueue((x, y, z));
+                        }
+                    }
+            while (queue.Count > 0)
+            {
+                var (x, y, z) = queue.Dequeue();
+                for (int dy = -1; dy <= 1; dy++)
+                    for (int dz = -1; dz <= 1; dz++)
+                        for (int dx = -1; dx <= 1; dx++)
+                        {
+                            int nx = x + dx, ny = y + dy, nz = z + dz;
+                            if (!IsLog(ar.Get(nx, ny, nz))) continue;
+                            if (supported.Add(Key(nx, ny, nz))) queue.Enqueue((nx, ny, nz));
+                        }
+            }
             for (int z = z0; z < z0 + 16; z++)
                 for (int x = x0; x < x0 + 16; x++)
                     for (int y = 1; y < Chunk.SY - 1; y++)
@@ -166,23 +205,15 @@ namespace Wildmere.Tests
                                         if (IsLog(ar.Get(x + dx, y + dy, z + dz))) found = true;
                             if (!found) return $"orphan leaf at {x},{y},{z}";
                         }
-                        else if ((IsLog(b) || b == B.Cactus) && !IsLog(ar.Get(x, y - 1, z)) && ar.Get(x, y - 1, z) != B.Cactus)
+                        else if (IsLog(b))
                         {
-                            logs++;
+                            if (!supported.Contains(Key(x, y, z))) return $"floating log at {x},{y},{z}";
+                        }
+                        else if (b == B.Cactus)
+                        {
                             byte below = ar.Get(x, y - 1, z);
-                            int run = 0;
-                            while (ar.Get(x, y + run, z) == b) run++;
-                            if (run >= 3 || b == B.Cactus)
-                            {
-                                // trunk base: must stand on dry ground
-                                if (!Ground(below)) return $"trunk at {x},{y},{z} stands on block {below}";
-                                if (ar.Get(x, y, z) == B.Water) return $"trunk in water at {x},{y},{z}";
-                            }
-                            for (int k = 0; k < run; k++)
-                            {
-                                foreach (var (nx, nz) in new[] { (1, 0), (-1, 0), (0, 1), (0, -1) })
-                                    if (ar.Get(x + nx, y + k, z + nz) == B.Water && run >= 3 && k == 0) return $"trunk next to water at {x},{y},{z}";
-                            }
+                            if (below != B.Cactus && below != B.Sand) return $"cactus at {x},{y},{z} on block {below}";
+                            if (below == B.Sand) trunks++;
                         }
                     }
             return null;

@@ -12,6 +12,7 @@ namespace Wildmere.World.Gen
             public bool Valid;
             public int X, Z, Level;
             public float R, Depth;
+            public float Ux, Uz, Stretch;   // long axis (unit vector) and sqrt(aspect ratio)
             public bool Frozen;
         }
 
@@ -37,6 +38,9 @@ namespace Wildmere.World.Gen
             l.Z = cz * LakeCell + LakeJitterMin + (int)((h >> 28) % LakeJitterSpan);
             l.R = 8f + 15f * (float)(((h >> 40) & 0xFFF) / 4096.0);
             l.Depth = 2.5f + l.R * 0.22f;
+            double ang = ((h >> 52) & 0xFFF) / 4096.0 * Math.PI;
+            l.Ux = (float)Math.Cos(ang); l.Uz = (float)Math.Sin(ang);
+            l.Stretch = (float)Math.Sqrt(1.0 + 0.8 * ((h >> 8) & 0xFF) / 256.0);
 
             var c = SampleColumnInternal(l.X, l.Z, false);
             if (c.Water > c.H || c.H > 196 || c.H < SeaLevel + 3 || c.Land < 0.9f) return l;
@@ -46,7 +50,8 @@ namespace Wildmere.World.Gen
             {
                 double a = k * (Math.PI * 2 / 12);
                 double rr = k < 6 ? l.R * 1.05 : l.R * 1.7;
-                var n = SampleColumnInternal(l.X + (int)Math.Round(Math.Cos(a) * rr), l.Z + (int)Math.Round(Math.Sin(a) * rr), false);
+                double u = Math.Cos(a) * rr * l.Stretch, v = Math.Sin(a) * rr / l.Stretch;
+                var n = SampleColumnInternal(l.X + (int)Math.Round(u * l.Ux - v * l.Uz), l.Z + (int)Math.Round(u * l.Uz + v * l.Ux), false);
                 if (n.Water > n.H || (n.Flags & FChannel) != 0) return l;  // keep away from rivers / sea
                 if (k < 6) { if (n.H < min) min = n.H; if (n.H > max) max = n.H; }
             }
@@ -61,7 +66,7 @@ namespace Wildmere.World.Gen
         void GatherLakes(int x0, int z0, int x1, int z1, List<Lake> into)
         {
             into.Clear();
-            int reach = (int)(23 * LakeReach * 1.3) + 2;
+            int reach = (int)(23 * LakeReach * 1.3 * 1.35) + 2;
             int ci0 = FloorDiv(x0 - reach - LakeJitterMin - LakeJitterSpan, LakeCell), ci1 = FloorDiv(x1 + reach - LakeJitterMin, LakeCell);
             int cj0 = FloorDiv(z0 - reach - LakeJitterMin - LakeJitterSpan, LakeCell), cj1 = FloorDiv(z1 + reach - LakeJitterMin, LakeCell);
             for (int cj = cj0; cj <= cj1; cj++)
@@ -69,7 +74,7 @@ namespace Wildmere.World.Gen
                 {
                     var l = GetLake(ci, cj);
                     if (!l.Valid) continue;
-                    double r = l.R * LakeReach * 1.3;
+                    double r = l.R * LakeReach * 1.3 * l.Stretch;
                     if (l.X + r < x0 || l.X - r > x1 || l.Z + r < z0 || l.Z - r > z1) continue;
                     into.Add(l);
                 }
@@ -80,10 +85,12 @@ namespace Wildmere.World.Gen
             for (int i = 0; i < lakes.Count; i++)
             {
                 var l = lakes[i];
-                double dx = x - l.X, dz = z - l.Z, d2 = dx * dx + dz * dz;
+                double ex = x - l.X, ez = z - l.Z;
+                double dx = (ex * l.Ux + ez * l.Uz) / l.Stretch, dz = (-ex * l.Uz + ez * l.Ux) * l.Stretch;
+                double d2 = dx * dx + dz * dz;
                 double reach = l.R * LakeReach;
                 if (d2 > reach * reach * 1.69) continue;
-                double shape = l.R * (1 + 0.24 * nLakeShape.Sample(x / 13.0, z / 13.0));
+                double shape = l.R * Math.Max(0.62, Math.Min(1.28, 1 + 0.30 * nLakeShape.Sample(x / 15.0, z / 15.0) / SigPerlin * 0.5));
                 double de = Math.Sqrt(d2) / shape;
                 if (de < 1)
                 {
