@@ -1,0 +1,6 @@
+exit=0 samples=82 interval=2.0s settings=user-windowed args=-qatest idle -nosave
+phase=menu     n= 21 cpu% median=  49.5 mean=  77.0 max= 377.0  rssMB first=518 last=675 max=698
+phase=play     n= 20 cpu% median=  73.5 mean=  75.5 max= 100.3  rssMB first=690 last=419 max=694
+phase=paused   n= 20 cpu% median=  74.0 mean=  71.5 max=  85.9  rssMB first=433 last=411 max=439
+phase=menu2    n= 19 cpu% median=  62.2 mean=  62.7 max=  79.4  rssMB first=548 last=700 max=700
+phase=end      n=  2 cpu% median=-3435.7 mean=-3435.7 max=  56.1  rssMB first=442 last=0 max=442
