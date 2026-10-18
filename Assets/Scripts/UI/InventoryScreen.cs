@@ -68,7 +68,7 @@ namespace Wildmere.UI
             var scrim = Root.Append(Ui.Div("fill", "scrim"));
             scrim.RegisterCallback<PointerDownEvent>(e => { if (!mCursor.IsEmpty) { DropCursor(e.button == 1); e.StopPropagation(); } });
 
-            var layout = Root.Append(Ui.Div("inv-layout").Ignore());
+            var layout = Root.Append(Ui.Div("inv-layout").Ignore()).Append(Ui.Div("inv-columns").Ignore());
 
             // Inventory panel
             var invWrap = layout.Append(Ui.Panel(out var inv, "inv-panel"));
@@ -77,11 +77,15 @@ namespace Wildmere.UI
             title.Add(Ui.Text("Inventory", "panel__title"));
             title.Add(Ui.Text("Shift-click to move  ·  Right-click to split", "inv-hint"));
             var grid = inv.Append(Ui.Div("inv-grid"));
-            for (int i = Inventory.Hotbar; i < Inventory.Size; i++) grid.Add(MakeSlot(i));
+            for (int row = 0; row < 3; row++)
+            {
+                var r = grid.Append(Ui.Div("inv-row"));
+                for (int c = 0; c < Inventory.Hotbar; c++) r.Add(MakeSlot(Inventory.Hotbar + row * Inventory.Hotbar + c));
+            }
             var sep = inv.Append(Ui.Div("inv-sep"));
             sep.Add(Ui.Text("HOTBAR", "t-micro"));
             sep.Add(Ui.Div("inv-sep__line"));
-            var hot = inv.Append(Ui.Div("inv-grid"));
+            var hot = inv.Append(Ui.Div("inv-row"));
             for (int i = 0; i < Inventory.Hotbar; i++) hot.Add(MakeSlot(i));
 
             // Crafting panel

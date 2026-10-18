@@ -203,6 +203,8 @@ namespace Wildmere.UI
             if (!mVisible || mPlayer == null || mInv == null) return;
             var ui = UiRoot.Instance;
             bool overlay = ui != null && ui.Stack.Count > 0;
+            // The inventory/death screens own the bottom of the screen; the pause menu keeps the HUD.
+            Root.EnableInClassList("hud--overlay", overlay && !(ui.Top is PauseScreen) && ui.Stack[0] != ui.Pause);
 
             // Hotbar selection + item name.
             int sel = mInv.Selected;

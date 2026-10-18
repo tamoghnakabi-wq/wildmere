@@ -11,10 +11,10 @@ namespace Wildmere.UI
         static Texture2D sShadow, sMenuShade, sBottomShade, sVignette, sDamage, sDot, sLowHealth;
 
         public static Texture2D PanelShadow => sShadow ? sShadow : sShadow = BuildShadow();
-        public static Texture2D MenuShade => sMenuShade ? sMenuShade : sMenuShade = Horizontal(new Color(0.02f, 0.03f, 0.045f), 0.86f, 0f, 1.35f);
+        public static Texture2D MenuShade => sMenuShade ? sMenuShade : sMenuShade = Horizontal(new Color(0.02f, 0.03f, 0.045f), 0.8f, 0f, 0.75f);
         public static Texture2D BottomShade => sBottomShade ? sBottomShade : sBottomShade = Vertical(new Color(0.02f, 0.03f, 0.045f), 0.7f, 0f, 1.6f);
         public static Texture2D Vignette => sVignette ? sVignette : sVignette = Radial(new Color(0.01f, 0.015f, 0.02f), 0.55f, 1.45f, 0.78f, 256);
-        public static Texture2D Damage => sDamage ? sDamage : sDamage = Radial(new Color(0.62f, 0.04f, 0.05f), 0.42f, 1.35f, 0.9f, 256);
+        public static Texture2D Damage => sDamage ? sDamage : sDamage = Radial(new Color(0.62f, 0.04f, 0.05f), 0.42f, 1.35f, 0.72f, 256);
         public static Texture2D LowHealth => sLowHealth ? sLowHealth : sLowHealth = Radial(new Color(0.45f, 0.02f, 0.03f), 0.6f, 1.5f, 0.75f, 256);
         public static Texture2D SoftDot => sDot ? sDot : sDot = Dot(64);
 
@@ -25,6 +25,13 @@ namespace Wildmere.UI
                 name = name, wrapMode = TextureWrapMode.Clamp, filterMode = FilterMode.Bilinear, hideFlags = HideFlags.DontSave,
             };
         }
+
+        /// <summary>
+        /// UI Toolkit blends in linear space in this (Linear colour space) project, which makes dark
+        /// translucent overlays look much weaker than the same alpha in CSS. Map a perceptual alpha
+        /// to the linear-blend alpha that looks the same.
+        /// </summary>
+        public static float DarkAlpha(float a) => 1f - Mathf.Pow(1f - Mathf.Clamp01(a), 2.2f);
 
         static float Smooth(float a, float b, float x)
         {
@@ -58,7 +65,7 @@ namespace Wildmere.UI
                     float dShadow = RoundRectDistance(fx, fy, 46, 40, W - 46, H - 50, 26);
                     float a = 0.62f * (1f - Smooth(-14f, 34f, dShadow));
                     a *= Smooth(-1.5f, 1.5f, dPanel);
-                    px[(H - 1 - y) * W + x] = new Color32(0, 0, 0, (byte)(Mathf.Clamp01(a) * 255));
+                    px[(H - 1 - y) * W + x] = new Color32(0, 0, 0, (byte)(DarkAlpha(a) * 255));
                 }
             t.SetPixels32(px);
             t.Apply(false, true);
@@ -74,7 +81,7 @@ namespace Wildmere.UI
             {
                 float u = x / (W - 1f);
                 float a = Mathf.Lerp(a0, a1, Mathf.Pow(Smooth(0f, 1f, u), 1f / curve));
-                var col = new Color(c.r, c.g, c.b, a);
+                var col = new Color(c.r, c.g, c.b, DarkAlpha(a));
                 for (int y = 0; y < H; y++) px[y * W + x] = col;
             }
             t.SetPixels32(px);
@@ -91,7 +98,7 @@ namespace Wildmere.UI
             {
                 float v = y / (H - 1f); // 0 = bottom
                 float a = Mathf.Lerp(aBottom, aTop, Mathf.Pow(Smooth(0f, 1f, v), 1f / curve));
-                var col = new Color(c.r, c.g, c.b, a);
+                var col = new Color(c.r, c.g, c.b, DarkAlpha(a));
                 for (int x = 0; x < W; x++) px[y * W + x] = col;
             }
             t.SetPixels32(px);
@@ -109,7 +116,7 @@ namespace Wildmere.UI
                     float u = (x + 0.5f) / size * 2f - 1f, v = (y + 0.5f) / size * 2f - 1f;
                     float d = Mathf.Sqrt(u * u + v * v);
                     float a = Mathf.Pow(Smooth(inner, outer, d), 1.4f) * alpha;
-                    px[y * size + x] = new Color(c.r, c.g, c.b, a);
+                    px[y * size + x] = new Color(c.r, c.g, c.b, DarkAlpha(a));
                 }
             t.SetPixels32(px);
             t.Apply(false, true);
