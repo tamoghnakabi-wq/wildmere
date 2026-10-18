@@ -435,7 +435,7 @@
 .hud-bottom { position: absolute; left: 0; right: 0; bottom: 26px; align-items: center; }
 .hud-itemname { font-size: 18px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-SemiBold.ttf"); text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8); margin-bottom: 14px; opacity: 0; translate: 0 4px; transition-duration: 0.25s; transition-timing-function: ease-out-cubic; }
 .hud-itemname--on { opacity: 1; translate: 0 0; }
-.hud-status { width: 654px; flex-direction: row; align-items: flex-end; justify-content: space-between; margin-bottom: 12px; padding: 0 4px; }
+.hud-status { width: 644px; flex-direction: row; align-items: flex-end; justify-content: space-between; margin-bottom: 12px; padding: 0 4px; }
 
 .health { flex-direction: row; align-items: center; }
 .health__glyph { width: 22px; height: 22px; margin-right: 10px; }
@@ -453,7 +453,7 @@
 .hotbar { flex-direction: row; padding: 6px; border-radius: 18px; background-color: rgba(10, 12, 16, 0.58); border-width: 1px; border-color: rgba(255, 255, 255, 0.08); }
 .hotbar__sel {
     position: absolute;
-    left: 4px;
+    left: 6px;
     top: 4px;
     width: 70px;
     height: 70px;

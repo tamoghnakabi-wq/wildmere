@@ -110,20 +110,20 @@ namespace Wildmere.UI
             var rng = new System.Random(5);
             for (int i = 0; i < 28; i++)
             {
-                var m = Root.Add(Ui.Div("bg-mote").Ignore());
+                var m = Root.Append(Ui.Div("bg-mote").Ignore());
                 m.style.backgroundImage = UiTextures.SoftDot;
                 float size = 4f + (float)rng.NextDouble() * 7f;
                 m.style.width = size; m.style.height = size;
                 m.style.unityBackgroundImageTintColor = new Color(1f, 0.92f, 0.75f, 1f);
                 mMotes.Add((m, (float)rng.NextDouble(), (float)rng.NextDouble(), 6f + (float)rng.NextDouble() * 16f, (float)rng.NextDouble() * 10f, size));
             }
-            var vig = Root.Add(Ui.Div("bg-vignette").Ignore());
+            var vig = Root.Append(Ui.Div("bg-vignette").Ignore());
             vig.style.backgroundImage = UiTextures.Vignette;
         }
 
         void Blob(Color c, Vector2 pos, Vector2 size, float speed, float phase)
         {
-            var b = Root.Add(Ui.Div("bg-blob").Ignore());
+            var b = Root.Append(Ui.Div("bg-blob").Ignore());
             b.style.backgroundImage = UiTextures.SoftDot;
             b.style.unityBackgroundImageTintColor = c;
             mBlobs.Add((b, pos, size, speed, phase));

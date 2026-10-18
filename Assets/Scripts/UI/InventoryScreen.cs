@@ -49,7 +49,7 @@ namespace Wildmere.UI
 
         public Recipe Selected { get; private set; }
         public ItemStack CursorStack => mCursor;
-        public IReadOnlyCollection<Station> NearbyStations => mNear;
+        public ICollection<Station> NearbyStations => mNear;
 
         static readonly string[] kCategoryOrder = { "Building", "Tools", "Materials", "Lighting" };
 
@@ -65,83 +65,83 @@ namespace Wildmere.UI
 
         public override void Build()
         {
-            var scrim = Root.Add(Ui.Div("fill", "scrim"));
+            var scrim = Root.Append(Ui.Div("fill", "scrim"));
             scrim.RegisterCallback<PointerDownEvent>(e => { if (!mCursor.IsEmpty) { DropCursor(e.button == 1); e.StopPropagation(); } });
 
-            var layout = Root.Add(Ui.Div("inv-layout").Ignore());
+            var layout = Root.Append(Ui.Div("inv-layout").Ignore());
 
             // Inventory panel
-            var invWrap = layout.Add(Ui.Panel(out var inv, "inv-panel"));
+            var invWrap = layout.Append(Ui.Panel(out var inv, "inv-panel"));
             invWrap.AddToClassList("anim-pop");
-            var title = inv.Add(Ui.Div("inv-title-row"));
+            var title = inv.Append(Ui.Div("inv-title-row"));
             title.Add(Ui.Text("Inventory", "panel__title"));
             title.Add(Ui.Text("Shift-click to move  ·  Right-click to split", "inv-hint"));
-            var grid = inv.Add(Ui.Div("inv-grid"));
+            var grid = inv.Append(Ui.Div("inv-grid"));
             for (int i = Inventory.Hotbar; i < Inventory.Size; i++) grid.Add(MakeSlot(i));
-            var sep = inv.Add(Ui.Div("inv-sep"));
+            var sep = inv.Append(Ui.Div("inv-sep"));
             sep.Add(Ui.Text("HOTBAR", "t-micro"));
             sep.Add(Ui.Div("inv-sep__line"));
-            var hot = inv.Add(Ui.Div("inv-grid"));
+            var hot = inv.Append(Ui.Div("inv-grid"));
             for (int i = 0; i < Inventory.Hotbar; i++) hot.Add(MakeSlot(i));
 
             // Crafting panel
-            var craftWrap = layout.Add(Ui.Panel(out var craft, "craft-panel"));
+            var craftWrap = layout.Append(Ui.Panel(out var craft, "craft-panel"));
             craftWrap.AddToClassList("anim-pop");
-            var head = craft.Add(Ui.Div("craft-head"));
+            var head = craft.Append(Ui.Div("craft-head"));
             head.Add(Ui.Text("Crafting", "panel__title"));
-            mStations = head.Add(Ui.Div("craft-stations"));
-            var tabs = craft.Add(Ui.Div("craft-tabs"));
+            mStations = head.Append(Ui.Div("craft-stations"));
+            var tabs = craft.Append(Ui.Div("craft-tabs"));
             foreach (var cat in Categories())
             {
                 var c = cat;
-                var b = tabs.Add(new Button(() => { UiSound.Play(UiSound.Click); SetCategory(c); }) { text = c }.Cls("pill"));
+                var b = tabs.Append(new Button(() => { UiSound.Play(UiSound.Click); SetCategory(c); }) { text = c }.Cls("pill"));
                 b.RegisterCallback<PointerEnterEvent>(_ => UiSound.Play(UiSound.Hover));
                 mCatTabs[c] = b;
             }
-            var listHost = craft.Add(Ui.Div("craft-list"));
+            var listHost = craft.Append(Ui.Div("craft-list"));
             mRecipeScroll = Ui.Scroll(listHost);
             var list = mRecipeScroll.contentContainer;
             list.AddToClassList("craft-list-inner");
             foreach (var cat in Categories())
             {
                 if (cat == "All") continue;
-                mCatHeaders[cat] = list.Add(Ui.Text(cat.ToUpperInvariant(), "t-micro", "craft-cat"));
+                mCatHeaders[cat] = list.Append(Ui.Text(cat.ToUpperInvariant(), "t-micro", "craft-cat"));
                 foreach (var r in Crafting.Recipes)
                     if (CategoryOf(r) == cat) mRows.Add(MakeRow(list, r));
             }
 
-            var detail = craft.Add(Ui.Div("craft-detail"));
-            var dTop = detail.Add(Ui.Div("row"));
-            mDetailIcon = dTop.Add(Ui.Div("craft-detail__icon").Ignore());
-            var dText = dTop.Add(Ui.Div("grow"));
-            var nameRow = dText.Add(Ui.Div("row"));
-            mDetailName = nameRow.Add(Ui.Text("", "craft-detail__name"));
-            mDetailCount = nameRow.Add(Ui.Text("", "recipe__count"));
-            mDetailDesc = dText.Add(Ui.Text("", "craft-detail__desc"));
-            mDetailStation = dText.Add(Ui.Text("", "craft-detail__station"));
-            mDetailInputs = detail.Add(Ui.Div("craft-detail__inputs"));
-            var actions = detail.Add(Ui.Div("craft-actions"));
-            mCraftBtn = actions.Add(new Button().Cls("btn", "btn--primary", "gap-r-12"));
+            var detail = craft.Append(Ui.Div("craft-detail"));
+            var dTop = detail.Append(Ui.Div("row"));
+            mDetailIcon = dTop.Append(Ui.Div("craft-detail__icon").Ignore());
+            var dText = dTop.Append(Ui.Div("grow"));
+            var nameRow = dText.Append(Ui.Div("row"));
+            mDetailName = nameRow.Append(Ui.Text("", "craft-detail__name"));
+            mDetailCount = nameRow.Append(Ui.Text("", "recipe__count"));
+            mDetailDesc = dText.Append(Ui.Text("", "craft-detail__desc"));
+            mDetailStation = dText.Append(Ui.Text("", "craft-detail__station"));
+            mDetailInputs = detail.Append(Ui.Div("craft-detail__inputs"));
+            var actions = detail.Append(Ui.Div("craft-actions"));
+            mCraftBtn = actions.Append(new Button().Cls("btn", "btn--primary", "gap-r-12"));
             mCraftBtn.text = "Craft";
             mCraftBtn.style.minWidth = 150;
             mCraftBtn.RegisterCallback<ClickEvent>(e => CraftSelected(e.shiftKey));
             mCraftBtn.RegisterCallback<PointerEnterEvent>(_ => UiSound.Play(UiSound.Hover));
-            mCraftAllBtn = actions.Add(Ui.Btn("Craft all", () => CraftSelected(true), UiSound.Click));
+            mCraftAllBtn = actions.Append(Ui.Btn("Craft all", () => CraftSelected(true), UiSound.Click));
             actions.Add(Ui.Text("Shift-click Craft for as many as you can", "craft-hint"));
 
             // Floating layers: tooltip and the held stack follow the pointer.
-            mTooltip = Root.Add(Ui.Div("tooltip").Ignore());
-            mTipName = mTooltip.Add(Ui.Text("", "tooltip__name").Ignore());
-            mTipKind = mTooltip.Add(Ui.Text("", "tooltip__kind").Ignore());
-            mTipDur = mTooltip.Add(Ui.Div("tooltip__dur").Ignore());
-            var bar = mTipDur.Add(Ui.Div("tooltip__dur-bar").Ignore());
-            mTipDurFill = bar.Add(Ui.Div("tooltip__dur-fill").Ignore());
-            mTipDurText = mTipDur.Add(Ui.Text("", "tooltip__dur-text").Ignore());
-            mTipDesc = mTooltip.Add(Ui.Text("", "tooltip__desc").Ignore());
+            mTooltip = Root.Append(Ui.Div("tooltip").Ignore());
+            mTipName = mTooltip.Append(Ui.Text("", "tooltip__name").Ignore());
+            mTipKind = mTooltip.Append(Ui.Text("", "tooltip__kind").Ignore());
+            mTipDur = mTooltip.Append(Ui.Div("tooltip__dur").Ignore());
+            var bar = mTipDur.Append(Ui.Div("tooltip__dur-bar").Ignore());
+            mTipDurFill = bar.Append(Ui.Div("tooltip__dur-fill").Ignore());
+            mTipDurText = mTipDur.Append(Ui.Text("", "tooltip__dur-text").Ignore());
+            mTipDesc = mTooltip.Append(Ui.Text("", "tooltip__desc").Ignore());
 
-            mCursorEl = Root.Add(Ui.Div("cursor-stack").Ignore());
-            mCursorIcon = mCursorEl.Add(Ui.Div("cursor-stack__icon").Ignore());
-            mCursorCount = mCursorEl.Add(Ui.Text("", "slot__count").Ignore());
+            mCursorEl = Root.Append(Ui.Div("cursor-stack").Ignore());
+            mCursorIcon = mCursorEl.Append(Ui.Div("cursor-stack__icon").Ignore());
+            mCursorCount = mCursorEl.Append(Ui.Text("", "slot__count").Ignore());
             mCursorEl.style.display = DisplayStyle.None;
 
             // Releasing a dragged stack anywhere that is not a slot.
@@ -190,21 +190,21 @@ namespace Wildmere.UI
         RecipeRow MakeRow(VisualElement list, Recipe r)
         {
             var row = new RecipeRow { R = r };
-            row.El = list.Add(Ui.Div("recipe"));
-            row.Icon = row.El.Add(Ui.Div("recipe__icon").Ignore());
-            var text = row.El.Add(Ui.Div("grow").Ignore());
-            var nameRow = text.Add(Ui.Div("row").Ignore());
+            row.El = list.Append(Ui.Div("recipe"));
+            row.Icon = row.El.Append(Ui.Div("recipe__icon").Ignore());
+            var text = row.El.Append(Ui.Div("grow").Ignore());
+            var nameRow = text.Append(Ui.Div("row").Ignore());
             nameRow.Add(Ui.Text(ItemDb.NameOf(r.Output), "recipe__name").Ignore());
             if (r.OutputCount > 1) nameRow.Add(Ui.Text($"×{r.OutputCount}", "recipe__count").Ignore());
-            row.Inputs = text.Add(Ui.Div("recipe__inputs").Ignore());
+            row.Inputs = text.Append(Ui.Div("recipe__inputs").Ignore());
             foreach (var (id, count) in r.Inputs)
             {
-                var chip = row.Inputs.Add(Ui.Div("recipe__in").Ignore());
-                var ic = chip.Add(Ui.Div("recipe__in-icon").Ignore());
-                var t = chip.Add(Ui.Text("", "recipe__in-text").Ignore());
+                var chip = row.Inputs.Append(Ui.Div("recipe__in").Ignore());
+                var ic = chip.Append(Ui.Div("recipe__in-icon").Ignore());
+                var t = chip.Append(Ui.Text("", "recipe__in-text").Ignore());
                 row.In.Add((ic, t, id, count));
             }
-            if (r.Station != Station.None) row.Badge = row.El.Add(Ui.Text(r.Station.ToString().ToUpperInvariant(), "recipe__badge").Ignore());
+            if (r.Station != Station.None) row.Badge = row.El.Append(Ui.Text(r.Station.ToString().ToUpperInvariant(), "recipe__badge").Ignore());
             row.El.RegisterCallback<PointerDownEvent>(e =>
             {
                 if (e.button != 0) return;
@@ -280,7 +280,7 @@ namespace Wildmere.UI
             foreach (var st in new[] { Station.Workbench, Station.Furnace })
             {
                 bool on = mNear.Contains(st);
-                var chip = mStations.Add(Ui.Div("chip", on ? "chip--ok" : "chip--off", "gap-r-8"));
+                var chip = mStations.Append(Ui.Div("chip", on ? "chip--ok" : "chip--off", "gap-r-8"));
                 chip.Add(Ui.Div("chip__dot"));
                 chip.Add(Ui.Text(on ? $"{st} nearby" : $"No {st.ToString().ToLowerInvariant()}"));
             }
@@ -372,8 +372,8 @@ namespace Wildmere.UI
             foreach (var (id, need) in r.Inputs)
             {
                 int have = mInv.Count(id);
-                var chip = mDetailInputs.Add(Ui.Div("ingredient"));
-                var ic = chip.Add(Ui.Div("ingredient__icon").Ignore());
+                var chip = mDetailInputs.Append(Ui.Div("ingredient"));
+                var ic = chip.Append(Ui.Div("ingredient__icon").Ignore());
                 ItemIcons.Set(ic, id);
                 chip.Add(Ui.Text(ItemDb.NameOf(id), "ingredient__name"));
                 chip.Add(Ui.Text($"{have} / {need}", "ingredient__count", have >= need ? "have-ok" : "have-no"));

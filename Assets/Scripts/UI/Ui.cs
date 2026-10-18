@@ -24,7 +24,7 @@ namespace Wildmere.UI
             return l;
         }
 
-        public static T Add<T>(this VisualElement parent, T child) where T : VisualElement
+        public static T Append<T>(this VisualElement parent, T child) where T : VisualElement
         {
             parent.Add(child);
             return child;
@@ -79,9 +79,9 @@ namespace Wildmere.UI
         public static VisualElement Panel(out VisualElement panel, params string[] panelClasses)
         {
             var wrap = Div("panel-wrap");
-            var shadow = wrap.Add(Div("panel-shadow").Ignore());
+            var shadow = wrap.Append(Div("panel-shadow").Ignore());
             shadow.style.backgroundImage = UiTextures.PanelShadow;
-            panel = wrap.Add(Div("panel"));
+            panel = wrap.Append(Div("panel"));
             foreach (var c in panelClasses) if (!string.IsNullOrEmpty(c)) panel.AddToClassList(c);
             return wrap;
         }
@@ -99,7 +99,7 @@ namespace Wildmere.UI
             foreach (var c in classes) if (!string.IsNullOrEmpty(c)) sv.AddToClassList(c);
             host.Add(sv);
             var bar = Div("scroll-bar").Ignore();
-            var thumb = bar.Add(Div("scroll-bar__thumb").Ignore());
+            var thumb = bar.Append(Div("scroll-bar__thumb").Ignore());
             // The indicator lives inside the scroll view's hierarchy but outside the content container.
             sv.hierarchy.Add(bar);
             void Sync()

@@ -23,7 +23,7 @@ namespace Wildmere.UI
         readonly Crosshair mCross;
         readonly SlotView[] mSlots = new SlotView[Inventory.Hotbar];
         readonly VisualElement[] mHpFill = new VisualElement[10], mHpGhost = new VisualElement[10], mBubbles = new VisualElement[10];
-        readonly List<Toast> mToastList = new List<Toast>();
+        readonly List<ToastItem> mToastList = new List<ToastItem>();
         readonly Dictionary<int, int> mSnapshot = new Dictionary<int, int>();
 
         PlayerController mPlayer;
@@ -39,7 +39,7 @@ namespace Wildmere.UI
         public int ToastCount => mToastList.Count;
         public string LastToast { get; private set; }
 
-        sealed class Toast
+        sealed class ToastItem
         {
             public VisualElement El;
             public Label Count, Name;
@@ -53,47 +53,47 @@ namespace Wildmere.UI
             Root = Ui.Div("hud").Ignore();
             Root.style.display = DisplayStyle.None;
 
-            mLowVignette = Root.Add(Ui.Div("hud-vignette").Ignore());
+            mLowVignette = Root.Append(Ui.Div("hud-vignette").Ignore());
             mLowVignette.style.backgroundImage = UiTextures.LowHealth;
-            mVignette = Root.Add(Ui.Div("hud-vignette").Ignore());
+            mVignette = Root.Append(Ui.Div("hud-vignette").Ignore());
             mVignette.style.backgroundImage = UiTextures.Damage;
 
-            mCross = Root.Add(new Crosshair());
+            mCross = Root.Append(new Crosshair());
 
-            mTarget = Root.Add(Ui.Div("hud-target").Ignore());
-            var pill = mTarget.Add(Ui.Div("hud-target__pill").Ignore());
-            mTargetIcon = pill.Add(Ui.Div("hud-target__icon").Ignore());
-            mTargetName = pill.Add(Ui.Text("", "hud-target__name").Ignore());
-            mTargetNote = pill.Add(Ui.Text("", "hud-target__note").Ignore());
+            mTarget = Root.Append(Ui.Div("hud-target").Ignore());
+            var pill = mTarget.Append(Ui.Div("hud-target__pill").Ignore());
+            mTargetIcon = pill.Append(Ui.Div("hud-target__icon").Ignore());
+            mTargetName = pill.Append(Ui.Text("", "hud-target__name").Ignore());
+            mTargetNote = pill.Append(Ui.Text("", "hud-target__note").Ignore());
 
-            mToasts = Root.Add(Ui.Div("toasts").Ignore());
+            mToasts = Root.Append(Ui.Div("toasts").Ignore());
 
-            mSaved = Root.Add(Ui.Div("hud-saved").Ignore());
+            mSaved = Root.Append(Ui.Div("hud-saved").Ignore());
             mSaved.Add(new Glyph(GlyphKind.Check, "hud-saved__glyph", "t-accent"));
             mSaved.Add(Ui.Text("World saved", "hud-saved__text").Ignore());
 
-            var bottom = Root.Add(Ui.Div("hud-bottom").Ignore());
-            mItemName = bottom.Add(Ui.Text("", "hud-itemname").Ignore());
-            var status = bottom.Add(Ui.Div("hud-status").Ignore());
-            mHealth = status.Add(Ui.Div("health").Ignore());
+            var bottom = Root.Append(Ui.Div("hud-bottom").Ignore());
+            mItemName = bottom.Append(Ui.Text("", "hud-itemname").Ignore());
+            var status = bottom.Append(Ui.Div("hud-status").Ignore());
+            mHealth = status.Append(Ui.Div("health").Ignore());
             mHealth.Add(new Glyph(GlyphKind.Heart, "health__glyph"));
             for (int i = 0; i < 10; i++)
             {
-                var seg = mHealth.Add(Ui.Div("hp-seg").Ignore());
-                mHpGhost[i] = seg.Add(Ui.Div("hp-seg__ghost").Ignore());
-                mHpFill[i] = seg.Add(Ui.Div("hp-seg__fill").Ignore());
+                var seg = mHealth.Append(Ui.Div("hp-seg").Ignore());
+                mHpGhost[i] = seg.Append(Ui.Div("hp-seg__ghost").Ignore());
+                mHpFill[i] = seg.Append(Ui.Div("hp-seg__fill").Ignore());
             }
-            mAir = status.Add(Ui.Div("air").Ignore());
-            for (int i = 0; i < 10; i++) mBubbles[i] = mAir.Add(Ui.Div("bubble").Ignore());
+            mAir = status.Append(Ui.Div("air").Ignore());
+            for (int i = 0; i < 10; i++) mBubbles[i] = mAir.Append(Ui.Div("bubble").Ignore());
 
-            mHotbar = bottom.Add(Ui.Div("hotbar").Ignore());
+            mHotbar = bottom.Append(Ui.Div("hotbar").Ignore());
             for (int i = 0; i < Inventory.Hotbar; i++)
             {
                 mSlots[i] = new SlotView(i + 1);
                 mSlots[i].Root.pickingMode = PickingMode.Ignore;
                 mHotbar.Add(mSlots[i].Root);
             }
-            mSelector = mHotbar.Add(Ui.Div("hotbar__sel").Ignore());
+            mSelector = mHotbar.Append(Ui.Div("hotbar__sel").Ignore());
         }
 
         // ------------------------------------------------------------------ binding
@@ -177,18 +177,18 @@ namespace Wildmere.UI
             if (mToastList.Count >= 5) Dismiss(mToastList[0]);
             var el = Ui.Div("toast", "toast--in").Ignore();
             if (warn) el.AddToClassList("toast--warn");
-            var icon = el.Add(Ui.Div("toast__icon").Ignore());
+            var icon = el.Append(Ui.Div("toast__icon").Ignore());
             if (id != 0) ItemIcons.Set(icon, id); else icon.style.display = DisplayStyle.None;
-            var count = el.Add(Ui.Text(amount > 0 ? $"+{amount}" : "", "toast__count").Ignore());
+            var count = el.Append(Ui.Text(amount > 0 ? $"+{amount}" : "", "toast__count").Ignore());
             if (amount <= 0) count.style.display = DisplayStyle.None;
-            var name = el.Add(Ui.Text(text ?? ItemDb.NameOf(id), "toast__name").Ignore());
+            var name = el.Append(Ui.Text(text ?? ItemDb.NameOf(id), "toast__name").Ignore());
             if (warn && amount <= 0) name.AddToClassList("t-warn");
             mToasts.Add(el);
             el.schedule.Execute(() => el.RemoveFromClassList("toast--in")).ExecuteLater(16);
-            mToastList.Add(new Toast { El = el, Count = count, Name = name, Id = id, Amount = amount, Life = 3.2f });
+            mToastList.Add(new ToastItem { El = el, Count = count, Name = name, Id = id, Amount = amount, Life = 3.2f });
         }
 
-        void Dismiss(Toast t)
+        void Dismiss(ToastItem t)
         {
             if (t.Leaving) return;
             t.Leaving = true;
@@ -312,10 +312,10 @@ namespace Wildmere.UI
         public SlotView(int keyNumber = 0)
         {
             Root = Ui.Div("slot");
-            Icon = Root.Add(Ui.Div("slot__icon").Ignore());
-            Count = Root.Add(Ui.Text("", "slot__count").Ignore());
-            Dur = Root.Add(Ui.Div("slot__dur").Ignore());
-            DurFill = Dur.Add(Ui.Div("slot__dur-fill").Ignore());
+            Icon = Root.Append(Ui.Div("slot__icon").Ignore());
+            Count = Root.Append(Ui.Text("", "slot__count").Ignore());
+            Dur = Root.Append(Ui.Div("slot__dur").Ignore());
+            DurFill = Dur.Append(Ui.Div("slot__dur-fill").Ignore());
             if (keyNumber > 0) Root.Add(Ui.Text(keyNumber.ToString(), "slot__key").Ignore());
             Set(ItemStack.Empty);
         }

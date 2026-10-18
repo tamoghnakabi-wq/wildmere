@@ -22,11 +22,11 @@ namespace Wildmere.UI
             Min = min; Max = max; Step = step; mFormat = format;
             AddToClassList("slider");
             focusable = true;
-            mTrack = this.Add(Ui.Div("slider__track"));
-            var rail = mTrack.Add(Ui.Div("slider__rail").Ignore());
-            mFill = rail.Add(Ui.Div("slider__fill").Ignore());
-            mThumb = mTrack.Add(Ui.Div("slider__thumb").Ignore());
-            mValueLabel = this.Add(Ui.Text("", "slider__value").Ignore());
+            mTrack = this.Append(Ui.Div("slider__track"));
+            var rail = mTrack.Append(Ui.Div("slider__rail").Ignore());
+            mFill = rail.Append(Ui.Div("slider__fill").Ignore());
+            mThumb = mTrack.Append(Ui.Div("slider__thumb").Ignore());
+            mValueLabel = this.Append(Ui.Text("", "slider__value").Ignore());
 
             mTrack.RegisterCallback<PointerDownEvent>(e =>
             {
@@ -190,10 +190,10 @@ namespace Wildmere.UI
             mOptions = options;
             AddToClassList("stepper");
             focusable = true;
-            var prev = this.Add(new Button(() => Step(-1)) { text = "‹" }.Cls("stepper__btn"));
+            var prev = this.Append(new Button(() => Step(-1)) { text = "‹" }.Cls("stepper__btn"));
             prev.focusable = false;
-            mValue = this.Add(Ui.Text("", "stepper__value").Ignore());
-            var next = this.Add(new Button(() => Step(1)) { text = "›" }.Cls("stepper__btn"));
+            mValue = this.Append(Ui.Text("", "stepper__value").Ignore());
+            var next = this.Append(new Button(() => Step(1)) { text = "›" }.Cls("stepper__btn"));
             next.focusable = false;
             RegisterCallback<NavigationMoveEvent>(e =>
             {

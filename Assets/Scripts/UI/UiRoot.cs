@@ -135,6 +135,7 @@ namespace Wildmere.UI
         {
             ItemIcons.Build();
             TryHookGame();
+            if (UiHarness.Active) gameObject.AddComponent<UiHarness>();
         }
 
         void TryHookGame()

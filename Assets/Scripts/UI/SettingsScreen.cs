@@ -36,22 +36,22 @@ namespace Wildmere.UI
         public override void Build()
         {
             Root.Add(Ui.Div("fill", "scrim"));
-            var center = Root.Add(Ui.Div("fill", "center"));
-            var wrap = center.Add(Ui.Panel(out var panel, "settings-panel"));
+            var center = Root.Append(Ui.Div("fill", "center"));
+            var wrap = center.Append(Ui.Panel(out var panel, "settings-panel"));
             wrap.AddToClassList("anim-pop");
 
-            var head = panel.Add(Ui.Div("settings-head"));
+            var head = panel.Append(Ui.Div("settings-head"));
             head.Add(Ui.Text("Settings", "panel__title"));
-            var tabs = head.Add(Ui.Div("tabs"));
+            var tabs = head.Append(Ui.Div("tabs"));
             foreach (Tab t in Enum.GetValues(typeof(Tab)))
             {
                 var tab = t;
-                var b = tabs.Add(new Button(() => { UiSound.Play(UiSound.Click); Show(tab); }) { text = t.ToString() }.Cls("tab"));
+                var b = tabs.Append(new Button(() => { UiSound.Play(UiSound.Click); Show(tab); }) { text = t.ToString() }.Cls("tab"));
                 b.RegisterCallback<PointerEnterEvent>(_ => UiSound.Play(UiSound.Hover));
                 mTabs[t] = b;
             }
 
-            var body = panel.Add(Ui.Div("settings-body"));
+            var body = panel.Append(Ui.Div("settings-body"));
             foreach (Tab t in Enum.GetValues(typeof(Tab)))
             {
                 var sv = Ui.Scroll(body);
@@ -62,11 +62,11 @@ namespace Wildmere.UI
             BuildAudio(mPages[Tab.Audio].contentContainer);
             BuildControls(mPages[Tab.Controls].contentContainer);
 
-            var foot = panel.Add(Ui.Div("settings-foot"));
-            mReset = foot.Add(Ui.Btn("Reset controls to defaults", ResetControls, null, "btn--ghost", "btn--small"));
+            var foot = panel.Append(Ui.Div("settings-foot"));
+            mReset = foot.Append(Ui.Btn("Reset controls to defaults", ResetControls, null, "btn--ghost", "btn--small"));
             foot.Add(Ui.Div("grow"));
             foot.Add(Ui.Text("Changes apply instantly", "t-small", "t-faint", "gap-r-16"));
-            var done = foot.Add(Ui.Btn("Done", () => UI.Pop(this), UiSound.Close, "btn--primary"));
+            var done = foot.Append(Ui.Btn("Done", () => UI.Pop(this), UiSound.Close, "btn--primary"));
             done.style.minWidth = 150;
         }
 
@@ -74,16 +74,16 @@ namespace Wildmere.UI
 
         VisualElement Section(VisualElement page, string title)
         {
-            return page.Add(Ui.Text(title, "t-micro", "section-title"));
+            return page.Append(Ui.Text(title, "t-micro", "section-title"));
         }
 
         VisualElement Row(VisualElement page, string label, string hint, VisualElement control)
         {
-            var row = page.Add(Ui.Div("setting-row"));
-            var text = row.Add(Ui.Div("setting-row__text").Ignore());
+            var row = page.Append(Ui.Div("setting-row"));
+            var text = row.Append(Ui.Div("setting-row__text").Ignore());
             text.Add(Ui.Text(label, "setting-row__label").Ignore());
             if (!string.IsNullOrEmpty(hint)) text.Add(Ui.Text(hint, "setting-row__hint").Ignore());
-            var ctl = row.Add(Ui.Div("setting-row__control"));
+            var ctl = row.Append(Ui.Div("setting-row__control"));
             ctl.Add(control);
             if (control is WmSlider || control is WmChoice || control is WmStepper) control.style.flexGrow = 1;
             return row;

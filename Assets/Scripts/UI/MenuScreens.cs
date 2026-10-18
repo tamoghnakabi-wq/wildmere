@@ -17,21 +17,21 @@ namespace Wildmere.UI
 
         public override void Build()
         {
-            var shade = Root.Add(Ui.Div("mm-shade").Ignore());
+            var shade = Root.Append(Ui.Div("mm-shade").Ignore());
             shade.style.backgroundImage = UiTextures.MenuShade;
-            var bottom = Root.Add(Ui.Div("mm-shade-bottom").Ignore());
+            var bottom = Root.Append(Ui.Div("mm-shade-bottom").Ignore());
             bottom.style.backgroundImage = UiTextures.BottomShade;
 
-            var col = Root.Add(Ui.Div("mm-column", "anim-left"));
-            var mark = col.Add(Ui.Div("wordmark"));
+            var col = Root.Append(Ui.Div("mm-column", "anim-left"));
+            var mark = col.Append(Ui.Div("wordmark"));
             mark.Add(new Glyph(GlyphKind.Emblem, "wordmark__emblem"));
-            var words = mark.Add(Ui.Div());
+            var words = mark.Append(Ui.Div());
             words.Add(Ui.Text("WILDMERE", "t-display", "wordmark__text", "t-shadow"));
             words.Add(Ui.Text("SHAPE THE WILD", "wordmark__tag"));
-            mMenu = col.Add(Ui.Div("menu", "mm-menu"));
+            mMenu = col.Append(Ui.Div("menu", "mm-menu"));
 
-            var foot = Root.Add(Ui.Div("mm-foot", "anim-rise"));
-            mVersion = foot.Add(Ui.Text("", "mm-version"));
+            var foot = Root.Append(Ui.Div("mm-foot", "anim-rise"));
+            mVersion = foot.Append(Ui.Text("", "mm-version"));
             foot.Add(Ui.Div("grow"));
             foot.Add(Ui.Text("Arrow keys to navigate  ·  Enter to select", "mm-version"));
         }
@@ -45,18 +45,18 @@ namespace Wildmere.UI
             if (worlds.Count > 0)
             {
                 var w = worlds[0];
-                first = mMenu.Add(Ui.MenuItem("Continue", () => UI.PlayWorld(w), $"{w.Name}  ·  {LastPlayed(w)}", UiSound.Confirm));
+                first = mMenu.Append(Ui.MenuItem("Continue", () => UI.PlayWorld(w), $"{w.Name}  ·  {LastPlayed(w)}", UiSound.Confirm));
                 first.AddToClassList("menu-item--primary");
                 mMenu.Add(Ui.MenuItem("New World", () => UI.Push(UI.NewWorld)));
             }
             else
             {
-                first = mMenu.Add(Ui.MenuItem("New World", () => UI.Push(UI.NewWorld)));
+                first = mMenu.Append(Ui.MenuItem("New World", () => UI.Push(UI.NewWorld)));
                 first.AddToClassList("menu-item--primary");
             }
             mMenu.Add(Ui.MenuItem("Load World", () => UI.Push(UI.LoadWorld), worlds.Count > 0 ? $"{worlds.Count} {Ui.Plural(worlds.Count, "world", "worlds")}" : null));
             mMenu.Add(Ui.MenuItem("Settings", () => UI.Push(UI.Settings)));
-            var quit = mMenu.Add(Ui.MenuItem("Quit", Application.Quit));
+            var quit = mMenu.Append(Ui.MenuItem("Quit", Application.Quit));
             quit.AddToClassList("menu-item--quiet");
             DefaultFocus = first;
         }
@@ -87,46 +87,46 @@ namespace Wildmere.UI
         public override void Build()
         {
             Root.Add(Ui.Div("fill", "scrim"));
-            var center = Root.Add(Ui.Div("fill", "center"));
-            var wrap = center.Add(Ui.Panel(out var panel));
+            var center = Root.Append(Ui.Div("fill", "center"));
+            var wrap = center.Append(Ui.Panel(out var panel));
             wrap.AddToClassList("anim-pop");
             panel.style.width = 700;
 
-            var head = panel.Add(Ui.Div("panel__header"));
+            var head = panel.Append(Ui.Div("panel__header"));
             head.Add(Ui.Text("Create a world", "panel__title"));
             head.Add(Ui.Text("Every seed grows a different wild.", "panel__subtitle"));
 
-            var nameRow = panel.Add(Ui.Div("form-row"));
+            var nameRow = panel.Append(Ui.Div("form-row"));
             nameRow.Add(Ui.Text("WORLD NAME", "form-label"));
-            NameField = nameRow.Add(new TextField { maxLength = 40 }.Cls("wm-input"));
+            NameField = nameRow.Append(new TextField { maxLength = 40 }.Cls("wm-input"));
             NameField.textEdition.placeholder = "New World";
 
-            var seedRow = panel.Add(Ui.Div("form-row"));
+            var seedRow = panel.Append(Ui.Div("form-row"));
             seedRow.Add(Ui.Text("SEED", "form-label"));
-            var seedLine = seedRow.Add(Ui.Div("row"));
-            SeedField = seedLine.Add(new TextField { maxLength = 32 }.Cls("wm-input", "gap-r-12"));
+            var seedLine = seedRow.Append(Ui.Div("row"));
+            SeedField = seedLine.Append(new TextField { maxLength = 32 }.Cls("wm-input", "gap-r-12"));
             SeedField.textEdition.placeholder = "Random";
-            var dice = seedLine.Add(Ui.Btn("", Randomise, null, "btn--square"));
+            var dice = seedLine.Append(Ui.Btn("", Randomise, null, "btn--square"));
             dice.tooltip = "Random seed";
             dice.Add(new Glyph(GlyphKind.Dice, "btn__glyph"));
             seedRow.Add(Ui.Text("Leave blank for a surprise. Numbers and words both work.", "form-hint"));
 
-            var kitRow = panel.Add(Ui.Div("row", "form-row"));
-            var kitText = kitRow.Add(Ui.Div("grow"));
+            var kitRow = panel.Append(Ui.Div("row", "form-row"));
+            var kitText = kitRow.Append(Ui.Div("grow"));
             kitText.Add(Ui.Text("STARTER KIT", "form-label"));
             kitText.Add(Ui.Text("Begin with a few torches to see you through the first night.", "form-hint"));
-            StarterKit = kitRow.Add(new WmSwitch());
+            StarterKit = kitRow.Append(new WmSwitch());
 
-            var dayRow = panel.Add(Ui.Div("form-row"));
+            var dayRow = panel.Append(Ui.Div("form-row"));
             dayRow.Add(Ui.Text("DAY LENGTH", "form-label"));
-            DayLength = dayRow.Add(new WmChoice(new[] { "SHORT", "NORMAL", "LONG" }));
+            DayLength = dayRow.Append(new WmChoice(new[] { "SHORT", "NORMAL", "LONG" }));
             DayLength.Changed += _ => SyncDayHint();
-            mDayHint = dayRow.Add(Ui.Text("", "form-hint"));
+            mDayHint = dayRow.Append(Ui.Text("", "form-hint"));
 
-            var foot = panel.Add(Ui.Div("panel__footer"));
+            var foot = panel.Append(Ui.Div("panel__footer"));
             foot.Add(Ui.Btn("Back", () => UI.Pop(this), UiSound.Close, "btn--ghost"));
             foot.Add(Ui.Div("grow"));
-            var create = foot.Add(Ui.Btn("Create World", Create, UiSound.Confirm, "btn--primary"));
+            var create = foot.Append(Ui.Btn("Create World", Create, UiSound.Confirm, "btn--primary"));
             create.style.minWidth = 220;
 
             panel.RegisterCallback<KeyDownEvent>(e =>
@@ -201,29 +201,29 @@ namespace Wildmere.UI
         public override void Build()
         {
             Root.Add(Ui.Div("fill", "scrim"));
-            var center = Root.Add(Ui.Div("fill", "center"));
-            var wrap = center.Add(Ui.Panel(out var panel, "worlds-panel"));
+            var center = Root.Append(Ui.Div("fill", "center"));
+            var wrap = center.Append(Ui.Panel(out var panel, "worlds-panel"));
             wrap.AddToClassList("anim-pop");
 
-            var head = panel.Add(Ui.Div("panel__header"));
+            var head = panel.Append(Ui.Div("panel__header"));
             head.Add(Ui.Text("Your worlds", "panel__title"));
-            mCount = head.Add(Ui.Text("", "panel__subtitle"));
+            mCount = head.Append(Ui.Text("", "panel__subtitle"));
 
-            var body = panel.Add(Ui.Div("grow"));
+            var body = panel.Append(Ui.Div("grow"));
             mScroll = Ui.Scroll(body);
             mList = mScroll.contentContainer;
-            mEmpty = body.Add(Ui.Div("empty", "hidden"));
+            mEmpty = body.Append(Ui.Div("empty", "hidden"));
             mEmpty.Add(new Glyph(GlyphKind.Emblem, "empty__glyph"));
             mEmpty.Add(Ui.Text("No worlds yet", "t-h2", "gap-b-8"));
             mEmpty.Add(Ui.Text("Create one and start exploring.", "t-dim", "gap-b-24"));
             mEmpty.Add(Ui.Btn("Create a world", () => { UI.Pop(this); UI.Push(UI.NewWorld); }, null, "btn--primary"));
 
-            var foot = panel.Add(Ui.Div("panel__footer"));
-            mDelete = foot.Add(Ui.Btn("Delete", AskDelete, null, "btn--danger"));
+            var foot = panel.Append(Ui.Div("panel__footer"));
+            mDelete = foot.Append(Ui.Btn("Delete", AskDelete, null, "btn--danger"));
             mDelete.Insert(0, new Glyph(GlyphKind.Trash, "btn__glyph", "btn__glyph--lead"));
             foot.Add(Ui.Div("grow"));
             foot.Add(Ui.Btn("Back", () => UI.Pop(this), UiSound.Close, "btn--ghost", "gap-r-12"));
-            mPlay = foot.Add(Ui.Btn("Play", () => UI.PlayWorld(Selected), UiSound.Confirm, "btn--primary"));
+            mPlay = foot.Append(Ui.Btn("Play", () => UI.PlayWorld(Selected), UiSound.Confirm, "btn--primary"));
             mPlay.Insert(0, new Glyph(GlyphKind.Play, "btn__glyph", "btn__glyph--lead"));
             mPlay.style.minWidth = 170;
         }
@@ -238,7 +238,7 @@ namespace Wildmere.UI
             mCount.text = worlds.Count == 0 ? "Nothing saved yet" : $"{worlds.Count} {Ui.Plural(worlds.Count, "world", "worlds")}  ·  most recent first";
             mScroll.style.display = worlds.Count > 0 ? DisplayStyle.Flex : DisplayStyle.None;
             mEmpty.EnableInClassList("hidden", worlds.Count > 0);
-            foreach (var w in worlds) mCards.Add((w, mList.Add(Card(w))));
+            foreach (var w in worlds) mCards.Add((w, mList.Append(Card(w))));
             Select(worlds.Count > 0 ? worlds[0] : null);
             DefaultFocus = mCards.Count > 0 ? mCards[0].card : null;
         }
@@ -247,15 +247,15 @@ namespace Wildmere.UI
         {
             var card = Ui.Div("world-card");
             card.focusable = true;
-            var tile = card.Add(Ui.Div("world-card__tile").Ignore());
+            var tile = card.Append(Ui.Div("world-card__tile").Ignore());
             uint h = (uint)(w.Seed ^ (w.Seed >> 32)) * 2654435761u;
             tile.style.backgroundColor = Color.HSVToRGB((h % 360) / 360f, 0.42f, 0.5f);
             tile.Add(Ui.Text(w.Name.Length > 0 ? w.Name.Substring(0, 1).ToUpperInvariant() : "W", "world-card__initial").Ignore());
-            var text = card.Add(Ui.Div("grow").Ignore());
+            var text = card.Append(Ui.Div("grow").Ignore());
             text.Add(Ui.Text(w.Name, "world-card__name").Ignore());
             double play = Json.Num(w.Meta, "playTime");
             text.Add(Ui.Text($"Last played {MainMenuScreen.LastPlayed(w)}  ·  {Ui.Duration(play)} played  ·  Seed {w.Seed}", "world-card__meta").Ignore());
-            var go = card.Add(new Glyph(GlyphKind.Play, "btn__glyph", "world-card__play", "t-accent"));
+            var go = card.Append(new Glyph(GlyphKind.Play, "btn__glyph", "world-card__play", "t-accent"));
             go.pickingMode = PickingMode.Ignore;
 
             card.RegisterCallback<PointerDownEvent>(e =>
@@ -306,15 +306,15 @@ namespace Wildmere.UI
         public override void Build()
         {
             Root.Add(Ui.Div("fill", "scrim--heavy"));
-            var center = Root.Add(Ui.Div("fill", "center"));
-            var wrap = center.Add(Ui.Panel(out var panel, "dialog"));
+            var center = Root.Append(Ui.Div("fill", "center"));
+            var wrap = center.Append(Ui.Panel(out var panel, "dialog"));
             wrap.AddToClassList("anim-pop");
-            mTitle = panel.Add(Ui.Text("", "t-h2", "t-wrap"));
-            mMsg = panel.Add(Ui.Text("", "dialog__msg"));
-            var foot = panel.Add(Ui.Div("panel__footer"));
+            mTitle = panel.Append(Ui.Text("", "t-h2", "t-wrap"));
+            mMsg = panel.Append(Ui.Text("", "dialog__msg"));
+            var foot = panel.Append(Ui.Div("panel__footer"));
             foot.Add(Ui.Div("grow"));
-            mNo = foot.Add(Ui.Btn("Cancel", () => UI.Pop(this), UiSound.Close, "btn--ghost", "gap-r-12"));
-            mYes = foot.Add(Ui.Btn("Confirm", Yes, UiSound.Confirm, "btn--primary"));
+            mNo = foot.Append(Ui.Btn("Cancel", () => UI.Pop(this), UiSound.Close, "btn--ghost", "gap-r-12"));
+            mYes = foot.Append(Ui.Btn("Confirm", Yes, UiSound.Confirm, "btn--primary"));
             DefaultFocus = mNo;
         }
 
@@ -349,13 +349,13 @@ namespace Wildmere.UI
         public override void Build()
         {
             Root.Add(Ui.Div("fill", "scrim"));
-            var shade = Root.Add(Ui.Div("mm-shade").Ignore());
+            var shade = Root.Append(Ui.Div("mm-shade").Ignore());
             shade.style.backgroundImage = UiTextures.MenuShade;
-            var col = Root.Add(Ui.Div("side-column", "anim-left"));
+            var col = Root.Append(Ui.Div("side-column", "anim-left"));
             col.Add(Ui.Text("Paused", "pause-title", "t-shadow"));
-            mSub = col.Add(Ui.Text("", "pause-sub"));
-            var menu = col.Add(Ui.Div("menu"));
-            mResume = menu.Add(Ui.MenuItem("Resume", Resume, null, UiSound.Close));
+            mSub = col.Append(Ui.Text("", "pause-sub"));
+            var menu = col.Append(Ui.Div("menu"));
+            mResume = menu.Append(Ui.MenuItem("Resume", Resume, null, UiSound.Close));
             mResume.AddToClassList("menu-item--primary");
             menu.Add(Ui.MenuItem("Settings", () => UI.Push(UI.Settings)));
             menu.Add(Ui.MenuItem("Save World", Save));
@@ -411,16 +411,16 @@ namespace Wildmere.UI
 
         public override void Build()
         {
-            var c = Root.Add(Ui.Div("load-center", "anim-rise"));
+            var c = Root.Append(Ui.Div("load-center", "anim-rise"));
             c.Add(new Glyph(GlyphKind.Emblem, "load-emblem"));
             c.Add(Ui.Text("WILDMERE", "load-title", "t-shadow"));
-            mStatus = c.Add(Ui.Text("Shaping the land", "load-status"));
-            var bar = c.Add(Ui.Div("progress"));
-            mFill = bar.Add(Ui.Div("progress__fill"));
-            mPct = c.Add(Ui.Text("0%", "load-pct"));
-            mTip = Root.Add(Ui.Div("load-tip"));
+            mStatus = c.Append(Ui.Text("Shaping the land", "load-status"));
+            var bar = c.Append(Ui.Div("progress"));
+            mFill = bar.Append(Ui.Div("progress__fill"));
+            mPct = c.Append(Ui.Text("0%", "load-pct"));
+            mTip = Root.Append(Ui.Div("load-tip"));
             mTip.Add(Ui.Text("TIP", "t-micro", "load-tip__label"));
-            mTipText = mTip.Add(Ui.Text("", "load-tip__text"));
+            mTipText = mTip.Append(Ui.Text("", "load-tip__text"));
         }
 
         protected override void OnShow()
@@ -463,14 +463,13 @@ namespace Wildmere.UI
         public override void Build()
         {
             Root.Add(Ui.Div("fill", "death-scrim"));
-            var vig = Root.Add(Ui.Div("fill").Ignore());
+            var vig = Root.Append(Ui.Div("bg-vignette").Ignore());
             vig.style.backgroundImage = UiTextures.Damage;
-            vig.style.unityBackgroundScaleMode = ScaleMode.StretchToFill;
-            var c = Root.Add(Ui.Div("death-center", "anim-rise"));
+            var c = Root.Append(Ui.Div("death-center", "anim-rise"));
             c.Add(Ui.Text("You perished", "death-title"));
-            mSub = c.Add(Ui.Text("", "death-sub"));
-            var row = c.Add(Ui.Div("row"));
-            var respawn = row.Add(Ui.Btn("Respawn", Respawn, UiSound.Confirm, "btn--primary", "gap-r-12"));
+            mSub = c.Append(Ui.Text("", "death-sub"));
+            var row = c.Append(Ui.Div("row"));
+            var respawn = row.Append(Ui.Btn("Respawn", Respawn, UiSound.Confirm, "btn--primary", "gap-r-12"));
             respawn.style.minWidth = 200;
             row.Add(Ui.Btn("Save & Quit to Title", () => UI.Game?.QuitToMenu(), null, "btn--ghost"));
             DefaultFocus = respawn;
