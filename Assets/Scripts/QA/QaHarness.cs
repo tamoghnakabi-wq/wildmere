@@ -699,8 +699,20 @@ namespace Wildmere.QA
             inv.Changed -= onChanged;
             Check("full_inventory_leaves_drop", full != null && full.Stack.Count == 2 && inv.Count(B.Dirt) == 0 && inv.Count(B.Stone) == 64 * 36,
                 $"drop={(full != null ? full.Stack.Count : -1)} dirt={inv.Count(B.Dirt)}");
+            // Frame cost with and without the blocked drop (uncapped in batch mode, so this is CPU time).
+            float tA = Time.realtimeSinceStartup; int fA = Time.frameCount;
+            yield return new WaitForSecondsRealtime(2f);
+            float msWith = 1000f * (Time.realtimeSinceStartup - tA) / Mathf.Max(1, Time.frameCount - fA);
+            var fullPos = full != null ? full.transform.position : Vector3.zero;
+            if (full != null) Destroy(full.gameObject);
+            yield return null;
+            tA = Time.realtimeSinceStartup; fA = Time.frameCount;
+            yield return new WaitForSecondsRealtime(2f);
+            float msWithout = 1000f * (Time.realtimeSinceStartup - tA) / Mathf.Max(1, Time.frameCount - fA);
+            full = ItemDrop.Spawn(ItemStack.Of(B.Dirt, 2), fullPos, Vector3.zero, 0.2f);
+            yield return new WaitForSeconds(0.5f);
             Check("no_inventory_event_spam_on_blocked_pickup", changed <= 2,
-                $"Inventory.Changed fired {changed} times in {secs:F1}s ({frames} frames) while standing on a drop with a full inventory");
+                $"Inventory.Changed fired {changed} times in {secs:F1}s ({frames} frames) while standing on a drop with a full inventory; frame {msWith:F2} ms vs {msWithout:F2} ms without the drop");
 
             // Partial pickup into the last free room.
             inv.Slots[7].Count = 63;
@@ -760,7 +772,7 @@ namespace Wildmere.QA
             while (Time.time - t0 < 10f && !(P.Grounded && P.transform.position.y > Y0 + 0.9f)) yield return null;
             float took = Time.time - t0;
             P.ScriptedJump = false; P.ScriptedMove = Vector2.zero;
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(1.5f); // a buffered jump may still fire on landing
             Check("swim_up_and_out", wasUnder && P.transform.position.y > Y0 + 0.9f && !P.HeadUnderwater && P.Grounded,
                 $"startUnder={wasUnder} took={took:F1}s y={P.transform.position.y - Y0:F2} (platform top = +1)");
 
@@ -912,6 +924,17 @@ namespace Wildmere.QA
 
         IEnumerator SettingsChecks()
         {
+            // Command-line overrides (-preset/-viewdist/-novsync) are session-only; saving settings must not persist them.
+            if (Cli.Has("preset") || Cli.Has("viewdist") || Cli.Has("novsync"))
+            {
+                var fileBefore = mSettingsBackup != null ? JsonUtility.FromJson<GameSettings>(System.Text.Encoding.UTF8.GetString(mSettingsBackup)) : new GameSettings();
+                GameSettings.Save(); // what the settings screen's Apply / the UI harness restore do
+                var fileAfter = JsonUtility.FromJson<GameSettings>(File.ReadAllText(mSettingsPath));
+                Check("cli_overrides_not_persisted", fileAfter.Preset == fileBefore.Preset && fileAfter.ViewDistance == fileBefore.ViewDistance && fileAfter.VSync == fileBefore.VSync,
+                    $"file before: preset={fileBefore.Preset} view={fileBefore.ViewDistance} vsync={fileBefore.VSync} -> after Save(): preset={fileAfter.Preset} view={fileAfter.ViewDistance} vsync={fileAfter.VSync}");
+                RestoreSettings();
+                mSettingsRestored = false;
+            }
             var s = GameSettings.Current;
             var orig = JsonUtility.ToJson(s);
             s.ViewDistance = 7; s.Fov = 88f; s.MouseSensitivity = 1.7f; s.InvertY = !s.InvertY; s.MasterVolume = 0.33f;
@@ -1054,36 +1077,48 @@ namespace Wildmere.QA
             Check("wildlife_not_in_blocks", stuck == 0, $"stuck={stuck}/{n} {string.Join("; ", notes.Take(6))}");
             Check("wildlife_on_ground", floating == 0 && onLeaves == 0, $"floating={floating} onLeaves={onLeaves}");
 
-            // Floating tree trunks: a log with non-solid ground below and no log neighbour (not a branch).
-            int logs = 0, floatingLogs = 0;
-            var fl = new List<string>();
+            // Floating trees: connected log groups (26-neighbourhood) where no log stands on solid, non-leaf ground.
+            var logSet = new HashSet<Vector3Int>();
             int pcx = Mathf.FloorToInt(P.transform.position.x) >> 4, pcz = Mathf.FloorToInt(P.transform.position.z) >> 4;
-            for (int cz = pcz - 4; cz <= pcz + 4; cz++)
-                for (int cx = pcx - 4; cx <= pcx + 4; cx++)
+            int R0 = 4;
+            for (int cz = pcz - R0; cz <= pcz + R0; cz++)
+                for (int cx = pcx - R0; cx <= pcx + R0; cx++)
                 {
                     var c = W.GetChunk(cx, cz);
                     if (c == null || c.State != ChunkState.Generated) continue;
                     for (int y = 1; y <= c.MaxY; y++)
                         for (int z = 0; z < 16; z++)
                             for (int x = 0; x < 16; x++)
-                            {
-                                byte b = c.Blocks[Chunk.Index(x, y, z)];
-                                if (!Blocks.IsLog(b)) continue;
-                                logs++;
-                                int wx = cx * 16 + x, wz = cz * 16 + z;
-                                byte bl = W.GetBlock(wx, y - 1, wz);
-                                if (Blocks.IsSolid[bl] && !Blocks.IsLeaves(bl)) continue;
-                                if (Blocks.IsLog(bl)) continue;
-                                bool branch = Blocks.IsLog(W.GetBlock(wx + 1, y, wz)) || Blocks.IsLog(W.GetBlock(wx - 1, y, wz)) ||
-                                              Blocks.IsLog(W.GetBlock(wx, y, wz + 1)) || Blocks.IsLog(W.GetBlock(wx, y, wz - 1)) ||
-                                              Blocks.IsLog(W.GetBlock(wx + 1, y - 1, wz)) || Blocks.IsLog(W.GetBlock(wx - 1, y - 1, wz)) ||
-                                              Blocks.IsLog(W.GetBlock(wx, y - 1, wz + 1)) || Blocks.IsLog(W.GetBlock(wx, y - 1, wz - 1));
-                                if (branch) continue;
-                                floatingLogs++;
-                                if (fl.Count < 6) fl.Add($"({wx},{y},{wz}) over {Blocks.Get(bl).Name}");
-                            }
+                                if (Blocks.IsLog(c.Blocks[Chunk.Index(x, y, z)])) logSet.Add(new Vector3Int(cx * 16 + x, y, cz * 16 + z));
                 }
-            Check("no_floating_trunks", floatingLogs == 0, $"logs={logs} floating={floatingLogs} {string.Join(" ", fl)}");
+            int minX = (pcx - R0) * 16, maxX = (pcx + R0 + 1) * 16 - 1, minZ = (pcz - R0) * 16, maxZ = (pcz + R0 + 1) * 16 - 1;
+            var seen = new HashSet<Vector3Int>();
+            int groups = 0, floatingGroups = 0;
+            var fl = new List<string>();
+            foreach (var start in logSet)
+            {
+                if (!seen.Add(start)) continue;
+                groups++;
+                var q = new Queue<Vector3Int>(); q.Enqueue(start);
+                bool grounded = false, edge = false; int size = 0; var low = start;
+                while (q.Count > 0)
+                {
+                    var v = q.Dequeue(); size++;
+                    if (v.y < low.y) low = v;
+                    if (v.x <= minX || v.x >= maxX || v.z <= minZ || v.z >= maxZ) edge = true;
+                    byte below = W.GetBlock(v.x, v.y - 1, v.z);
+                    if (Blocks.IsSolid[below] && !Blocks.IsLeaves(below) && !Blocks.IsLog(below)) grounded = true;
+                    for (int dy = -1; dy <= 1; dy++) for (int dz = -1; dz <= 1; dz++) for (int dx = -1; dx <= 1; dx++)
+                    {
+                        var nb = new Vector3Int(v.x + dx, v.y + dy, v.z + dz);
+                        if (logSet.Contains(nb) && seen.Add(nb)) q.Enqueue(nb);
+                    }
+                }
+                if (grounded || edge) continue;
+                floatingGroups++;
+                if (fl.Count < 6) fl.Add($"{size} logs lowest ({low.x},{low.y},{low.z}) over {Blocks.Get(W.GetBlock(low.x, low.y - 1, low.z)).Name}");
+            }
+            Check("no_floating_trees", floatingGroups == 0, $"logs={logSet.Count} trees={groups} floating={floatingGroups} {string.Join("; ", fl)}");
 
             // Props removed when their support is mined.
             var pr = World.Decor.PropRenderer.Instance;
@@ -1186,7 +1221,7 @@ namespace Wildmere.QA
                 $"health={Json.Num(pj, "health")} time={Json.Num(meta0?.Meta, "time")}");
             R.QuitToMenu();
             yield return Frames(3);
-            Check("quit_to_menu", R.State == GameState.MainMenu && W == null && P == null, $"state={R.State}");
+            Check("quit_to_menu", R.State == GameState.MainMenu && R.World == null && R.Player == null, $"state={R.State}");
             var reloaded = WorldSave.TryLoadMeta(dir);
             R.LoadWorld(reloaded);
             while (R.State != GameState.Playing && R.State != GameState.MainMenu) yield return null;

@@ -31,6 +31,8 @@ def main():
     ap.add_argument("--out", required=True, help="output prefix (writes <out>.csv, <out>.log, <out>-summary.txt)")
     ap.add_argument("--interval", type=float, default=2.0)
     ap.add_argument("--res", default="1600x900")
+    ap.add_argument("--settings", choices=["keep", "defaults", "user-windowed"], default="defaults",
+                    help="settings.json for the run (the real file is backed up and restored afterwards)")
     ap.add_argument("args", nargs=argparse.REMAINDER)
     a = ap.parse_args()
     args = [x for x in a.args if x != "--"]
@@ -40,7 +42,32 @@ def main():
         os.remove(log)
     w, h = a.res.split("x")
     cmd = [a.app, "-logFile", log, "-screen-fullscreen", "0", "-screen-width", w, "-screen-height", h] + args
-    print("launch:", " ".join(cmd), flush=True)
+    sdir = os.path.expanduser("~/Library/Application Support/Wildmere/Wildmere")
+    spath = os.path.join(sdir, "settings.json")
+    original = open(spath, "rb").read() if os.path.exists(spath) else None
+    if a.settings != "keep":
+        import json
+        if a.settings == "defaults":
+            data = {"Fullscreen": 0}          # every other field falls back to the GameSettings defaults
+        else:
+            data = json.loads(original.decode()) if original else {}
+            data["Fullscreen"] = 0
+        os.makedirs(sdir, exist_ok=True)
+        with open(spath, "w") as f:
+            json.dump(data, f, indent=4)
+    print("launch:", " ".join(cmd), "settings:", a.settings, flush=True)
+    try:
+        return run(a, cmd, log, args)
+    finally:
+        if a.settings != "keep":
+            if original is not None:
+                open(spath, "wb").write(original)
+            elif os.path.exists(spath):
+                os.remove(spath)
+            print("settings.json restored", flush=True)
+
+
+def run(a, cmd, log, args):
     proc = subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     rows = []
     phase = "boot"
@@ -71,7 +98,7 @@ def main():
         wr = csv.writer(f)
         wr.writerow(["t_s", "phase", "cpu_pct_of_one_core", "rss_mb"])
         wr.writerows(rows)
-    lines = [f"exit={rc} samples={len(rows)} interval={a.interval}s args={' '.join(args)}"]
+    lines = [f"exit={rc} samples={len(rows)} interval={a.interval}s settings={a.settings} args={' '.join(args)}"]
     phases = []
     for r in rows:
         if r[1] not in phases:
