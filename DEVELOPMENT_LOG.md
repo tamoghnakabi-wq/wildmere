@@ -1,7 +1,18 @@
 # Wildmere — development log
 
 ## Current phase
-Phase 2–4 in parallel (world gen, graphics, UI, audio agents running in worktrees). Last update 2026-10-18.
+Phase 7 — Released. **v0.1.0 is live** (2026-10-19): https://github.com/tamoghnakabi-wq/wildmere/releases/tag/v0.1.0,
+website https://wildmere-game.vercel.app (Vercel project `wildmere`, auto-deploys from `main`).
+
+## Release verification (v0.1.0)
+- Local: `tools/release/verify-download.sh v0.1.0` — checksums match the website's release.json; the downloaded
+  Universal macOS app is ad-hoc signed, x86_64+arm64, self-test 19/19 on the M4.
+- GitHub Actions `verify-release.yml` run 39175637868: Windows x64 self-test 19/19 + D3D11 (WARP) screenshot;
+  macOS Apple Silicon 19/19; macOS Intel x86_64 19/19. Website marks Apple Silicon verified; Windows and Intel
+  Macs are labelled experimental (automated checks only — no real Windows PC / Intel Mac was played on).
+- Test suites on main: `-selftest` 19/19, `-qatest` 129/129, `-uitest` 42/42, EditMode 72/72.
+- Perf (M4 Air, 1600x900, vsync off): Low 610 fps, Medium 342, High 206 (p99 7.1 ms), Ultra 138; default
+  (High, vsync) locked 60 fps, 1% low 56.
 
 ## Completed (verified)
 - Phase 1 foundation (lead): chunked voxel world (16x256x16), greedy mesher with flood-fill sky/block light
@@ -47,7 +58,13 @@ Phase 2–4 in parallel (world gen, graphics, UI, audio agents running in worktr
 - DebugHud IMGUI is the only UI until the UI branch merges.
 - No audio playback yet. Windows build not yet produced/validated (module installed).
 
-## Next tasks
+## Next tasks (post-0.1.0 ideas)
+- Hostile creatures/hunger (not in scope for 0.1), more recipes for gold/flint, dropped items persisted in saves.
+- Real-hardware testing on Windows and Intel Macs; then flip `verified` in website/src/data/release.json.
+- Optional code signing/notarization (needs an Apple Developer account) and Windows signing.
+- Choose a licence for the code/assets (currently all rights reserved).
+
+## Older next-task notes
 1. Merge worldgen, graphics, UI, audio branches; rerun `tools/run.sh -selftest`, benchmarks per preset.
 2. AudioManager (footsteps, mining, ambience by biome/time/weather, thunder, music).
 3. QA agent pass; fix defects.
