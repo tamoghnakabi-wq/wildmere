@@ -412,6 +412,8 @@ namespace Wildmere.Core
                 t += dt;
                 frames.Add(dt * 1000f);
                 worst = Mathf.Max(worst, dt);
+                if (dt > 0.035f)
+                    Debug.Log($"WM_SPIKE t={t:F2}s ms={dt * 1000f:F1} gc0={GC.CollectionCount(0) - gc0} gc1={GC.CollectionCount(1)} chunks={w.Loaded} meshed={w.MeshedCount} genQ={w.GenInFlight} meshQ={w.MeshInFlight} mainQ={w.Pool.MainPending}");
                 // A gentle curving flight at walking-ish speed with a slow look-around.
                 p.Yaw = 30f + Mathf.Sin(t * 0.15f) * 60f;
                 p.Pitch = 8f + Mathf.Sin(t * 0.33f) * 6f;

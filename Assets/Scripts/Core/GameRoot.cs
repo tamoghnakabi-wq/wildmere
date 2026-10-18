@@ -34,6 +34,8 @@ namespace Wildmere.Core
         /// <summary>Raised before the world is torn down (save first if you need to).</summary>
         public event Action WorldClosing;
         public event Action<Station> OpenCrafting;
+        /// <summary>Raised after the world was written to disk.</summary>
+        public event Action Saved;
 
         public WorldSave Save { get; private set; }
         public VoxelWorld World { get; private set; }
@@ -167,7 +169,8 @@ namespace Wildmere.Core
             catch (Exception e) { Debug.LogError($"WM_SAVE could not read block changes: {e.Message}"); }
 
             var gen = new TerrainGenerator(save.Seed);
-            int threads = Mathf.Clamp(SystemInfo.processorCount - 2, 2, 8);
+            // Measured on the M4 (4P+6E): 4 workers stream smoothly; 6–8 starve the main/render threads (60–130 ms spikes).
+            int threads = (int)Cli.Float("threads", Mathf.Clamp(SystemInfo.processorCount / 2 - 1, 2, 4));
             World = VoxelWorld.Create(gen, NoSave ? null : save, threads);
             World.ViewDistance = GameSettings.Current.ViewDistance;
             World.FancyLeaves = GameSettings.Current.FancyLeaves;
@@ -270,6 +273,7 @@ namespace Wildmere.Core
                 Weather.WeatherState?.Invoke(Save.Meta);
                 Save.Save();
                 Debug.Log($"WM_SAVE ok world='{Save.Name}' blocks={Save.ModifiedBlocks} dir={Save.Dir}");
+                Saved?.Invoke();
             }
             catch (Exception e) { Debug.LogError($"WM_SAVE failed: {e}"); }
         }
@@ -330,7 +334,7 @@ namespace Wildmere.Core
                 mAutosaveTimer -= Time.unscaledDeltaTime;
                 if (mAutosaveTimer <= 0) { mAutosaveTimer = kAutosaveSeconds; SaveWorld(); }
             }
-            else if (State == GameState.Paused && GameSettings.Pressed(Control.Pause)) Resume();
+            else if (State == GameState.Paused && GameSettings.Pressed(Control.Pause) && !mUiCapture) Resume();
         }
     }
 }

@@ -79,18 +79,39 @@ namespace Wildmere.World
             return t;
         }
 
-        /// <summary>Write a generated column's tints into the toroidal tint maps (main thread).</summary>
+        static Texture2D sStageGrass, sStageFoliage;
+
+        /// <summary>
+        /// Write a generated column's tints into the toroidal tint maps (main thread). Each column is
+        /// uploaded as a 16x16 staging texture and copied on the GPU, so streaming never re-uploads the
+        /// whole 1024x1024 maps (that cost 8 MB per frame and caused hitches).
+        /// </summary>
         public static void WriteTints(Chunk c)
         {
             int x = ((c.CX * 16) % TintSize + TintSize) % TintSize;
             int z = ((c.CZ * 16) % TintSize + TintSize) % TintSize;
+            if (sStageGrass == null)
+            {
+                sStageGrass = new Texture2D(16, 16, TextureFormat.RGBA32, false, false);
+                sStageFoliage = new Texture2D(16, 16, TextureFormat.RGBA32, false, false);
+            }
             // Chunk tint arrays are x + z*16, which matches SetPixels32 row order (rows = z).
-            GrassTint.SetPixels32(x, z, 16, 16, c.GrassTint);
-            FoliageTint.SetPixels32(x, z, 16, 16, c.FoliageTint);
-            sDirtyTint = true;
+            sStageGrass.SetPixels32(c.GrassTint); sStageGrass.Apply(false);
+            sStageFoliage.SetPixels32(c.FoliageTint); sStageFoliage.Apply(false);
+            if (SystemInfo.copyTextureSupport != UnityEngine.Rendering.CopyTextureSupport.None)
+            {
+                Graphics.CopyTexture(sStageGrass, 0, 0, 0, 0, 16, 16, GrassTint, 0, 0, x, z);
+                Graphics.CopyTexture(sStageFoliage, 0, 0, 0, 0, 16, 16, FoliageTint, 0, 0, x, z);
+            }
+            else
+            {
+                GrassTint.SetPixels32(x, z, 16, 16, c.GrassTint);
+                FoliageTint.SetPixels32(x, z, 16, 16, c.FoliageTint);
+                sDirtyTint = true;
+            }
         }
 
-        /// <summary>Upload pending tint edits once per frame.</summary>
+        /// <summary>Upload pending tint edits (only used without GPU copy support).</summary>
         public static void FlushTints()
         {
             if (!sDirtyTint) return;

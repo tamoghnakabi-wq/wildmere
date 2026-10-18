@@ -180,6 +180,7 @@ namespace Wildmere.Audio
                 p.Footstep += m => PlayAt("step/" + Mat(m, true), p.transform.position, p.Crouching ? 0.45f : p.Sprinting ? 1f : 0.8f);
                 p.Landed += fall => { if (fall > 2.5f) PlayAt("player/land_hard", p.transform.position, Mathf.Clamp01(fall / 8f) + 0.3f); };
                 p.Damaged += (amt, cause) => Play2D("player/hurt", 0.8f, Cat.Effects);
+                p.Jumped += () => PlayAt("player/jump", p.transform.position, 0.45f);
                 p.WaterTransition += inWater => PlayAt(inWater ? "water/splash_in" : "water/splash_out", p.transform.position, inWater ? 0.9f : 0.6f);
             }
             if (bi != null)

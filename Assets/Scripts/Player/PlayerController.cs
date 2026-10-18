@@ -47,6 +47,7 @@ namespace Wildmere.Player
         public event Action<float> Landed;              // fall distance
         public event Action<SoundMat> Footstep;
         public event Action<bool> WaterTransition;       // true = entered
+        public event Action Jumped;
 
         float mFallStartY;
         bool mWasGrounded = true;
@@ -219,6 +220,7 @@ namespace Wildmere.Player
                 {
                     Velocity.y = JumpVelocity;
                     mJumpBuffer = 0; mCoyote = 0;
+                    Jumped?.Invoke();
                     if (Sprinting) { Velocity.x += fwd.x * 1.2f; Velocity.z += fwd.z * 1.2f; }
                 }
             }
