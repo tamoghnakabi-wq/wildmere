@@ -98,10 +98,10 @@ namespace Wildmere.UI
         public AnimatedBackground()
         {
             Root = Ui.Div("bg-anim", "fill").Ignore();
-            Blob(new Color(0.16f, 0.52f, 0.5f, 0.55f), new Vector2(-0.12f, -0.25f), new Vector2(1.2f, 1.1f), 0.05f, 0f);
-            Blob(new Color(0.93f, 0.55f, 0.32f, 0.35f), new Vector2(0.45f, 0.05f), new Vector2(1.0f, 0.9f), 0.04f, 2f);
-            Blob(new Color(0.22f, 0.3f, 0.62f, 0.45f), new Vector2(0.15f, 0.25f), new Vector2(1.3f, 1.0f), 0.03f, 4f);
-            Blob(new Color(0.98f, 0.78f, 0.5f, 0.22f), new Vector2(0.62f, 0.32f), new Vector2(0.5f, 0.45f), 0.06f, 1f);
+            Blob(new Color(0.16f, 0.52f, 0.5f, 0.36f), new Vector2(-0.12f, -0.25f), new Vector2(1.2f, 1.1f), 0.05f, 0f);
+            Blob(new Color(0.93f, 0.55f, 0.32f, 0.15f), new Vector2(0.45f, 0.05f), new Vector2(1.0f, 0.9f), 0.04f, 2f);
+            Blob(new Color(0.22f, 0.3f, 0.62f, 0.3f), new Vector2(0.15f, 0.25f), new Vector2(1.3f, 1.0f), 0.03f, 4f);
+            Blob(new Color(0.98f, 0.78f, 0.5f, 0.07f), new Vector2(0.62f, 0.32f), new Vector2(0.5f, 0.45f), 0.06f, 1f);
 
             Ridge(new Color32(26, 52, 60, 255), 34f, 0.34f, 0.32f, 11, false, 5f, 6f);
             Ridge(new Color32(18, 37, 43, 255), 26f, 0.22f, 0.26f, 23, true, 11f, 14f);
@@ -171,7 +171,7 @@ namespace Wildmere.UI
                 float x = x0 * W + Mathf.Sin(mT * 0.4f + phase) * 26f - mMouse.x * 30f;
                 e.style.left = x; e.style.top = y;
                 float fade = Mathf.Clamp01(y / (H * 0.25f)) * Mathf.Clamp01((H - y) / (H * 0.3f));
-                e.style.opacity = fade * (0.35f + 0.35f * Mathf.Sin(mT * 1.3f + phase * 3f));
+                e.style.opacity = fade * (0.16f + 0.14f * Mathf.Sin(mT * 1.3f + phase * 3f));
             }
         }
     }

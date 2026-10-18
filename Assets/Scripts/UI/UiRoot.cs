@@ -86,6 +86,12 @@ namespace Wildmere.UI
             mDoc = gameObject.AddComponent<UIDocument>();
             mDoc.panelSettings = ps;
 
+            // Without Unity's default theme nothing sizes the document root: pin it to the panel,
+            // otherwise every absolute "fill" layer collapses to 0x0.
+            var docRoot = mDoc.rootVisualElement;
+            docRoot.style.position = Position.Absolute;
+            docRoot.style.left = 0; docRoot.style.top = 0; docRoot.style.right = 0; docRoot.style.bottom = 0;
+
             Root = new VisualElement { name = "wildmere-ui" };
             Root.AddToClassList("wm");
             Root.pickingMode = PickingMode.Ignore;
@@ -236,7 +242,7 @@ namespace Wildmere.UI
                     Hud.SetVisible(false);
                     SetBase(Loading);
                     SetBackground(true);
-                    SetBackdropActive(false);
+                    SetBackdropActive(false, instant: true); // never show the half-streamed world
                     break;
                 case GameState.Playing:
                     SetBackground(false);
@@ -328,8 +334,13 @@ namespace Wildmere.UI
         void SetBackdropActive(bool active, bool instant)
         {
             BackdropActive = active;
-            mBackground.Root.EnableInClassList("bg-anim--off", active);
-            if (instant) mBackground.Root.style.opacity = StyleKeyword.Null;
+            var bg = mBackground.Root;
+            if (instant)
+            {
+                bg.AddToClassList("bg-anim--instant");
+                bg.schedule.Execute(() => bg.RemoveFromClassList("bg-anim--instant")).ExecuteLater(80);
+            }
+            bg.EnableInClassList("bg-anim--off", active);
         }
 
         void SetBackground(bool on)

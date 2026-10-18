@@ -219,12 +219,10 @@ namespace Wildmere.UI
             mEmpty.Add(Ui.Btn("Create a world", () => { UI.Pop(this); UI.Push(UI.NewWorld); }, null, "btn--primary"));
 
             var foot = panel.Append(Ui.Div("panel__footer"));
-            mDelete = foot.Append(Ui.Btn("Delete", AskDelete, null, "btn--danger"));
-            mDelete.Insert(0, new Glyph(GlyphKind.Trash, "btn__glyph", "btn__glyph--lead"));
+            mDelete = foot.Append(Ui.IconBtn(GlyphKind.Trash, "Delete", AskDelete, null, "btn--danger"));
             foot.Add(Ui.Div("grow"));
             foot.Add(Ui.Btn("Back", () => UI.Pop(this), UiSound.Close, "btn--ghost", "gap-r-12"));
-            mPlay = foot.Append(Ui.Btn("Play", () => UI.PlayWorld(Selected), UiSound.Confirm, "btn--primary"));
-            mPlay.Insert(0, new Glyph(GlyphKind.Play, "btn__glyph", "btn__glyph--lead"));
+            mPlay = foot.Append(Ui.IconBtn(GlyphKind.Play, "Play", () => UI.PlayWorld(Selected), UiSound.Confirm, "btn--primary"));
             mPlay.style.minWidth = 170;
         }
 
@@ -463,8 +461,8 @@ namespace Wildmere.UI
         public override void Build()
         {
             Root.Add(Ui.Div("fill", "death-scrim"));
-            var vig = Root.Append(Ui.Div("bg-vignette").Ignore());
-            vig.style.backgroundImage = UiTextures.Damage;
+            var vig = Root.Append(Ui.Div("bg-vignette", "death-vignette").Ignore());
+            vig.style.backgroundImage = UiTextures.LowHealth;
             var c = Root.Append(Ui.Div("death-center", "anim-rise"));
             c.Add(Ui.Text("You perished", "death-title"));
             mSub = c.Append(Ui.Text("", "death-sub"));
