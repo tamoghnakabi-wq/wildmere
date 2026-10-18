@@ -2950,5 +2950,149 @@
    "seconds": 0.232,
    "channels": 1
   }
+ ],
+ "thunder/far": [
+  {
+   "file": "Assets/Resources/Audio/thunder/far_01.wav",
+   "layers": [
+    {
+     "source": "pd_ezwa_storm",
+     "file": "Rain_thunder_and_other_noises.ogg",
+     "t0": 6.5,
+     "t1": 21.0,
+     "role": "take"
+    }
+   ],
+   "seconds": 14.0,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/thunder/far_02.wav",
+   "layers": [
+    {
+     "source": "pd_ezwa_storm",
+     "file": "Rain_thunder_and_other_noises.ogg",
+     "t0": 64.5,
+     "t1": 80.0,
+     "role": "take"
+    }
+   ],
+   "seconds": 14.0,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/thunder/far_03.wav",
+   "layers": [
+    {
+     "source": "pd_ezwa_storm",
+     "file": "Rain_thunder_and_other_noises.ogg",
+     "t0": 141.0,
+     "t1": 158.0,
+     "role": "take"
+    }
+   ],
+   "seconds": 14.0,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/thunder/far_04.wav",
+   "layers": [
+    {
+     "source": "pd_ezwa_storm",
+     "file": "Rain_and_thunder_(1).ogg",
+     "t0": 0.0,
+     "t1": 15.0,
+     "role": "take"
+    }
+   ],
+   "seconds": 14.0,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/thunder/far_05.wav",
+   "layers": [
+    {
+     "source": "pd_tonitrus",
+     "file": "Tonitrus.ogg",
+     "t0": 20.5,
+     "t1": 32.2,
+     "role": "take"
+    }
+   ],
+   "seconds": 11.7,
+   "channels": 1
+  }
+ ],
+ "thunder/near": [
+  {
+   "file": "Assets/Resources/Audio/thunder/near_01.wav",
+   "layers": [
+    {
+     "source": "oga_rain_thunder",
+     "file": "rain-thunder.ogg",
+     "t0": 20.3,
+     "t1": 36.0,
+     "role": "take"
+    }
+   ],
+   "seconds": 15.0,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/thunder/near_02.wav",
+   "layers": [
+    {
+     "source": "oga_rd_100v2",
+     "file": "sfx_100_v2.zip -> sfx100v2_thunder_01.ogg",
+     "t0": 0.0,
+     "t1": 5.265,
+     "role": "take"
+    }
+   ],
+   "seconds": 4.286,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/thunder/near_03.wav",
+   "layers": [
+    {
+     "source": "pd_ezwa_storm",
+     "file": "Thunder_and_rain_on_a_v.ogg",
+     "t0": 2.6,
+     "t1": 19.0,
+     "role": "take"
+    }
+   ],
+   "seconds": 15.0,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/thunder/near_04.wav",
+   "layers": [
+    {
+     "source": "pd_caesar_thunder",
+     "file": "Rain_and_thunder.ogg",
+     "t0": 1.4,
+     "t1": 16.5,
+     "role": "take"
+    }
+   ],
+   "seconds": 15.0,
+   "channels": 1
+  },
+  {
+   "file": "Assets/Resources/Audio/thunder/near_05.wav",
+   "layers": [
+    {
+     "source": "pd_ezwa_storm",
+     "file": "Rain_thunder_and_birds.ogg",
+     "t0": 3.0,
+     "t1": 17.5,
+     "role": "take"
+    }
+   ],
+   "seconds": 14.5,
+   "channels": 1
+  }
  ]
 }

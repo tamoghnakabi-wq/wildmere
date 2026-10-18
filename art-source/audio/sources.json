@@ -1981,6 +1981,13 @@
     "url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Waves.ogg"
    },
    {
+    "bytes": 19189608,
+    "extracted": false,
+    "file": "Forest_lawn_creek.ogg",
+    "sha256": "11d0a515c2eb636a6492cf5571a7f6898f892feb11752e82a384a6f75c492f70",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Forest_lawn_creek.ogg"
+   },
+   {
     "bytes": 45837417,
     "extracted": false,
     "file": "Walking_through_woods.ogg",
@@ -1997,6 +2004,20 @@
  "pd_ezwa_storm": {
   "author": "ezwa",
   "files": [
+   {
+    "bytes": 2485376,
+    "extracted": false,
+    "file": "Rain_thunder_and_other_noises.ogg",
+    "sha256": "9d4ff9341deef0cb0c4545b6db458309c98c7887422fa23e23d3e06bc1a49e94",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Rain_thunder_and_other_noises.ogg"
+   },
+   {
+    "bytes": 1979069,
+    "extracted": false,
+    "file": "Rain_thunder_and_birds.ogg",
+    "sha256": "23694214e45be568e912d0eeff764f28c7669a12bd6c1d0c282094e39d8be3a9",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Rain_thunder_and_birds.ogg"
+   },
    {
     "bytes": 771989,
     "extracted": false,
@@ -2020,7 +2041,15 @@
  },
  "pd_grass_fire": {
   "author": "ezwa",
-  "files": [],
+  "files": [
+   {
+    "bytes": 511116,
+    "extracted": false,
+    "file": "Dry_grass_burning_in_open_fireplace.ogg",
+    "sha256": "0fb9fb4a44fe378ceffb2b80d0cf420e28404e04f5f200b7bc0205eadeebc8d4",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Dry_grass_burning_in_open_fireplace.ogg"
+   }
+  ],
   "licence": "Public domain (PD-self dedication)",
   "licence_files": [],
   "page": "https://commons.wikimedia.org/wiki/File:Dry_grass_burning_in_open_fireplace.ogg",
@@ -2029,7 +2058,15 @@
  },
  "pd_moose": {
   "author": "Bwells",
-  "files": [],
+  "files": [
+   {
+    "bytes": 2176737,
+    "extracted": false,
+    "file": "Moose_mate.ogg",
+    "sha256": "c4b1ba2dd33854bfa2876e9e9a5b192cb94a274cebd4d04d03164e5053a25de2",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Moose_mate.ogg"
+   }
+  ],
   "licence": "Public domain (PD-self dedication)",
   "licence_files": [],
   "page": "https://commons.wikimedia.org/wiki/File:Moose_mate.ogg",
@@ -2038,7 +2075,15 @@
  },
  "pd_night": {
   "author": "hc",
-  "files": [],
+  "files": [
+   {
+    "bytes": 415104,
+    "extracted": false,
+    "file": "Country_night_noise.ogg",
+    "sha256": "91bc76aced09a35ab8fa422c032c3e07fc4fc319e70fdf1c90c5d502c7d83716",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Country_night_noise.ogg"
+   }
+  ],
   "licence": "Public domain (PD-self dedication)",
   "licence_files": [],
   "page": "https://commons.wikimedia.org/wiki/File:Country_night_noise.ogg",
@@ -2047,7 +2092,22 @@
  },
  "pd_shore": {
   "author": "earthcalling",
-  "files": [],
+  "files": [
+   {
+    "bytes": 1202713,
+    "extracted": false,
+    "file": "On_a_pebble_beach.ogg",
+    "sha256": "4e506141b9a285d03debdb8e0fbc9c1e30aaa29f82f8b2f368f70d5491a636b6",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/7/73/On_a_pebble_beach.ogg"
+   },
+   {
+    "bytes": 1232559,
+    "extracted": false,
+    "file": "Water_over_rocks_as_tide_recedes.ogg",
+    "sha256": "07634cf0f0b5a8ed6e0b83222f41f84b36ca4cb482e3229abfe7a35b9e2b72b6",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/6/60/Water_over_rocks_as_tide_recedes.ogg"
+   }
+  ],
   "licence": "Public domain (PD-self dedication)",
   "licence_files": [],
   "page": "https://commons.wikimedia.org/wiki/File:On_a_pebble_beach.ogg",
@@ -2056,7 +2116,15 @@
  },
  "pd_tonitrus": {
   "author": "Mysid",
-  "files": [],
+  "files": [
+   {
+    "bytes": 394881,
+    "extracted": false,
+    "file": "Tonitrus.ogg",
+    "sha256": "75c4d3911eedd1370db6aa30c90aee9e2eee3d18b429862eee6db221bcd0f421",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Tonitrus.ogg"
+   }
+  ],
   "licence": "Public domain (PD-self dedication)",
   "licence_files": [],
   "page": "https://commons.wikimedia.org/wiki/File:Tonitrus.ogg",

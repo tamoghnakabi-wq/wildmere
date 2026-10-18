@@ -19,6 +19,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DL = os.path.join(HERE, "downloads")
 UA = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
                     "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
+WM_UA = {"User-Agent": "WildmereAudioFetch/1.0 (game asset provenance; github.com/tamoghnakabi-wq) python-urllib"}
 OGA = "https://opengameart.org/sites/default/files/"
 CC0 = "CC0 1.0"
 PD = "Public domain (PD-self dedication)"
@@ -364,7 +365,9 @@ def sha256(path):
 def fetch(url, dest):
     if os.path.exists(dest) and os.path.getsize(dest) > 0:
         return False
-    req = urllib.request.Request(url, headers=UA)
+    # Wikimedia asks bots for a descriptive User-Agent (and rate-limits fast clients)
+    hdr = WM_UA if "wikimedia.org" in url else UA
+    req = urllib.request.Request(url, headers=hdr)
     tmp = dest + ".part"
     with urllib.request.urlopen(req, timeout=300) as r, open(tmp, "wb") as f:
         while True:
@@ -418,7 +421,7 @@ def main(only):
             local = os.path.join(d, name)
             try:
                 if fetch(u, local):
-                    time.sleep(3.0 if "opengameart" in u else 1.0)
+                    time.sleep(3.0 if "opengameart" in u else 8.0 if "wikimedia" in u else 1.0)
             except Exception as e:  # noqa: BLE001
                 print(f"  !! {sid}: {u}: {e}")
                 continue

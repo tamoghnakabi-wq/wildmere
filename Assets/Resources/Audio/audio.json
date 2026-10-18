@@ -456,5 +456,27 @@
     ],
     "volume": 0.3,
     "loop": false
+  },
+  "thunder/far": {
+    "files": [
+      "Audio/thunder/far_01",
+      "Audio/thunder/far_02",
+      "Audio/thunder/far_03",
+      "Audio/thunder/far_04",
+      "Audio/thunder/far_05"
+    ],
+    "volume": 0.75,
+    "loop": false
+  },
+  "thunder/near": {
+    "files": [
+      "Audio/thunder/near_01",
+      "Audio/thunder/near_02",
+      "Audio/thunder/near_03",
+      "Audio/thunder/near_04",
+      "Audio/thunder/near_05"
+    ],
+    "volume": 0.9,
+    "loop": false
   }
 }

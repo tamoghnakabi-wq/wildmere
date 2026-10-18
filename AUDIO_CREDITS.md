@@ -46,6 +46,7 @@ source and `art-source/audio/sources.json` records file hashes.
 | `oga_qubodup_wetsnow` | 9 wet snow steps | qubodup | CC0 1.0 | <https://opengameart.org/content/9-wet-snow-steps> |
 | `oga_rain_gutter` | Rain in the Gutter Loop | Ogrebane | CC0 1.0 | <https://opengameart.org/content/rain-gutter-loop> |
 | `oga_rain_kresiek2` | AMB Rain Loop 2 | Kresiek The Furry | CC0 1.0 | <https://opengameart.org/content/amb-rain-loop-2> |
+| `oga_rain_thunder` | Rain + Long Thunder | WuxiaScrub | CC0 1.0 | <https://opengameart.org/content/rain-long-thunder> |
 | `oga_rain_ylmir` | Rain (loopable) | Ylmir | CC0 1.0 | <https://opengameart.org/content/rain-loopable> |
 | `oga_rd_100v2` | 100 CC0 SFX #2 | rubberduck | CC0 1.0 | <https://opengameart.org/content/100-cc0-sfx-2> |
 | `oga_rd_breaking` | 75 CC0 breaking / falling / hit sfx | rubberduck | CC0 1.0 | <https://opengameart.org/content/75-cc0-breaking-falling-hit-sfx> |
@@ -61,6 +62,9 @@ source and `art-source/audio/sources.json` records file hashes.
 | `oga_underwater` | underwater or space engine rumble | gmason | CC0 1.0 | <https://opengameart.org/content/underwater-or-space-engine-rumble> |
 | `oga_vistula` | Sea and river wave sounds | RandomMind | CC0 1.0 | <https://opengameart.org/content/sea-and-river-wave-sounds> |
 | `oga_water_drops` | Water Drops | CeoxBlackj | CC0 1.0 | <https://opengameart.org/content/water-drops> |
+| `pd_caesar_thunder` | Rain and thunder | Caesar | PD-self | <https://commons.wikimedia.org/wiki/File:Rain_and_thunder.ogg> |
+| `pd_ezwa_storm` | Rain, thunder and other noises / Rain, thunder and birds / Rain and thunder / Thunder and rain on a veranda | ezwa | PD-self | <https://commons.wikimedia.org/wiki/File:Rain_thunder_and_other_noises.ogg> |
+| `pd_tonitrus` | Tonitrus (thunder, Southern Finland) | Mysid | PD-self | <https://commons.wikimedia.org/wiki/File:Tonitrus.ogg> |
 
 ## Per-file provenance
 
@@ -287,3 +291,13 @@ every recording that went into them.
 | Audio/step/wood_03.wav | <https://opengameart.org/content/100-cc0-sfx-2> | rubberduck | CC0 1.0 | `sfx_100_v2.zip -> sfx100v2_footstep_wood_04.ogg` [0.00-0.37s] |
 | Audio/step/wood_04.wav | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/footstep_wood_000.ogg` [0.00-0.27s] |
 | Audio/step/wood_05.wav | <https://opengameart.org/content/different-steps-on-wood-stone-leaves-gravel-and-mud> | TinyWorlds | CC0 1.0 | `[kdd]DifferentSteps_0.zip -> wood01.ogg` [0.00-0.24s] |
+| Audio/thunder/far_01.wav | <https://commons.wikimedia.org/wiki/File:Rain_thunder_and_other_noises.ogg> | ezwa | PD-self | `Rain_thunder_and_other_noises.ogg` [6.50-21.00s] |
+| Audio/thunder/far_02.wav | <https://commons.wikimedia.org/wiki/File:Rain_thunder_and_other_noises.ogg> | ezwa | PD-self | `Rain_thunder_and_other_noises.ogg` [64.50-80.00s] |
+| Audio/thunder/far_03.wav | <https://commons.wikimedia.org/wiki/File:Rain_thunder_and_other_noises.ogg> | ezwa | PD-self | `Rain_thunder_and_other_noises.ogg` [141.00-158.00s] |
+| Audio/thunder/far_04.wav | <https://commons.wikimedia.org/wiki/File:Rain_thunder_and_other_noises.ogg> | ezwa | PD-self | `Rain_and_thunder_(1).ogg` [0.00-15.00s] |
+| Audio/thunder/far_05.wav | <https://commons.wikimedia.org/wiki/File:Tonitrus.ogg> | Mysid | PD-self | `Tonitrus.ogg` [20.50-32.20s] |
+| Audio/thunder/near_01.wav | <https://opengameart.org/content/rain-long-thunder> | WuxiaScrub | CC0 1.0 | `rain-thunder.ogg` [20.30-36.00s] |
+| Audio/thunder/near_02.wav | <https://opengameart.org/content/100-cc0-sfx-2> | rubberduck | CC0 1.0 | `sfx_100_v2.zip -> sfx100v2_thunder_01.ogg` [0.00-5.26s] |
+| Audio/thunder/near_03.wav | <https://commons.wikimedia.org/wiki/File:Rain_thunder_and_other_noises.ogg> | ezwa | PD-self | `Thunder_and_rain_on_a_v.ogg` [2.60-19.00s] |
+| Audio/thunder/near_04.wav | <https://commons.wikimedia.org/wiki/File:Rain_and_thunder.ogg> | Caesar | PD-self | `Rain_and_thunder.ogg` [1.40-16.50s] |
+| Audio/thunder/near_05.wav | <https://commons.wikimedia.org/wiki/File:Rain_thunder_and_other_noises.ogg> | ezwa | PD-self | `Rain_thunder_and_birds.ogg` [3.00-17.50s] |

@@ -1,6 +1,6 @@
 Wildmere audio QA
 =================
-46 names, 182 files, 30.0 MB
+48 names, 192 files, 42.6 MB
 
 Effective level per name (loudest 400 ms of the loudest variant + 20log10(volume)):
   amb/cave                  -28.1  variants 1  max xcorr 0.00
@@ -49,6 +49,8 @@ Effective level per name (loudest 400 ms of the loudest variant + 20log10(volume
   step/stone                -28.5  variants 6  max xcorr 0.15
   step/water                -29.0  variants 6  max xcorr 0.10
   step/wood                 -28.5  variants 5  max xcorr 0.44
+  thunder/far               -22.5  variants 5  max xcorr 0.42
+  thunder/near              -13.9  variants 5  max xcorr 0.13
 
 FAIL (0):
 
@@ -243,3 +245,13 @@ Per file:
   step/wood wood_03.wav                        1ch   0.25s pk  -1.60 tp  -1.52 Mmax  -21.4 dc 0.0000
   step/wood wood_04.wav                        1ch   0.10s pk  -1.60 tp  -1.60 Mmax  -23.4 dc 0.0000
   step/wood wood_05.wav                        1ch   0.23s pk  -1.60 tp  -1.60 Mmax  -23.0 dc 0.0000
+  thunder/far far_01.wav                       1ch  14.00s pk  -6.88 tp  -6.88 LUFS  -28.0 dc 0.0000
+  thunder/far far_02.wav                       1ch  14.00s pk  -7.14 tp  -7.14 LUFS  -27.8 dc 0.0000
+  thunder/far far_03.wav                       1ch  14.00s pk  -8.74 tp  -8.74 LUFS  -28.3 dc 0.0000
+  thunder/far far_04.wav                       1ch  14.00s pk  -8.90 tp  -8.90 LUFS  -25.7 dc 0.0000
+  thunder/far far_05.wav                       1ch  11.70s pk  -7.96 tp  -7.96 LUFS  -25.2 dc 0.0000
+  thunder/near near_01.wav                     1ch  15.00s pk  -1.80 tp  -1.80 LUFS  -18.8 dc 0.0000
+  thunder/near near_02.wav                     1ch   4.29s pk  -1.60 tp  -1.60 LUFS  -17.7 dc 0.0000
+  thunder/near near_03.wav                     1ch  15.00s pk  -1.60 tp  -1.60 LUFS  -21.5 dc 0.0000
+  thunder/near near_04.wav                     1ch  15.00s pk  -1.78 tp  -1.55 LUFS  -20.6 dc 0.0000
+  thunder/near near_05.wav                     1ch  14.50s pk  -2.22 tp  -2.22 LUFS  -19.6 dc 0.0000
