@@ -1,0 +1,419 @@
+#!/usr/bin/env python3
+"""Build Wildmere's shipped sound set from the downloaded CC0 recordings.
+
+    python3 art-source/audio/build.py              # rebuild everything
+    python3 art-source/audio/build.py step/ dig/   # rebuild only names with these prefixes
+
+For every output name in recipes.py this cuts the chosen takes out of the source
+recordings, then: high-passes rumble, repairs isolated clicks (field recordings),
+trims, fades, normalises loudness per group, resamples to 48 kHz 16-bit, folds
+positional one-shots to mono, keeps beds/music stereo, and makes loops seamless
+with an equal-power crossfade at the seam.
+
+Outputs:
+  Assets/Resources/Audio/<group>/<name>_<nn>.wav (or .ogg for long beds/music)
+  Assets/Resources/Audio/audio.json          -- the runtime contract
+  art-source/audio/provenance.json           -- per-file source, time range, licence
+  AUDIO_CREDITS.md                           -- generated from provenance.json
+"""
+import glob, json, os, sys
+import numpy as np
+import dsp
+import recipes
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
+DL = os.path.join(HERE, "downloads")
+OUT = os.path.join(ROOT, "Assets", "Resources", "Audio")
+PROV = os.path.join(HERE, "provenance.json")
+SR = dsp.SR
+
+_cache = {}
+
+
+def src_path(sid, pat):
+    hits = sorted(glob.glob(os.path.join(DL, sid, "**", pat), recursive=True))
+    hits = [h for h in hits if os.path.isfile(h) and not h.endswith(".part")]
+    if not hits:
+        raise FileNotFoundError(f"{sid}: no file matches {pat!r}")
+    if len(hits) > 1:
+        exact = [h for h in hits if os.path.basename(h) == pat]
+        if len(exact) == 1:
+            return exact[0]
+        raise ValueError(f"{sid}: {pat!r} is ambiguous: {[os.path.basename(h) for h in hits][:6]}")
+    return hits[0]
+
+
+def load(sid, pat):
+    p = src_path(sid, pat)
+    if p not in _cache:
+        npy = os.path.join(HERE, "cache", "decoded", sid + "__" + os.path.basename(p) + ".npy")
+        if os.path.exists(npy) and os.path.getmtime(npy) > os.path.getmtime(p):
+            _cache[p] = np.load(npy)
+        else:
+            x = dsp.decode(p)
+            os.makedirs(os.path.dirname(npy), exist_ok=True)
+            np.save(npy, x.astype(np.float32))
+            _cache[p] = x.astype(np.float32)
+    return _cache[p].astype(np.float64), p
+
+
+def archive_member(sid, path):
+    """'archive.zip -> inner/file.wav' for credits, or the plain file name."""
+    rel = os.path.relpath(path, os.path.join(DL, sid))
+    parts = rel.split(os.sep)
+    if parts[0].endswith(".d") and len(parts) > 1:
+        return parts[0][:-2] + " -> " + "/".join(parts[1:])
+    return rel
+
+
+def take(t):
+    """Cut one take. t: dict(s=source id, f=file glob, t0/t1 seconds, ev=event index,
+    evp=find_events kwargs, g=gain dB, rate=varispeed, ch='L'/'R'/None)."""
+    x, p = load(t["s"], t["f"])
+    t0, t1 = t.get("t0"), t.get("t1")
+    a = int(t0 * SR) if t0 is not None else 0
+    b = int(t1 * SR) if t1 is not None else x.shape[0]
+    seg = x[a:b]
+    if "ev" in t:
+        evs = dsp.find_events(dsp.to_mono(seg), **t.get("evp", {}))
+        if t["ev"] >= len(evs):
+            raise IndexError(f"{t['s']}/{t['f']}: event {t['ev']} of {len(evs)}")
+        e0, e1 = evs[t["ev"]]
+        pad_post = int(t.get("tail", 0.0) * SR)
+        seg = seg[e0:min(seg.shape[0], e1 + pad_post)]
+        a, b = a + e0, a + e0 + seg.shape[0]
+    else:
+        b = a + seg.shape[0]
+    if t.get("ch") == "L":
+        seg = np.stack([seg[:, 0], seg[:, 0]], 1)
+    elif t.get("ch") == "R":
+        seg = np.stack([seg[:, 1], seg[:, 1]], 1)
+    if t.get("rate", 1.0) != 1.0:
+        seg = dsp.resample_ratio(seg, t["rate"])
+    seg = seg * dsp.undb(t.get("g", 0.0))
+    prov = {"source": t["s"], "file": archive_member(t["s"], p),
+            "t0": round(a / SR, 3), "t1": round(b / SR, 3)}
+    if t.get("rate", 1.0) != 1.0:
+        prov["varispeed"] = t["rate"]
+    return seg, prov
+
+
+# ----------------------------------------------------------------- processing
+
+def finish_oneshot(x, P):
+    """Shared one-shot chain. P is the recipe's processing dict."""
+    m = dsp.to_mono(x) if P.get("mono", True) else x
+    m = dsp.remove_dc(m)
+    if P.get("declick"):
+        m, _ = dsp.declick(m)
+    if P.get("hp"):
+        m = dsp.highpass(m, P["hp"], order=4)
+    if P.get("lp"):
+        m = dsp.lowpass(m, P["lp"], order=P.get("lp_order", 2))
+    for fc, gdb, q in P.get("eq", []):
+        m = dsp.eq_peak(m, fc, gdb, q)
+    if P.get("shelf"):
+        fc, gdb, hi = P["shelf"]
+        m = dsp.shelf(m, fc, gdb, high=hi)
+    if P.get("trim", True):
+        m = dsp.trim(m, thresh_db=P.get("trim_db", -48.0), pre_ms=P.get("pre_ms", 4.0),
+                     post_ms=P.get("post_ms", 40.0), lead_db=P.get("lead_db"))
+    if P.get("max_s"):
+        n = int(P["max_s"] * SR)
+        if m.shape[0] > n:
+            m = m[:n]
+    m = dsp.fade(m, P.get("fade_in_ms", 1.5), P.get("fade_out_ms", 40.0))
+    return dsp.zero_mean_faded(m)
+
+
+def finish_bed(x, P):
+    y = dsp.remove_dc(x)
+    if y.ndim == 1:
+        y = np.stack([y, y], 1)
+    if P.get("declick", True):
+        y, n = dsp.declick(y)
+        P["_declicked"] = n
+    return y
+
+
+def loopify(y, P):
+    L = P.get("loop_s", 50.0)
+    X = P.get("xfade_s", 3.0)
+    L = min(L, (y.shape[0] / SR) - X - 0.5)
+    out, s = dsp.make_loop(y, L, X, search=P.get("search"))
+    hp = P.get("hp", 30.0)
+    if hp:
+        out = dsp.highpass(out, hp, order=4, circular=True)
+    if P.get("lp"):
+        out = dsp.lowpass(out, P["lp"], order=P.get("lp_order", 2), circular=True)
+    for fc, gdb, q in P.get("eq", []):
+        out = dsp.eq_peak(out, fc, gdb, q, circular=True)
+    if P.get("shelf"):
+        fc, gdb, hi = P["shelf"]
+        out = dsp.shelf(out, fc, gdb, high=hi, circular=True)
+    return out, s
+
+
+def _circ_filters(y, o):
+    if o.get("hp"):
+        y = dsp.highpass(y, o["hp"], order=o.get("hp_order", 4), circular=True)
+    if o.get("lp"):
+        y = dsp.lowpass(y, o["lp"], order=o.get("lp_order", 2), circular=True)
+    for fc, gdb, q in o.get("eq", []):
+        y = dsp.eq_peak(y, fc, gdb, q, circular=True)
+    if o.get("shelf"):
+        fc, gdb, hi = o["shelf"]
+        y = dsp.shelf(y, fc, gdb, high=hi, circular=True)
+    return y
+
+
+def bed_layer(o, L, X):
+    """One layer of a loop bed, returned as a seamless loop of exactly L samples.
+
+    Long sources: dsp.make_loop (equal-power crossfade at the seam). Short sources:
+    loop at L/k and tile k times. Mono sources become pseudo-stereo by pairing the
+    loop with itself rotated half a period (still seamless, decorrelated L/R).
+    `insert` places a short take at given times (wrapping), for sparse accents.
+    """
+    x, pv = take(o["take"])
+    pv["role"] = o.get("role", "bed layer")
+    x = dsp.remove_dc(x)
+    if o.get("declick", True) and "insert" not in o:
+        x, _ = dsp.declick(x)
+    if "insert" in o:
+        clip = dsp.fade(x, 5.0, 200.0)
+        y = np.zeros((L, 2))
+        for t in o["insert"]:
+            a = int(t * SR) % L
+            n = min(clip.shape[0], L)
+            idx = (np.arange(n) + a) % L
+            y[idx] += clip[:n]
+    else:
+        n = x.shape[0]
+        if n >= L + X:
+            y, s = dsp.make_loop(x, L / SR, X / SR, search=o.get("search"))
+            pv["loop_from"] = round(pv["t0"] + s / SR, 3)
+        else:
+            k = max(2, int(np.ceil(L / n)))
+            while L % k or (L // k + min(X, (L // k) // 3)) > n:
+                k += 1
+            sub = L // k
+            Xs = min(X, sub // 3)
+            y, s = dsp.make_loop(x, sub / SR, Xs / SR)
+            y = np.tile(y, (k, 1))
+            pv["loop_from"] = round(pv["t0"] + s / SR, 3)
+            pv["tiled"] = k
+        corr = float(np.sum(y[:, 0] * y[:, 1]) / np.sqrt(np.sum(y[:, 0] ** 2) * np.sum(y[:, 1] ** 2) + 1e-20))
+        if o.get("pseudo", corr > 0.98):
+            y = np.stack([y[:, 0], np.roll(y[:, 1], L // 2)], 1)
+            pv["pseudo_stereo"] = True
+        if o.get("width") is not None:
+            mid = y.mean(axis=1, keepdims=True)
+            y = mid + (y - mid) * o["width"]
+    y = _circ_filters(y, o)
+    return y * dsp.undb(o.get("gain", 0.0)), pv
+
+
+def build_bed(layers, P):
+    L = int(P.get("loop_s", 50.0) * SR)
+    X = int(P.get("xfade_s", 3.0) * SR)
+    out, provs = np.zeros((L, 2)), []
+    for o in layers:
+        y, pv = bed_layer(o, L, X)
+        out += y
+        provs.append(pv)
+    out = _circ_filters(out, {"hp": P.get("hp", 30.0), "lp": P.get("lp"), "eq": P.get("eq", []),
+                              "shelf": P.get("shelf")})
+    out -= np.mean(out, axis=0)
+    if P.get("mono"):
+        out = dsp.to_mono(out)
+    return out, provs
+
+
+def level(clips, P, kind):
+    """Normalise a group: one-shots to a momentary-loudness target, beds to an
+    integrated target; peaks never above the ceiling (default -1 dBFS)."""
+    ceil = P.get("ceiling_db", -1.0)
+    tgt = P.get("lufs", -20.0)
+    out = []
+    if P.get("match", "each") == "group":
+        # keep natural relative levels inside the group; scale the group as one
+        meas = [dsp.momentary_max(c) for c in clips]
+        g = dsp.undb(tgt - max(meas))
+        pk = max(dsp.peak(c) for c in clips) * g
+        if pk > dsp.undb(ceil):
+            g *= dsp.undb(ceil) / pk
+        return [c * g for c in clips]
+    for c in clips:
+        if kind == "bed":
+            y, _ = dsp.gain_to(c, tgt, ceil - P.get("codec_margin_db", 0.0), measure=dsp.loudness)
+        elif P.get("limit_db", 6.0) > 0:
+            y = dsp.level_limited(c, tgt, ceil, max_gr_db=P.get("limit_db", 6.0))
+            y = dsp.zero_mean_faded(y)           # limiting can be asymmetric
+            tp = dsp.true_peak(y)
+            if tp > dsp.undb(ceil - 0.5):
+                y = y * (dsp.undb(ceil - 0.55) / tp)
+        else:
+            y, _ = dsp.gain_to(c, tgt, ceil, measure=dsp.momentary_max)
+        out.append(y)
+    return out
+
+
+# ------------------------------------------------------------------- outputs
+
+def write_clip(name, i, y, fmt):
+    group, base = name.split("/", 1)
+    rel = f"Audio/{group}/{base}_{i:02d}"
+    path = os.path.join(OUT, group, f"{base}_{i:02d}.{fmt}")
+    if fmt == "ogg":
+        dsp.write_ogg(path, y, quality=6)
+    else:
+        dsp.write_wav(path, y)
+    return rel, path
+
+
+def clear_old(name):
+    group, base = name.split("/", 1)
+    for ext in ("wav", "ogg"):
+        for p in glob.glob(os.path.join(OUT, group, f"{base}_[0-9][0-9].{ext}")):
+            os.remove(p)
+            meta = p + ".meta"
+            if os.path.exists(meta):
+                os.remove(meta)
+
+
+def build_one(name, R):
+    kind = R.get("kind", "oneshot")
+    P = dict(R.get("p", {}))
+    clips, provs = [], []
+    for layers in R.get("beds", []):
+        y, pv = build_bed(layers, P)
+        clips.append(y)
+        provs.append(pv)
+    for spec in R.get("takes", []):
+        parts = spec if isinstance(spec, list) else [spec]
+        layers, lprov = [], []
+        for t in parts:
+            x, pv = take(t)
+            off = t.get("at", 0.0)
+            layers.append((x, 1.0, off))
+            pv["role"] = t.get("role", "take")
+            lprov.append(pv)
+        x = dsp.layer(*layers) if len(layers) > 1 else layers[0][0]
+        if kind == "oneshot":
+            y = finish_oneshot(x, P)
+        else:
+            y = finish_bed(x, P)
+            if R.get("loop", False):
+                y, _ = loopify(y, P)
+            else:
+                if P.get("hp", 30.0):
+                    y = dsp.highpass(y, P.get("hp", 30.0), order=4)
+                if P.get("max_s") and y.shape[0] > P["max_s"] * SR:
+                    y = y[:int(P["max_s"] * SR)]
+                y = dsp.fade(y, P.get("fade_in_ms", 200.0), P.get("fade_out_ms", 1500.0))
+        clips.append(y)
+        provs.append(lprov)
+    clips = level(clips, P, "bed" if kind != "oneshot" else "oneshot")
+    clear_old(name)
+    files, entries = [], []
+    for i, (y, pv) in enumerate(zip(clips, provs), 1):
+        rel, path = write_clip(name, i, y, R.get("fmt", "wav"))
+        files.append(rel)
+        entries.append({"file": os.path.relpath(path, ROOT), "layers": pv,
+                        "seconds": round(y.shape[0] / SR, 3),
+                        "channels": 1 if y.ndim == 1 else y.shape[1]})
+    manifest = {"files": files, "volume": R.get("volume", 0.8), "loop": bool(R.get("loop", False))}
+    return manifest, entries
+
+
+def short_licence(lic):
+    if lic.startswith("CC0"):
+        return "CC0 1.0"
+    if "PD-self" in lic:
+        return "PD-self"
+    if "federal government" in lic:
+        return "PD-US-gov"
+    return lic
+
+
+def credits(prov, sources):
+    lines = ["# Audio credits", "",
+             "Every sound in Wildmere is a real recording made by the people credited",
+             "below; nothing is a Minecraft sound or ripped from a game. All sources are",
+             "**CC0 1.0** (public-domain dedication) unless the row says otherwise --",
+             "no attribution is legally required, but every file stays traceable.",
+             "Files marked *PD-self* were released by their recordist with a plain",
+             "public-domain dedication (\"I release this work into the public domain ...",
+             "if not legally possible, I grant anyone the right to use this work for any",
+             "purpose, without any conditions\"), which is equivalent in effect to CC0.",
+             "The one *PD-US-gov* file is a U.S. Fish and Wildlife Service recording, public",
+             "domain as a work of the U.S. federal government.",
+             "",
+             "Processing (cutting, filtering, loudness, looping, layering) is done by",
+             "`art-source/audio/build.py`; `art-source/audio/fetch.py` re-downloads every",
+             "source and `art-source/audio/sources.json` records file hashes.",
+             "", "## Sources", "",
+             "| Id | Title | Author | Licence | Page |", "|---|---|---|---|---|"]
+    used = sorted({l["source"] for v in prov.values() for e in v for l in e["layers"]})
+    def page_of(s, fname):
+        # Commons hosts one file per page, so point at that file's own page
+        if s["site"] == "commons.wikimedia.org":
+            return "https://commons.wikimedia.org/wiki/File:" + fname.replace(" ", "_")
+        return s["page"]
+
+    for sid in used:
+        s = sources[sid]
+        lic = short_licence(s["licence"])
+        pages = sorted({page_of(s, l["file"]) for v in prov.values() for e in v for l in e["layers"]
+                        if l["source"] == sid})
+        lines.append(f"| `{sid}` | {s['title']} | {s['author']} | {lic} | " +
+                     " ".join(f"<{p}>" for p in pages) + " |")
+    lines += ["", "## Per-file provenance", "",
+              "Time ranges are in seconds within the original file. Layered sounds list",
+              "every recording that went into them.", "",
+              "| Shipped file | Source page | Author | Licence | Original file [range] |",
+              "|---|---|---|---|---|"]
+    for name in sorted(prov):
+        for e in prov[name]:
+            for k, l in enumerate(e["layers"]):
+                s = sources[l["source"]]
+                lic = short_licence(s["licence"])
+                f = e["file"].replace("Assets/Resources/", "") if k == 0 else "&nbsp;&nbsp;+ layer"
+                rng = f"{l['t0']:.2f}-{l['t1']:.2f}s"
+                extra = f", varispeed {l['varispeed']}" if "varispeed" in l else ""
+                lines.append(f"| {f} | <{page_of(s, l['file'])}> | {s['author']} | {lic} | "
+                             f"`{l['file']}` [{rng}{extra}] |")
+    return "\n".join(lines) + "\n"
+
+
+def main(prefixes):
+    sources = json.load(open(os.path.join(HERE, "sources.json")))
+    prov = json.load(open(PROV)) if os.path.exists(PROV) else {}
+    mpath = os.path.join(OUT, "audio.json")
+    manifest = json.load(open(mpath)) if os.path.exists(mpath) else {}
+    names = [n for n in recipes.RECIPES if not prefixes or any(n.startswith(p) for p in prefixes)]
+    for n in names:
+        try:
+            m, e = build_one(n, recipes.RECIPES[n])
+        except Exception as ex:  # noqa: BLE001
+            print(f"!! {n}: {type(ex).__name__}: {ex}")
+            continue
+        manifest[n] = m
+        prov[n] = e
+        print(f"{n:24s} {len(m['files'])} file(s)  vol {m['volume']:.2f}  loop {m['loop']}")
+    # drop names no longer in recipes
+    for n in list(manifest):
+        if n not in recipes.RECIPES:
+            manifest.pop(n)
+            prov.pop(n, None)
+    manifest = {k: manifest[k] for k in sorted(manifest)}
+    os.makedirs(OUT, exist_ok=True)
+    json.dump(manifest, open(mpath, "w"), indent=2)
+    json.dump({k: prov[k] for k in sorted(prov)}, open(PROV, "w"), indent=1)
+    open(os.path.join(ROOT, "AUDIO_CREDITS.md"), "w").write(credits(prov, sources))
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

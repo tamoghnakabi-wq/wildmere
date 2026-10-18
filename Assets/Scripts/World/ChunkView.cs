@@ -23,7 +23,9 @@ namespace Wildmere.World
         public static ChunkView Rent(Chunk c)
         {
             if (sRoot == null) sRoot = new GameObject("Chunks").transform;
-            var v = sPool.Count > 0 ? sPool.Pop() : Create();
+            ChunkView v = null;
+            while (sPool.Count > 0 && (v == null || v.Go == null)) v = sPool.Pop();
+            if (v == null || v.Go == null) v = Create();
             v.Go.name = $"Chunk {c.CX},{c.CZ}";
             v.Go.transform.position = new Vector3(c.CX * 16, 0, c.CZ * 16);
             v.Go.SetActive(true);
@@ -50,7 +52,7 @@ namespace Wildmere.World
 
         public static void Return(ChunkView v)
         {
-            if (v == null) return;
+            if (v == null || v.Go == null) return; // already destroyed (application quit)
             v.Mesh.Clear();
             v.Vertices = 0; v.Triangles = 0;
             v.Go.SetActive(false);

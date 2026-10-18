@@ -1,0 +1,683 @@
+{
+  "amb/cave": {
+    "files": [
+      "Audio/amb/cave_01"
+    ],
+    "volume": 0.65,
+    "loop": true
+  },
+  "amb/dark_forest": {
+    "files": [
+      "Audio/amb/dark_forest_01"
+    ],
+    "volume": 0.6,
+    "loop": true
+  },
+  "amb/desert_wind": {
+    "files": [
+      "Audio/amb/desert_wind_01"
+    ],
+    "volume": 0.6,
+    "loop": true
+  },
+  "amb/forest_day": {
+    "files": [
+      "Audio/amb/forest_day_01"
+    ],
+    "volume": 0.65,
+    "loop": true
+  },
+  "amb/night": {
+    "files": [
+      "Audio/amb/night_01"
+    ],
+    "volume": 0.6,
+    "loop": true
+  },
+  "amb/ocean_shore": {
+    "files": [
+      "Audio/amb/ocean_shore_01"
+    ],
+    "volume": 0.65,
+    "loop": true
+  },
+  "amb/plains_day": {
+    "files": [
+      "Audio/amb/plains_day_01"
+    ],
+    "volume": 0.6,
+    "loop": true
+  },
+  "amb/rain_heavy": {
+    "files": [
+      "Audio/amb/rain_heavy_01"
+    ],
+    "volume": 0.6,
+    "loop": true
+  },
+  "amb/rain_light": {
+    "files": [
+      "Audio/amb/rain_light_01"
+    ],
+    "volume": 0.6,
+    "loop": true
+  },
+  "amb/river": {
+    "files": [
+      "Audio/amb/river_01"
+    ],
+    "volume": 0.65,
+    "loop": true
+  },
+  "amb/snow_wind": {
+    "files": [
+      "Audio/amb/snow_wind_01"
+    ],
+    "volume": 0.6,
+    "loop": true
+  },
+  "amb/underwater": {
+    "files": [
+      "Audio/amb/underwater_01"
+    ],
+    "volume": 0.6,
+    "loop": true
+  },
+  "amb/wind_strong": {
+    "files": [
+      "Audio/amb/wind_strong_01"
+    ],
+    "volume": 0.6,
+    "loop": true
+  },
+  "bird/chirp": {
+    "files": [
+      "Audio/bird/chirp_01",
+      "Audio/bird/chirp_02",
+      "Audio/bird/chirp_03",
+      "Audio/bird/chirp_04",
+      "Audio/bird/chirp_05",
+      "Audio/bird/chirp_06"
+    ],
+    "volume": 0.5,
+    "loop": false
+  },
+  "break/dirt": {
+    "files": [
+      "Audio/break/dirt_01",
+      "Audio/break/dirt_02",
+      "Audio/break/dirt_03",
+      "Audio/break/dirt_04"
+    ],
+    "volume": 0.68,
+    "loop": false
+  },
+  "break/glass": {
+    "files": [
+      "Audio/break/glass_01",
+      "Audio/break/glass_02",
+      "Audio/break/glass_03",
+      "Audio/break/glass_04",
+      "Audio/break/glass_05",
+      "Audio/break/glass_06"
+    ],
+    "volume": 0.66,
+    "loop": false
+  },
+  "break/gravel": {
+    "files": [
+      "Audio/break/gravel_01",
+      "Audio/break/gravel_02",
+      "Audio/break/gravel_03",
+      "Audio/break/gravel_04",
+      "Audio/break/gravel_05"
+    ],
+    "volume": 0.66,
+    "loop": false
+  },
+  "break/leaves": {
+    "files": [
+      "Audio/break/leaves_01",
+      "Audio/break/leaves_02",
+      "Audio/break/leaves_03",
+      "Audio/break/leaves_04",
+      "Audio/break/leaves_05"
+    ],
+    "volume": 0.55,
+    "loop": false
+  },
+  "break/sand": {
+    "files": [
+      "Audio/break/sand_01",
+      "Audio/break/sand_02",
+      "Audio/break/sand_03"
+    ],
+    "volume": 0.62,
+    "loop": false
+  },
+  "break/snow": {
+    "files": [
+      "Audio/break/snow_01",
+      "Audio/break/snow_02",
+      "Audio/break/snow_03",
+      "Audio/break/snow_04",
+      "Audio/break/snow_05"
+    ],
+    "volume": 0.6,
+    "loop": false
+  },
+  "break/stone": {
+    "files": [
+      "Audio/break/stone_01",
+      "Audio/break/stone_02",
+      "Audio/break/stone_03",
+      "Audio/break/stone_04",
+      "Audio/break/stone_05"
+    ],
+    "volume": 0.7,
+    "loop": false
+  },
+  "break/wood": {
+    "files": [
+      "Audio/break/wood_01",
+      "Audio/break/wood_02",
+      "Audio/break/wood_03",
+      "Audio/break/wood_04",
+      "Audio/break/wood_05"
+    ],
+    "volume": 0.68,
+    "loop": false
+  },
+  "deer/call": {
+    "files": [
+      "Audio/deer/call_01"
+    ],
+    "volume": 0.7,
+    "loop": false
+  },
+  "dig/dirt": {
+    "files": [
+      "Audio/dig/dirt_01",
+      "Audio/dig/dirt_02",
+      "Audio/dig/dirt_03",
+      "Audio/dig/dirt_04",
+      "Audio/dig/dirt_05",
+      "Audio/dig/dirt_06"
+    ],
+    "volume": 0.55,
+    "loop": false
+  },
+  "dig/glass": {
+    "files": [
+      "Audio/dig/glass_01",
+      "Audio/dig/glass_02",
+      "Audio/dig/glass_03",
+      "Audio/dig/glass_04",
+      "Audio/dig/glass_05",
+      "Audio/dig/glass_06"
+    ],
+    "volume": 0.5,
+    "loop": false
+  },
+  "dig/gravel": {
+    "files": [
+      "Audio/dig/gravel_01",
+      "Audio/dig/gravel_02",
+      "Audio/dig/gravel_03",
+      "Audio/dig/gravel_04",
+      "Audio/dig/gravel_05",
+      "Audio/dig/gravel_06"
+    ],
+    "volume": 0.52,
+    "loop": false
+  },
+  "dig/leaves": {
+    "files": [
+      "Audio/dig/leaves_01",
+      "Audio/dig/leaves_02",
+      "Audio/dig/leaves_03",
+      "Audio/dig/leaves_04",
+      "Audio/dig/leaves_05"
+    ],
+    "volume": 0.45,
+    "loop": false
+  },
+  "dig/sand": {
+    "files": [
+      "Audio/dig/sand_01",
+      "Audio/dig/sand_02",
+      "Audio/dig/sand_03",
+      "Audio/dig/sand_04",
+      "Audio/dig/sand_05"
+    ],
+    "volume": 0.5,
+    "loop": false
+  },
+  "dig/snow": {
+    "files": [
+      "Audio/dig/snow_01",
+      "Audio/dig/snow_02",
+      "Audio/dig/snow_03",
+      "Audio/dig/snow_04",
+      "Audio/dig/snow_05"
+    ],
+    "volume": 0.5,
+    "loop": false
+  },
+  "dig/stone": {
+    "files": [
+      "Audio/dig/stone_01",
+      "Audio/dig/stone_02",
+      "Audio/dig/stone_03",
+      "Audio/dig/stone_04",
+      "Audio/dig/stone_05",
+      "Audio/dig/stone_06"
+    ],
+    "volume": 0.55,
+    "loop": false
+  },
+  "dig/wood": {
+    "files": [
+      "Audio/dig/wood_01",
+      "Audio/dig/wood_02",
+      "Audio/dig/wood_03",
+      "Audio/dig/wood_04",
+      "Audio/dig/wood_05",
+      "Audio/dig/wood_06"
+    ],
+    "volume": 0.55,
+    "loop": false
+  },
+  "item/craft": {
+    "files": [
+      "Audio/item/craft_01",
+      "Audio/item/craft_02",
+      "Audio/item/craft_03"
+    ],
+    "volume": 0.55,
+    "loop": false
+  },
+  "item/pickup": {
+    "files": [
+      "Audio/item/pickup_01",
+      "Audio/item/pickup_02",
+      "Audio/item/pickup_03",
+      "Audio/item/pickup_04"
+    ],
+    "volume": 0.45,
+    "loop": false
+  },
+  "item/tool_break": {
+    "files": [
+      "Audio/item/tool_break_01",
+      "Audio/item/tool_break_02"
+    ],
+    "volume": 0.6,
+    "loop": false
+  },
+  "music/another_august": {
+    "files": [
+      "Audio/music/another_august_01"
+    ],
+    "volume": 0.5,
+    "loop": false
+  },
+  "music/bluebonnet": {
+    "files": [
+      "Audio/music/bluebonnet_01"
+    ],
+    "volume": 0.5,
+    "loop": false
+  },
+  "music/forget_me_not": {
+    "files": [
+      "Audio/music/forget_me_not_01"
+    ],
+    "volume": 0.5,
+    "loop": false
+  },
+  "music/meadow_thoughts": {
+    "files": [
+      "Audio/music/meadow_thoughts_01"
+    ],
+    "volume": 0.5,
+    "loop": false
+  },
+  "place/dirt": {
+    "files": [
+      "Audio/place/dirt_01",
+      "Audio/place/dirt_02",
+      "Audio/place/dirt_03",
+      "Audio/place/dirt_04"
+    ],
+    "volume": 0.55,
+    "loop": false
+  },
+  "place/glass": {
+    "files": [
+      "Audio/place/glass_01",
+      "Audio/place/glass_02",
+      "Audio/place/glass_03",
+      "Audio/place/glass_04"
+    ],
+    "volume": 0.5,
+    "loop": false
+  },
+  "place/gravel": {
+    "files": [
+      "Audio/place/gravel_01",
+      "Audio/place/gravel_02",
+      "Audio/place/gravel_03",
+      "Audio/place/gravel_04"
+    ],
+    "volume": 0.52,
+    "loop": false
+  },
+  "place/leaves": {
+    "files": [
+      "Audio/place/leaves_01",
+      "Audio/place/leaves_02",
+      "Audio/place/leaves_03",
+      "Audio/place/leaves_04"
+    ],
+    "volume": 0.45,
+    "loop": false
+  },
+  "place/sand": {
+    "files": [
+      "Audio/place/sand_01",
+      "Audio/place/sand_02",
+      "Audio/place/sand_03"
+    ],
+    "volume": 0.52,
+    "loop": false
+  },
+  "place/snow": {
+    "files": [
+      "Audio/place/snow_01",
+      "Audio/place/snow_02",
+      "Audio/place/snow_03",
+      "Audio/place/snow_04"
+    ],
+    "volume": 0.5,
+    "loop": false
+  },
+  "place/stone": {
+    "files": [
+      "Audio/place/stone_01",
+      "Audio/place/stone_02",
+      "Audio/place/stone_03",
+      "Audio/place/stone_04",
+      "Audio/place/stone_05"
+    ],
+    "volume": 0.55,
+    "loop": false
+  },
+  "place/wood": {
+    "files": [
+      "Audio/place/wood_01",
+      "Audio/place/wood_02",
+      "Audio/place/wood_03",
+      "Audio/place/wood_04",
+      "Audio/place/wood_05",
+      "Audio/place/wood_06"
+    ],
+    "volume": 0.55,
+    "loop": false
+  },
+  "player/hurt": {
+    "files": [
+      "Audio/player/hurt_01",
+      "Audio/player/hurt_02",
+      "Audio/player/hurt_03",
+      "Audio/player/hurt_04",
+      "Audio/player/hurt_05",
+      "Audio/player/hurt_06"
+    ],
+    "volume": 0.7,
+    "loop": false
+  },
+  "player/jump": {
+    "files": [
+      "Audio/player/jump_01",
+      "Audio/player/jump_02",
+      "Audio/player/jump_03",
+      "Audio/player/jump_04",
+      "Audio/player/jump_05"
+    ],
+    "volume": 0.4,
+    "loop": false
+  },
+  "player/land_hard": {
+    "files": [
+      "Audio/player/land_hard_01",
+      "Audio/player/land_hard_02",
+      "Audio/player/land_hard_03"
+    ],
+    "volume": 0.65,
+    "loop": false
+  },
+  "rabbit/hop": {
+    "files": [
+      "Audio/rabbit/hop_01",
+      "Audio/rabbit/hop_02",
+      "Audio/rabbit/hop_03",
+      "Audio/rabbit/hop_04"
+    ],
+    "volume": 0.45,
+    "loop": false
+  },
+  "step/dirt": {
+    "files": [
+      "Audio/step/dirt_01",
+      "Audio/step/dirt_02",
+      "Audio/step/dirt_03",
+      "Audio/step/dirt_04",
+      "Audio/step/dirt_05",
+      "Audio/step/dirt_06"
+    ],
+    "volume": 0.3,
+    "loop": false
+  },
+  "step/grass": {
+    "files": [
+      "Audio/step/grass_01",
+      "Audio/step/grass_02",
+      "Audio/step/grass_03",
+      "Audio/step/grass_04",
+      "Audio/step/grass_05"
+    ],
+    "volume": 0.3,
+    "loop": false
+  },
+  "step/gravel": {
+    "files": [
+      "Audio/step/gravel_01",
+      "Audio/step/gravel_02",
+      "Audio/step/gravel_03",
+      "Audio/step/gravel_04",
+      "Audio/step/gravel_05",
+      "Audio/step/gravel_06"
+    ],
+    "volume": 0.3,
+    "loop": false
+  },
+  "step/leaves": {
+    "files": [
+      "Audio/step/leaves_01",
+      "Audio/step/leaves_02",
+      "Audio/step/leaves_03",
+      "Audio/step/leaves_04",
+      "Audio/step/leaves_05",
+      "Audio/step/leaves_06"
+    ],
+    "volume": 0.3,
+    "loop": false
+  },
+  "step/sand": {
+    "files": [
+      "Audio/step/sand_01",
+      "Audio/step/sand_02",
+      "Audio/step/sand_03",
+      "Audio/step/sand_04",
+      "Audio/step/sand_05",
+      "Audio/step/sand_06"
+    ],
+    "volume": 0.3,
+    "loop": false
+  },
+  "step/snow": {
+    "files": [
+      "Audio/step/snow_01",
+      "Audio/step/snow_02",
+      "Audio/step/snow_03",
+      "Audio/step/snow_04",
+      "Audio/step/snow_05",
+      "Audio/step/snow_06"
+    ],
+    "volume": 0.3,
+    "loop": false
+  },
+  "step/stone": {
+    "files": [
+      "Audio/step/stone_01",
+      "Audio/step/stone_02",
+      "Audio/step/stone_03",
+      "Audio/step/stone_04",
+      "Audio/step/stone_05",
+      "Audio/step/stone_06"
+    ],
+    "volume": 0.3,
+    "loop": false
+  },
+  "step/water": {
+    "files": [
+      "Audio/step/water_01",
+      "Audio/step/water_02",
+      "Audio/step/water_03",
+      "Audio/step/water_04",
+      "Audio/step/water_05",
+      "Audio/step/water_06"
+    ],
+    "volume": 0.3,
+    "loop": false
+  },
+  "step/wood": {
+    "files": [
+      "Audio/step/wood_01",
+      "Audio/step/wood_02",
+      "Audio/step/wood_03",
+      "Audio/step/wood_04",
+      "Audio/step/wood_05"
+    ],
+    "volume": 0.3,
+    "loop": false
+  },
+  "thunder/far": {
+    "files": [
+      "Audio/thunder/far_01",
+      "Audio/thunder/far_02",
+      "Audio/thunder/far_03",
+      "Audio/thunder/far_04",
+      "Audio/thunder/far_05"
+    ],
+    "volume": 0.75,
+    "loop": false
+  },
+  "thunder/near": {
+    "files": [
+      "Audio/thunder/near_01",
+      "Audio/thunder/near_02",
+      "Audio/thunder/near_03",
+      "Audio/thunder/near_04",
+      "Audio/thunder/near_05"
+    ],
+    "volume": 0.9,
+    "loop": false
+  },
+  "torch/crackle": {
+    "files": [
+      "Audio/torch/crackle_01"
+    ],
+    "volume": 0.45,
+    "loop": true
+  },
+  "torch/place": {
+    "files": [
+      "Audio/torch/place_01",
+      "Audio/torch/place_02"
+    ],
+    "volume": 0.5,
+    "loop": false
+  },
+  "ui/click": {
+    "files": [
+      "Audio/ui/click_01",
+      "Audio/ui/click_02",
+      "Audio/ui/click_03",
+      "Audio/ui/click_04",
+      "Audio/ui/click_05"
+    ],
+    "volume": 0.35,
+    "loop": false
+  },
+  "ui/close": {
+    "files": [
+      "Audio/ui/close_01",
+      "Audio/ui/close_02"
+    ],
+    "volume": 0.4,
+    "loop": false
+  },
+  "ui/confirm": {
+    "files": [
+      "Audio/ui/confirm_01",
+      "Audio/ui/confirm_02"
+    ],
+    "volume": 0.35,
+    "loop": false
+  },
+  "ui/error": {
+    "files": [
+      "Audio/ui/error_01",
+      "Audio/ui/error_02"
+    ],
+    "volume": 0.35,
+    "loop": false
+  },
+  "ui/hover": {
+    "files": [
+      "Audio/ui/hover_01",
+      "Audio/ui/hover_02"
+    ],
+    "volume": 0.25,
+    "loop": false
+  },
+  "ui/open": {
+    "files": [
+      "Audio/ui/open_01",
+      "Audio/ui/open_02"
+    ],
+    "volume": 0.4,
+    "loop": false
+  },
+  "water/splash_in": {
+    "files": [
+      "Audio/water/splash_in_01",
+      "Audio/water/splash_in_02",
+      "Audio/water/splash_in_03",
+      "Audio/water/splash_in_04"
+    ],
+    "volume": 0.7,
+    "loop": false
+  },
+  "water/splash_out": {
+    "files": [
+      "Audio/water/splash_out_01",
+      "Audio/water/splash_out_02",
+      "Audio/water/splash_out_03"
+    ],
+    "volume": 0.6,
+    "loop": false
+  }
+}

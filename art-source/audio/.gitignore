@@ -1,0 +1,5 @@
+# Raw downloads, survey caches and listening montages stay local.
+downloads/
+cache/
+audition/
+__pycache__/

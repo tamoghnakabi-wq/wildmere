@@ -1,0 +1,647 @@
+/* Wildmere interface theme. Reference resolution 1920x1080 (the panel scales with screen height).
+   Spacing scale 4/8/12/16/24/32/48/64, radii 8/12/20, motion 150-250 ms ease-out. */
+
+.wm {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-Medium.ttf");
+    font-size: 18px;
+    color: rgb(243, 241, 234);
+    --text: rgb(243, 241, 234);
+    --text-2: rgba(243, 241, 234, 0.66);
+    --text-3: rgba(243, 241, 234, 0.42);
+    --accent: rgb(125, 220, 188);
+    --accent-strong: rgb(160, 236, 210);
+    --accent-ink: rgb(10, 26, 21);
+    --danger: rgb(240, 106, 99);
+    --warn: rgb(242, 179, 91);
+    --health: rgb(240, 96, 93);
+    --air: rgb(116, 199, 242);
+    --panel: rgba(14, 17, 23, 0.84);
+    --panel-solid: rgb(16, 19, 25);
+    --line: rgba(255, 255, 255, 0.08);
+    --surface: rgba(255, 255, 255, 0.045);
+    --surface-hover: rgba(255, 255, 255, 0.085);
+    --surface-active: rgba(255, 255, 255, 0.13);
+}
+
+/* ------------------------------------------------------------------ type */
+
+.w-regular { -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-Regular.ttf"); }
+.w-medium { -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-Medium.ttf"); }
+.w-semibold { -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-SemiBold.ttf"); }
+.w-bold { -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-Bold.ttf"); }
+.w-extrabold { -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-ExtraBold.ttf"); }
+
+.t-display { font-size: 64px; letter-spacing: 18px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-ExtraBold.ttf"); }
+.t-h1 { font-size: 36px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-Bold.ttf"); }
+.t-h2 { font-size: 23px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-SemiBold.ttf"); }
+.t-body { font-size: 18px; }
+.t-small { font-size: 15px; }
+.t-micro { font-size: 13px; letter-spacing: 2.4px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-Bold.ttf"); color: var(--text-3); }
+.t-dim { color: var(--text-2); }
+.t-faint { color: var(--text-3); }
+.t-accent { color: var(--accent); }
+.t-warn { color: var(--warn); }
+.t-danger { color: var(--danger); }
+.t-wrap { white-space: normal; }
+.t-shadow { text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75); }
+.t-center { -unity-text-align: middle-center; }
+.t-right { -unity-text-align: middle-right; }
+
+/* ------------------------------------------------------------------ layout */
+
+.fill { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+.row { flex-direction: row; align-items: center; }
+.grow { flex-grow: 1; }
+.center { align-items: center; justify-content: center; }
+.gap-r-8 { margin-right: 8px; }
+.gap-r-12 { margin-right: 12px; }
+.gap-r-16 { margin-right: 16px; }
+.gap-b-4 { margin-bottom: 4px; }
+.gap-b-8 { margin-bottom: 8px; }
+.gap-b-16 { margin-bottom: 16px; }
+.gap-b-24 { margin-bottom: 24px; }
+.gap-t-24 { margin-top: 24px; }
+.hidden { display: none; }
+
+/* Screens fade and drift in; UiScreen toggles screen--hidden and display. */
+.screen {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 1;
+    transition-duration: 0.22s;
+    transition-timing-function: ease-out-cubic;
+}
+.screen--hidden { opacity: 0; }
+.screen--hidden .anim-rise { translate: 0 14px; }
+.screen--hidden .anim-left { translate: -28px 0; }
+.screen--hidden .anim-pop { scale: 0.97 0.97; }
+.anim-rise, .anim-left, .anim-pop {
+    translate: 0 0;
+    scale: 1 1;
+    transition-duration: 0.26s;
+    transition-timing-function: ease-out-cubic;
+}
+
+.scrim { background-color: rgba(6, 8, 11, 0.52); }
+.scrim--light { background-color: rgba(6, 8, 11, 0.32); }
+.scrim--heavy { background-color: rgba(6, 8, 11, 0.7); }
+
+/* ------------------------------------------------------------------ panels */
+
+.panel-wrap { }
+.panel-shadow {
+    position: absolute;
+    left: -44px;
+    top: -30px;
+    right: -44px;
+    bottom: -58px;
+    -unity-slice-left: 64;
+    -unity-slice-top: 64;
+    -unity-slice-right: 64;
+    -unity-slice-bottom: 64;
+    opacity: 0.85;
+}
+.panel {
+    background-color: var(--panel);
+    border-radius: 20px;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.075);
+    border-top-color: rgba(255, 255, 255, 0.13);
+    padding: 32px;
+    overflow: hidden;
+}
+.panel__header { margin-bottom: 24px; }
+.panel__title { font-size: 34px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-Bold.ttf"); }
+.panel__subtitle { font-size: 16px; color: var(--text-3); margin-top: 4px; }
+.panel__footer { flex-direction: row; align-items: center; margin-top: 28px; }
+.divider { height: 1px; background-color: var(--line); margin: 16px 0; }
+
+/* ------------------------------------------------------------------ buttons */
+
+.btn {
+    height: 50px;
+    padding: 0 26px;
+    margin: 0;
+    border-radius: 12px;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.07);
+    background-color: var(--surface);
+    color: var(--text);
+    font-size: 17px;
+    -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-SemiBold.ttf");
+    -unity-text-align: middle-center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out-cubic;
+}
+.btn:hover { background-color: var(--surface-hover); border-color: rgba(255, 255, 255, 0.15); }
+.btn:active { scale: 0.975 0.975; background-color: var(--surface-active); }
+.btn:disabled { opacity: 0.38; }
+.kbd .btn:focus { border-color: var(--accent); }
+.btn--primary { background-color: var(--accent); color: var(--accent-ink); border-color: rgba(255, 255, 255, 0.2); }
+.btn--primary:hover { background-color: var(--accent-strong); border-color: rgba(255, 255, 255, 0.35); }
+.btn--primary:active { background-color: var(--accent); }
+.kbd .btn--primary:focus { border-color: rgb(255, 255, 255); }
+.btn--danger { background-color: rgba(240, 106, 99, 0.13); border-color: rgba(240, 106, 99, 0.32); color: rgb(255, 160, 152); }
+.btn--danger:hover { background-color: rgba(240, 106, 99, 0.24); border-color: rgba(240, 106, 99, 0.55); }
+.btn--ghost { background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0); color: var(--text-2); }
+.btn--ghost:hover { background-color: var(--surface); color: var(--text); border-color: rgba(0, 0, 0, 0); }
+.btn--small { height: 40px; padding: 0 18px; font-size: 15px; border-radius: 10px; }
+.btn--square { width: 50px; padding: 0; }
+.btn__glyph { width: 20px; height: 20px; }
+.btn__glyph--lead { margin-right: 10px; }
+
+/* Main-menu style text items. */
+.menu { align-items: flex-start; }
+.menu-item {
+    flex-direction: row;
+    align-items: center;
+    padding: 9px 0;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    color: var(--text-2);
+    font-size: 30px;
+    -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-SemiBold.ttf");
+    translate: 0 0;
+    transition-duration: 0.18s;
+    transition-timing-function: ease-out-cubic;
+}
+.menu-item__bar {
+    width: 0;
+    height: 3px;
+    border-radius: 2px;
+    margin-right: 0;
+    background-color: var(--accent);
+    transition-duration: 0.18s;
+    transition-timing-function: ease-out-cubic;
+}
+.menu-item__text { padding: 0; margin: 0; }
+.menu-item__sub { font-size: 15px; color: var(--text-3); margin-left: 16px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-Medium.ttf"); }
+.menu-item:hover, .kbd .menu-item:focus { color: var(--text); translate: 6px 0; }
+.menu-item:hover > .menu-item__bar, .kbd .menu-item:focus > .menu-item__bar { width: 26px; margin-right: 16px; }
+.menu-item:active { color: var(--accent-strong); }
+.menu-item--primary { color: var(--text); }
+.menu-item--quiet { font-size: 22px; color: var(--text-3); margin-top: 14px; }
+
+/* ------------------------------------------------------------------ backgrounds */
+
+.bg-anim { background-color: rgb(9, 16, 20); opacity: 1; transition-duration: 1.4s; transition-timing-function: ease-in-out-sine; }
+.bg-anim--off { opacity: 0; }
+.bg-layer { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+.bg-blob { position: absolute; -unity-background-scale-mode: stretch-to-fill; }
+.bg-mote { position: absolute; width: 6px; height: 6px; }
+.bg-ridge { position: absolute; left: 0; bottom: 0; height: 60%; }
+.bg-vignette { position: absolute; left: 0; top: 0; right: 0; bottom: 0; -unity-background-scale-mode: stretch-to-fill; }
+
+/* ------------------------------------------------------------------ main menu */
+
+.mm-shade { position: absolute; left: 0; top: 0; bottom: 0; width: 72%; -unity-background-scale-mode: stretch-to-fill; }
+.mm-shade-bottom { position: absolute; left: 0; right: 0; bottom: 0; height: 40%; -unity-background-scale-mode: stretch-to-fill; }
+.mm-column { position: absolute; left: 128px; top: 0; bottom: 0; justify-content: center; }
+.wordmark { flex-direction: row; align-items: center; }
+.wordmark__emblem { width: 76px; height: 76px; margin-right: 22px; }
+.wordmark__text { padding: 0; margin: 0; }
+.wordmark__tag { font-size: 13px; letter-spacing: 7px; color: var(--accent); -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-Bold.ttf"); margin-top: 6px; margin-left: 3px; }
+.mm-menu { margin-top: 64px; }
+.mm-foot { position: absolute; left: 128px; right: 64px; bottom: 44px; flex-direction: row; align-items: center; }
+.mm-version { font-size: 14px; color: var(--text-3); }
+.chip {
+    flex-direction: row;
+    align-items: center;
+    height: 28px;
+    padding: 0 12px;
+    border-radius: 14px;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.07);
+    font-size: 13px;
+    -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-SemiBold.ttf");
+    color: var(--text-2);
+}
+.chip--ok { color: var(--accent); background-color: rgba(125, 220, 188, 0.1); border-color: rgba(125, 220, 188, 0.25); }
+.chip--off { color: var(--text-3); }
+.chip__dot { width: 7px; height: 7px; border-radius: 4px; background-color: var(--text-3); margin-right: 8px; }
+.chip--ok > .chip__dot { background-color: var(--accent); }
+
+/* ------------------------------------------------------------------ forms */
+
+.form-row { margin-bottom: 22px; }
+.form-label { font-size: 14px; letter-spacing: 1.6px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-Bold.ttf"); color: var(--text-3); margin-bottom: 10px; }
+.form-hint { font-size: 14px; color: var(--text-3); margin-top: 8px; white-space: normal; }
+
+.wm-input { margin: 0; flex-grow: 1; }
+.wm-input > .unity-base-field__label { display: none; }
+.wm-input > .unity-base-text-field__input {
+    flex-grow: 1;
+    height: 50px;
+    padding: 0 16px;
+    margin: 0;
+    border-radius: 12px;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.055);
+    -unity-text-align: middle-left;
+    font-size: 18px;
+    color: var(--text);
+    --unity-cursor-color: rgb(243, 241, 234);
+    --unity-selection-color: rgba(125, 220, 188, 0.38);
+    transition-duration: 0.15s;
+}
+.wm-input:hover > .unity-base-text-field__input { border-color: rgba(255, 255, 255, 0.18); }
+.wm-input:focus > .unity-base-text-field__input, .wm-input > .unity-base-text-field__input:focus { border-color: var(--accent); background-color: rgba(255, 255, 255, 0.085); }
+.wm-input .unity-base-text-field__input--placeholder { color: var(--text-3); }
+.wm-input .unity-text-element { padding: 0; margin: 0; }
+
+/* Switch */
+.switch { width: 50px; height: 28px; border-radius: 14px; background-color: rgba(255, 255, 255, 0.14); border-width: 1px; border-color: rgba(255, 255, 255, 0.08); transition-duration: 0.18s; transition-timing-function: ease-out-cubic; }
+.switch__knob { position: absolute; left: 3px; top: 3px; width: 20px; height: 20px; border-radius: 10px; background-color: rgb(225, 225, 220); translate: 0 0; transition-duration: 0.18s; transition-timing-function: ease-out-back; }
+.switch:hover { border-color: rgba(255, 255, 255, 0.22); }
+.switch--on { background-color: var(--accent); border-color: rgba(255, 255, 255, 0.2); }
+.switch--on > .switch__knob { translate: 22px 0; background-color: rgb(255, 255, 255); }
+.kbd .switch:focus { border-color: rgb(255, 255, 255); }
+
+/* Slider */
+.slider { flex-direction: row; align-items: center; height: 36px; }
+.slider__track { flex-grow: 1; height: 36px; justify-content: center; }
+.slider__rail { height: 6px; border-radius: 3px; background-color: rgba(255, 255, 255, 0.13); }
+.slider__fill { position: absolute; left: 0; height: 6px; border-radius: 3px; background-color: var(--accent); }
+.slider__thumb { position: absolute; top: 8px; width: 20px; height: 20px; margin-left: -10px; border-radius: 10px; background-color: rgb(255, 255, 255); border-width: 2px; border-color: rgba(10, 26, 21, 0.25); scale: 1 1; transition-duration: 0.12s; }
+.slider:hover .slider__thumb, .kbd .slider:focus .slider__thumb { scale: 1.15 1.15; }
+.slider__value { width: 74px; margin-left: 14px; font-size: 16px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-SemiBold.ttf"); -unity-text-align: middle-right; color: var(--text-2); }
+
+/* Segmented choice */
+.choice { flex-direction: row; padding: 3px; border-radius: 11px; background-color: rgba(255, 255, 255, 0.055); border-width: 1px; border-color: rgba(255, 255, 255, 0.06); }
+.choice__opt {
+    flex-grow: 1;
+    flex-basis: 0;
+    height: 36px;
+    margin: 0;
+    padding: 0 10px;
+    border-radius: 8px;
+    border-width: 0;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 14px;
+    -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-Bold.ttf");
+    -unity-text-align: middle-center;
+    color: var(--text-3);
+    letter-spacing: 0.6px;
+    transition-duration: 0.15s;
+}
+.choice__opt:hover { color: var(--text); background-color: rgba(255, 255, 255, 0.05); }
+.choice__opt--on { background-color: rgba(255, 255, 255, 0.15); color: var(--text); }
+.choice__opt--on:hover { background-color: rgba(255, 255, 255, 0.18); }
+.choice__opt--accent.choice__opt--on { background-color: var(--accent); color: var(--accent-ink); }
+.choice__opt--passive { color: var(--text-3); }
+.kbd .choice__opt:focus { border-width: 1px; border-color: var(--accent); }
+
+/* Stepper */
+.stepper { flex-direction: row; align-items: center; height: 42px; border-radius: 11px; background-color: rgba(255, 255, 255, 0.055); border-width: 1px; border-color: rgba(255, 255, 255, 0.06); }
+.stepper__btn { width: 42px; height: 40px; margin: 0; padding: 0; border-width: 0; border-radius: 10px; background-color: rgba(0, 0, 0, 0); color: var(--text-2); font-size: 20px; -unity-text-align: middle-center; transition-duration: 0.12s; }
+.stepper__btn:hover { background-color: rgba(255, 255, 255, 0.08); color: var(--text); }
+.stepper__value { flex-grow: 1; -unity-text-align: middle-center; font-size: 15px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-SemiBold.ttf"); }
+
+/* Key binding button */
+.keybind {
+    width: 190px;
+    height: 42px;
+    margin: 0;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.055);
+    font-size: 15px;
+    -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-SemiBold.ttf");
+    -unity-text-align: middle-center;
+    color: var(--text);
+    transition-duration: 0.15s;
+}
+.keybind:hover { background-color: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2); }
+.keybind--listening { border-color: var(--accent); color: var(--accent); background-color: rgba(125, 220, 188, 0.1); }
+.keybind--pulse { border-color: rgba(125, 220, 188, 0.35); }
+.kbd .keybind:focus { border-color: var(--accent); }
+
+/* ------------------------------------------------------------------ settings */
+
+.settings-panel { width: 1120px; height: 820px; padding: 0; }
+.settings-head { padding: 30px 36px 0 36px; flex-direction: row; align-items: center; }
+.tabs { flex-direction: row; padding: 4px; border-radius: 13px; background-color: rgba(255, 255, 255, 0.05); margin-left: 32px; }
+.tab {
+    height: 40px;
+    padding: 0 22px;
+    margin: 0;
+    border-width: 0;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--text-3);
+    font-size: 16px;
+    -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-SemiBold.ttf");
+    transition-duration: 0.15s;
+}
+.tab:hover { color: var(--text); }
+.tab--on { background-color: rgba(255, 255, 255, 0.13); color: var(--text); }
+.kbd .tab:focus { border-width: 1px; border-color: var(--accent); }
+.settings-body { flex-grow: 1; margin-top: 22px; }
+.settings-page { padding: 0 24px 24px 24px; }
+.settings-foot { flex-direction: row; align-items: center; padding: 18px 36px; border-top-width: 1px; border-color: var(--line); background-color: rgba(0, 0, 0, 0.12); }
+.section-title { margin: 22px 12px 8px 12px; }
+.setting-row {
+    flex-direction: row;
+    align-items: center;
+    min-height: 62px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    transition-duration: 0.12s;
+}
+.setting-row:hover { background-color: rgba(255, 255, 255, 0.035); }
+.setting-row__text { flex-grow: 1; margin-right: 24px; }
+.setting-row__label { font-size: 17px; }
+.setting-row__hint { font-size: 14px; color: var(--text-3); margin-top: 2px; white-space: normal; }
+.setting-row__control { width: 420px; flex-direction: row; justify-content: flex-end; align-items: center; }
+.preset-row { margin-bottom: 6px; padding: 14px 12px; background-color: rgba(255, 255, 255, 0.03); }
+
+/* ------------------------------------------------------------------ scroll views */
+
+.unity-scroll-view { overflow: hidden; }
+.unity-scroll-view__content-and-vertical-scroll-container { flex-direction: row; flex-grow: 1; flex-shrink: 1; }
+.unity-scroll-view__content-viewport { flex-grow: 1; flex-shrink: 1; overflow: hidden; }
+.unity-scroll-view__content-container { flex-shrink: 0; }
+.unity-scroll-view__vertical-scroller, .unity-scroll-view__horizontal-scroller { display: none; }
+.scroll { flex-grow: 1; }
+.scroll-bar { position: absolute; right: 6px; top: 6px; bottom: 6px; width: 4px; }
+.scroll-bar__thumb { position: absolute; left: 0; right: 0; border-radius: 2px; background-color: rgba(255, 255, 255, 0.2); }
+
+/* ------------------------------------------------------------------ world list */
+
+.worlds-panel { width: 820px; height: 720px; }
+.world-card {
+    flex-direction: row;
+    align-items: center;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    border-radius: 16px;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.035);
+    transition-duration: 0.15s;
+}
+.world-card:hover { background-color: rgba(255, 255, 255, 0.07); border-color: rgba(255, 255, 255, 0.12); }
+.world-card--on { background-color: rgba(125, 220, 188, 0.09); border-color: rgba(125, 220, 188, 0.55); }
+.world-card--on:hover { background-color: rgba(125, 220, 188, 0.12); }
+.kbd .world-card:focus { border-color: var(--accent); }
+.world-card__tile { width: 56px; height: 56px; border-radius: 14px; margin-right: 18px; align-items: center; justify-content: center; }
+.world-card__initial { font-size: 24px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-ExtraBold.ttf"); color: rgba(255, 255, 255, 0.92); }
+.world-card__name { font-size: 20px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-SemiBold.ttf"); }
+.world-card__meta { font-size: 14px; color: var(--text-3); margin-top: 4px; }
+.world-card__play { opacity: 0; transition-duration: 0.15s; }
+.world-card:hover > .world-card__play, .world-card--on > .world-card__play { opacity: 1; }
+.empty { flex-grow: 1; align-items: center; justify-content: center; }
+.empty__glyph { width: 64px; height: 64px; margin-bottom: 18px; opacity: 0.5; }
+
+/* ------------------------------------------------------------------ dialog */
+
+.dialog { width: 520px; }
+.dialog__msg { font-size: 17px; color: var(--text-2); white-space: normal; margin-top: 10px; }
+
+/* ------------------------------------------------------------------ loading */
+
+.load-center { position: absolute; left: 0; right: 0; top: 0; bottom: 0; align-items: center; justify-content: center; }
+.load-emblem { width: 72px; height: 72px; margin-bottom: 26px; }
+.load-title { font-size: 40px; letter-spacing: 12px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-ExtraBold.ttf"); }
+.load-status { font-size: 16px; color: var(--text-2); margin-top: 40px; margin-bottom: 14px; }
+.progress { width: 460px; height: 6px; border-radius: 3px; background-color: rgba(255, 255, 255, 0.12); overflow: hidden; }
+.progress__fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 3px; background-color: var(--accent); transition-duration: 0.25s; transition-timing-function: ease-out-cubic; }
+.load-pct { font-size: 14px; color: var(--text-3); margin-top: 12px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-SemiBold.ttf"); }
+.load-tip { position: absolute; left: 20%; right: 20%; bottom: 72px; align-items: center; opacity: 1; transition-duration: 0.45s; }
+.load-tip--out { opacity: 0; translate: 0 6px; }
+.load-tip__label { margin-bottom: 10px; }
+.load-tip__text { font-size: 18px; color: var(--text-2); -unity-text-align: middle-center; white-space: normal; }
+
+/* ------------------------------------------------------------------ HUD */
+
+.hud { position: absolute; left: 0; top: 0; right: 0; bottom: 0; opacity: 1; transition-duration: 0.3s; }
+.hud--off { opacity: 0; }
+.hud-vignette { position: absolute; left: 0; top: 0; right: 0; bottom: 0; opacity: 0; -unity-background-scale-mode: stretch-to-fill; }
+.hud-bottom { position: absolute; left: 0; right: 0; bottom: 26px; align-items: center; }
+.hud-itemname { font-size: 18px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-SemiBold.ttf"); text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8); margin-bottom: 14px; opacity: 0; translate: 0 4px; transition-duration: 0.25s; transition-timing-function: ease-out-cubic; }
+.hud-itemname--on { opacity: 1; translate: 0 0; }
+.hud-status { width: 644px; flex-direction: row; align-items: flex-end; justify-content: space-between; margin-bottom: 12px; padding: 0 4px; }
+
+.health { flex-direction: row; align-items: center; }
+.health__glyph { width: 22px; height: 22px; margin-right: 10px; }
+.hp-seg { width: 24px; height: 9px; margin-right: 4px; border-radius: 5px; background-color: rgba(8, 10, 14, 0.55); border-width: 1px; border-color: rgba(255, 255, 255, 0.08); overflow: hidden; }
+.hp-seg__ghost { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; background-color: rgba(255, 236, 225, 0.85); transition-duration: 0.5s; transition-delay: 0.3s; transition-timing-function: ease-in-cubic; }
+.hp-seg__fill { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; background-color: var(--health); }
+.health--low .hp-seg { border-color: rgba(240, 96, 93, 0.6); }
+.health--pulse .hp-seg__fill { background-color: rgb(255, 140, 130); }
+
+.air { flex-direction: row; align-items: center; opacity: 0; transition-duration: 0.35s; }
+.air--on { opacity: 1; }
+.bubble { width: 14px; height: 14px; margin-left: 5px; border-radius: 7px; border-width: 2px; border-color: rgba(190, 232, 255, 0.95); background-color: rgba(116, 199, 242, 0.45); scale: 1 1; opacity: 1; transition-duration: 0.25s; transition-timing-function: ease-out-back; }
+.bubble--gone { scale: 0.2 0.2; opacity: 0; }
+
+.hotbar { flex-direction: row; padding: 6px; border-radius: 18px; background-color: rgba(10, 12, 16, 0.58); border-width: 1px; border-color: rgba(255, 255, 255, 0.08); }
+.hotbar__sel {
+    position: absolute;
+    left: 6px;
+    top: 4px;
+    width: 70px;
+    height: 70px;
+    border-radius: 14px;
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.92);
+    background-color: rgba(255, 255, 255, 0.09);
+    transition-duration: 0.13s;
+    transition-timing-function: ease-out-cubic;
+}
+
+.slot { width: 66px; height: 66px; margin: 0 2px; border-radius: 12px; background-color: rgba(255, 255, 255, 0.05); border-width: 1px; border-color: rgba(255, 255, 255, 0.05); }
+.slot__icon { position: absolute; left: 10px; top: 9px; right: 10px; bottom: 11px; -unity-background-scale-mode: scale-to-fit; }
+.slot__count { position: absolute; right: 6px; bottom: 2px; font-size: 16px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-ExtraBold.ttf"); text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9); padding: 0; margin: 0; }
+.slot__key { position: absolute; left: 7px; top: 3px; font-size: 11px; color: rgba(255, 255, 255, 0.32); -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-Bold.ttf"); padding: 0; margin: 0; }
+.slot__dur { position: absolute; left: 11px; right: 11px; bottom: 6px; height: 4px; border-radius: 2px; background-color: rgba(0, 0, 0, 0.6); overflow: hidden; }
+.slot__dur-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 2px; background-color: rgb(130, 220, 120); }
+.slot__glyph { position: absolute; left: 0; right: 0; top: 0; bottom: 0; font-size: 22px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-ExtraBold.ttf"); -unity-text-align: middle-center; color: var(--text-2); }
+
+.crosshair { position: absolute; left: 50%; top: 50%; width: 48px; height: 48px; translate: -50% -50%; }
+
+.hud-target {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 30px;
+    align-items: center;
+    opacity: 0;
+    translate: 0 -6px;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-out-cubic;
+}
+.hud-target--on { opacity: 1; translate: 0 0; }
+.hud-target__pill { flex-direction: row; align-items: center; height: 40px; padding: 0 18px 0 8px; border-radius: 20px; background-color: rgba(10, 12, 16, 0.6); border-width: 1px; border-color: rgba(255, 255, 255, 0.08); }
+.hud-target__icon { width: 28px; height: 28px; margin-right: 10px; -unity-background-scale-mode: scale-to-fit; }
+.hud-target__name { font-size: 16px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-SemiBold.ttf"); }
+.hud-target__note { font-size: 14px; margin-left: 12px; color: var(--warn); }
+
+.toasts { position: absolute; right: 30px; top: 0; bottom: 0; justify-content: center; align-items: flex-end; }
+.toast {
+    flex-direction: row;
+    align-items: center;
+    height: 48px;
+    padding: 0 18px 0 8px;
+    margin-bottom: 8px;
+    border-radius: 14px;
+    background-color: rgba(10, 12, 16, 0.64);
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.08);
+    opacity: 1;
+    translate: 0 0;
+    transition-duration: 0.28s;
+    transition-timing-function: ease-out-cubic;
+}
+.toast--in { opacity: 0; translate: 36px 0; }
+.toast--out { opacity: 0; translate: 16px 0; }
+.toast__icon { width: 34px; height: 34px; margin-right: 10px; -unity-background-scale-mode: scale-to-fit; }
+.toast__count { font-size: 16px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-ExtraBold.ttf"); color: var(--accent); margin-right: 8px; }
+.toast__name { font-size: 16px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-SemiBold.ttf"); }
+.toast--warn .toast__count { color: var(--warn); }
+
+.hud-saved {
+    position: absolute;
+    right: 30px;
+    top: 28px;
+    flex-direction: row;
+    align-items: center;
+    height: 38px;
+    padding: 0 16px 0 12px;
+    border-radius: 19px;
+    background-color: rgba(10, 12, 16, 0.6);
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.08);
+    opacity: 0;
+    translate: 0 -6px;
+    transition-duration: 0.3s;
+}
+.hud-saved--on { opacity: 1; translate: 0 0; }
+.hud-saved__glyph { width: 18px; height: 18px; margin-right: 8px; }
+.hud-saved__text { font-size: 14px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-SemiBold.ttf"); color: var(--text-2); }
+
+/* ------------------------------------------------------------------ pause / death */
+
+.side-column { position: absolute; left: 128px; top: 0; bottom: 0; justify-content: center; }
+.pause-title { font-size: 54px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-ExtraBold.ttf"); letter-spacing: 2px; }
+.pause-sub { font-size: 17px; color: var(--text-3); margin-top: 6px; margin-bottom: 48px; }
+.death-scrim { background-color: rgba(34, 6, 8, 0.6); }
+.death-center { position: absolute; left: 0; right: 0; top: 0; bottom: 0; align-items: center; justify-content: center; }
+.death-title { font-size: 68px; letter-spacing: 4px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-ExtraBold.ttf"); text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6); }
+.death-sub { font-size: 19px; color: rgba(255, 220, 214, 0.72); margin-top: 10px; margin-bottom: 44px; }
+
+/* ------------------------------------------------------------------ inventory & crafting */
+
+.inv-layout { position: absolute; left: 0; right: 0; top: 0; bottom: 0; flex-direction: row; align-items: center; justify-content: center; }
+.inv-panel { padding: 28px; }
+.inv-title-row { flex-direction: row; align-items: flex-end; margin-bottom: 18px; }
+.inv-hint { font-size: 13px; color: var(--text-3); margin-left: 16px; margin-bottom: 4px; }
+.inv-grid { flex-direction: row; flex-wrap: wrap; width: 630px; }
+.inv-sep { flex-direction: row; align-items: center; margin: 16px 0 12px 0; }
+.inv-sep__line { flex-grow: 1; height: 1px; background-color: var(--line); margin-left: 12px; }
+.inv-slot { width: 66px; height: 66px; margin: 2px; transition-duration: 0.1s; }
+.inv-slot:hover { background-color: rgba(255, 255, 255, 0.11); border-color: rgba(255, 255, 255, 0.22); }
+.inv-slot--selected { border-color: rgba(255, 255, 255, 0.45); }
+.inv-slot--target { border-color: var(--accent); background-color: rgba(125, 220, 188, 0.12); }
+.inv-slot--flash { background-color: rgba(125, 220, 188, 0.3); }
+
+.craft-panel { width: 560px; height: 760px; margin-left: 24px; padding: 28px 0 0 0; }
+.craft-head { padding: 0 28px; }
+.craft-stations { flex-direction: row; margin-top: 12px; }
+.craft-tabs { flex-direction: row; flex-wrap: wrap; padding: 0 28px; margin-top: 18px; margin-bottom: 8px; }
+.pill {
+    height: 32px;
+    padding: 0 14px;
+    margin: 0 8px 8px 0;
+    border-radius: 16px;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.04);
+    color: var(--text-2);
+    font-size: 14px;
+    -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-SemiBold.ttf");
+    transition-duration: 0.12s;
+}
+.pill:hover { color: var(--text); background-color: rgba(255, 255, 255, 0.08); }
+.pill--on { background-color: rgba(255, 255, 255, 0.9); color: rgb(14, 17, 23); border-color: rgba(255, 255, 255, 0.9); }
+.pill--on:hover { background-color: rgb(255, 255, 255); color: rgb(14, 17, 23); }
+.craft-list { flex-grow: 1; }
+.craft-list-inner { padding: 0 16px 12px 16px; }
+.craft-cat { margin: 14px 12px 6px 12px; }
+.recipe {
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 12px;
+    margin-bottom: 4px;
+    border-radius: 12px;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0);
+    transition-duration: 0.12s;
+}
+.recipe:hover { background-color: rgba(255, 255, 255, 0.06); }
+.recipe--on { background-color: rgba(255, 255, 255, 0.09); border-color: rgba(125, 220, 188, 0.5); }
+.recipe--locked { opacity: 0.5; }
+.recipe__icon { width: 44px; height: 44px; margin-right: 14px; -unity-background-scale-mode: scale-to-fit; }
+.recipe__name { font-size: 17px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-SemiBold.ttf"); }
+.recipe__count { font-size: 14px; color: var(--text-3); margin-left: 6px; }
+.recipe__inputs { flex-direction: row; margin-top: 4px; }
+.recipe__in { flex-direction: row; align-items: center; margin-right: 12px; }
+.recipe__in-icon { width: 20px; height: 20px; margin-right: 4px; -unity-background-scale-mode: scale-to-fit; }
+.recipe__in-text { font-size: 13px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-Bold.ttf"); }
+.have-ok { color: var(--accent); }
+.have-no { color: var(--danger); }
+.recipe__badge { height: 24px; padding: 0 10px; border-radius: 12px; font-size: 12px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-Bold.ttf"); -unity-text-align: middle-center; background-color: rgba(242, 179, 91, 0.13); color: var(--warn); }
+.recipe__badge--ok { background-color: rgba(125, 220, 188, 0.12); color: var(--accent); }
+.craft-detail { padding: 22px 28px 26px 28px; border-top-width: 1px; border-color: var(--line); background-color: rgba(0, 0, 0, 0.16); }
+.craft-detail__icon { width: 72px; height: 72px; margin-right: 18px; -unity-background-scale-mode: scale-to-fit; }
+.craft-detail__name { font-size: 24px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-Bold.ttf"); }
+.craft-detail__desc { font-size: 14px; color: var(--text-3); margin-top: 2px; white-space: normal; }
+.craft-detail__inputs { flex-direction: row; flex-wrap: wrap; margin-top: 16px; }
+.ingredient { flex-direction: row; align-items: center; height: 40px; padding: 0 14px 0 6px; margin: 0 8px 8px 0; border-radius: 12px; background-color: rgba(255, 255, 255, 0.05); }
+.ingredient__icon { width: 30px; height: 30px; margin-right: 8px; -unity-background-scale-mode: scale-to-fit; }
+.ingredient__name { font-size: 14px; color: var(--text-2); margin-right: 10px; }
+.ingredient__count { font-size: 14px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-Bold.ttf"); }
+.craft-detail__station { font-size: 14px; margin-top: 4px; }
+.craft-actions { flex-direction: row; align-items: center; margin-top: 16px; }
+.craft-hint { font-size: 13px; color: var(--text-3); margin-left: 14px; flex-shrink: 1; white-space: normal; }
+
+.tooltip {
+    position: absolute;
+    left: 0;
+    top: 0;
+    max-width: 340px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    background-color: rgba(12, 14, 19, 0.96);
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.12);
+    opacity: 0;
+    transition-duration: 0.12s;
+}
+.tooltip--on { opacity: 1; }
+.tooltip__name { font-size: 17px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-Bold.ttf"); }
+.tooltip__kind { font-size: 13px; color: var(--text-3); margin-top: 2px; }
+.tooltip__desc { font-size: 14px; color: var(--text-2); margin-top: 8px; white-space: normal; }
+.tooltip__dur { flex-direction: row; align-items: center; margin-top: 10px; }
+.tooltip__dur-bar { width: 120px; height: 5px; border-radius: 3px; background-color: rgba(255, 255, 255, 0.12); margin-right: 10px; overflow: hidden; }
+.tooltip__dur-fill { position: absolute; left: 0; top: 0; bottom: 0; background-color: rgb(130, 220, 120); }
+.tooltip__dur-text { font-size: 13px; color: var(--text-2); -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-SemiBold.ttf"); }
+
+.cursor-stack { position: absolute; left: 0; top: 0; width: 60px; height: 60px; }
+.cursor-stack__icon { position: absolute; left: 0; top: 0; right: 0; bottom: 0; -unity-background-scale-mode: scale-to-fit; }
+.cursor-stack .slot__count { right: -2px; bottom: -4px; }
