@@ -97,7 +97,7 @@ Shader "Wildmere/Sky"
                 float3 amb = _WM_CloudAmbient.rgb * lerp(0.62, 1.12, saturate(hf + (1.0 - shape) * 0.5)) * (1.0 - _WM_Clouds.y * 0.5);
                 float3 col = sunL + amb;
                 // Lightning glows inside the clouds.
-                col += float3(0.7, 0.75, 1.0) * _WM_Lightning.w * (0.8 + 1.2 * pow(saturate(dot(d, _WM_Lightning.xyz) * 0.5 + 0.5), 6.0)) * (0.5 + shape);
+                col += float3(0.5, 0.55, 0.75) * _WM_Lightning.w * (0.2 + 1.6 * pow(saturate(dot(d, _WM_Lightning.xyz) * 0.5 + 0.5), 10.0)) * (0.4 + shape);
                 float alpha = saturate(shape * 2.2) * lerp(0.92, 1.0, _WM_Clouds.y);
                 // Far clouds fade into the horizon haze.
                 float fade = exp(-tA / 12000.0) * smoothstep(0.004, 0.07, d.y) * (1.0 - _WM_Surface.y * 0.65);

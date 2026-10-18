@@ -246,6 +246,8 @@ namespace Wildmere.Rendering
             // Sun-scattered haze: much stronger when the light crosses more air (sunrise/sunset).
             float sunScatter = (0.05f + golden * 0.16f) * (1f - overcast * 0.85f);
             Color fogSun = (useSun ? sunCol * sunI : moonCol * moonI * 0.5f) * sunScatter;
+            // Volumetric light carries the shadowed part of the sun scatter when it is on.
+            if (RenderQuality.Volumetric > 0) fogSun *= 0.7f;
             FogColor = fog;
             float density = 0.0022f + overcast * 0.0025f + Rain * 0.006f + FogBoost * 0.022f + dark * 0.010f;
 
@@ -318,6 +320,10 @@ namespace Wildmere.Rendering
             RenderSettings.ambientEquatorColor = Color.Lerp(ambSky, ambGround, 0.5f);
             RenderSettings.ambientGroundColor = ambGround;
 
+            // Volumetric light: strongest at golden hour, in morning mist and in dark forests; faint at noon.
+            VolumetricLight.Strength = (0.55f + golden * 0.9f + dark * 0.9f + MistAmount * 0.5f + (useSun ? 0f : 0.6f)) * (1f - overcast * 0.75f);
+            VolumetricLight.DensityBoost = 1f + dark * 2.5f + FogBoost * 1.5f + golden * 0.6f + Rain * 0.8f;
+            VolumetricLight.Tint = Color.Lerp(Color.white, new Color(1f, 0.9f, 0.75f), golden);
             PostFx.UpdateFrame(day, golden, overcast, storm, dark, Underwater, Flash, sunH);
         }
 

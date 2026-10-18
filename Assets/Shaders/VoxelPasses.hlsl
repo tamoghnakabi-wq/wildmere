@@ -98,14 +98,14 @@ half4 VoxelFrag(VVaryings i) : SV_Target
     }
 
     // Snow settles on open, up-facing surfaces while it snows (patchy at first, full cover later).
-    if (_WM_Surface.x > 0.001 && N.y > 0.5)
+    if (_WM_Surface.x > 0.001 && N.y > 0.5 && (flags & WM_FLAG_EMISSIVE) == 0)
     {
         half patch = SAMPLE_TEXTURE2D_LOD(_WM_CloudNoise, sampler_WM_CloudNoise, i.positionWS.xz * (1.0 / 9.0), 0).g;
         half cover = saturate((_WM_Surface.x * 1.35 - patch) * 6.0) * smoothstep(0.82, 0.97, sky);
         if ((flags & WM_FLAG_PLANT) != 0) cover *= saturate(i.uv.y) * 0.8;
-        albedo = lerp(albedo, half3(0.82, 0.85, 0.9) * (0.96 + 0.08 * rnd), cover);
+        albedo = lerp(albedo, half3(0.74, 0.77, 0.82) * (0.94 + 0.1 * rnd), cover);
         smoothness = lerp(smoothness, 0.35, cover);
-        nxy *= 1.0 - cover * 0.75;
+        nxy *= 1.0 - cover * 0.5;
         occlusion = lerp(occlusion, max(occlusion, 0.8), cover);
     }
 

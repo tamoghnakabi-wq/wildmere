@@ -195,7 +195,7 @@ half3 WMSkyGradient(float3 d)
     haze = max(haze, _WM_Surface.y * 0.55);
     col = lerp(col, WMFogColorDir(normalize(float3(d.x, max(d.y, 0.0) * 0.2, d.z))), haze);
     // Lightning lights up the whole sky (stronger towards the strike).
-    col += half3(0.55, 0.6, 0.8) * _WM_Lightning.w * (0.35 + 0.65 * pow(saturate(dot(d, _WM_Lightning.xyz) * 0.5 + 0.5), 4.0));
+    col += half3(0.3, 0.33, 0.45) * _WM_Lightning.w * (0.25 + 0.75 * pow(saturate(dot(d, _WM_Lightning.xyz) * 0.5 + 0.5), 6.0));
     return col;
 }
 

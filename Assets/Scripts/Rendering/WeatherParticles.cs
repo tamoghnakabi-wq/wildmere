@@ -19,6 +19,7 @@ namespace Wildmere.Rendering
 
         Mesh mRainMesh, mSnowMesh, mSplashMesh;
         Material mRain, mSnow, mSplash;
+        MeshRenderer mRainR, mSnowR, mSplashR;
         Texture2D mHeight;
         readonly float[] mHeights = new float[MapSize * MapSize];
         float mHeightTimer;
@@ -50,11 +51,33 @@ namespace Wildmere.Rendering
             mRainMesh = BuildMesh(MaxRain, 11);
             mSnowMesh = BuildMesh(MaxSnow, 23);
             mSplashMesh = BuildMesh(MaxSplash, 37);
+            // Plain renderers (never culled: huge mesh bounds) work in every capture path, including the
+            // explicit offscreen renders of the batchmode harness.
+            mRainR = MakeRenderer("Rain", mRainMesh, mRain);
+            mSnowR = MakeRenderer("Snow", mSnowMesh, mSnow);
+            mSplashR = MakeRenderer("Splashes", mSplashMesh, mSplash);
             mHeight = new Texture2D(MapSize, MapSize, TextureFormat.RFloat, false, true)
             {
                 name = "WM WeatherHeight", filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Repeat,
             };
             Shader.SetGlobalTexture(kHeight, mHeight);
+        }
+
+        MeshRenderer MakeRenderer(string name, Mesh mesh, Material mat)
+        {
+            var go = new GameObject(name) { layer = Layers.Fx };
+            go.transform.SetParent(transform, false);
+            go.AddComponent<MeshFilter>().sharedMesh = mesh;
+            var r = go.AddComponent<MeshRenderer>();
+            r.sharedMaterial = mat;
+            r.shadowCastingMode = ShadowCastingMode.Off;
+            r.receiveShadows = false;
+            r.lightProbeUsage = LightProbeUsage.Off;
+            r.reflectionProbeUsage = ReflectionProbeUsage.Off;
+            r.motionVectorGenerationMode = MotionVectorGenerationMode.ForceNoMotion;
+            r.allowOcclusionWhenDynamic = false;
+            r.enabled = false;
+            return r;
         }
 
         static Mesh BuildMesh(int quads, int seed)
@@ -113,8 +136,12 @@ namespace Wildmere.Rendering
         {
             var cam = Camera.main;
             bool any = mRainI > 0.01f || mSnowI > 0.01f;
-            if (cam == null || !any || RenderQuality.ParticleDensity <= 0f) return;
-            if (GameRoot.Instance != null && GameRoot.Instance.State == GameState.MainMenu) return;
+            bool show = cam != null && any && RenderQuality.ParticleDensity > 0f &&
+                        !(GameRoot.Instance != null && GameRoot.Instance.State == GameState.MainMenu);
+            mRainR.enabled = show && mRainI > 0.01f;
+            mSplashR.enabled = show && mRainI > 0.01f;
+            mSnowR.enabled = show && mSnowI > 0.01f;
+            if (!show) return;
             Vector3 c = cam.transform.position;
             mHeightTimer -= Time.deltaTime;
             if (mHeightTimer <= 0f) { mHeightTimer = 0.2f; RefreshHeights(c); }
@@ -131,37 +158,29 @@ namespace Wildmere.Rendering
             mFallPhase = Mathf.Repeat(mFallPhase + Time.deltaTime, 3600f);
             mSnowPhase = Mathf.Repeat(mSnowPhase + Time.deltaTime, 3600f);
             float density = RenderQuality.ParticleDensity;
-            var rp = new RenderParams
-            {
-                layer = Layers.Fx,
-                shadowCastingMode = ShadowCastingMode.Off,
-                receiveShadows = false,
-                worldBounds = new Bounds(c, Vector3.one * 200f),
-                lightProbeUsage = LightProbeUsage.Off,
-                reflectionProbeUsage = ReflectionProbeUsage.Off,
-                motionVectorMode = MotionVectorGenerationMode.ForceNoMotion,
-            };
             if (mRainI > 0.01f)
             {
                 int n = Mathf.RoundToInt(MaxRain * density * Mathf.Clamp01(mRainI * 1.15f));
                 // x: active fraction, y: box half-size, z: box height, w: fall speed
                 mRain.SetVector(kParams, new Vector4(n / (float)MaxRain, 15f, 22f, 11f));
-                mRain.SetVector(kParams2, new Vector4(mFallPhase, Mathf.Clamp01(mRainI), 0.75f, 0.018f));
-                rp.material = mRain;
-                Graphics.RenderMesh(rp, mRainMesh, 0, Matrix4x4.identity);
+                mRain.SetVector(kParams2, new Vector4(mFallPhase, Mathf.Clamp01(mRainI * 1.2f), 0.9f, 0.024f));
+
+                if (Cli.Has("wxdebug") && Time.frameCount % 120 == 0)
+                {
+                    int hx = Mathf.FloorToInt(c.x) & (MapSize - 1), hz = Mathf.FloorToInt(c.z) & (MapSize - 1);
+                    Debug.Log($"WM_WXDEBUG rain n={n} light={light} ground@cam={mHeights[hx + hz * MapSize]} cam={c} frame={Time.frameCount}");
+                }
                 int ns = Mathf.RoundToInt(MaxSplash * density * Mathf.Clamp01(mRainI * 1.2f));
                 mSplash.SetVector(kParams, new Vector4(ns / (float)MaxSplash, 13f, 0f, 0f));
                 mSplash.SetVector(kParams2, new Vector4(mFallPhase, Mathf.Clamp01(mRainI), 0f, 0f));
-                rp.material = mSplash;
-                Graphics.RenderMesh(rp, mSplashMesh, 0, Matrix4x4.identity);
+
             }
             if (mSnowI > 0.01f)
             {
                 int n = Mathf.RoundToInt(MaxSnow * density * Mathf.Clamp01(mSnowI * 1.15f));
                 mSnow.SetVector(kParams, new Vector4(n / (float)MaxSnow, 20f, 24f, 1.3f));
-                mSnow.SetVector(kParams2, new Vector4(mSnowPhase, Mathf.Clamp01(mSnowI), 0.06f, 0f));
-                rp.material = mSnow;
-                Graphics.RenderMesh(rp, mSnowMesh, 0, Matrix4x4.identity);
+                mSnow.SetVector(kParams2, new Vector4(mSnowPhase, Mathf.Clamp01(mSnowI * 1.3f), 0.075f, 0f));
+
             }
         }
 

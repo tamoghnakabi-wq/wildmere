@@ -90,7 +90,7 @@ Shader "Wildmere/WeatherFx"
                     float g = GroundAt(xz);
                     if (g > 250.0 || g > cam.y + 30.0) { o.positionCS = float4(0, 0, -2, 1); return o; }
                     pos = float3(xz.x, g + 0.03, xz.y);
-                    float r = lerp(0.05, 0.3, sqrt(ph));
+                    float r = lerp(0.04, 0.2, sqrt(ph));
                     corner = float3((v.uv.x - 0.5) * 2.0 * r, 0, (v.uv.y - 0.5) * 2.0 * r);
                     float d = distance(pos, cam);
                     alpha *= (1.0 - smoothstep(hb * 0.6, hb, length(xz - cam.xz)));
@@ -115,7 +115,7 @@ Shader "Wildmere/WeatherFx"
                 float g = GroundAt(pos.xz);
                 alpha *= saturate((pos.y - g) * 2.0);
                 float dist = distance(pos, cam);
-                alpha *= (1.0 - smoothstep(hb * 0.65, hb, length(pos.xz - cam.xz))) * smoothstep(0.35, 1.4, dist);
+                alpha *= (1.0 - smoothstep(hb * 0.65, hb, length(pos.xz - cam.xz))) * smoothstep(mode == 1 ? 0.4 : 1.2, mode == 1 ? 1.2 : 3.2, dist);
                 float3 toCam = normalize(cam - pos);
                 if (mode == 0)
                 {
@@ -154,22 +154,22 @@ Shader "Wildmere/WeatherFx"
                 if (mode == 0)
                 {
                     float across = saturate(1.0 - abs(uv.x * 2.0 - 1.0));
-                    a *= pow(across, 1.5) * (1.0 - uv.y * 0.75) * 0.34;
-                    return half4(_WM_WxLight.rgb * 1.35 + 0.02, a);
+                    a *= pow(across, 1.2) * (1.0 - uv.y * 0.7) * 0.3;
+                    return half4(_WM_WxLight.rgb * 1.5 + 0.03, saturate(a));
                 }
                 if (mode == 1)
                 {
                     float r = length(uv - 0.5) * 2.0;
-                    a *= smoothstep(1.0, 0.35, r) * 0.9;
-                    return half4(_WM_WxLight.rgb * 1.6 + 0.03, a);
+                    a *= smoothstep(1.0, 0.3, r);
+                    return half4(_WM_WxLight.rgb * 2.6 + 0.06, saturate(a));
                 }
                 // Splash ring with a bright first-frame droplet.
                 float r = length(uv - 0.5) * 2.0;
                 float ph = i.data.y;
                 float ring = smoothstep(0.62, 0.86, r) * smoothstep(1.0, 0.88, r);
                 float dot0 = smoothstep(0.45, 0.0, r) * saturate(1.0 - ph * 4.0);
-                a *= (ring * 0.55 + dot0 * 0.6) * (1.0 - ph) * (1.0 - ph);
-                return half4(_WM_WxLight.rgb * 1.5 + 0.03, a);
+                a *= (ring * 0.32 + dot0 * 0.4) * (1.0 - ph) * (1.0 - ph);
+                return half4(_WM_WxLight.rgb * 1.3 + 0.02, a);
             }
             ENDHLSL
         }
