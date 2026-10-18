@@ -99,7 +99,7 @@ package_win() {
   local f
   for f in Wildmere.exe UnityPlayer.dll; do [ -f "$w/$f" ] || die "Windows build is missing $f"; done
   [ -d "$w/Wildmere_Data" ] || die "Windows build is missing Wildmere_Data/"
-  [ -f "$w/Wildmere_Data/globalgamemanagers" ] || die "Wildmere_Data/ looks incomplete (no globalgamemanagers)"
+  { [ -f "$w/Wildmere_Data/globalgamemanagers" ] || [ -f "$w/Wildmere_Data/data.unity3d" ]; } || die "Wildmere_Data/ looks incomplete (no globalgamemanagers or data.unity3d)"
   if [ ! -d "$w/MonoBleedingEdge" ] && [ ! -f "$w/GameAssembly.dll" ]; then
     die "Windows build has neither MonoBleedingEdge/ (Mono) nor GameAssembly.dll (IL2CPP)"
   fi
