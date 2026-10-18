@@ -50,6 +50,10 @@ source and `art-source/audio/sources.json` records file hashes.
 | `oga_jump_landing` | Jump Landing | Macro | CC0 1.0 | <https://opengameart.org/content/jump-landing> |
 | `oga_jumpland` | Jump Landing Sound | qubodup | CC0 1.0 | <https://opengameart.org/content/jump-landing-sound> |
 | `oga_kdd_steps` | Different steps on wood, stone, leaves, gravel and mud | TinyWorlds | CC0 1.0 | <https://opengameart.org/content/different-steps-on-wood-stone-leaves-gravel-and-mud> |
+| `oga_m_another_august` | Another August | cynicmusic | CC0 1.0 | <https://opengameart.org/content/another-august> |
+| `oga_m_bluebonnet` | Bluebonnet | Kistol | CC0 1.0 | <https://opengameart.org/content/bluebonnet> |
+| `oga_m_forget_me_not` | Forget Me Not | Kistol | CC0 1.0 | <https://opengameart.org/content/forget-me-not> |
+| `oga_m_meadow` | Meadow Thoughts | Écrivain | CC0 1.0 | <https://opengameart.org/content/meadow-thoughts> |
 | `oga_nu_crunch` | 5 break, crunch impacts | qubodup | CC0 1.0 | <https://opengameart.org/content/5-break-crunch-impacts> |
 | `oga_nu_wood` | 35 wooden cracks/hits/destructions | qubodup | CC0 1.0 | <https://opengameart.org/content/35-wooden-crackshitsdestructions> |
 | `oga_ogrebane_wm2` | Wood and Metal Sound Effects: Volume 2 | Ogrebane | CC0 1.0 | <https://opengameart.org/content/wood-and-metal-sound-effects-volume-2> |
@@ -232,6 +236,10 @@ every recording that went into them.
 | Audio/item/tool_break_02.wav | <https://opengameart.org/content/100-cc0-metal-and-wood-sfx> | rubberduck | CC0 1.0 | `100-CC0-wood-metal-SFX.zip -> wood_cracking_02.ogg` [0.00-0.25s] |
 | &nbsp;&nbsp;+ layer | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactMetal_light_001.ogg` [0.00-0.25s] |
 | &nbsp;&nbsp;+ layer | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactMetal_light_000.ogg` [0.00-0.37s] |
+| Audio/music/another_august_01.ogg | <https://opengameart.org/content/another-august> | cynicmusic | CC0 1.0 | `013_Another_August_0.mp3` [0.00-206.56s] |
+| Audio/music/bluebonnet_01.ogg | <https://opengameart.org/content/bluebonnet> | Kistol | CC0 1.0 | `bluebonnet_in_b_major_2.ogg` [0.00-126.90s] |
+| Audio/music/forget_me_not_01.ogg | <https://opengameart.org/content/forget-me-not> | Kistol | CC0 1.0 | `forget_me_not_in_f_major_0.ogg` [0.00-188.90s] |
+| Audio/music/meadow_thoughts_01.ogg | <https://opengameart.org/content/meadow-thoughts> | Écrivain | CC0 1.0 | `Meadow Thoughts.ogg` [0.00-149.74s] |
 | Audio/place/dirt_01.wav | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactSoft_heavy_000.ogg` [0.00-0.53s, varispeed 0.92] |
 | Audio/place/dirt_02.wav | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactSoft_heavy_001.ogg` [0.00-0.57s, varispeed 1.05] |
 | Audio/place/dirt_03.wav | <https://kenney.nl/assets/impact-sounds> | Kenney (kenney.nl) | CC0 1.0 | `kenney_impact-sounds.zip -> Audio/impactSoft_heavy_003.ogg` [0.00-0.54s] |

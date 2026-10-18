@@ -1,6 +1,6 @@
 Wildmere audio QA
 =================
-67 names, 251 files, 48.9 MB
+71 names, 255 files, 57.6 MB
 
 Effective level per name (loudest 400 ms of the loudest variant + 20log10(volume)):
   amb/cave                  -28.1  variants 1  max xcorr 0.00
@@ -37,6 +37,10 @@ Effective level per name (loudest 400 ms of the loudest variant + 20log10(volume
   item/craft                -24.7  variants 3  max xcorr 0.34
   item/pickup               -30.3  variants 4  max xcorr 0.49
   item/tool_break           -21.4  variants 2  max xcorr 0.06
+  music/another_august      -21.4  variants 1  max xcorr 0.00
+  music/bluebonnet          -21.0  variants 1  max xcorr 0.00
+  music/forget_me_not       -19.4  variants 1  max xcorr 0.00
+  music/meadow_thoughts     -20.6  variants 1  max xcorr 0.00
   place/dirt                -23.2  variants 4  max xcorr 0.69
   place/glass               -26.8  variants 4  max xcorr 0.27
   place/gravel              -23.7  variants 4  max xcorr 0.21
@@ -196,6 +200,10 @@ Per file:
   item/pickup pickup_04.wav                    1ch   0.25s pk  -1.60 tp  -1.58 Mmax  -23.4 dc 0.0000
   item/tool_break tool_break_01.wav            1ch   0.90s pk  -2.76 tp  -1.95 Mmax  -17.0 dc 0.0000
   item/tool_break tool_break_02.wav            1ch   0.47s pk  -1.69 tp  -1.55 Mmax  -19.5 dc 0.0000
+  music/another_august another_august_01.ogg   2ch 206.57s pk  -7.47 tp  -7.46 LUFS  -21.0 dc 0.0000
+  music/bluebonnet bluebonnet_01.ogg           2ch 126.90s pk  -5.00 tp  -5.00 LUFS  -21.0 dc 0.0000
+  music/forget_me_not forget_me_not_01.ogg     2ch 188.90s pk  -3.75 tp  -3.75 LUFS  -21.0 dc 0.0000
+  music/meadow_thoughts meadow_thoughts_01.ogg 2ch 149.74s pk  -6.63 tp  -6.63 LUFS  -21.0 dc 0.0000
   place/dirt dirt_01.wav                       1ch   0.30s pk  -2.59 tp  -2.59 Mmax  -18.0 dc 0.0000
   place/dirt dirt_02.wav                       1ch   0.30s pk  -2.06 tp  -2.06 Mmax  -18.0 dc 0.0000
   place/dirt dirt_03.wav                       1ch   0.30s pk  -3.09 tp  -3.09 Mmax  -18.0 dc 0.0000

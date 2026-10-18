@@ -1870,6 +1870,70 @@
    "channels": 1
   }
  ],
+ "music/another_august": [
+  {
+   "file": "Assets/Resources/Audio/music/another_august_01.ogg",
+   "layers": [
+    {
+     "source": "oga_m_another_august",
+     "file": "013_Another_August_0.mp3",
+     "t0": 0.0,
+     "t1": 206.565,
+     "role": "take"
+    }
+   ],
+   "seconds": 206.565,
+   "channels": 2
+  }
+ ],
+ "music/bluebonnet": [
+  {
+   "file": "Assets/Resources/Audio/music/bluebonnet_01.ogg",
+   "layers": [
+    {
+     "source": "oga_m_bluebonnet",
+     "file": "bluebonnet_in_b_major_2.ogg",
+     "t0": 0.0,
+     "t1": 126.9,
+     "role": "take"
+    }
+   ],
+   "seconds": 126.9,
+   "channels": 2
+  }
+ ],
+ "music/forget_me_not": [
+  {
+   "file": "Assets/Resources/Audio/music/forget_me_not_01.ogg",
+   "layers": [
+    {
+     "source": "oga_m_forget_me_not",
+     "file": "forget_me_not_in_f_major_0.ogg",
+     "t0": 0.0,
+     "t1": 188.9,
+     "role": "take"
+    }
+   ],
+   "seconds": 188.9,
+   "channels": 2
+  }
+ ],
+ "music/meadow_thoughts": [
+  {
+   "file": "Assets/Resources/Audio/music/meadow_thoughts_01.ogg",
+   "layers": [
+    {
+     "source": "oga_m_meadow",
+     "file": "Meadow Thoughts.ogg",
+     "t0": 0.0,
+     "t1": 149.744,
+     "role": "take"
+    }
+   ],
+   "seconds": 149.744,
+   "channels": 2
+  }
+ ],
  "place/dirt": [
   {
    "file": "Assets/Resources/Audio/place/dirt_01.wav",

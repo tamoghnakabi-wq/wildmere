@@ -315,6 +315,34 @@
     "volume": 0.6,
     "loop": false
   },
+  "music/another_august": {
+    "files": [
+      "Audio/music/another_august_01"
+    ],
+    "volume": 0.5,
+    "loop": false
+  },
+  "music/bluebonnet": {
+    "files": [
+      "Audio/music/bluebonnet_01"
+    ],
+    "volume": 0.5,
+    "loop": false
+  },
+  "music/forget_me_not": {
+    "files": [
+      "Audio/music/forget_me_not_01"
+    ],
+    "volume": 0.5,
+    "loop": false
+  },
+  "music/meadow_thoughts": {
+    "files": [
+      "Audio/music/meadow_thoughts_01"
+    ],
+    "volume": 0.5,
+    "loop": false
+  },
   "place/dirt": {
     "files": [
       "Audio/place/dirt_01",
