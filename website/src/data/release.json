@@ -13,7 +13,7 @@
       "size": 76292567,
       "sha256": "34d6e3f43996d1632675a111bf0d07eb799e31ab1ae3b2bf271ab0c24abf192f",
       "verified": {
-        "arm64": false,
+        "arm64": true,
         "x64": false
       }
     },
