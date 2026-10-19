@@ -185,9 +185,11 @@ namespace Wildmere.World.Decor
             return false;
         }
 
+        static readonly bool sNoProps = Core.Cli.Has("noprops");
+
         void LateUpdate()
         {
-            if (mModels == null || mChunks.Count == 0) return;
+            if (sNoProps || mModels == null || mChunks.Count == 0) return;
             var cam = Camera.main;
             if (cam == null) return;
             GeometryUtility.CalculateFrustumPlanes(cam, mPlanes);
@@ -253,6 +255,36 @@ namespace Wildmere.World.Decor
                     if (d < bd) { bd = d; best = c; }
                 }
             return best;
+        }
+
+        /// <summary>Debug (-propaudit): props whose support block is gone or that sit far above the terrain.</summary>
+        public int Audit()
+        {
+            var w = VoxelWorld.Instance;
+            if (w == null || mModels == null) return 0;
+            int total = 0, unsupported = 0, high = 0;
+            var kinds = new Dictionary<string, int>();
+            var examples = new List<string>();
+            foreach (var kv in mChunks)
+                foreach (var it in kv.Value)
+                {
+                    total++;
+                    byte below = w.GetBlock(it.X, it.Y - 1, it.Z);
+                    int surf = w.SurfaceY(it.X, it.Z);
+                    bool bad = !Blocks.IsSolid[below] && PropCatalog.Names[it.Kind] != "LilyPad";
+                    bool tall = surf > 0 && it.Y > surf + 2;
+                    if (bad) unsupported++;
+                    if (tall) high++;
+                    if (bad || tall)
+                    {
+                        string k = PropCatalog.Names[it.Kind];
+                        kinds[k] = kinds.TryGetValue(k, out int n) ? n + 1 : 1;
+                        if (examples.Count < 8) examples.Add($"{k}@({it.X},{it.Y},{it.Z}) below={Blocks.Get(below).Name} surf={surf}");
+                    }
+                }
+            var ks = new List<string>(); foreach (var kv in kinds) ks.Add(kv.Key + "=" + kv.Value);
+            Debug.Log($"WM_PROPAUDIT total={total} unsupported={unsupported} aboveSurface={high} kinds=[{string.Join(",", ks)}] e.g. {string.Join(" ; ", examples)}");
+            return unsupported + high;
         }
 
         public int InstanceCount { get { int n = 0; foreach (var l in mChunks.Values) n += l.Count; return n; } }

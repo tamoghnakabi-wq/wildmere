@@ -32,6 +32,7 @@ namespace Wildmere.Wildlife
         void Awake()
         {
             Instance = this;
+            if (Cli.Has("nowildlife")) Enabled = false;
             mRng = new System.Random(12345);
             BlockInteraction.EntityBlocks = Occupies;
         }

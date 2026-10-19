@@ -26,6 +26,13 @@ namespace Wildmere.Core
             Instance = new GameObject("MenuBackdrop").AddComponent<MenuBackdrop>();
         }
 
+        /// <summary>Show even when a harness flag is present (tests that start from the menu).</summary>
+        public static void ShowForced()
+        {
+            if (Instance != null) return;
+            Instance = new GameObject("MenuBackdrop").AddComponent<MenuBackdrop>();
+        }
+
         public static void Hide()
         {
             if (Instance == null) return;

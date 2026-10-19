@@ -73,7 +73,10 @@ namespace Wildmere.World
         void OnDestroy()
         {
             mPool?.Dispose();
-            foreach (var c in mChunks.Values) ChunkView.Return(c.View);
+            // Props are drawn by a renderer that outlives worlds (menu backdrop -> game world -> next world):
+            // forget this world's props, or they keep drawing at their old heights and float in the next world.
+            var props = Decor.PropRenderer.Instance;
+            foreach (var c in mChunks.Values) { ChunkView.Return(c.View); props?.OnChunkUnloaded(c); }
             mChunks.Clear();
             if (Instance == this) Instance = null;
         }

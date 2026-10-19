@@ -16,7 +16,7 @@ namespace Wildmere.Core
     /// </summary>
     public sealed class Harness : MonoBehaviour
     {
-        public static bool WantsAutoStart => Cli.Has("selftest") || Cli.Has("bench") || Cli.Has("shots") || Cli.Has("camat");
+        public static bool WantsAutoStart => Cli.Has("propaudit") || Cli.Has("selftest") || Cli.Has("bench") || Cli.Has("shots") || Cli.Has("camat");
         public static bool Headless => Application.isBatchMode || Cli.Has("selftest");
 
         readonly List<string> mErrors = new List<string>();
@@ -36,7 +36,8 @@ namespace Wildmere.Core
         {
             float quit = Cli.Float("quitafter", -1);
             if (quit > 0) StartCoroutine(QuitAfter(quit));
-            if (Cli.Has("selftest")) StartCoroutine(SelfTest());
+            if (Cli.Has("propaudit")) StartCoroutine(PropAudit());
+            else if (Cli.Has("selftest")) StartCoroutine(SelfTest());
             else if (Cli.Has("bench")) StartCoroutine(Bench(Cli.Float("bench", 30)));
             else if (Cli.Has("shots") || Cli.Has("camat")) StartCoroutine(Shots());
         }
@@ -74,6 +75,23 @@ namespace Wildmere.Core
             float t0 = Time.realtimeSinceStartup;
             var w = VoxelWorld.Instance;
             while (w != null && !w.ReadyAround(p, radius) && Time.realtimeSinceStartup - t0 < timeout) yield return null;
+        }
+
+        IEnumerator PropAudit()
+        {
+            if (Cli.Has("viamenu"))
+            {
+                // Like a player: the main menu's backdrop world streams in first, then a world is started.
+                MenuBackdrop.ShowForced();
+                yield return new WaitForSeconds(12f);
+                Debug.Log($"WM_PROPAUDIT backdrop props={World.Decor.PropRenderer.Instance?.InstanceCount}");
+            }
+            GameRoot.Instance.StartFromCli();
+            yield return WaitReady(120f);
+            yield return new WaitForSeconds(8f);
+            int bad = World.Decor.PropRenderer.Instance != null ? World.Decor.PropRenderer.Instance.Audit() : 0;
+            Debug.Log($"WM_PROPAUDIT {(bad == 0 ? "PASS" : "FAIL")} floating={bad}");
+            Quit(bad == 0 ? 0 : 1);
         }
 
         // ------------------------------------------------------------------ self-test
