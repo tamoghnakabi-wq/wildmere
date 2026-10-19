@@ -281,6 +281,7 @@ namespace Wildmere.QA
                 ("drops", new Func<IEnumerator>(Drops)), ("movement", new Func<IEnumerator>(Movement)), ("damage", new Func<IEnumerator>(Damage)), ("pause", new Func<IEnumerator>(PauseResume)),
                 ("settings", new Func<IEnumerator>(SettingsChecks)), ("streaming", new Func<IEnumerator>(Streaming)), ("wildlife", new Func<IEnumerator>(WildlifeAndWorld)),
                 ("persistence", new Func<IEnumerator>(Persistence)), ("respawnfar", new Func<IEnumerator>(RespawnFar)),
+                ("creative", new Func<IEnumerator>(CreativeChecks)),   // last: it opens its own world
             };
             foreach (var (g, fn) in groups)
             {
@@ -289,7 +290,7 @@ namespace Wildmere.QA
                 Info($"group {g} t={Time.realtimeSinceStartup - tStart:F0}s");
                 int errs = mErrors.Count;
                 yield return fn();
-                BI.ScriptedAttack = false; BI.ScriptedUse = false;
+                if (BI != null) { BI.ScriptedAttack = false; BI.ScriptedUse = false; }
                 if (P != null) { P.ScriptedMove = Vector2.zero; P.ScriptedJump = false; P.ScriptedCrouch = false; P.ScriptedSprint = false; }
                 if (mErrors.Count > errs) Info($"group {g} logged {mErrors.Count - errs} error(s); first: {mErrors[errs]}");
             }
@@ -1350,6 +1351,144 @@ namespace Wildmere.QA
         }
 
         // ================================================================== finish
+
+        // ------------------------------------------------------------------ creative
+
+        IEnumerator Tap()
+        {
+            // 50 ms down, 50 ms up: a quick key tap; two in a row land well inside the double-tap window.
+            P.ScriptedJump = true; yield return new WaitForSeconds(0.05f);
+            P.ScriptedJump = false; yield return new WaitForSeconds(0.05f);
+        }
+
+        IEnumerator CreativeChecks()
+        {
+            if (R.NoSave) { Check("creative", false, "needs saves (run without -nosave)"); yield break; }
+            R.SaveWorld();
+            var settings = new Dictionary<string, object> { { "gameMode", "creative" }, { "starterKit", true }, { "dayLengthMinutes", 20.0 } };
+            R.NewWorld("qacreative-" + DateTime.UtcNow.ToString("yyyyMMddHHmmss"), Cli.Long("qaseed", 20261019) + 1, settings);
+            yield return WaitPlaying(120f);
+            string dir = R.Save != null ? R.Save.Dir : null;
+            int items = 0;
+            if (P != null) foreach (var s in P.Inventory.Slots) if (!s.IsEmpty) items++;
+            Check("creative_world", R.State == GameState.Playing && R.Creative && P != null && P.Creative && R.Save.Creative && items == 0,
+                $"rootCreative={R.Creative} items={items} (no starter kit in creative)");
+            if (P == null || W == null) yield break;
+            yield return Settle(30f);
+            Wildlife.WildlifeManager.Enabled = false;
+            if (Wildlife.WildlifeManager.Instance != null) Wildlife.WildlifeManager.Instance.Clear();
+
+            P.Hurt(7f, "qa");
+            Check("creative_no_damage", P.Health == PlayerController.MaxHealth && !P.Dead, $"hp={P.Health}");
+
+            // Arena platform at y = 200 beside spawn (same layout as the survival arena).
+            var sp = P.SpawnPoint;
+            var a = new Vector3Int(Mathf.FloorToInt(sp.x) + 24, 200, Mathf.FloorToInt(sp.z));
+            Fill(a.x - 6, a.y, a.z - 6, a.x + 6, a.y, a.z + 6, B.Stone);
+            Stand(a);
+            P.ScriptedMove = Vector2.zero;
+            yield return WaitArea(P.transform.position, 1, 20f);
+            yield return new WaitForSeconds(0.4f);
+
+            // A 25-block fall onto the platform.
+            P.Teleport(new Vector3(a.x + 0.5f, a.y + 26f, a.z + 0.5f));
+            float t0 = Time.time;
+            yield return null;
+            while (!P.Grounded && Time.time - t0 < 6f) yield return null;
+            yield return new WaitForSeconds(0.2f);
+            Check("creative_no_fall_damage", P.Grounded && P.Health == PlayerController.MaxHealth, $"grounded={P.Grounded} hp={P.Health}");
+
+            // Under water: air never runs out (survival drowns after 10 s).
+            Fill(a.x + 3, a.y + 1, a.z + 3, a.x + 5, a.y + 4, a.z + 5, B.Water);
+            Stand(new Vector3Int(a.x + 4, a.y, a.z + 4));
+            yield return new WaitForSeconds(1.5f);
+            Check("creative_no_drowning", P.HeadUnderwater && P.Air >= PlayerController.MaxAir - 0.01f && P.Health == PlayerController.MaxHealth,
+                $"underwater={P.HeadUnderwater} air={P.Air:F2}");
+            Fill(a.x + 3, a.y + 1, a.z + 3, a.x + 5, a.y + 4, a.z + 5, B.Air);
+            Stand(a);
+            yield return new WaitForSeconds(0.4f);
+
+            // Double-tap jump takes off; holding still hovers; flying down onto the ground lands.
+            yield return Tap(); yield return Tap();
+            yield return new WaitForSeconds(0.6f);
+            bool flying = P.Flying;
+            float y0 = P.transform.position.y;
+            yield return new WaitForSeconds(1f);
+            float drift = Mathf.Abs(P.transform.position.y - y0);
+            Check("creative_double_tap_flies", flying && P.Flying && drift < 0.15f, $"flying={P.Flying} hoverDrift={drift:F3} height={y0 - a.y - 1:F2}");
+            P.ScriptedCrouch = true;
+            t0 = Time.time;
+            while (P.Flying && Time.time - t0 < 5f) yield return null;
+            P.ScriptedCrouch = false;
+            yield return new WaitForSeconds(0.3f);
+            Check("creative_landing_ends_flight", !P.Flying && P.Grounded, $"flying={P.Flying} grounded={P.Grounded}");
+            yield return Tap(); yield return Tap();
+            yield return new WaitForSeconds(0.4f);
+            bool up = P.Flying;
+            yield return Tap(); yield return Tap();
+            yield return new WaitForSeconds(0.2f);
+            Check("creative_double_tap_toggles_off", up && !P.Flying, $"tookOff={up} flying={P.Flying}");
+            yield return new WaitForSeconds(1.5f);
+            yield return Tap();
+            yield return new WaitForSeconds(PlayerController.DoubleTapWindow + 0.25f);
+            yield return Tap();
+            yield return new WaitForSeconds(0.3f);
+            Check("creative_slow_taps_jump_only", !P.Flying, "two taps further apart than the double-tap window");
+            yield return new WaitForSeconds(1.2f);
+            Stand(a);
+            yield return new WaitForSeconds(0.3f);
+
+            // Instant breaking with no drops: iron ore with an empty hand (survival: slow and drops nothing useful).
+            yield return ClearDrops();
+            var t = new Vector3Int(a.x + 2, a.y + 1, a.z);
+            Set(t, B.IronOre);
+            Hold(0);
+            yield return MineAt(t, 2f);
+            yield return new WaitForSeconds(0.3f);
+            Check("creative_instant_break", mMineBroke && mMineTime < 0.12f && ItemDrop.All.Count == 0, $"broke={mMineBroke} t={mMineTime:F3}s drops={ItemDrop.All.Count}");
+            Set(t, B.Bedrock);
+            yield return MineAt(t, 2f);
+            Check("creative_breaks_bedrock", mMineBroke, $"broke={mMineBroke}");
+
+            // Tools never wear out.
+            Set(t, B.Stone);
+            Hold(ItemIds.PickaxeWood, 1, 10);
+            yield return MineAt(t, 2f);
+            Check("creative_no_tool_wear", mMineBroke && P.Inventory.Slots[0].Durability == 10, $"durability={P.Inventory.Slots[0].Durability}");
+
+            // Placing never uses up the stack.
+            Set(t, B.Air);
+            var under = new Vector3Int(t.x, t.y - 1, t.z);
+            Hold(B.Planks, 1);
+            yield return Aim(new Vector3(t.x + 0.5f, under.y + 1f, t.z + 0.5f));
+            yield return Use();
+            yield return new WaitForSeconds(0.1f);
+            Check("creative_place_keeps_stack", Get(t) == B.Planks && P.Inventory.Slots[0].Id == B.Planks && P.Inventory.Slots[0].Count == 1,
+                $"block={Blocks.Get(Get(t)).Name} count={P.Inventory.Slots[0].Count}");
+
+            // Pick block puts a full stack on the hotbar.
+            Set(t, B.Glass);
+            P.Inventory.Clear(); P.Inventory.Notify();
+            yield return Aim(Center(t));
+            BI.PickTarget();
+            Check("creative_pick_block", P.Inventory.SelectedStack.Id == B.Glass && P.Inventory.SelectedStack.Count == 64, $"held={ItemDb.NameOf(P.Inventory.SelectedStack.Id)}x{P.Inventory.SelectedStack.Count}");
+
+            // The mode (and flying) survive a save and reload.
+            P.SetFlying(true);
+            R.SaveWorld();
+            var save = dir != null ? WorldSave.TryLoadMeta(dir) : null;
+            R.QuitToMenu();
+            yield return Frames(5);
+            if (save != null) R.LoadWorld(save);
+            yield return WaitPlaying(120f);
+            Check("creative_persists", save != null && R.State == GameState.Playing && R.Creative && P != null && P.Creative && P.Flying,
+                $"creative={R.Creative} flying={P?.Flying}");
+            Wildlife.WildlifeManager.Enabled = true;
+            R.QuitToMenu();
+            yield return Frames(5);
+            try { if (dir != null && Directory.Exists(dir) && !Cli.Has("keepworld")) { Directory.Delete(dir, true); Info("deleted " + dir); } }
+            catch (Exception e) { Info("creative cleanup failed: " + e.Message); }
+        }
 
         IEnumerator Finish()
         {

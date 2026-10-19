@@ -35,6 +35,8 @@ namespace Wildmere.Player
         Vector3Int mMiningBlock;
         float mHitTimer;
         float mPlaceCooldown;
+        float mCreativeBreak;
+        public const float CreativeBreakRepeat = 0.22f;   // creative: one block per click, repeating while held
         bool mUseLatch;
         readonly System.Random mRng = new System.Random();
         BreakParticles mParticles;
@@ -86,8 +88,22 @@ namespace Wildmere.Player
             bool attack = active && (ScriptedAttack ?? GameSettings.Held(Control.Attack));
             bool use = active && (ScriptedUse ?? GameSettings.Held(Control.Use));
 
+            // Creative: break on click (repeating while held), whatever the block and tool, with no drop.
+            mCreativeBreak -= dt;
+            if (Player.Creative)
+            {
+                if (attack && Target.Hit && mCreativeBreak <= 0f && Target.Block.y >= 1)
+                {
+                    mCreativeBreak = CreativeBreakRepeat;
+                    Swing?.Invoke(); mView.Swing();
+                    Break(w, Target, Blocks.Get(Target.Id));
+                }
+                if (!attack) mCreativeBreak = 0f;
+                MineProgress = 0;
+                mMiningBlock = new Vector3Int(int.MinValue, 0, 0);
+            }
             // Mining.
-            if (attack && Target.Hit)
+            else if (attack && Target.Hit)
             {
                 var def = Blocks.Get(Target.Id);
                 if (Target.Block != mMiningBlock) { mMiningBlock = Target.Block; MineProgress = 0; mHitTimer = 0; }
@@ -140,7 +156,16 @@ namespace Wildmere.Player
             var inv = Player.Inventory;
             for (int i = 0; i < Inventory.Hotbar; i++)
                 if (inv.Slots[i].Id == id) { Select(i); return; }
+            // Creative: not on the hotbar yet, so put a full stack in the first empty hotbar slot (else the selected one).
+            if (!Player.Creative || !ItemDb.Exists(id)) return;
+            int slot = inv.Selected;
+            for (int i = 0; i < Inventory.Hotbar; i++) if (inv.Slots[i].IsEmpty) { slot = i; break; }
+            inv.Slots[slot] = ItemStack.Of(id, Inventory.MaxStack(id));
+            Select(slot);
         }
+
+        /// <summary>Harness: middle-click pick block on whatever is targeted.</summary>
+        public void PickTarget() { if (Target.Hit) PickBlock(Target.Id); }
 
         public void DropSelected(bool wholeStack)
         {
@@ -159,7 +184,8 @@ namespace Wildmere.Player
         {
             var inv = Player.Inventory;
             var held = inv.SelectedStack.Def;
-            int drop = ItemDb.DropOf(def, held, mRng);
+            bool creative = Player.Creative;
+            int drop = creative ? 0 : ItemDb.DropOf(def, held, mRng);
             byte meta = w.GetMeta(hit.Block.x, hit.Block.y, hit.Block.z);
             if (!w.SetBlock(hit.Block.x, hit.Block.y, hit.Block.z, B.Air)) return;
             _ = meta;
@@ -172,7 +198,7 @@ namespace Wildmere.Player
                 var v = new Vector3((float)mRng.NextDouble() - 0.5f, 2.5f, (float)mRng.NextDouble() - 0.5f) * 1.2f;
                 ItemDrop.Spawn(ItemStack.Of(drop, 1), p, v);
             }
-            if (held != null && held.Durability > 0 && def.Hardness > 0f)
+            if (!creative && held != null && held.Durability > 0 && def.Hardness > 0f)
             {
                 var heldDef = held;
                 if (inv.DamageSelected()) ToolBroke?.Invoke(heldDef);
@@ -229,7 +255,7 @@ namespace Wildmere.Player
                 meta = Mathf.Abs(f.x) > Mathf.Abs(f.z) ? (byte)(f.x > 0 ? 1 : 3) : (byte)(f.z > 0 ? 0 : 2);
             }
             if (!w.SetBlock(p.x, p.y, p.z, id, meta)) return false;
-            inv.ConsumeSelected();
+            if (!Player.Creative) inv.ConsumeSelected();   // creative stacks never run out
             Swing?.Invoke();
             mView.Swing();
             BlockPlaced?.Invoke(def, p);

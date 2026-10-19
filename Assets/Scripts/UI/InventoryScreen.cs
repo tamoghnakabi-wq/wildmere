@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Wildmere.Core;
@@ -18,6 +19,9 @@ namespace Wildmere.UI
     ///   Hover + 1-9: swap with that hotbar slot; hover + Q: drop one (Ctrl/Cmd: the stack)
     /// Crafting: recipes grouped by category, have/need counts, station requirement, Craft
     /// (Shift = as many as possible).
+    /// Creative worlds show the item picker instead of crafting (stations still open crafting): every block and
+    /// item; click = a full stack on the cursor, right click = one, Shift-click = straight into the inventory,
+    /// hover + 1-9 = into that hotbar slot; the trash slot deletes the held stack.
     /// </summary>
     public sealed class InventoryScreen : UiScreen
     {
@@ -46,6 +50,19 @@ namespace Wildmere.UI
         Station mOpenedAt = Station.None;
         float mNearTimer;
         bool mIconsReady;
+
+        // Creative picker
+        VisualElement mCraftWrap, mCreativeWrap, mCatalogEmpty;
+        TextField mSearch;
+        readonly List<(int id, string cat, SlotView view)> mCatalog = new List<(int, string, SlotView)>();
+        readonly Dictionary<string, VisualElement> mCatalogHeaders = new Dictionary<string, VisualElement>();
+        readonly Dictionary<string, Button> mPickTabs = new Dictionary<string, Button>();
+        string mPickCat = "All";
+        int mCatalogHover;              // item id under the pointer in the picker (0 = none)
+        bool mCursorFromCatalog;        // the held stack came from the picker (closing discards it)
+        bool mCatalogIconsReady;
+        SlotView mTrash;
+        public bool CreativeShown { get; private set; }
 
         public Recipe Selected { get; private set; }
         public ItemStack CursorStack => mCursor;
@@ -89,7 +106,7 @@ namespace Wildmere.UI
             for (int i = 0; i < Inventory.Hotbar; i++) hot.Add(MakeSlot(i));
 
             // Crafting panel
-            var craftWrap = layout.Append(Ui.Panel(out var craft, "craft-panel"));
+            var craftWrap = mCraftWrap = layout.Append(Ui.Panel(out var craft, "craft-panel"));
             craftWrap.AddToClassList("anim-pop");
             var head = craft.Append(Ui.Div("craft-head"));
             head.Add(Ui.Text("Crafting", "panel__title"));
@@ -132,6 +149,8 @@ namespace Wildmere.UI
             mCraftBtn.RegisterCallback<PointerEnterEvent>(_ => UiSound.Play(UiSound.Hover));
             mCraftAllBtn = actions.Append(Ui.Btn("Craft all", () => CraftSelected(true), UiSound.Click));
             actions.Add(Ui.Text("Shift-click Craft for as many as you can", "craft-hint"));
+
+            BuildPicker(layout);
 
             // Floating layers: tooltip and the held stack follow the pointer.
             mTooltip = Root.Append(Ui.Div("tooltip").Ignore());
@@ -256,6 +275,15 @@ namespace Wildmere.UI
             }
             RefreshNear();
             if (Selected == null) Select(FirstCraftable() ?? Crafting.Recipes[0]);
+            // Creative: the picker replaces crafting, unless a workbench or furnace opened the screen.
+            CreativeShown = GameRoot.Instance != null && GameRoot.Instance.Creative && mOpenedAt == Station.None;
+            mCraftWrap.style.display = CreativeShown ? DisplayStyle.None : DisplayStyle.Flex;
+            mCreativeWrap.style.display = CreativeShown ? DisplayStyle.Flex : DisplayStyle.None;
+            if (CreativeShown && !mCatalogIconsReady)
+            {
+                mCatalogIconsReady = true;
+                foreach (var c in mCatalog) c.view.Set(ItemStack.Of(c.id, 1));
+            }
             OnChanged();
             HideTooltip();
         }
@@ -266,6 +294,7 @@ namespace Wildmere.UI
             HideTooltip();
             mOpenedAt = Station.None;
             mHover = -1;
+            mCatalogHover = 0;
         }
 
         public override bool OnBack()
@@ -438,7 +467,7 @@ namespace Wildmere.UI
                 {
                     if (slot.IsEmpty) return;
                     mCursor = slot; slot = ItemStack.Empty;
-                    mDragFrom = i; mDragArmed = true;
+                    mDragFrom = i; mDragArmed = true; mCursorFromCatalog = false;
                     UiSound.Play(UiSound.Click);
                 }
                 else Place(i, mCursor.Count);
@@ -449,6 +478,7 @@ namespace Wildmere.UI
                 {
                     if (slot.IsEmpty) return;
                     int take = (slot.Count + 1) / 2;
+                    mCursorFromCatalog = false;
                     mCursor = slot; mCursor.Count = take;
                     slot.Count -= take;
                     if (slot.Count <= 0) slot = ItemStack.Empty;
@@ -474,8 +504,9 @@ namespace Wildmere.UI
             if (!mDragArmed || mCursor.IsEmpty) { mDragArmed = false; return; }
             mDragArmed = false;
             if ((mPointerScreen() - mDownPos).sqrMagnitude < 100f) return;
-            // Dragged out of the panels: drop into the world; dragged onto panel chrome: put it back.
-            if (OverPanels()) ReturnCursor();
+            // Dragged out of the panels: drop into the world; dragged onto panel chrome: put it back
+            // (a stack taken from the creative picker just stays on the cursor).
+            if (OverPanels()) { if (!mCursorFromCatalog) ReturnCursor(); }
             else DropCursor(false);
         }
 
@@ -573,6 +604,7 @@ namespace Wildmere.UI
         void ReturnCursor()
         {
             if (mCursor.IsEmpty || mInv == null) { mCursor = ItemStack.Empty; return; }
+            if (mCursorFromCatalog) { mCursor = ItemStack.Empty; mCursorFromCatalog = false; Changed(); return; }
             if (mDragFrom >= 0 && mDragFrom < Inventory.Size && mInv.Slots[mDragFrom].IsEmpty)
             {
                 mInv.Slots[mDragFrom] = mCursor;
@@ -605,6 +637,189 @@ namespace Wildmere.UI
                 HideTooltip();
             }
             if (mHover >= 0) mSlots[mHover].Root.EnableInClassList("inv-slot--target", held);
+        }
+
+        // ------------------------------------------------------------------ creative picker
+
+        static readonly string[] kPickOrder = { "Building", "Nature", "Ores", "Plants", "Items", "Tools" };
+        static readonly HashSet<int> kBuilding = new HashSet<int>
+        {
+            B.Cobblestone, B.MossyCobblestone, B.Planks, B.Glass, B.Sandstone, B.Workbench, B.Furnace, B.Torch,
+        };
+
+        /// <summary>Picker section of an item: tools, materials, plants, ores, building blocks, natural blocks.</summary>
+        static string PickCategory(ItemDef d)
+        {
+            if (d.Tool != ToolKind.None) return "Tools";
+            if (d.PlacesBlock == 0) return "Items";
+            byte b = d.PlacesBlock;
+            if (kBuilding.Contains(b)) return "Building";
+            if (Blocks.IsPlant(b)) return "Plants";
+            if (b == B.CoalOre || b == B.IronOre || b == B.GoldOre) return "Ores";
+            return "Nature";
+        }
+
+        void BuildPicker(VisualElement layout)
+        {
+            mCreativeWrap = layout.Append(Ui.Panel(out var pick, "craft-panel", "creative-panel"));
+            mCreativeWrap.AddToClassList("anim-pop");
+            mCreativeWrap.style.display = DisplayStyle.None;
+            var head = pick.Append(Ui.Div("craft-head"));
+            var titleRow = head.Append(Ui.Div("row"));
+            titleRow.Add(Ui.Text("Creative", "panel__title"));
+            titleRow.Add(Ui.Div("grow"));
+            mSearch = titleRow.Append(new TextField { maxLength = 24 }.Cls("wm-input", "pick-search"));
+            mSearch.textEdition.placeholder = "Search";
+            mSearch.RegisterValueChangedCallback(_ => FilterPicker());
+
+            var tabs = pick.Append(Ui.Div("craft-tabs"));
+            foreach (var cat in new[] { "All" }.Concat(kPickOrder))
+            {
+                var c = cat;
+                var b = tabs.Append(new Button(() => { UiSound.Play(UiSound.Click); SetPickerCategory(c); }) { text = c }.Cls("pill"));
+                b.RegisterCallback<PointerEnterEvent>(_ => UiSound.Play(UiSound.Hover));
+                mPickTabs[c] = b;
+            }
+
+            var listHost = pick.Append(Ui.Div("craft-list"));
+            var scroll = Ui.Scroll(listHost);
+            var list = scroll.contentContainer;
+            list.AddToClassList("craft-list-inner");
+            var defs = ItemDb.All.ToList();
+            foreach (var cat in kPickOrder)
+            {
+                var items = defs.Where(d => PickCategory(d) == cat).OrderBy(d => d.Id).ToList();
+                if (items.Count == 0) continue;
+                mCatalogHeaders[cat] = list.Append(Ui.Text(cat.ToUpperInvariant(), "t-micro", "craft-cat"));
+                var grid = list.Append(Ui.Div("pick-grid"));
+                mCatalogHeaders[cat].userData = grid;
+                foreach (var d in items) grid.Add(MakePickTile(d.Id, cat));
+            }
+            mCatalogEmpty = list.Append(Ui.Text("Nothing matches that search.", "craft-hint", "pick-empty"));
+            mCatalogEmpty.style.display = DisplayStyle.None;
+
+            var foot = pick.Append(Ui.Div("pick-foot"));
+            mTrash = new SlotView(0);
+            mTrash.Root.AddToClassList("inv-slot");
+            mTrash.Root.AddToClassList("pick-trash");
+            mTrash.Root.Add(new Glyph(GlyphKind.Trash, "pick-trash__glyph"));
+            mTrash.Root.tooltip = "Delete the held stack";
+            mTrash.Root.RegisterCallback<PointerDownEvent>(e => { if (e.button <= 1) { TrashCursor(); e.StopPropagation(); } });
+            mTrash.Root.RegisterCallback<PointerUpEvent>(e => { if (e.button == 0 && mDragArmed) { mDragArmed = false; TrashCursor(); e.StopPropagation(); } });
+            mTrash.Root.RegisterCallback<PointerEnterEvent>(_ => mTrash.Root.EnableInClassList("inv-slot--target", !mCursor.IsEmpty));
+            mTrash.Root.RegisterCallback<PointerLeaveEvent>(_ => mTrash.Root.RemoveFromClassList("inv-slot--target"));
+            foot.Add(mTrash.Root);
+            foot.Add(Ui.Text("Click: a full stack  ·  Right-click: one  ·  Shift-click: into your inventory  ·  Hover + 1-9: to the hotbar  ·  Drop on the bin to delete", "craft-hint"));
+            SetPickerCategory("All");
+        }
+
+        VisualElement MakePickTile(int id, string cat)
+        {
+            var sv = new SlotView(0);
+            sv.Root.AddToClassList("inv-slot");
+            sv.Root.AddToClassList("pick-tile");
+            mCatalog.Add((id, cat, sv));
+            var el = sv.Root;
+            el.RegisterCallback<PointerDownEvent>(e =>
+            {
+                if (e.button > 1) return;
+                PickerClick(id, e.button, e.shiftKey);
+                mDownPos = e.position;
+                e.StopPropagation();
+            });
+            el.RegisterCallback<PointerUpEvent>(e => { if (e.button == 0) { mDragArmed = false; e.StopPropagation(); } });
+            el.RegisterCallback<PointerEnterEvent>(_ => { mCatalogHover = id; UiSound.Play(UiSound.Hover); });
+            el.RegisterCallback<PointerLeaveEvent>(_ => { if (mCatalogHover == id) mCatalogHover = 0; });
+            return el;
+        }
+
+        public IReadOnlyList<int> CatalogIds => mCatalog.Select(c => c.id).ToList();
+        public int VisibleCatalogCount => mCatalog.Count(c => c.view.Root.style.display != DisplayStyle.None);
+
+        /// <summary>Picker tile pressed: left = full stack on the cursor, right = one, Shift = into the inventory.</summary>
+        public void PickerClick(int id, int button, bool shift)
+        {
+            if (mInv == null || !ItemDb.Exists(id)) return;
+            int max = Inventory.MaxStack(id);
+            if (button == 0 && shift)
+            {
+                int left = mInv.Add(id, max);
+                if (left == max) { UiSound.Play(UiSound.Error); return; }
+                UiSound.Play(UiSound.Click);
+                Changed();
+                FlashSlotsWith(id);
+                return;
+            }
+            mCursor = ItemStack.Of(id, button == 0 ? max : 1);
+            mCursorFromCatalog = true;
+            mDragFrom = -1;
+            mDragArmed = button == 0;
+            UiSound.Play(UiSound.Click);
+            Changed();
+        }
+
+        /// <summary>Hover + number key: a full stack of the item into hotbar slot k.</summary>
+        public void PickerToHotbar(int id, int k)
+        {
+            if (mInv == null || !ItemDb.Exists(id) || k < 0 || k >= Inventory.Hotbar) return;
+            mInv.Slots[k] = ItemStack.Of(id, Inventory.MaxStack(id));
+            UiSound.Play(UiSound.Click);
+            mTipFor = -2;
+            Changed();
+            FlashSlotsWith(id);
+        }
+
+        /// <summary>Delete whatever is on the cursor (the picker's bin).</summary>
+        public void TrashCursor()
+        {
+            if (mCursor.IsEmpty) return;
+            mCursor = ItemStack.Empty;
+            mCursorFromCatalog = false;
+            UiSound.Play(UiSound.Close);
+            Changed();
+        }
+
+        public void SetPickerSearch(string text) { mSearch.value = text ?? ""; FilterPicker(); }
+
+        public void SetPickerCategory(string cat)
+        {
+            mPickCat = cat;
+            foreach (var kv in mPickTabs) kv.Value.EnableInClassList("pill--on", kv.Key == cat);
+            FilterPicker();
+        }
+
+        void FilterPicker()
+        {
+            string q = (mSearch?.value ?? "").Trim();
+            int shown = 0;
+            var perCat = new Dictionary<string, int>();
+            foreach (var (id, cat, view) in mCatalog)
+            {
+                bool on = (mPickCat == "All" || mPickCat == cat) &&
+                          (q.Length == 0 || ItemDb.NameOf(id).IndexOf(q, StringComparison.OrdinalIgnoreCase) >= 0);
+                view.Root.style.display = on ? DisplayStyle.Flex : DisplayStyle.None;
+                if (on) { shown++; perCat[cat] = perCat.TryGetValue(cat, out var n) ? n + 1 : 1; }
+            }
+            foreach (var kv in mCatalogHeaders)
+            {
+                bool any = perCat.ContainsKey(kv.Key);
+                kv.Value.style.display = any ? DisplayStyle.Flex : DisplayStyle.None;
+                ((VisualElement)kv.Value.userData).style.display = any ? DisplayStyle.Flex : DisplayStyle.None;
+            }
+            if (mCatalogEmpty != null) mCatalogEmpty.style.display = shown == 0 ? DisplayStyle.Flex : DisplayStyle.None;
+        }
+
+        /// <summary>Harness: pretend the pointer hovers picker tile <paramref name="id"/> (0 = release), for screenshots.</summary>
+        public void DebugHoverPicker(int id)
+        {
+            mCatalogHover = id;
+            if (id == 0) { mDebugPointer = null; return; }
+            foreach (var c in mCatalog)
+                if (c.id == id)
+                {
+                    var r = c.view.Root.worldBound;
+                    mDebugPointer = Root.WorldToLocal(new Vector2(r.center.x + 6f, r.center.y + 4f));
+                }
         }
 
         // ------------------------------------------------------------------ tooltip & frame
@@ -658,10 +873,12 @@ namespace Wildmere.UI
             mCursorEl.style.top = mPointer.y - 30f;
 
             int tipFor = mCursor.IsEmpty && mHover >= 0 && !mInv.Slots[mHover].IsEmpty ? mHover : -1;
+            if (tipFor < 0 && mCursor.IsEmpty && mCatalogHover != 0) tipFor = 1000 + mCatalogHover;   // picker tile
             if (tipFor != mTipFor)
             {
                 mTipFor = tipFor;
-                if (tipFor >= 0) ShowTooltip(mInv.Slots[tipFor]); else HideTooltip();
+                if (tipFor >= 1000) ShowTooltip(ItemStack.Of(tipFor - 1000, 1));
+                else if (tipFor >= 0) ShowTooltip(mInv.Slots[tipFor]); else HideTooltip();
             }
             if (tipFor >= 0)
             {
@@ -685,7 +902,11 @@ namespace Wildmere.UI
                     mTipFor = -2;
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            // Picker: hover + number puts a full stack in that hotbar slot.
+            if (CreativeShown && mCatalogHover != 0 && mCursor.IsEmpty)
+                for (int k = 0; k < Inventory.Hotbar; k++)
+                    if (Input.GetKeyDown(KeyCode.Alpha1 + k)) { PickerToHotbar(mCatalogHover, k); break; }
+            if (!CreativeShown && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)))
                 CraftSelected(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
 
             mNearTimer -= dt;

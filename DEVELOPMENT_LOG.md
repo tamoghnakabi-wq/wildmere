@@ -1,7 +1,7 @@
 # Wildmere — development log
 
 ## Current phase
-Phase 8 — Live with in-game auto-update. Latest: **v0.1.5** (2026-10-19, held torches give light; auto-update has delivered releases since 0.1.4).
+Phase 8 — Live with in-game auto-update. Latest: **v0.1.6** (2026-10-20, Creative mode; auto-update has delivered releases since 0.1.4).
 Website https://wildmere-game.vercel.app (Vercel project `wildmere`, auto-deploys from `main`).
 
 ## Releases
@@ -11,6 +11,17 @@ Website https://wildmere-game.vercel.app (Vercel project `wildmere`, auto-deploy
 - v0.1.2: fixed floating props (PropRenderer kept the menu backdrop's chunks; VoxelWorld.OnDestroy now
   unloads them). `-propaudit [-viamenu]` exits 1 if any prop floats.
 - v0.1.3: in-game auto-update (below). Players on 0.1.0–0.1.2 must download 0.1.3 by hand once.
+- v0.1.6: Creative mode (user request). World setting `gameMode` ("survival" | "creative"; older worlds are survival,
+  `WorldSave.Creative`), chosen on the New World screen (the starter kit is hidden and skipped in creative).
+  `PlayerController.Creative`: no damage (Hurt is ignored) or drowning; double-tap jump within 0.3 s toggles flying,
+  and flying down onto the ground lands. `BlockInteraction`: creative breaks one block per click (repeating every
+  0.22 s while held, any block at y >= 1, including bedrock) with no drops and no tool wear; placing doesn't consume;
+  pick block puts a full stack on the hotbar. The HUD shows "CREATIVE (· FLYING)" instead of health and air.
+  The inventory's right panel becomes an item picker with all 57 items: tabs, search, bin; click = full stack,
+  right = one, Shift = into the inventory, hover + 1-9 = hotbar; closing discards a picker stack. Stations still
+  open crafting. Tests: QA group `creative` (14 checks, its own world, deleted afterwards), UI test +16, and
+  `-uishot creative` (newworld-creative, hud-creative, creative). Suites: self 19/19, QA 143/143, UI 58/58,
+  EditMode 84/84. A world's mode can't be switched after creation.
 - v0.1.5: held torches light the world (user: "the torch glows but doesn't illuminate anything at night"; it was in
   their hand, and only placed torches fed block light). `Rendering/HandLight.cs` pushes the flame position and level
   (`_WM_HandLight`) plus a 32³ reach mask (`_WM_HandLightMask`, 6-neighbour flood fill through non-opaque blocks,

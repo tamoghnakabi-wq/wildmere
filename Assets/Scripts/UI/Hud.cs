@@ -30,7 +30,10 @@ namespace Wildmere.UI
         Inventory mInv;
         bool mVisible, mUserHidden;
         float mFlash, mItemNameTimer, mSavedTimer, mPulse;
-        int mLastSel = -1, mLastSelId = -1, mLastAirShown = -1;
+        int mLastSel = -1, mLastSelId = -1, mLastAirShown = -1, mLastModeShown = -1;
+        Label mMode;
+        public string ModeText => mMode != null && mMode.style.display.value != DisplayStyle.None ? mMode.text : "";
+        public bool HealthShown => mHealth != null && mHealth.style.display.value != DisplayStyle.None;
         float mLastHealth = -1;
         byte mLastTargetId;
         bool mLastTargetOn;
@@ -75,6 +78,7 @@ namespace Wildmere.UI
             var bottom = Root.Append(Ui.Div("hud-bottom").Ignore());
             mItemName = bottom.Append(Ui.Text("", "hud-itemname").Ignore());
             var status = bottom.Append(Ui.Div("hud-status").Ignore());
+            mMode = status.Append(Ui.Text("", "hud-mode").Ignore());
             mHealth = status.Append(Ui.Div("health").Ignore());
             mHealth.Add(new Glyph(GlyphKind.Heart, "health__glyph"));
             for (int i = 0; i < 10; i++)
@@ -104,7 +108,7 @@ namespace Wildmere.UI
             mPlayer = p;
             mInv = p != null ? p.Inventory : null;
             if (mInv != null) mInv.Changed += OnInventoryChanged;
-            mLastSel = -1; mLastSelId = -1; mLastHealth = -1; mLastAirShown = -1;
+            mLastSel = -1; mLastSelId = -1; mLastHealth = -1; mLastAirShown = -1; mLastModeShown = -1;
             foreach (var t in mToastList) t.El.RemoveFromHierarchy();
             mToastList.Clear();
             mFlash = 0;
@@ -223,6 +227,16 @@ namespace Wildmere.UI
             }
             if (mItemNameTimer > 0) { mItemNameTimer -= dt; if (mItemNameTimer <= 0) mItemName.RemoveFromClassList("hud-itemname--on"); }
 
+            // Creative: a mode label instead of health and air (nothing can hurt or drown the player).
+            int modeShown = !mPlayer.Creative ? 0 : mPlayer.Flying ? 2 : 1;
+            if (modeShown != mLastModeShown)
+            {
+                mLastModeShown = modeShown;
+                mMode.text = modeShown == 2 ? "CREATIVE  ·  FLYING" : modeShown == 1 ? "CREATIVE" : "";
+                mMode.style.display = modeShown > 0 ? DisplayStyle.Flex : DisplayStyle.None;
+                mHealth.style.display = modeShown > 0 ? DisplayStyle.None : DisplayStyle.Flex;
+            }
+
             // Health.
             float hp = mPlayer.Health;
             if (Mathf.Abs(hp - mLastHealth) > 0.01f)
@@ -242,7 +256,7 @@ namespace Wildmere.UI
             mHealth.EnableInClassList("health--pulse", low && Mathf.Repeat(mPulse, 1.1f) < 0.18f);
 
             // Air.
-            bool showAir = mPlayer.HeadUnderwater || mPlayer.Air < PlayerController.MaxAir - 0.01f;
+            bool showAir = !mPlayer.Creative && (mPlayer.HeadUnderwater || mPlayer.Air < PlayerController.MaxAir - 0.01f);
             mAir.EnableInClassList("air--on", showAir);
             int bubbles = Mathf.CeilToInt(Mathf.Clamp(mPlayer.Air, 0f, PlayerController.MaxAir) - 0.001f);
             if (bubbles != mLastAirShown)

@@ -157,6 +157,9 @@ namespace Wildmere.Core
             return h;
         }
 
+        /// <summary>Game mode of the open world (from its settings; see WorldSave.Creative).</summary>
+        public bool Creative { get; private set; }
+
         public void NewWorld(string name, long seed, Dictionary<string, object> worldSettings = null)
         {
             var save = WorldSave.Create(string.IsNullOrWhiteSpace(name) ? "New World" : name.Trim(), seed);
@@ -215,7 +218,9 @@ namespace Wildmere.Core
                 var sp = Json.Obj(pdata, "spawn");
                 if (sp != null) Player.SpawnPoint = new Vector3((float)Json.Num(sp, "x"), (float)Json.Num(sp, "y"), (float)Json.Num(sp, "z"));
             }
-            else if (Json.Bool(Json.Obj(save.Meta, "settings"), "starterKit", true)) StarterKit(Player.Inventory);
+            else if (!save.Creative && Json.Bool(Json.Obj(save.Meta, "settings"), "starterKit", true)) StarterKit(Player.Inventory);
+            Creative = save.Creative;
+            Player.Creative = Creative;
             Player.Died += () => Debug.Log("WM_PLAYER died");
 
             var wild = new GameObject("Wildlife");
@@ -229,9 +234,10 @@ namespace Wildmere.Core
             Atmos.TimeOfDay = (float)Json.Num(save.Meta, "time", Cli.Float("time", 0.30f));
             if (Cli.Has("time")) Atmos.TimeOfDay = Cli.Float("time", 0.3f);
             PlayTime = (float)Json.Num(save.Meta, "playTime");
-            // World options chosen on the New World screen (keys: starterKit bool, dayLengthMinutes number).
+            // World options chosen on the New World screen (keys: gameMode "survival"|"creative", starterKit bool,
+            // dayLengthMinutes number).
             Atmos.DayLengthSeconds = (float)Json.Num(Json.Obj(save.Meta, "settings"), "dayLengthMinutes", 20) * 60f;
-            Debug.Log($"WM_WORLD load name='{save.Name}' seed={save.Seed} new={isNew} mods={save.ModifiedBlocks} spawn={spawn}");
+            Debug.Log($"WM_WORLD load name='{save.Name}' seed={save.Seed} new={isNew} mode={(Creative ? "creative" : "survival")} mods={save.ModifiedBlocks} spawn={spawn}");
 
             // Stream until the area around the player is generated and meshed.
             float t0 = Time.realtimeSinceStartup;

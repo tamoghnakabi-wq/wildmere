@@ -17,6 +17,10 @@ code, textures, sounds, logos or branding are used.
 - Chunk streaming on background threads; greedy-meshed terrain with flood-fill sky/torch light and smooth AO.
 - Mining with tools (wood/stone/iron pickaxe, axe, shovel), durability, drops; collision-safe building.
 - 36-slot inventory with drag & drop, recipe crafting with workbench and furnace stations.
+- Survival or Creative per world. Creative: double-tap Space to fly (Space up, crouch down, fly down onto
+  the ground to land), no damage or drowning, instant block breaking with no drops, placing never uses up a stack,
+  and an item picker in the inventory with every block and item (search, tabs, bin).
+- Torches give light in the hand as well as when placed.
 - Day/night cycle, weather, procedural sky and clouds, water, HD procedural block textures, post-processing.
 - Wildlife (deer, rabbits, songbirds) with simple awareness; real-recording ambience and effects.
 - Save/load with versioned saves that store only your changes; LOW/MEDIUM/HIGH/ULTRA graphics presets.

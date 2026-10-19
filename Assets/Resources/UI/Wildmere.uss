@@ -445,6 +445,7 @@
 .hud-status { width: 644px; flex-direction: row; align-items: flex-end; justify-content: space-between; margin-bottom: 12px; padding: 0 4px; }
 
 .health { flex-direction: row; align-items: center; }
+.hud-mode { font-size: 13px; letter-spacing: 2.4px; -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-Bold.ttf"); color: var(--accent); text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9); padding-bottom: 2px; }
 .health__glyph { width: 22px; height: 22px; margin-right: 10px; }
 .hp-seg { width: 24px; height: 9px; margin-right: 4px; border-radius: 5px; background-color: rgba(8, 10, 14, 0.827); border-width: 1px; border-color: rgba(255, 255, 255, 0.013); overflow: hidden; }
 .hp-seg__ghost { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; background-color: rgba(255, 236, 225, 0.714); transition-duration: 0.5s; transition-delay: 0.3s; transition-timing-function: ease-in-cubic; }
@@ -593,6 +594,13 @@
 .craft-list { flex-grow: 1; flex-shrink: 1; overflow: hidden; }
 .craft-list-inner { padding: 0 16px 12px 16px; }
 .craft-cat { margin: 14px 12px 6px 12px; }
+.pick-search { flex-grow: 0; width: 200px; }
+.creative-panel .pill { padding: 0 11px; margin-right: 6px; }   /* seven tabs on one row */
+.pick-grid { flex-direction: row; flex-wrap: wrap; padding: 0 10px; }
+.pick-empty { margin: 24px 12px; }
+.pick-foot { flex-shrink: 0; flex-direction: row; align-items: center; padding: 14px 28px 22px 26px; border-top-width: 1px; border-color: var(--line); }
+.pick-trash__glyph { position: absolute; left: 21px; top: 21px; width: 22px; height: 22px; color: var(--text-3); }
+.pick-trash.inv-slot--target .pick-trash__glyph { color: rgb(240, 96, 93); }
 .recipe {
     flex-direction: row;
     align-items: center;

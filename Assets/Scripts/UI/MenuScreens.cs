@@ -144,7 +144,9 @@ namespace Wildmere.UI
         public TextField SeedField { get; private set; }
         public WmSwitch StarterKit { get; private set; }
         public WmChoice DayLength { get; private set; }
-        Label mDayHint;
+        public WmChoice GameMode { get; private set; }
+        Label mDayHint, mModeHint;
+        VisualElement mKitRow;
         static readonly int[] kDayMinutes = { 10, 20, 40 };
 
         public override void Build()
@@ -174,7 +176,13 @@ namespace Wildmere.UI
             dice.Add(new Glyph(GlyphKind.Dice, "btn__glyph"));
             seedRow.Add(Ui.Text("Leave blank for a surprise. Numbers and words both work.", "form-hint"));
 
-            var kitRow = panel.Append(Ui.Div("row", "form-row"));
+            var modeRow = panel.Append(Ui.Div("form-row"));
+            modeRow.Add(Ui.Text("GAME MODE", "form-label"));
+            GameMode = modeRow.Append(new WmChoice(new[] { "SURVIVAL", "CREATIVE" }));
+            GameMode.Changed += _ => SyncModeHint();
+            mModeHint = modeRow.Append(Ui.Text("", "form-hint"));
+
+            var kitRow = mKitRow = panel.Append(Ui.Div("row", "form-row"));
             var kitText = kitRow.Append(Ui.Div("grow"));
             kitText.Add(Ui.Text("STARTER KIT", "form-label"));
             kitText.Add(Ui.Text("Begin with a few torches to see you through the first night.", "form-hint"));
@@ -205,7 +213,9 @@ namespace Wildmere.UI
             SeedField.value = "";
             StarterKit.Value = true;
             DayLength.Index = 1;
+            GameMode.Index = 0;
             SyncDayHint();
+            SyncModeHint();
         }
 
         static string SuggestName()
@@ -222,6 +232,18 @@ namespace Wildmere.UI
             mDayHint.text = $"A full day and night takes {kDayMinutes[i]} minutes.";
         }
 
+        public bool CreativeChosen => GameMode.Index == 1;
+        public bool StarterKitShown => mKitRow.style.display.value != DisplayStyle.None;
+
+        void SyncModeHint()
+        {
+            mModeHint.text = CreativeChosen
+                ? "Fly (double-tap Space), build with every block and item, break blocks instantly, never take damage."
+                : "Gather, craft and make it through the night. Falls and drowning hurt.";
+            // Creative starts with the full item picker, so the starter kit only applies to survival.
+            mKitRow.style.display = CreativeChosen ? DisplayStyle.None : DisplayStyle.Flex;
+        }
+
         void Randomise()
         {
             SeedField.value = UnityEngine.Random.Range(1, int.MaxValue).ToString(CultureInfo.InvariantCulture);
@@ -231,10 +253,12 @@ namespace Wildmere.UI
         public Dictionary<string, object> WorldSettings()
         {
             int i = Mathf.Clamp(DayLength.Index, 0, 2);
-            // Contract with GameRoot.NewWorld: "starterKit" (bool) and "dayLengthMinutes" (double).
+            // Contract with GameRoot.NewWorld: "gameMode" ("survival" | "creative"), "starterKit" (bool) and
+            // "dayLengthMinutes" (double).
             return new Dictionary<string, object>
             {
-                { "starterKit", StarterKit.Value },
+                { "gameMode", CreativeChosen ? "creative" : "survival" },
+                { "starterKit", StarterKit.Value && !CreativeChosen },
                 { "dayLengthMinutes", (double)kDayMinutes[i] },
             };
         }
@@ -244,7 +268,7 @@ namespace Wildmere.UI
             if (!IsOpen || UI.Game == null) return;
             string name = string.IsNullOrWhiteSpace(NameField.value) ? "New World" : NameField.value.Trim();
             long seed = GameRoot.SeedFromText(SeedField.value);
-            Debug.Log($"WM_UI new world name='{name}' seed={seed}");
+            Debug.Log($"WM_UI new world name='{name}' seed={seed} mode={(CreativeChosen ? "creative" : "survival")}");
             UI.Game.NewWorld(name, seed, WorldSettings());
         }
     }
@@ -321,7 +345,7 @@ namespace Wildmere.UI
             var text = card.Append(Ui.Div("grow").Ignore());
             text.Add(Ui.Text(w.Name, "world-card__name").Ignore());
             double play = Json.Num(w.Meta, "playTime");
-            text.Add(Ui.Text($"Last played {MainMenuScreen.LastPlayed(w)}  ·  {Ui.Duration(play)} played  ·  Seed {w.Seed}", "world-card__meta").Ignore());
+            text.Add(Ui.Text($"{(w.Creative ? "Creative" : "Survival")}  ·  Last played {MainMenuScreen.LastPlayed(w)}  ·  {Ui.Duration(play)} played  ·  Seed {w.Seed}", "world-card__meta").Ignore());
             var go = card.Append(new Glyph(GlyphKind.Play, "btn__glyph", "world-card__play", "t-accent"));
             go.pickingMode = PickingMode.Ignore;
 

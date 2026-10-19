@@ -34,6 +34,11 @@ namespace Wildmere.World
         public WorldSave(string dir) { Dir = dir; }
 
         public string Name { get => Json.Str(Meta, "name", "World"); set => Meta["name"] = value; }
+
+        /// <summary>Chosen on the New World screen (settings.gameMode); worlds from before 0.1.6 are survival.</summary>
+        public bool Creative => IsCreative(Meta);
+        public static bool IsCreative(Dictionary<string, object> meta) =>
+            string.Equals(Json.Str(Json.Obj(meta, "settings"), "gameMode", "survival"), "creative", StringComparison.OrdinalIgnoreCase);
         public long Seed
         {
             get => Meta.TryGetValue("seed", out var s) ? (s is double d ? (long)d : s is string str && long.TryParse(str, out var l) ? l : 0) : 0;

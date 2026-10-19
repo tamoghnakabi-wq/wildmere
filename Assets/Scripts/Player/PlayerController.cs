@@ -28,6 +28,9 @@ namespace Wildmere.Player
         public float Yaw, Pitch;
         public bool InputEnabled = true;
         public bool Flying;
+        /// <summary>Creative mode: no damage or drowning, double-tap jump toggles flying (set by GameRoot).</summary>
+        public bool Creative;
+        public const float DoubleTapWindow = 0.3f;
         public bool Grounded { get; private set; }
         public bool Crouching { get; private set; }
         public bool Sprinting { get; private set; }
@@ -48,6 +51,7 @@ namespace Wildmere.Player
         public event Action<SoundMat> Footstep;
         public event Action<bool> WaterTransition;       // true = entered
         public event Action Jumped;
+        public event Action<bool> FlyingToggled;          // true = took off (creative double-tap)
 
         float mFallStartY;
         bool mWasGrounded = true;
@@ -59,6 +63,8 @@ namespace Wildmere.Player
         float mRegenTimer;
         float mDrownTimer;
         float mJumpBuffer, mCoyote;
+        bool mJumpWasHeld;
+        float mLastJumpTap = -999f;
         float mEyeHeight = Eye;
         bool mWasSubmerged;
 
@@ -101,7 +107,7 @@ namespace Wildmere.Player
 
         public void Hurt(float amount, string cause)
         {
-            if (Dead || amount <= 0 || Flying) return;
+            if (Dead || amount <= 0 || Flying || Creative) return;
             Health = Mathf.Max(0, Health - amount);
             mLastHurt = Time.time;
             Shake(Mathf.Clamp(amount * 0.08f, 0.15f, 0.6f));
@@ -122,6 +128,14 @@ namespace Wildmere.Player
             Velocity = Vector3.zero;
             Health = MaxHealth; Air = MaxAir; Dead = false; InputEnabled = true;
             mFallStartY = p.y;
+        }
+
+        public void SetFlying(bool on)
+        {
+            if (Flying == on) return;
+            Flying = on;
+            if (on) { Velocity.y = 0f; mJumpBuffer = 0f; }
+            FlyingToggled?.Invoke(on);
         }
 
         public void Teleport(Vector3 feet)
@@ -166,6 +180,19 @@ namespace Wildmere.Player
                 crouch = GameSettings.Held(Control.Crouch);
             }
             if (move.sqrMagnitude > 1f) move.Normalize();
+
+            // Creative: double-tap jump to take off or land.
+            bool jumpTap = jump && !mJumpWasHeld;
+            mJumpWasHeld = jump;
+            if (Creative && jumpTap && !Dead)
+            {
+                if (Time.time - mLastJumpTap <= DoubleTapWindow)
+                {
+                    SetFlying(!Flying);
+                    mLastJumpTap = -999f;
+                }
+                else mLastJumpTap = Time.time;
+            }
 
             Vector3 fwd = Quaternion.Euler(0, Yaw, 0) * Vector3.forward;
             Vector3 right = Quaternion.Euler(0, Yaw, 0) * Vector3.right;
@@ -240,6 +267,8 @@ namespace Wildmere.Player
 
             var blocked = VoxelPhysics.Move(w, ref pos, delta, HalfWidth, CurrentHeight);
             if (blocked.y != 0) Velocity.y = 0;
+            // Creative flight ends when flying down onto the ground.
+            if (Creative && Flying && blocked.y < 0) SetFlying(false);
             if (blocked.x != 0) Velocity.x = 0;
             if (blocked.z != 0) Velocity.z = 0;
 
@@ -288,7 +317,7 @@ namespace Wildmere.Player
 
             // ---- air / drowning / regeneration
             HeadUnderwater = w.GetBlock(Mathf.FloorToInt(pos.x), Mathf.FloorToInt(pos.y + mEyeHeight), Mathf.FloorToInt(pos.z)) == B.Water;
-            if (HeadUnderwater && !Flying)
+            if (HeadUnderwater && !Flying && !Creative)
             {
                 Air = Mathf.Max(0, Air - dt);
                 if (Air <= 0) { mDrownTimer += dt; if (mDrownTimer >= 1f) { mDrownTimer = 0; Hurt(2f, "drown"); } }

@@ -13,7 +13,7 @@ namespace Wildmere.UI
 {
     /// <summary>
     /// UI-only harness flags for the shipping binary:
-    ///   -uishot all|mainmenu,newworld,load,dialog,settings-graphics,settings-audio,settings-controls,
+    ///   -uishot all|mainmenu,newworld,load,dialog,settings-graphics,settings-audio,settings-controls,creative,
     ///           loading,hud,inventory,crafting,pause,death   [-shotdir DIR]
     ///      opens each screen with representative state and writes ui_&lt;name&gt;.png, then quits.
     ///   -uitest   scripted interaction checks through the real screens; prints WM_UITEST PASS/FAIL
@@ -283,6 +283,36 @@ namespace Wildmere.UI
                 }
             }
             if (Game.State == GameState.Playing || Game.State == GameState.Paused) Game.QuitToMenu();
+            if (All("creative"))
+            {
+                yield return Wait(0.5f);
+                UI.Push(UI.NewWorld);
+                UI.NewWorld.NameField.value = "Creative Shot";
+                UI.NewWorld.SeedField.value = Cli.Str("shotseed", "20261018");
+                UI.NewWorld.GameMode.Pick(1);
+                yield return Shot("newworld-creative");
+                UI.NewWorld.Create();
+                yield return WaitFor(() => Game.State == GameState.Playing, 120f);
+                if (Game.Save != null) Game.Save.Meta["uiHarness"] = true;
+                var cp = Game.Player;
+                if (cp != null)
+                {
+                    int[] bar = { B.Planks, B.Glass, B.Cobblestone, B.LogOak, B.Torch, B.Sandstone, B.LeavesOak, B.FlowerRed, ItemIds.PickaxeIron };
+                    for (int k = 0; k < bar.Length; k++) cp.Inventory.Slots[k] = ItemStack.Of(bar[k], Inventory.MaxStack(bar[k]));
+                    cp.Inventory.Notify();
+                    cp.SetFlying(true);
+                    cp.Teleport(cp.transform.position + Vector3.up * 6f);
+                    yield return Shot("hud-creative", 2.5f);
+                    UI.OpenInventory(false);
+                    yield return Wait(0.4f);
+                    UI.Inventory.DebugHoverPicker(B.Glass);
+                    yield return Shot("creative", 0.5f);
+                    LogLayout("creative", UI.Inventory.Root, "inv-panel", "creative-panel", "inv-slot", "pick-tile");
+                    UI.Inventory.DebugHoverPicker(0);
+                    UI.Back();
+                }
+                if (Game.State == GameState.Playing || Game.State == GameState.Paused) Game.QuitToMenu();
+            }
             CleanupTempWorlds();
             RestoreSettings();
             Debug.Log("WM_UISHOT done");
@@ -482,7 +512,80 @@ namespace Wildmere.UI
             Game.QuitToMenu();
             yield return Wait(0.5f);
             Check("quit_to_title", Game.State == GameState.MainMenu && UI.Top == UI.MainMenu && !UI.Hud.Visible);
+            yield return CreativeTest();
             Finish();
+        }
+
+        // Creative mode: the New World choice, HUD, and the item picker in the inventory.
+        IEnumerator CreativeTest()
+        {
+            UI.Push(UI.NewWorld);
+            yield return Wait(0.3f);
+            var nw = UI.NewWorld;
+            Check("mode_default_survival", !nw.CreativeChosen && nw.StarterKitShown && (string)nw.WorldSettings()["gameMode"] == "survival");
+            nw.GameMode.Pick(1);
+            var ws = nw.WorldSettings();
+            Check("mode_creative_settings", nw.CreativeChosen && !nw.StarterKitShown && (string)ws["gameMode"] == "creative" && (bool)ws["starterKit"] == false,
+                $"settings={Json.Write(ws, false)}");
+            CheckLayout("newworld_creative", nw.Root, "panel", "wm-input", "choice");
+            nw.NameField.value = "UITest Creative";
+            nw.SeedField.value = "515151";
+            nw.Create();
+            yield return WaitFor(() => Game.State == GameState.Playing, 120f);
+            if (Game.Save != null) Game.Save.Meta["uiHarness"] = true;
+            yield return Wait(0.6f);
+            var p = Game.Player;
+            int items = 0;
+            if (p != null) foreach (var s in p.Inventory.Slots) if (!s.IsEmpty) items++;
+            Check("creative_world_started", Game.State == GameState.Playing && Game.Creative && p != null && p.Creative && items == 0 && Game.Save != null && Game.Save.Creative,
+                $"creative={Game.Creative} items={items}");
+            if (p == null) yield break;
+            Check("creative_hud", UI.Hud.ModeText == "CREATIVE" && !UI.Hud.HealthShown, $"mode='{UI.Hud.ModeText}' health={UI.Hud.HealthShown}");
+            p.SetFlying(true);
+            yield return Wait(0.1f);
+            Check("creative_hud_flying", UI.Hud.ModeText.Contains("FLYING"), $"mode='{UI.Hud.ModeText}'");
+
+            var inv = p.Inventory;
+            UI.OpenInventory(false);
+            yield return Wait(0.3f);
+            var iv = UI.Inventory;
+            int all = ItemDb.All.Count();
+            Check("picker_shown", iv.CreativeShown && iv.CatalogIds.Count == all && iv.VisibleCatalogCount == all, $"tiles={iv.CatalogIds.Count}/{all} visible={iv.VisibleCatalogCount}");
+            CheckLayout("creative_inventory", iv.Root, "inv-panel", "creative-panel", "inv-slot", "pick-tile");
+            iv.PickerClick(B.Glass, 0, false);
+            bool full = iv.CursorStack.Id == B.Glass && iv.CursorStack.Count == 64;
+            iv.SlotDown(5, 0, false); iv.SlotUp(5);
+            Check("picker_full_stack", full && inv.Slots[5].Id == B.Glass && inv.Slots[5].Count == 64 && iv.CursorStack.IsEmpty, $"slot5={ItemDb.NameOf(inv.Slots[5].Id)}x{inv.Slots[5].Count}");
+            iv.PickerClick(B.Torch, 1, false);
+            bool one = iv.CursorStack.Id == B.Torch && iv.CursorStack.Count == 1;
+            iv.TrashCursor();
+            Check("picker_one_and_trash", one && iv.CursorStack.IsEmpty && inv.Count(B.Torch) == 0);
+            iv.PickerClick(ItemIds.PickaxeIron, 0, true);
+            Check("picker_shift_into_inventory", inv.Count(ItemIds.PickaxeIron) == 1 && iv.CursorStack.IsEmpty);
+            iv.PickerToHotbar(B.Planks, 2);
+            Check("picker_hotbar_key", inv.Slots[2].Id == B.Planks && inv.Slots[2].Count == 64);
+            iv.SetPickerSearch("ore");
+            int ores = iv.VisibleCatalogCount;
+            iv.SetPickerSearch("zzzz");
+            int none = iv.VisibleCatalogCount;
+            iv.SetPickerSearch("");
+            iv.SetPickerCategory("Tools");
+            int tools = iv.VisibleCatalogCount;
+            iv.SetPickerCategory("All");
+            Check("picker_search_and_tabs", ores == 3 && none == 0 && tools == 9 && iv.VisibleCatalogCount == all, $"ore={ores} none={none} tools={tools}");
+            iv.PickerClick(B.Sand, 0, false);
+            UI.Back();
+            yield return Wait(0.2f);
+            Check("picker_close_discards", inv.Count(B.Sand) == 0 && UI.Top == null, $"sand={inv.Count(B.Sand)}");
+            UI.OpenInventory(true, Station.Workbench);
+            yield return Wait(0.2f);
+            Check("creative_station_crafting", UI.Top == UI.Inventory && !iv.CreativeShown);
+            UI.Back();
+            yield return Wait(0.2f);
+            Game.SaveWorld();
+            Game.QuitToMenu();
+            yield return Wait(0.5f);
+            Check("creative_world_listed", WorldSave.List().Any(w => w.Name == "UITest Creative" && w.Creative));
         }
 
         void Finish()
