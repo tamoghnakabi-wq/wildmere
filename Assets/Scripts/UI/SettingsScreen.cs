@@ -140,7 +140,7 @@ namespace Wildmere.UI
             stepper.Changed += i => { S.FpsCap = caps[i]; Edited(false); };
             mRefresh.Add(() => { int k = Array.IndexOf(caps, S.FpsCap); stepper.Index = k < 0 ? 0 : k; });
             Row(p, "Frame rate limit", null, stepper);
-            Slider(p, "Render scale", "Lower is faster; the interface stays sharp.", 0.5f, 1.5f, 0.05f, v => $"{v * 100f:0}%", () => S.RenderScale, v => S.RenderScale = v, true);
+            Slider(p, "Render scale", "Lower is faster; the interface stays sharp. On big screens 100% is about 1920 × 1200.", 0.5f, 1.5f, 0.05f, v => $"{v * 100f:0}%", () => S.RenderScale, v => S.RenderScale = v, true);
             Slider(p, "Brightness", null, -1f, 1f, 0.05f, v => Mathf.Abs(v) < 0.001f ? "0" : $"{(v > 0 ? "+" : "")}{v * 100f:0}", () => S.Brightness, v => S.Brightness = v, false);
             Slider(p, "Field of view", null, 60f, 110f, 1f, v => $"{v:0}°", () => S.Fov, v => S.Fov = v, false);
 

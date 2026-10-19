@@ -14,7 +14,8 @@ using Debug = UnityEngine.Debug;
 /// </summary>
 public static class BuildScript
 {
-    public static void BuildMac() => Exit(Build(BuildTarget.StandaloneOSX, "Build/mac/Wildmere.app"));
+    // WM_MAC_OUT=<path/Wildmere.app> builds a test copy elsewhere (e.g. while Build/mac is running).
+    public static void BuildMac() => Exit(Build(BuildTarget.StandaloneOSX, Environment.GetEnvironmentVariable("WM_MAC_OUT") ?? "Build/mac/Wildmere.app"));
     public static void BuildWindows() => Exit(Build(BuildTarget.StandaloneWindows64, "Build/win/Wildmere.exe"));
 
     public static void BuildAll()

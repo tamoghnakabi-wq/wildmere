@@ -1,7 +1,7 @@
 # Wildmere — development log
 
 ## Current phase
-Phase 8 — Live with in-game auto-update. Latest: **v0.1.3** (2026-10-19), which adds automatic updates.
+Phase 8 — Live with in-game auto-update. Latest: **v0.1.4** (2026-10-19, fullscreen fix, the first release delivered by auto-update).
 Website https://wildmere-game.vercel.app (Vercel project `wildmere`, auto-deploys from `main`).
 
 ## Releases
@@ -11,6 +11,15 @@ Website https://wildmere-game.vercel.app (Vercel project `wildmere`, auto-deploy
 - v0.1.2: fixed floating props (PropRenderer kept the menu backdrop's chunks; VoxelWorld.OnDestroy now
   unloads them). `-propaudit [-viamenu]` exits 1 if any prop floats.
 - v0.1.3: in-game auto-update (below). Players on 0.1.0–0.1.2 must download 0.1.3 by hand once.
+- v0.1.4: fullscreen/borderless fill the screen. Before, they only switched the mode, so Unity kept the 1600x900
+  window size and the OS letterboxed it on 16:10 MacBooks. `GraphicsApplier.ApplyDisplay` sets the display's own
+  size (`Screen.mainWindowDisplayInfo`: 2940x1846 on the M4 Air, which is already below the notch; macOS keeps
+  the 66 px notch strip black for every fullscreen app). The 3D view is capped at about 1920x1200 pixels at
+  100% render scale (`kPixelBudget`; UI stays native). The A/B benchmark on the fanless Air was noisy
+  (throttling, plus the user's game running): capped beat uncapped native, Ultra 52.6→74.8 fps and High
+  33→48 / 44→71. Switching to windowed opens a centered window at ~3/4 of the display. Harness flags
+  `-displaydiag` and `-displaycycle` (windowed → borderless → fullscreen, logs `WM_DISPLAYCYCLE`).
+  `WM_MAC_OUT` / `WM_BUILD_DIR` build and package outside Build/mac (e.g. while the user has it open).
 
 ## Auto-update (v0.1.3)
 - `Assets/Scripts/Core/Updater.cs`: checks
