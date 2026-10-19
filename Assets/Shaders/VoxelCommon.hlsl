@@ -208,7 +208,7 @@ float WMCloudShape(float2 xz, float detailAmt)
     half4 b = SAMPLE_TEXTURE2D_LOD(_WM_CloudNoise, sampler_WM_CloudNoise, p * (1.0 / 1300.0) + float2(0.37, 0.71), 0);
     float base = a.r * 0.48 + a.a * 0.22 + b.g * 0.2 + b.a * 0.1;
     float cov = _WM_Clouds.x;
-    float thr = lerp(0.58, 0.08, cov);
+    float thr = lerp(0.50, 0.06, cov);
     float shape = saturate((base - thr) / lerp(0.16, 0.30, cov));
     // Erode the edges with high-frequency turbulence so silhouettes look billowy.
     shape = saturate(shape * 1.25 - (1.0 - shape) * b.b * 0.9 * detailAmt - 0.05);

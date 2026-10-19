@@ -53,37 +53,28 @@ Shader "Wildmere/Sky"
                 return acc * _WM_Stars * smoothstep(0.0, 0.3, up);
             }
 
-            // 2.5D cloud layer: a heightfield of puffs (column thickness from the shared cloud field) seen
-            // through a slab, with relief parallax, self-shadowing towards the light, powder-darkened cores,
-            // a silver lining against the sun and darker, thicker storm bases. Returns (in-scatter, transmittance).
+            // Cloud layer: one intersection with the middle of the cloud slab, so every cloud appears exactly once.
+            // Thickness is conveyed by lighting (self-shadowing towards the light, powder-dark cores, silver edges)
+            // rather than by stepping through the slab: a 2-4 step "first hit" march drew several offset copies of
+            // each cloud (a sliced, multi-layered look), and a density march turned the noise peaks into spikes.
+            // Returns (in-scatter, transmittance).
             float4 Clouds(float3 d, float3 camPos, float2 pixel)
             {
                 if (d.y < 0.004) return float4(0, 0, 0, 1);
                 float h0 = _WM_Clouds.z, thick = _WM_Clouds.w;
                 float camY = min(camPos.y, h0 - 2.0);
-                // Relief march: find where the ray first enters a puff (puff top = base + shape * thickness).
                 int q = (int)clamp(_WM_CloudAmbient.a, 1, 12);
-                int steps = q <= 2 ? 2 : (q <= 4 ? 3 : 4);
-                float tA = (h0 - camY) / d.y;
-                float tB = (h0 + thick - camY) / d.y;
-                float jitter = WMIGN(pixel) * 0.6;
+                float tA = (h0 + thick * 0.5 - camY) / d.y;
                 float2 hitXZ = camPos.xz + d.xz * tA;
-                float shape = 0;
-                float hf = 0;
-                [loop] for (int i = steps; i >= 0; i--)
-                {
-                    // From the top of the slab downwards: the first height where the column is tall enough.
-                    float f = saturate((i - jitter) / steps);
-                    float t = lerp(tA, tB, f);
-                    float2 xz = camPos.xz + d.xz * t;
-                    float s = WMCloudShape(xz, 1.0);
-                    if (s > f * 0.85 || i == 0) { hitXZ = xz; shape = s; hf = f; break; }
-                }
-                if (shape <= 0.003) return float4(0, 0, 0, 1);
+                float shape = WMCloudShape(hitXZ, 1.0);
+                float alpha = smoothstep(0.0, 0.32, shape);
+                if (alpha <= 0.003) return float4(0, 0, 0, 1);
+                // "Height" inside the puff for ambient shading: thicker columns are brighter on top.
+                float hf = saturate(shape * 0.8 + 0.1);
 
                 float3 L = _WM_RealSunDir.y > -0.05 ? _WM_RealSunDir.xyz : _WM_MoonDir.xyz;
                 float c = dot(d, L);
-                // Self-shadowing: how much cloud lies between this point and the light.
+                // Self-shadowing: how much cloud lies between the (density-weighted) hit and the light.
                 float2 lstep = L.xz / max(L.y, 0.2) * thick * 0.22;
                 float occ = WMCloudShape(hitXZ + lstep, 0.0);
                 if (q > 4) occ = occ * 0.6 + WMCloudShape(hitXZ + lstep * 2.2, 0.0) * 0.4;
@@ -95,14 +86,14 @@ Shader "Wildmere/Sky"
                 float forward = pow(saturate(c), 8.0) * 1.8 + pow(saturate(c), 64.0) * 3.0;
                 float3 sunL = _WM_CloudLight.rgb * (beer * lerp(1.0, powder, 0.5) * (0.65 + 0.35 * saturate(c * 0.5 + 0.5)) + edge * forward * 0.9);
                 float3 amb = _WM_CloudAmbient.rgb * lerp(0.62, 1.12, saturate(hf + (1.0 - shape) * 0.5)) * (1.0 - _WM_Clouds.y * 0.5);
-                float3 col = sunL + amb;
+                float3 colr = sunL + amb;
                 // Lightning glows inside the clouds.
-                col += float3(0.5, 0.55, 0.75) * _WM_Lightning.w * (0.2 + 1.6 * pow(saturate(dot(d, _WM_Lightning.xyz) * 0.5 + 0.5), 10.0)) * (0.4 + shape);
-                float alpha = saturate(shape * 2.2) * lerp(0.92, 1.0, _WM_Clouds.y);
+                colr += float3(0.5, 0.55, 0.75) * _WM_Lightning.w * (0.2 + 1.6 * pow(saturate(dot(d, _WM_Lightning.xyz) * 0.5 + 0.5), 10.0)) * (0.4 + shape);
+                alpha *= lerp(0.92, 1.0, _WM_Clouds.y);
                 // Far clouds fade into the horizon haze.
                 float fade = exp(-tA / 12000.0) * smoothstep(0.004, 0.07, d.y) * (1.0 - _WM_Surface.y * 0.65);
                 alpha *= fade;
-                return float4(col * alpha, 1.0 - alpha);
+                return float4(colr * alpha, 1.0 - alpha);
             }
 
             half4 frag(V i) : SV_Target

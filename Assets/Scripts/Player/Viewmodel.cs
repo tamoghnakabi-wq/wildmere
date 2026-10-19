@@ -52,8 +52,11 @@ namespace Wildmere.Player
                 var r = go.AddComponent<MeshRenderer>();
                 r.sharedMaterial = BlockMeshes.MaterialFor(b);
                 r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-                go.transform.localScale = Vector3.one * 0.26f;
+                // Plant textures fill the whole tile, so held plants need a smaller scale than cubes to read right.
+                bool plant = Blocks.IsPlant(b) && b != B.Torch;
+                go.transform.localScale = Vector3.one * (plant ? 0.15f : 0.26f);
                 go.transform.localRotation = Quaternion.Euler(8f, 38f, 0f);
+                if (plant) go.transform.localPosition = new Vector3(0.04f, -0.05f, 0.02f);
             }
             else
             {
