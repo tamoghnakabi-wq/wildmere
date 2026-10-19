@@ -31,6 +31,11 @@ Website https://wildmere-game.vercel.app (Vercel project `wildmere`, auto-deploy
   packaging, and the updater accepts both layouts.
 - `verify-release.yml` also verifies the manifest signature and checks version/file/sha/url against the
   downloaded zips.
+- v0.1.3 release checks: local suites on the release build — self-test 19/19, QA 129/129, UI 42/42, EditMode
+  84/84 (12 new `UpdaterTests`: version ordering, plus signature accept/reject with a vector signed by the
+  release key). `verify-download.sh v0.1.3`: arm64 self-test 19/19 on the M4. `verify-release.yml` run
+  39188540521: Windows x64, Apple Silicon, and Intel each 19/19, update manifest signed and matching.
+  Harness runs (`-qatest/-uitest/-selftest/batchmode/...`) never check for updates on their own.
 - Not covered: Intel Macs (only arm64 was run end to end; the code path is the same) and real
   user-installed Windows PCs (only GitHub's runner).
 
