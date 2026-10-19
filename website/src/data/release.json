@@ -1,17 +1,17 @@
 {
-  "version": "0.1.4",
+  "version": "0.1.5",
   "date": "2026-10-19",
-  "notes": "Fullscreen now fills your whole screen instead of showing black bars above and below the game.\n\n### Fixed\n- **Fullscreen and borderless modes use your display's own resolution.** Before, they kept the 16:9 window size, so on 16:10 screens such as MacBooks the picture was letterboxed. On MacBooks with a camera notch, macOS still keeps the thin strip beside the notch black, as it does for every fullscreen app.\n- **The 3D view stays fast on high-resolution screens.** At 100% render scale it now renders at about 1920 × 1200 and scales up, while menus and text stay at full sharpness. Raise \"Render scale\" in Settings › Graphics for a sharper picture, or lower it for more speed.\n- **Switching to windowed mode gives a usable window**, about three-quarters of the screen and centered, instead of a small one in the corner.\n\n### Updating\n- If you have 0.1.3, Wildmere downloads this update by itself and installs it when you quit (or use \"Restart to update\" on the title screen).\n- If you have 0.1.0–0.1.2, download this version from the website once; later updates are automatic.\n\n### Known issues\n- macOS builds are ad-hoc signed, not notarized: approve the first launch in System Settings › Privacy & Security.\n- Windows builds are not code-signed: SmartScreen asks for \"More info › Run anyway\".\n- Windows and Intel Macs have only passed automated checks on GitHub's test machines; the game was played and benchmarked on an Apple M4 MacBook Air.\n\n### Downloads\nPick the zip for your system below. Each file's SHA-256 is in `Wildmere-0.1.4-SHA256SUMS.txt`.\nInstall guide: docs/INSTALL.md in the repository.",
+  "notes": "A torch in your hand now lights up the world around you.\n\n### Fixed\n- **Held torches give light.** Before, a torch only lit things once it was placed; holding one at night or in a cave left everything dark. Now the torch in your hand casts the same warm light as a placed one and moves with you. It stops at walls and floors, so it doesn't light up caves or rooms on the other side of solid rock. Glowcaps held in the hand give a dimmer light, as they do when placed.\n\n### Updating\n- If you have 0.1.3 or later, Wildmere downloads this update by itself and installs it when you quit (or use \"Restart to update\" on the title screen).\n- If you have 0.1.0–0.1.2, download this version from the website once; later updates are automatic.\n\n### Known issues\n- macOS builds are ad-hoc signed, not notarized: approve the first launch in System Settings › Privacy & Security.\n- Windows builds are not code-signed: SmartScreen asks for \"More info › Run anyway\".\n- Windows and Intel Macs have only passed automated checks on GitHub's test machines; the game was played and benchmarked on an Apple M4 MacBook Air.\n\n### Downloads\nPick the zip for your system below. Each file's SHA-256 is in `Wildmere-0.1.5-SHA256SUMS.txt`.\nInstall guide: docs/INSTALL.md in the repository.",
   "repo": "https://github.com/tamoghnakabi-wq/wildmere",
-  "checksums": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.4/Wildmere-0.1.4-SHA256SUMS.txt",
+  "checksums": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.5/Wildmere-0.1.5-SHA256SUMS.txt",
   "assets": [
     {
       "platform": "macos",
       "label": "macOS (Apple Silicon & Intel)",
-      "file": "Wildmere-0.1.4-macOS.zip",
-      "url": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.4/Wildmere-0.1.4-macOS.zip",
-      "size": 76308284,
-      "sha256": "377a67afeab98c1cbdc1ab99f60ee4675c57aa721e48bb521dbc1920937782ff",
+      "file": "Wildmere-0.1.5-macOS.zip",
+      "url": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.5/Wildmere-0.1.5-macOS.zip",
+      "size": 76308003,
+      "sha256": "ee6d71620f781509d1c6794e0da8e3241748326e21b1ef062a7f162b7f5b5fc5",
       "verified": {
         "arm64": true,
         "x64": false
@@ -20,10 +20,10 @@
     {
       "platform": "windows",
       "label": "Windows 10/11 (64-bit)",
-      "file": "Wildmere-0.1.4-Windows-x64.zip",
-      "url": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.4/Wildmere-0.1.4-Windows-x64.zip",
-      "size": 67066764,
-      "sha256": "52d446601d580c7d193558c4e92494b27c9921e8742c093fb6bb3aa9cb2e6a99",
+      "file": "Wildmere-0.1.5-Windows-x64.zip",
+      "url": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.5/Wildmere-0.1.5-Windows-x64.zip",
+      "size": 67071814,
+      "sha256": "0b4cc918a9e39b9a1c0a2db914868b65b401c749ded349abeb4a0d0c4bd8274b",
       "verified": false
     }
   ]
