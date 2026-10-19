@@ -1,29 +1,29 @@
 {
-  "version": "0.1.0",
-  "date": "2026-10-18",
-  "notes": "The first public build of Wildmere: an endless, seeded voxel world to explore, mine and build in, with weather, wildlife and a full day/night cycle.\n\n### New\n- Procedurally generated worlds from a seed: temperate and dark forests, snowy mountains up to y≈230, desert dunes and mesas, flower plains, rivers, lakes and coasts, with smooth biome transitions.\n- Caves (caverns and tunnels), coal, iron and gold ore veins, and hand-made decoration models (boulders, logs, mushrooms, ice spikes, sandstone pillars).\n- Mining with timed breaking and tools (wood/stone/iron pickaxe, axe and shovel) with durability; collision-safe building.\n- 36-slot inventory with drag and drop, and recipe crafting with workbench and furnace stations.\n- Day/night cycle, dynamic weather, procedural clouds, water with reflections and foam, original HD block textures.\n- Deer, rabbits and songbirds that graze, wander and flee; real-recording ambience, footsteps and music.\n- Save and continue any time (autosave every two minutes); LOW/MEDIUM/HIGH/ULTRA graphics presets, key rebinding, audio mixing.\n\n### Known issues\n- macOS builds are ad-hoc signed, not notarized: approve the first launch in System Settings › Privacy & Security.\n- Windows builds are not code-signed: SmartScreen asks for \"More info › Run anyway\".\n- Windows and Intel Macs have only passed automated checks on GitHub's test machines; the game was played and benchmarked on an Apple M4 MacBook Air.\n- No multiplayer, hostile creatures or hunger yet.\n\n### Downloads\nPick the zip for your system below. Each file's SHA-256 is in `Wildmere-0.1.0-SHA256SUMS.txt`.\nInstall guide: docs/INSTALL.md in the repository.",
+  "version": "0.1.1",
+  "date": "2026-10-19",
+  "notes": "A visual fix release: cleaner skies and better-sized held items.\n\n### Fixed\n- Clouds no longer look multi-layered. The sky drew several offset copies of each cloud (a sliced, stacked look, worst near the horizon); every cloud now appears once, shaped by its lighting, with ground cloud-shadows and water reflections matching.\n- Held flowers, mushrooms and grass were drawn far too large in first person; they now sit at a natural size.\n\n### Known issues\n- macOS builds are ad-hoc signed, not notarized: approve the first launch in System Settings › Privacy & Security.\n- Windows builds are not code-signed: SmartScreen asks for \"More info › Run anyway\".\n- Windows and Intel Macs have only passed automated checks on GitHub's test machines; the game was played and benchmarked on an Apple M4 MacBook Air.\n\n### Downloads\nPick the zip for your system below. Each file's SHA-256 is in `Wildmere-0.1.1-SHA256SUMS.txt`.\nInstall guide: docs/INSTALL.md in the repository.",
   "repo": "https://github.com/tamoghnakabi-wq/wildmere",
-  "checksums": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.0/Wildmere-0.1.0-SHA256SUMS.txt",
+  "checksums": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.1/Wildmere-0.1.1-SHA256SUMS.txt",
   "assets": [
     {
       "platform": "macos",
       "label": "macOS (Apple Silicon & Intel)",
-      "file": "Wildmere-0.1.0-macOS.zip",
-      "url": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.0/Wildmere-0.1.0-macOS.zip",
-      "size": 76292298,
-      "sha256": "79753d7e332f1e132f9c7d97fa440eef21bac4db5306e46995e9ebeabd7e7e1f",
+      "file": "Wildmere-0.1.1-macOS.zip",
+      "url": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.1/Wildmere-0.1.1-macOS.zip",
+      "size": 76292567,
+      "sha256": "34d6e3f43996d1632675a111bf0d07eb799e31ab1ae3b2bf271ab0c24abf192f",
       "verified": {
-        "arm64": true,
+        "arm64": false,
         "x64": false
       }
     },
     {
       "platform": "windows",
       "label": "Windows 10/11 (64-bit)",
-      "file": "Wildmere-0.1.0-Windows-x64.zip",
-      "url": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.0/Wildmere-0.1.0-Windows-x64.zip",
-      "size": 67051368,
-      "sha256": "47bbbd15ebd33bf2a151fc35c4839cb675ce53683071b0fc585657f80a2536ec",
+      "file": "Wildmere-0.1.1-Windows-x64.zip",
+      "url": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.1/Wildmere-0.1.1-Windows-x64.zip",
+      "size": 67052050,
+      "sha256": "ee5352bb32f062708002f8752a7a57929b61c6697298fa2fae7456c24468a08b",
       "verified": false
     }
   ]
