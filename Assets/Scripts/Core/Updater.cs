@@ -67,7 +67,10 @@ namespace Wildmere.Core
             FinishPendingInstall();
             string why = UnsupportedReason();
             if (why != null) { State = Phase.Unsupported; Message = why; }
-            bool harness = Harness.WantsAutoStart && !mTestMode;
+            // Test/harness runs never check on their own: an old build under test must not stage and install a real update.
+            bool harness = !mTestMode && (Harness.WantsAutoStart || Application.isBatchMode
+                || Cli.Has("qatest") || Cli.Has("uitest") || Cli.Has("gfxshots") || Cli.Has("uishot")
+                || Cli.Has("autoplay") || Cli.Has("quitafter") || Cli.Has("camwild") || Cli.Has("camprop"));
             mNextCheck = Time.realtimeSinceStartup + (mTestMode ? 1f : 4f);
             if (harness || Cli.Has("noupdate")) mNextCheck = float.MaxValue;
         }

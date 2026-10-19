@@ -76,8 +76,18 @@ If the value differs, delete the file and download it again.
 
 ## Updating and uninstalling
 
-- **Update:** download the new version and replace the old app (macOS) or the old Wildmere
-  folder (Windows).
+- **Update:** from 0.1.3 on, Wildmere updates itself. It checks for a new version shortly
+  after launch (and every few hours while running), downloads it in the background, and
+  installs it when you quit, or straight away with **Restart to update** on the title screen.
+  Before installing, it checks the update's signature against Wildmere's release key and the
+  zip's exact size and SHA-256; anything that doesn't match is discarded. The old version is
+  kept until the new one is in place, and restored if the swap fails.
+  Turn off automatic downloads in **Settings › Updates** (you can still press **Check now**).
+  Versions 0.1.0–0.1.2 can't update themselves: download the current version once by hand.
+  Self-updating needs a folder you can write to: on macOS move Wildmere.app into Applications
+  (an app opened straight from a download, without moving it, can't replace itself); on
+  Windows don't put the Wildmere folder in `C:\Program Files`. The game says when this is
+  the problem. You can always update by hand by replacing the app or folder.
 - **Uninstall:** delete `Wildmere.app` from Applications, or delete the Wildmere folder on
   Windows. Saved worlds may remain in your user data folder afterwards.
 

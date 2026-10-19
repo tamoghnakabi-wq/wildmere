@@ -42,6 +42,31 @@ existing `wren-agents` or `overdrive-league` projects.
 
 Every push to `main` that touches `website/**` redeploys; pull requests get previews.
 
+### Update signing key (in-game auto-update)
+
+The game only installs updates whose manifest (`wildmere-update.json`, attached to every
+release) carries a valid RSA-SHA256 signature from the release key.
+
+- Private key: `.secrets/wildmere-update-key.pem` (RSA-3072, gitignored, `chmod 600`).
+  **Back it up somewhere safe and offline.** It is never committed, never put in GitHub
+  Actions secrets, and never leaves this machine; `publish.sh` signs locally.
+- Public key: `tools/release/update-public.pem`, also compiled into
+  `Assets/Scripts/Core/Updater.cs` (`kModulus`). The two must match.
+- If the private key is lost or leaks: generate a new pair
+  (`openssl genrsa -out .secrets/wildmere-update-key.pem 3072` and
+  `openssl rsa -in .secrets/wildmere-update-key.pem -pubout -out tools/release/update-public.pem`),
+  put the new modulus in `Updater.cs`, and release. Installed copies keep trusting the old key,
+  so players have to download that one release by hand.
+- The feed is `releases/latest/download/wildmere-update.json`, so publishing a release is
+  what ships the update. Drafts and prereleases are never "latest".
+
+Updater tests (run after touching `Updater.cs`):
+- `tools/release/test-updater-mac.sh`: local end-to-end on this Mac (good update and
+  relaunch, tampered manifest, bad checksum, same version, install on quit).
+- Windows: `tools/release/stage-updater-test.sh <prerelease tag>` (the prerelease must
+  already hold the current Windows zip), then
+  `gh workflow run updater-windows.yml -f tag=<tag>`.
+
 ## Cutting a release
 
 1. **Version.** Set `VERSION` (semver, e.g. `0.1.0`). The macOS `Info.plist`

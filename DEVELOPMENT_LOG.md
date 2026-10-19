@@ -1,8 +1,38 @@
 # Wildmere — development log
 
 ## Current phase
-Phase 7 — Released. **v0.1.0 is live** (2026-10-19): https://github.com/tamoghnakabi-wq/wildmere/releases/tag/v0.1.0,
-website https://wildmere-game.vercel.app (Vercel project `wildmere`, auto-deploys from `main`).
+Phase 8 — Live with in-game auto-update. Latest: **v0.1.3** (2026-10-19), which adds automatic updates.
+Website https://wildmere-game.vercel.app (Vercel project `wildmere`, auto-deploys from `main`).
+
+## Releases
+- v0.1.0 (2026-10-19): first public release.
+- v0.1.1: clouds are a single layer (one slab intersection instead of a density march, which looked
+  multi-layered).
+- v0.1.2: fixed floating props (PropRenderer kept the menu backdrop's chunks; VoxelWorld.OnDestroy now
+  unloads them). `-propaudit [-viamenu]` exits 1 if any prop floats.
+- v0.1.3: in-game auto-update (below). Players on 0.1.0–0.1.2 must download 0.1.3 by hand once.
+
+## Auto-update (v0.1.3)
+- `Assets/Scripts/Core/Updater.cs`: checks
+  `releases/latest/download/wildmere-update.json` 4 s after boot and every 6 h. The RSA-3072 PKCS#1 SHA-256
+  signature (`.sig`) is checked against the public key compiled into the game. The download is staged in
+  `persistentDataPath/Updates/<ver>`, then its size and SHA-256 are checked against the signed manifest.
+  It installs on quit, or via "Restart to update" (title-screen card, Settings › Updates). A helper script
+  (sh/PowerShell) waits for the game to exit, swaps the install with a `.previous` backup (rolling back on
+  failure), and relaunches. `pending.json` drives the "Updated to X" report on the next boot.
+- Signing: `tools/release/sign-update.sh` (called by publish.sh). The private key is in
+  `.secrets/wildmere-update-key.pem` (gitignored, local only). The public key is
+  `tools/release/update-public.pem`.
+- Verified on macOS: `tools/release/test-updater-mac.sh`, 13/13 (good update and relaunch, tampered
+  manifest, bad checksum, same version, install on quit with screenshot).
+- Verified on Windows: `updater-windows.yml` run 39186895873 on windows-latest, 5/5 (download and verify,
+  helper folder swap, relaunch reports 0.1.3 → 0.1.99, exe present, backup removed). The earlier rc.2
+  failure was the test zip missing its top `Wildmere\` folder. The staging script now matches release
+  packaging, and the updater accepts both layouts.
+- `verify-release.yml` also verifies the manifest signature and checks version/file/sha/url against the
+  downloaded zips.
+- Not covered: Intel Macs (only arm64 was run end to end; the code path is the same) and real
+  user-installed Windows PCs (only GitHub's runner).
 
 ## Release verification (v0.1.0)
 - Local: `tools/release/verify-download.sh v0.1.0` — checksums match the website's release.json; the downloaded
