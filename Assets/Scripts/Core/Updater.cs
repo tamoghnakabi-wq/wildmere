@@ -261,6 +261,7 @@ namespace Wildmere.Core
                 File.Move(part, zip);
             }
             Progress = 1f; Notify();
+            Debug.Log($"WM_UPDATE downloaded {mAssetFile}; verifying");
 
             // Verify size + SHA-256 off the main thread.
             var check = Task.Run(() => FileMatches(zip, mAssetSize, mAssetSha));
@@ -273,6 +274,7 @@ namespace Wildmere.Core
                 yield break;
             }
 
+            Debug.Log("WM_UPDATE verified; unpacking");
             // Extract to the staging folder (mac: ditto keeps the bundle's permissions/symlinks).
             string outDir = Path.Combine(StageDir, "app");
             if (Directory.Exists(outDir)) Directory.Delete(outDir, true);
@@ -329,8 +331,9 @@ namespace Wildmere.Core
                 if (Application.platform == RuntimePlatform.OSXPlayer)
                     psi = new ProcessStartInfo("/usr/bin/ditto", $"-x -k \"{zip}\" \"{outDir}\"");
                 else
+                    // .NET's ZipFile is far faster than Expand-Archive on a ~190-file game folder.
                     psi = new ProcessStartInfo("powershell.exe",
-                        $"-NoProfile -NonInteractive -ExecutionPolicy Bypass -Command \"Expand-Archive -LiteralPath '{zip}' -DestinationPath '{outDir}' -Force\"");
+                        $"-NoProfile -NonInteractive -ExecutionPolicy Bypass -Command \"Add-Type -AssemblyName System.IO.Compression.FileSystem; [System.IO.Compression.ZipFile]::ExtractToDirectory('{zip}', '{outDir}')\"");
                 psi.UseShellExecute = false; psi.CreateNoWindow = true;
                 psi.RedirectStandardError = true; psi.RedirectStandardOutput = true;
                 using (var p = Process.Start(psi))
