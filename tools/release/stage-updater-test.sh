@@ -19,7 +19,7 @@ echo "$VER" > VERSION
 mkdir -p "$OUT/stage"
 rsync -a --exclude '*_DoNotShip' --exclude '*_ButDontShipItWithYourGame' Build/win/ "$OUT/stage/Wildmere/"
 ZIP="$OUT/Wildmere-$NEWVER-Windows-x64.zip"
-(cd "$OUT/stage" && ditto -c -k --norsrc --noextattr --noqtn --noacl Wildmere "$ZIP")
+(cd "$OUT/stage" && ditto -c -k --norsrc --noextattr --noqtn --noacl --keepParent Wildmere "$ZIP")
 tools/build.sh win | grep -E "BUILD_RESULT|error CS"   # restore Build/win to the real version
 
 SIZE=$(stat -f%z "$ZIP"); SHA=$(shasum -a 256 "$ZIP" | awk '{print $1}')

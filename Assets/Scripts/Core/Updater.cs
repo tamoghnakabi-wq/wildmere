@@ -283,6 +283,7 @@ namespace Wildmere.Core
             while (!ex.IsCompleted) yield return null;
             if (!ex.Result || !TryUseStaged())
             {
+                if (ex.Result) Debug.LogWarning($"WM_UPDATE FAIL unpacked update has no Wildmere app in {outDir}");
                 Fail("The update couldn't be unpacked. Wildmere will try again later.");
                 yield break;
             }
@@ -338,8 +339,18 @@ namespace Wildmere.Core
                 psi.RedirectStandardError = true; psi.RedirectStandardOutput = true;
                 using (var p = Process.Start(psi))
                 {
-                    p.WaitForExit(300000);
-                    return p.HasExited && p.ExitCode == 0;
+                    // Drain both pipes so a chatty extractor can never block on a full buffer.
+                    var err = p.StandardError.ReadToEndAsync();
+                    var outp = p.StandardOutput.ReadToEndAsync();
+                    if (!p.WaitForExit(300000)) { try { p.Kill(); } catch { } Debug.LogWarning("WM_UPDATE extract timed out"); return false; }
+                    p.WaitForExit();
+                    if (p.ExitCode != 0)
+                    {
+                        string msg = (err.Result + " " + outp.Result).Trim();
+                        Debug.LogWarning($"WM_UPDATE extract failed: exit {p.ExitCode} {(msg.Length > 400 ? msg.Substring(0, 400) : msg)}");
+                        return false;
+                    }
+                    return true;
                 }
             }
             catch (Exception e) { Debug.LogWarning($"WM_UPDATE extract failed: {e.Message}"); return false; }
@@ -349,14 +360,15 @@ namespace Wildmere.Core
         {
             if (string.IsNullOrEmpty(Latest)) return false;
             string outDir = Path.Combine(StageDir, "app");
-            string candidate = Application.platform == RuntimePlatform.OSXPlayer
-                ? Path.Combine(outDir, "Wildmere.app")
-                : Path.Combine(outDir, "Wildmere");
-            bool ok = Application.platform == RuntimePlatform.OSXPlayer
-                ? File.Exists(Path.Combine(candidate, "Contents", "Info.plist"))
-                : File.Exists(Path.Combine(candidate, "Wildmere.exe")) && Directory.Exists(Path.Combine(candidate, "Wildmere_Data"));
-            mStagedApp = ok ? candidate : null;
-            return ok;
+            bool mac = Application.platform == RuntimePlatform.OSXPlayer;
+            bool IsApp(string dir) => mac
+                ? File.Exists(Path.Combine(dir, "Contents", "Info.plist"))
+                : File.Exists(Path.Combine(dir, "Wildmere.exe")) && Directory.Exists(Path.Combine(dir, "Wildmere_Data"));
+            // Release zips hold a top folder (Wildmere.app / Wildmere); accept the bare contents as well.
+            string candidate = Path.Combine(outDir, mac ? "Wildmere.app" : "Wildmere");
+            if (!IsApp(candidate)) candidate = IsApp(outDir) ? outDir : null;
+            mStagedApp = candidate;
+            return candidate != null;
         }
 
         static void TryDelete(string p) { try { if (File.Exists(p)) File.Delete(p); } catch { } }
