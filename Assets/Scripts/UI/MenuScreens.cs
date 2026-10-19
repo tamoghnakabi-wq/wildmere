@@ -14,6 +14,9 @@ namespace Wildmere.UI
         public override string Id => "mainmenu";
         VisualElement mMenu;
         Label mVersion;
+        VisualElement mUpdate;
+        Label mUpdateTitle, mUpdateText;
+        Button mUpdateBtn;
 
         public override void Build()
         {
@@ -30,6 +33,14 @@ namespace Wildmere.UI
             words.Add(Ui.Text("SHAPE THE WILD", "wordmark__tag"));
             mMenu = col.Append(Ui.Div("menu", "mm-menu"));
 
+            // Update card: appears when an update is downloading, ready, or was just installed.
+            mUpdate = col.Append(Ui.Div("mm-update"));
+            var ut = mUpdate.Append(Ui.Div("mm-update__text"));
+            mUpdateTitle = ut.Append(Ui.Text("", "mm-update__title"));
+            mUpdateText = ut.Append(Ui.Text("", "mm-update__body"));
+            mUpdateBtn = mUpdate.Append(Ui.Btn("Restart to update", () => Updater.Instance?.InstallAndRestart(), UiSound.Confirm, "btn--primary", "btn--small"));
+            mUpdate.style.display = DisplayStyle.None;
+
             var foot = Root.Append(Ui.Div("mm-foot", "anim-rise"));
             mVersion = foot.Append(Ui.Text("", "mm-version"));
             foot.Add(Ui.Div("grow"));
@@ -39,6 +50,8 @@ namespace Wildmere.UI
         protected override void OnShow()
         {
             mVersion.text = $"Wildmere {GameRoot.Version}";
+            if (Updater.Instance != null) { Updater.Instance.Changed -= RefreshUpdate; Updater.Instance.Changed += RefreshUpdate; }
+            RefreshUpdate();
             mMenu.Clear();
             var worlds = WorldSave.List();
             Button first;
@@ -59,6 +72,56 @@ namespace Wildmere.UI
             var quit = mMenu.Append(Ui.MenuItem("Quit", Application.Quit));
             quit.AddToClassList("menu-item--quiet");
             DefaultFocus = first;
+        }
+
+        protected override void OnHide()
+        {
+            if (Updater.Instance != null) Updater.Instance.Changed -= RefreshUpdate;
+        }
+
+        void RefreshUpdate()
+        {
+            var u = Updater.Instance;
+            if (mUpdate == null) return;
+            string title = null, body = null, btn = null;
+            System.Action act = null;
+            if (u != null)
+            {
+                switch (u.State)
+                {
+                    case Updater.Phase.Downloading:
+                        title = $"Downloading Wildmere {u.Latest}";
+                        body = $"{u.Progress * 100f:F0}%  ·  {u.DownloadSize / 1048576f:F0} MB  ·  you can keep playing";
+                        break;
+                    case Updater.Phase.Ready:
+                        title = $"Wildmere {u.Latest} is ready";
+                        body = string.IsNullOrEmpty(u.Summary) ? "Restart now, or it installs when you quit." : u.Summary;
+                        btn = "Restart to update"; act = u.InstallAndRestart;
+                        break;
+                    case Updater.Phase.Available:
+                        title = $"Wildmere {u.Latest} is available";
+                        body = string.IsNullOrEmpty(u.Summary) ? $"{u.DownloadSize / 1048576f:F0} MB download." : u.Summary;
+                        btn = "Download"; act = u.Download;
+                        break;
+                    default:
+                        if (u.JustUpdatedFrom != null)
+                        {
+                            title = $"Updated to Wildmere {GameRoot.Version}";
+                            body = $"You were on {u.JustUpdatedFrom}. Enjoy the new version.";
+                        }
+                        break;
+                }
+            }
+            mUpdate.style.display = title == null ? DisplayStyle.None : DisplayStyle.Flex;
+            if (title == null) return;
+            mUpdateTitle.text = title;
+            mUpdateText.text = body;
+            mUpdateBtn.style.display = btn == null ? DisplayStyle.None : DisplayStyle.Flex;
+            if (btn != null)
+            {
+                mUpdateBtn.text = btn;
+                mUpdateBtn.clickable = new Clickable(() => { UiSound.Play(UiSound.Confirm); act?.Invoke(); });
+            }
         }
 
         public static string LastPlayed(WorldSave w)

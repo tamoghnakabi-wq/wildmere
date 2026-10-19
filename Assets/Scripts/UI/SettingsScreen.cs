@@ -15,7 +15,7 @@ namespace Wildmere.UI
     public sealed class SettingsScreen : UiScreen
     {
         public override string Id => "settings";
-        public enum Tab { Graphics, Audio, Controls }
+        public enum Tab { Graphics, Audio, Controls, Updates }
 
         readonly Dictionary<Tab, Button> mTabs = new Dictionary<Tab, Button>();
         readonly Dictionary<Tab, ScrollView> mPages = new Dictionary<Tab, ScrollView>();
@@ -61,6 +61,7 @@ namespace Wildmere.UI
             BuildGraphics(mPages[Tab.Graphics].contentContainer);
             BuildAudio(mPages[Tab.Audio].contentContainer);
             BuildControls(mPages[Tab.Controls].contentContainer);
+            BuildUpdates(mPages[Tab.Updates].contentContainer);
 
             var foot = panel.Append(Ui.Div("settings-foot"));
             mReset = foot.Append(Ui.Btn("Reset controls to defaults", ResetControls, null, "btn--ghost", "btn--small"));
@@ -158,6 +159,48 @@ namespace Wildmere.UI
             Section(p, "CAMERA");
             Switch(p, "View bobbing", "Sway the camera gently as you walk.", () => S.HeadBob, v => S.HeadBob = v, false);
             Switch(p, "Camera shake", "Shake on hard landings and damage.", () => S.CameraShake, v => S.CameraShake = v, false);
+        }
+
+        Label mUpdStatus;
+        Button mUpdCheck, mUpdInstall;
+
+        void BuildUpdates(VisualElement p)
+        {
+            Section(p, "UPDATES");
+            Switch(p, "Download updates automatically",
+                "New versions download in the background and install when you quit or restart. Each update is signature-checked before it installs.",
+                () => S.AutoUpdate, v => S.AutoUpdate = v, false);
+            var actions = Ui.Div("row");
+            mUpdCheck = actions.Append(Ui.Btn("Check now", () => Updater.Instance?.CheckNow(), UiSound.Click, "btn--small"));
+            mUpdInstall = actions.Append(Ui.Btn("Restart to update", () => Updater.Instance?.InstallAndRestart(), UiSound.Confirm, "btn--primary", "btn--small"));
+            mUpdInstall.style.marginLeft = 10;
+            Row(p, $"Version {GameRoot.Version}", null, actions);
+            mUpdStatus = p.Append(Ui.Text("", "setting-row__hint"));
+            mUpdStatus.style.marginTop = 6;
+            mRefresh.Add(RefreshUpdates);
+            if (Updater.Instance != null) Updater.Instance.Changed += RefreshUpdates;
+        }
+
+        void RefreshUpdates()
+        {
+            var u = Updater.Instance;
+            if (mUpdStatus == null) return;
+            string s;
+            switch (u != null ? u.State : Updater.Phase.Unsupported)
+            {
+                case Updater.Phase.Checking: s = "Checking for updates…"; break;
+                case Updater.Phase.UpToDate: s = "You're on the latest version."; break;
+                case Updater.Phase.Available: s = $"Wildmere {u.Latest} is available ({u.DownloadSize / 1048576f:F0} MB)."; break;
+                case Updater.Phase.Downloading: s = $"Downloading Wildmere {u.Latest}… {u.Progress * 100f:F0}%"; break;
+                case Updater.Phase.Ready: s = $"Wildmere {u.Latest} is downloaded and verified. Restart to install it, or it installs when you quit."; break;
+                case Updater.Phase.Error: s = u.Message ?? "Something went wrong. Wildmere will try again later."; break;
+                case Updater.Phase.Unsupported: s = u?.Message ?? "Automatic updates are not available."; break;
+                default: s = "Wildmere checks for updates automatically."; break;
+            }
+            mUpdStatus.text = s;
+            bool ready = u != null && u.State == Updater.Phase.Ready;
+            mUpdInstall.style.display = ready ? DisplayStyle.Flex : DisplayStyle.None;
+            mUpdCheck.SetEnabled(u != null && u.State != Updater.Phase.Checking && u.State != Updater.Phase.Downloading && u.State != Updater.Phase.Unsupported);
         }
 
         void BuildAudio(VisualElement p)

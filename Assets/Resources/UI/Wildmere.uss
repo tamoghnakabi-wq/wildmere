@@ -655,3 +655,13 @@
 .cursor-stack { position: absolute; left: 0; top: 0; width: 60px; height: 60px; }
 .cursor-stack__icon { position: absolute; left: 0; top: 0; right: 0; bottom: 0; -unity-background-scale-mode: scale-to-fit; }
 .cursor-stack .slot__count { right: -2px; bottom: -4px; }
+
+/* Title-screen update card */
+.mm-update {
+    margin-top: 28px; max-width: 520px; flex-direction: row; align-items: center;
+    padding: 14px 16px; border-radius: 14px;
+    background-color: rgba(10, 16, 20, 0.62); border-width: 1px; border-color: rgba(125, 220, 188, 0.35);
+}
+.mm-update__text { flex-grow: 1; flex-shrink: 1; margin-right: 14px; }
+.mm-update__title { font-size: 16px; color: var(--text); -unity-font: url("project://database/Assets/Resources/UI/Fonts/Manrope-SemiBold.ttf"); }
+.mm-update__body { font-size: 13px; color: var(--text-2); margin-top: 3px; white-space: normal; }

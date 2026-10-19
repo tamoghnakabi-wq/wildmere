@@ -52,6 +52,13 @@ done < <(node "$LIB" manifest "$MANIFEST" "$VER") || die "manifest check failed"
 [ "${#FILES[@]}" -eq 2 ] || die "expected 2 assets in the manifest, found ${#FILES[@]}"
 FILES+=("$SUMS")
 
+# Signed in-game update manifest (the game reads releases/latest/download/wildmere-update.json).
+UPDATE_JSON="$DIST_DIR/wildmere-update.json"
+"$REPO_ROOT/tools/release/sign-update.sh" >/dev/null || die "could not build/sign the update manifest (tools/release/sign-update.sh)"
+"$REPO_ROOT/tools/release/sign-update.sh" --verify >/dev/null || die "update manifest signature does not verify"
+ok "update manifest signed  $(basename "$UPDATE_JSON")"
+FILES+=("$UPDATE_JSON" "$UPDATE_JSON.sig")
+
 # ---- GitHub checks ---------------------------------------------------------------
 gh auth status >/dev/null 2>&1 || die "gh is not signed in (gh auth login)"
 if ! gh repo view "$GH_REPO" --json name >/dev/null 2>&1; then
@@ -103,10 +110,12 @@ while IFS=$'\t' read -r status file; do
     *) die "unexpected compare status '$status' for $file" ;;
   esac
 done < <(node "$LIB" compare "$STATE_FILE" "$MANIFEST")
-if ! node -e "process.exit(require('$STATE_FILE').assets.some(a => a.name === '$(basename "$SUMS")') ? 0 : 1)"; then
-  info "uploading $(basename "$SUMS")"
-  run gh release upload "$TAG" "$SUMS" --repo "$GH_REPO" --clobber
-fi
+for extra in "$SUMS" "$UPDATE_JSON" "$UPDATE_JSON.sig"; do
+  if ! node -e "process.exit(require('$STATE_FILE').assets.some(a => a.name === '$(basename "$extra")') ? 0 : 1)"; then
+    info "uploading $(basename "$extra")"
+    run gh release upload "$TAG" "$extra" --repo "$GH_REPO" --clobber
+  fi
+done
 
 # ---- verify, then publish ------------------------------------------------------------
 fetch_state || die "could not re-read release $TAG"

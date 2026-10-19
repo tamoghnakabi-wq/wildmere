@@ -80,6 +80,7 @@ namespace Wildmere.Core
             Atmos.transform.SetParent(transform, false);
             gameObject.AddComponent<GraphicsApplier>();
             gameObject.AddComponent<Harness>();
+            gameObject.AddComponent<Updater>();
             if (FindAnyObjectByType<PropRenderer>() == null) new GameObject("PropRenderer").AddComponent<PropRenderer>().transform.SetParent(transform, false);
         }
 
@@ -94,6 +95,8 @@ namespace Wildmere.Core
         void OnApplicationQuit()
         {
             if (State == GameState.Playing || State == GameState.Paused) SaveWorld();
+            // A downloaded update installs after the game exits (the helper waits for this process).
+            Updater.Instance?.InstallOnQuit();
         }
 
         public void StartFromCli()

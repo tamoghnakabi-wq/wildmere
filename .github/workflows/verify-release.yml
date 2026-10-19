@@ -61,6 +61,7 @@ jobs:
         with:
           sparse-checkout: |
             website/src/data/release.json
+            tools/release/update-public.pem
           sparse-checkout-cone-mode: false
           lfs: false
           persist-credentials: false
@@ -107,6 +108,32 @@ jobs:
           else
             echo "website    matches"
           fi
+
+      - name: Verify the in-game update manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p upd
+          if ! gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern 'wildmere-update.json' --pattern 'wildmere-update.json.sig' --dir upd 2>/dev/null \
+             || [ ! -f upd/wildmere-update.json.sig ]; then
+            echo "::notice::$TAG has no wildmere-update.json (releases before the auto-updater); skipped"; exit 0
+          fi
+          openssl dgst -sha256 -verify tools/release/update-public.pem -signature upd/wildmere-update.json.sig upd/wildmere-update.json
+          actual="$( (sha256sum "dl/$ZIP" 2>/dev/null || shasum -a 256 "dl/$ZIP") | awk '{print $1}')"
+          python3 - "$TAG" "${{ matrix.platform }}" "$ZIP" "$actual" <<'PY'
+          import json, sys
+          tag, platform, zipname, actual = sys.argv[1:]
+          d = json.load(open('upd/wildmere-update.json'))
+          a = d['assets'][platform]
+          problems = []
+          if 'v' + d['version'] != tag: problems.append(f"version {d['version']} != {tag}")
+          if a['file'] != zipname: problems.append(f"file {a['file']} != {zipname}")
+          if a['sha256'] != actual: problems.append("sha256 does not match the downloaded zip")
+          if not a['url'].startswith('https://github.com/'): problems.append('url is not a GitHub release URL')
+          if problems:
+              print('::error::update manifest: ' + '; '.join(problems)); sys.exit(1)
+          print(f"update manifest OK: v{d['version']} {platform} {a['file']} signed and matching")
+          PY
 
       # ---------------------------------------------------------------- macOS
       - name: Unzip and inspect the app (macOS)

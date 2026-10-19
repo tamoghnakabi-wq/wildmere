@@ -36,6 +36,7 @@ namespace Wildmere.Core
         public bool HeadBob = true;
         public bool CameraShake = true;
         public float Brightness = 0f;          // -1..1 exposure offset
+        public bool AutoUpdate = true;         // download updates in the background and install them on quit/restart
         public int Fullscreen = 0;             // 0 windowed, 1 borderless, 2 exclusive
 
         // Audio (0..1)
