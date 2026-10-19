@@ -1,17 +1,17 @@
 {
-  "version": "0.1.5",
+  "version": "0.1.6",
   "date": "2026-10-19",
-  "notes": "A torch in your hand now lights up the world around you.\n\n### Fixed\n- **Held torches give light.** Before, a torch only lit things once it was placed; holding one at night or in a cave left everything dark. Now the torch in your hand casts the same warm light as a placed one and moves with you. It stops at walls and floors, so it doesn't light up caves or rooms on the other side of solid rock. Glowcaps held in the hand give a dimmer light, as they do when placed.\n\n### Updating\n- If you have 0.1.3 or later, Wildmere downloads this update by itself and installs it when you quit (or use \"Restart to update\" on the title screen).\n- If you have 0.1.0–0.1.2, download this version from the website once; later updates are automatic.\n\n### Known issues\n- macOS builds are ad-hoc signed, not notarized: approve the first launch in System Settings › Privacy & Security.\n- Windows builds are not code-signed: SmartScreen asks for \"More info › Run anyway\".\n- Windows and Intel Macs have only passed automated checks on GitHub's test machines; the game was played and benchmarked on an Apple M4 MacBook Air.\n\n### Downloads\nPick the zip for your system below. Each file's SHA-256 is in `Wildmere-0.1.5-SHA256SUMS.txt`.\nInstall guide: docs/INSTALL.md in the repository.",
+  "notes": "Creative mode: pick Survival or Creative when you create a world.\n\n### New\n- **Creative worlds.** Choose the game mode on the New World screen. In Creative:\n  - **Fly** by double-tapping Space. Hold Space to rise and Crouch to sink. Fly down onto the ground to land, or double-tap Space again.\n  - **Nothing hurts you.** Falls, drowning and anything else that would cost health have no effect, so the health bar is replaced by a \"Creative\" label.\n  - **Blocks break instantly**, whatever you're holding (even bedrock), and don't drop items. Tools never wear out.\n  - **Placing never uses up a stack**, and middle-click (pick block) puts a full stack of the targeted block on your hotbar.\n  - **Every block and item** is in the inventory's picker: click for a full stack, right-click for one, Shift-click to send it straight to your inventory, or hover and press 1–9 to put it on the hotbar. Search by name, filter by tabs, and drop unwanted stacks on the bin.\n  - Workbenches and furnaces still open crafting.\n- Saved worlds show their mode in the Load World list. Worlds created before this version are Survival.\n\n### Updating\n- If you have 0.1.3 or later, Wildmere downloads this update by itself and installs it when you quit (or use \"Restart to update\" on the title screen).\n- If you have 0.1.0–0.1.2, download this version from the website once; later updates are automatic.\n\n### Known issues\n- A world's mode is chosen when it is created and can't be switched later.\n- macOS builds are ad-hoc signed, not notarized: approve the first launch in System Settings › Privacy & Security.\n- Windows builds are not code-signed: SmartScreen asks for \"More info › Run anyway\".\n- Windows and Intel Macs have only passed automated checks on GitHub's test machines; the game was played and benchmarked on an Apple M4 MacBook Air.\n\n### Downloads\nPick the zip for your system below. Each file's SHA-256 is in `Wildmere-0.1.6-SHA256SUMS.txt`.\nInstall guide: docs/INSTALL.md in the repository.",
   "repo": "https://github.com/tamoghnakabi-wq/wildmere",
-  "checksums": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.5/Wildmere-0.1.5-SHA256SUMS.txt",
+  "checksums": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.6/Wildmere-0.1.6-SHA256SUMS.txt",
   "assets": [
     {
       "platform": "macos",
       "label": "macOS (Apple Silicon & Intel)",
-      "file": "Wildmere-0.1.5-macOS.zip",
-      "url": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.5/Wildmere-0.1.5-macOS.zip",
-      "size": 76308003,
-      "sha256": "ee6d71620f781509d1c6794e0da8e3241748326e21b1ef062a7f162b7f5b5fc5",
+      "file": "Wildmere-0.1.6-macOS.zip",
+      "url": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.6/Wildmere-0.1.6-macOS.zip",
+      "size": 76316438,
+      "sha256": "d1cadd102a7dd642fbb705d0aef92bd763df99d61eb1b2d6e0f25df866efe36f",
       "verified": {
         "arm64": true,
         "x64": false
@@ -20,10 +20,10 @@
     {
       "platform": "windows",
       "label": "Windows 10/11 (64-bit)",
-      "file": "Wildmere-0.1.5-Windows-x64.zip",
-      "url": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.5/Wildmere-0.1.5-Windows-x64.zip",
-      "size": 67071814,
-      "sha256": "0b4cc918a9e39b9a1c0a2db914868b65b401c749ded349abeb4a0d0c4bd8274b",
+      "file": "Wildmere-0.1.6-Windows-x64.zip",
+      "url": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.6/Wildmere-0.1.6-Windows-x64.zip",
+      "size": 67080874,
+      "sha256": "180f1aa1cc5e50eed134eafa648e77e4de1d0ec36378c2b001a7a8f1bf2ca513",
       "verified": false
     }
   ]
