@@ -1,7 +1,7 @@
 # Wildmere — development log
 
 ## Current phase
-Phase 8 — Live with in-game auto-update. Latest: **v0.1.4** (2026-10-19, fullscreen fix, the first release delivered by auto-update).
+Phase 8 — Live with in-game auto-update. Latest: **v0.1.5** (2026-10-19, held torches give light; auto-update has delivered releases since 0.1.4).
 Website https://wildmere-game.vercel.app (Vercel project `wildmere`, auto-deploys from `main`).
 
 ## Releases
@@ -11,6 +11,14 @@ Website https://wildmere-game.vercel.app (Vercel project `wildmere`, auto-deploy
 - v0.1.2: fixed floating props (PropRenderer kept the menu backdrop's chunks; VoxelWorld.OnDestroy now
   unloads them). `-propaudit [-viamenu]` exits 1 if any prop floats.
 - v0.1.3: in-game auto-update (below). Players on 0.1.0–0.1.2 must download 0.1.3 by hand once.
+- v0.1.5: held torches light the world (user: "the torch glows but doesn't illuminate anything at night"; it was in
+  their hand, and only placed torches fed block light). `Rendering/HandLight.cs` pushes the flame position and level
+  (`_WM_HandLight`) plus a 32³ reach mask (`_WM_HandLightMask`, 6-neighbour flood fill through non-opaque blocks,
+  24 steps, rebuilt in ~0.3 ms when the hand changes block, a nearby block changes, or every 1 s).
+  `VoxelLighting.hlsl` `WMHandLight` adds it as block light, max(blk, emit − distance) × reach × facing, in the
+  Voxel, VoxelCutout and Prop shaders. Water is still not lit by torches, held or placed. Harness `-camtorch`
+  [`-notorch` | `-holdtorch` [`-lightcheck`]]: at midnight, a held torch brightens the ground ~2× at the feet,
+  while a placed torch gives ~2.6× around it. `-lightcheck` checks a sealed stone box: inside 0, outside 255.
 - v0.1.4: fullscreen/borderless fill the screen. Before, they only switched the mode, so Unity kept the 1600x900
   window size and the OS letterboxed it on 16:10 MacBooks. `GraphicsApplier.ApplyDisplay` sets the display's own
   size (`Screen.mainWindowDisplayInfo`: 2940x1846 on the M4 Air, which is already below the notch; macOS keeps

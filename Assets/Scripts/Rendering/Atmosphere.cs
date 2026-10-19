@@ -92,6 +92,7 @@ namespace Wildmere.Rendering
         void Awake()
         {
             Instance = this;
+            HandLight.EnsureDefault();
             var go = new GameObject("Sun");
             go.transform.SetParent(transform, false);
             Sun = go.AddComponent<Light>();

@@ -46,6 +46,7 @@ namespace Wildmere.Player
             mCrack = BuildCrack();
             mParticles = new GameObject("BreakParticles").AddComponent<BreakParticles>();
             mView = Player.Cam.gameObject.AddComponent<Viewmodel>();
+            Player.Cam.gameObject.AddComponent<Rendering.HandLight>().Player = Player;
             mView.Player = Player;
             Player.Inventory.Changed += () => mView.Refresh();
             mView.Refresh();

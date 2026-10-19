@@ -11,11 +11,13 @@ namespace Wildmere.Rendering
     ///   -camforest         stand inside the nearest dark forest (or densest forest), looking towards the sun
     ///   -camcave           stand in the nearest open cave mouth / underground pocket below the surface
     ///   -camunderwater     dive 3 m under the nearest deep water, looking along the bottom
+    ///   -camtorch          stand on open ground near spawn and place a torch 3 blocks ahead (-notorch: same view, no
+    ///                      torch; -holdtorch: no placed torch, a torch selected in the hand instead)
     /// Used with -gfxshots (offscreen) or -shots. Logs WM_GFXCAM with the chosen spot.
     /// </summary>
     public sealed class GfxHarness : MonoBehaviour
     {
-        public static bool Wanted => Cli.Has("camwater") || Cli.Has("camforest") || Cli.Has("camcave") || Cli.Has("camunderwater");
+        public static bool Wanted => Cli.Has("camwater") || Cli.Has("camforest") || Cli.Has("camcave") || Cli.Has("camunderwater") || Cli.Has("camtorch");
 
         IEnumerator Start()
         {
@@ -26,6 +28,7 @@ namespace Wildmere.Rendering
             Vector3 origin = p.transform.position;
             if (Cli.Has("camforest")) yield return Forest(p, w, origin);
             else if (Cli.Has("camcave")) yield return Cave(p, w, origin);
+            else if (Cli.Has("camtorch")) yield return Torch(p, w, origin);
             else yield return Water(p, w, origin, Cli.Has("camunderwater"));
         }
 
@@ -144,6 +147,69 @@ namespace Wildmere.Rendering
                     for (int dy = 0; dy <= 2; dy++)
                         if (w.GetBlock(x + dx, y + dy, z + dz) == B.Air) air++;
             return air >= 110;
+        }
+
+        IEnumerator Torch(Player.PlayerController p, VoxelWorld w, Vector3 origin)
+        {
+            yield return WaitLoaded(w, origin);
+            // Flat open ground: the eye cell and the 7x7 patch ahead share one surface height with air above.
+            for (int r = 0; r < 60; r += 2)
+                for (int a = 0; a < 12; a++)
+                {
+                    float ang = a / 12f * Mathf.PI * 2f;
+                    int x = Mathf.FloorToInt(origin.x + Mathf.Cos(ang) * r), z = Mathf.FloorToInt(origin.z + Mathf.Sin(ang) * r);
+                    int y = w.SurfaceY(x, z);
+                    if (y < 0 || !Blocks.IsOpaque[w.GetBlock(x, y, z)]) continue;
+                    bool flat = true;
+                    for (int dx = -1; dx <= 7 && flat; dx++)
+                        for (int dz = -3; dz <= 3 && flat; dz++)
+                            flat = w.SurfaceY(x + dx, z + dz) == y && Blocks.IsOpaque[w.GetBlock(x + dx, y, z + dz)];
+                    if (!flat) continue;
+                    int tx = x + 3, ty = y + 1;
+                    for (int dx = -1; dx <= 7; dx++)
+                        for (int dz = -3; dz <= 3; dz++)
+                            for (int dy = 1; dy <= 3; dy++) w.SetBlock(x + dx, y + dy, z + dz, B.Air);   // clear grass/flowers
+                    bool hold = Cli.Has("holdtorch");
+                    if (!Cli.Has("notorch") && !hold) w.SetBlock(tx, ty, z, B.Torch);
+                    var inv = p.Inventory;
+                    int slot = -1;
+                    for (int k = 0; k < Items.Inventory.Hotbar; k++) if (!inv.Slots[k].IsEmpty && inv.Slots[k].Id == B.Torch) slot = k;
+                    if (hold && slot < 0) { inv.Add(B.Torch, 1); for (int k = 0; k < Items.Inventory.Hotbar; k++) if (!inv.Slots[k].IsEmpty && inv.Slots[k].Id == B.Torch) slot = k; }
+                    // Hold the torch only for -holdtorch; otherwise an empty hand so the two views compare cleanly.
+                    inv.Selected = hold ? Mathf.Max(0, slot) : FirstEmpty(inv);
+                    var eye = new Vector3(x + 0.5f, y + 1 + Player.PlayerController.Eye, z + 0.5f);
+                    Place(p, eye, new Vector3(tx + 0.5f, ty, z + 0.5f));
+                    Debug.Log($"WM_GFXCAM torch eye={eye} torch=({tx},{ty},{z}) placed={w.GetBlock(tx, ty, z) == B.Torch} held={hold}");
+                    if (hold && Cli.Has("lightcheck")) yield return LightCheck(w, x, y, z);
+                    yield break;
+                }
+            Debug.Log("WM_GFXCAM torch: no flat ground found");
+        }
+
+        // -lightcheck: a sealed stone box (hollow 3x3x3) 5 blocks to the side must be dark inside, its outside lit.
+        IEnumerator LightCheck(VoxelWorld w, int x, int y, int z)
+        {
+            int bx = x, by = y + 1, bz = z + 6;      // box min corner (beside the view, off camera)
+            for (int dx = 0; dx < 5; dx++)
+                for (int dy = 0; dy < 5; dy++)
+                    for (int dz = 0; dz < 5; dz++)
+                    {
+                        bool shell = dx == 0 || dy == 0 || dz == 0 || dx == 4 || dy == 4 || dz == 4;
+                        w.SetBlock(bx + dx, by + dy, bz + dz, shell ? B.Stone : B.Air);
+                    }
+            for (int f = 0; f < 5; f++) yield return null;   // let HandLight rebuild after the block changes
+            var hl = HandLight.Instance;
+            int inside = hl != null ? hl.ReachAt(new Vector3Int(bx + 2, by + 2, bz + 2)) : -2;
+            int outside = hl != null ? hl.ReachAt(new Vector3Int(bx + 2, by + 2, bz - 1)) : -2;
+            int above = hl != null ? hl.ReachAt(new Vector3Int(x, y + 2, z)) : -2;
+            bool ok = inside == 0 && outside > 0 && above == 255;
+            Debug.Log($"WM_HANDLIGHT {(ok ? "PASS" : "FAIL")} sealed_inside={inside} outside_wall={outside} at_player={above} rebuild_ms={HandLight.LastRebuildMs:0.00}");
+        }
+
+        static int FirstEmpty(Items.Inventory inv)
+        {
+            for (int k = 0; k < Items.Inventory.Hotbar; k++) if (inv.Slots[k].IsEmpty) return k;
+            return Items.Inventory.Hotbar - 1;
         }
 
         IEnumerator Cave(Player.PlayerController p, VoxelWorld w, Vector3 origin)

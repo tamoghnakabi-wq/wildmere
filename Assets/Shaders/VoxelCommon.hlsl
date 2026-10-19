@@ -44,6 +44,9 @@ float4 _WM_AmbientSky;      // rgb: ambient from above (already includes intensi
 float4 _WM_AmbientGround;   // rgb: ambient from below
 float4 _WM_CaveAmbient;     // rgb: minimum light with no sky access
 float4 _WM_BlockLight;      // rgb: torch light colour, a: intensity
+float4 _WM_HandLight;       // xyz: held torch flame position, w: its light level 0..15 (0 = none) — HandLight.cs
+float4 _WM_HandLightVol;    // xyz: world min corner of the reach mask, w: its size in blocks
+TEXTURE3D(_WM_HandLightMask); SAMPLER(sampler_WM_HandLightMask);   // 1 where the held light reaches (flood fill)
 float4 _WM_FogColor;        // rgb: haze in-scatter colour (ambient part)
 float4 _WM_FogSunColor;     // rgb: haze in-scatter colour from the sun (multiplied by the phase function)
 float4 _WM_Fog;             // x: density, y: height falloff, z: base height, w: start distance

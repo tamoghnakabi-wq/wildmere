@@ -4,6 +4,25 @@
 
 #include "VoxelCommon.hlsl"
 
+// Light from a torch held in the hand (Rendering/HandLight.cs), as a block-light value 0..1: level emit - distance
+// like a placed torch, only where the hand's flood fill reaches (sampled in the cell in front of the surface,
+// so it stops at walls and floors), and dimmer on faces turned away from it.
+half WMHandLight(float3 positionWS, float3 nWS)
+{
+    half light = 0.0;
+    float3 toL = _WM_HandLight.xyz - positionWS;
+    float d = length(toL);
+    half level = saturate((_WM_HandLight.w - d) / 15.0);   // 0 when no light is held (w = 0) or out of range
+    UNITY_BRANCH if (level > 0.0)
+    {
+        half facing = saturate(dot(nWS, toL) / max(d, 0.001) * 0.6 + 0.4);
+        float3 uvw = (positionWS + nWS * 0.5 - _WM_HandLightVol.xyz) / _WM_HandLightVol.w;
+        half reach = SAMPLE_TEXTURE3D_LOD(_WM_HandLightMask, sampler_WM_HandLightMask, uvw, 0).r;
+        light = level * facing * reach;
+    }
+    return light;
+}
+
 // The shared voxel/prop lighting: sun (shadow map, voxel sky visibility, cloud shadow), hemisphere ambient
 // scaled by voxel sky light, warm torch light, sky reflection. `occlusion` is the baked (vertex + texture) AO.
 half3 WMShadeSurface(half3 albedo, half smoothness, half occlusion, float3 nWS, float3 positionWS, float4 positionCS,
@@ -34,7 +53,9 @@ half3 WMShadeSurface(half3 albedo, half smoothness, half occlusion, float3 nWS, 
     half3 hemi = lerp(_WM_AmbientGround.rgb, _WM_AmbientSky.rgb, saturate(nWS.y * 0.5 + 0.5));
     half3 ambient = hemi * skyAmb + _WM_CaveAmbient.rgb;
     ambient += half3(0.5, 0.55, 0.75) * _WM_Precip.w * skyAmb * 0.6; // lightning flash
-    // Torch light: warm, gently flickering, with a soft curve (pockets of light in caves).
+    // Torch light: warm, gently flickering, with a soft curve (pockets of light in caves). A held torch
+    // counts like a second torch: the brighter of the two levels.
+    blk = max(blk, WMHandLight(positionWS, nWS));
     half flicker = 0.9 + 0.1 * sin(_Time.y * 9.0 + WMHash(floor(positionWS)) * 40.0) * sin(_Time.y * 3.3 + positionWS.x);
     half3 torch = _WM_BlockLight.rgb * _WM_BlockLight.a * (pow(saturate(blk), 2.4) + pow(saturate(blk), 8.0) * 0.6) * flicker;
     color += (ambient * indirectOcc + torch * lerp(1.0, indirectOcc, 0.5)) * brdf.diffuse;
