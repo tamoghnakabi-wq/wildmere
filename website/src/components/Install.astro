@@ -116,6 +116,20 @@ const winSum = `Get-FileHash .\\${winZip} -Algorithm SHA256`;
         </div>
       </div>
     </div>
+
+    <div class="verify updates" data-reveal>
+      <h3><Icon name="refresh" /> Updates install themselves</h3>
+      <p>
+        From version 0.1.3, you only download Wildmere once. New versions download in the background and install when you quit, or
+        straight away with <em>Restart to update</em> on the title screen. Each update is checked against Wildmere's signing key and its
+        exact checksum before anything is replaced, and the previous version is kept until the new one is in place. You can turn this
+        off in <em>Settings › Updates</em>.
+      </p>
+      <p class="small">
+        Keep the game somewhere you can write to (Applications on macOS, a folder such as <code>Documents\Games</code> on Windows)
+        so it can replace itself. Versions before 0.1.3 need one manual download.
+      </p>
+    </div>
   </div>
 </section>
 

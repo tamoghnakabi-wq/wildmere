@@ -1,17 +1,17 @@
 {
-  "version": "0.1.2",
+  "version": "0.1.3",
   "date": "2026-10-19",
-  "notes": "Fixes floating rocks and bushes in the sky.\n\n### Fixed\n- Decoration props (boulders, small rocks, bushes, logs, mushrooms) from the main menu's background world, or from a previously loaded world, kept being drawn after you started or loaded a world, so they floated in the air above your terrain. Each world's props are now removed when that world closes.\n- Includes v0.1.1's fixes: clouds no longer look multi-layered, and held plants are drawn at a natural size.\n\n### Known issues\n- macOS builds are ad-hoc signed, not notarized: approve the first launch in System Settings › Privacy & Security.\n- Windows builds are not code-signed: SmartScreen asks for \"More info › Run anyway\".\n- Windows and Intel Macs have only passed automated checks on GitHub's test machines; the game was played and benchmarked on an Apple M4 MacBook Air.\n\n### Downloads\nPick the zip for your system below. Each file's SHA-256 is in `Wildmere-0.1.2-SHA256SUMS.txt`.\nInstall guide: docs/INSTALL.md in the repository.",
+  "notes": "Wildmere now updates itself: download this version once, and future updates arrive in the game.\n\n### New\n- **Automatic updates.** Wildmere checks for new versions in the background, downloads them while you play, and installs them when you quit — or right away with \"Restart to update\" on the title screen. Every update is checked against Wildmere's signing key and its exact file checksum before anything is installed, and the previous version is kept until the new one is safely in place. You can turn automatic downloads off in Settings › Updates.\n\n### Notes\n- Earlier versions (0.1.0–0.1.2) can't update themselves: download 0.1.3 from the website once.\n- On macOS, keep Wildmere in Applications (or another folder you own). Apps run straight from Downloads without being moved can't replace themselves; the game tells you if that's the case.\n\n### Known issues\n- macOS builds are ad-hoc signed, not notarized: approve the first launch in System Settings › Privacy & Security.\n- Windows builds are not code-signed: SmartScreen asks for \"More info › Run anyway\".\n- Windows and Intel Macs have only passed automated checks on GitHub's test machines; the game was played and benchmarked on an Apple M4 MacBook Air.\n\n### Downloads\nPick the zip for your system below. Each file's SHA-256 is in `Wildmere-0.1.3-SHA256SUMS.txt`.\nInstall guide: docs/INSTALL.md in the repository.",
   "repo": "https://github.com/tamoghnakabi-wq/wildmere",
-  "checksums": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.2/Wildmere-0.1.2-SHA256SUMS.txt",
+  "checksums": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.3/Wildmere-0.1.3-SHA256SUMS.txt",
   "assets": [
     {
       "platform": "macos",
       "label": "macOS (Apple Silicon & Intel)",
-      "file": "Wildmere-0.1.2-macOS.zip",
-      "url": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.2/Wildmere-0.1.2-macOS.zip",
-      "size": 76293607,
-      "sha256": "0c70b2d6acd4ad4a0f2ae24fac729c4a301432d7e624a495122bb0e511afb4c2",
+      "file": "Wildmere-0.1.3-macOS.zip",
+      "url": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.3/Wildmere-0.1.3-macOS.zip",
+      "size": 76307198,
+      "sha256": "c7793151949257f96f51ef1296b18c1b98a4c4781ccf8b7f63bdb3e838d0584e",
       "verified": {
         "arm64": true,
         "x64": false
@@ -20,10 +20,10 @@
     {
       "platform": "windows",
       "label": "Windows 10/11 (64-bit)",
-      "file": "Wildmere-0.1.2-Windows-x64.zip",
-      "url": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.2/Wildmere-0.1.2-Windows-x64.zip",
-      "size": 67053054,
-      "sha256": "1b77dee513326e07a74e6adfa69837c79708f2544ed7289dca41a065065f5558",
+      "file": "Wildmere-0.1.3-Windows-x64.zip",
+      "url": "https://github.com/tamoghnakabi-wq/wildmere/releases/download/v0.1.3/Wildmere-0.1.3-Windows-x64.zip",
+      "size": 67065669,
+      "sha256": "ba2c68df4d88eace38dd1ae32b9b8a4060898a9b26493822c3b3396747fa3fc5",
       "verified": false
     }
   ]
